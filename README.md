@@ -27,6 +27,7 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
 ### Hosting an AP server
 
 * Download the AP World [here](https://github.com/TheNooodle/Archipelago/releases).
+    * If you have to use the version compatible with `v0.5.0` of Archipelago, don't forget to rename the `.apworld` to `minishoot.apworld`.
 * Go over your root Archipelago directory, and put the `.apworld` file in the `custom_worlds` directory.
 * Also in the Archipelago directory, put the players `.yaml` files in the `Players` folder
     * The `archipelago-template.yaml` file in the mod folder should document every available settings.
