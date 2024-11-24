@@ -18,7 +18,6 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
 * Download the randomizer [here](https://github.com/TheNooodle/MinishootRandomizer/releases).
 * Extract `MinishootRandomizer.zip` in `<game-root-directory>/BepInEx/plugins`.
     * You should have a `MinishootRandomizer` directory in the `plugins` folder, with some `.dll` files in the former.
-    * The folder also have a `archipelago-template.yaml` file, which you can use to generate seeds using Archipelago.
 * Launch the game. Once on the title screen, you should see a window in the top-left titled "Randomizer Menu". This means the mod was successfully installed.
     * Please note that the game might be slower to start, due to the randomizer doing some bootstrapping work before letting the game start.
 
@@ -30,7 +29,7 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
     * If you have to use the version compatible with `v0.5.0` of Archipelago, don't forget to rename the `.apworld` to `minishoot.apworld`.
 * Go over your root Archipelago directory, and put the `.apworld` file in the `custom_worlds` directory.
 * Also in the Archipelago directory, put the players `.yaml` files in the `Players` folder
-    * The `archipelago-template.yaml` file in the mod folder should document every available settings.
+    * The `archipelago-template.yaml` file in the [release assets](https://github.com/TheNooodle/MinishootRandomizer/releases) should document every available settings.
     * For more info, head over the Archipelago website/Discord server.
 * Execute `ArchipelagoGenerate.exe` to generate the seed.
 * To start hosting the game, execute `ArchipelagoServer.exe output/<seed-zip-file>`, where `<seed-zip-file>` is the generated file from the step before.
