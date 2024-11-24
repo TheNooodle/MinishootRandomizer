@@ -15,7 +15,8 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
 * Launch the game a first time. This will allow BepInEx to create all necessary files. You can close the game afterwards.
 * **IMPORTANT** : For the randomizer to work, you need to modify the configuration file of BepInEx. Once the game is closed, go to `<game-root-directory>/BepInEx/config` and edit the `BepInEx.cfg` file (for example, with Notepad).
     * After that, search for the line containing `HideManagerGameObject` (it should be near the top of the file by default), and ensure that its value is set to `true`.
-* Download and extract `MinishootRandomizer.zip` in `<game-root-directory>/BepInEx/plugins`.
+* Download the randomizer [here](https://github.com/TheNooodle/MinishootRandomizer/releases).
+* Extract `MinishootRandomizer.zip` in `<game-root-directory>/BepInEx/plugins`.
     * You should have a `MinishootRandomizer` directory in the `plugins` folder, with some `.dll` files in the former.
     * The folder also have a `archipelago-template.yaml` file, which you can use to generate seeds using Archipelago.
 * Launch the game. Once on the title screen, you should see a window in the top-left titled "Randomizer Menu". This means the mod was successfully installed.
