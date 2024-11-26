@@ -141,16 +141,15 @@ namespace MinishootRandomizer
                 throw new GameObjectCreationException($"No shop replacement data found for {location.Identifier}");
             }
 
-            RandomizerNpcTradingInteraction interaction = UnityEngine.Object
-                .FindObjectsOfType<RandomizerNpcTradingInteraction>(true)
-                .FirstOrDefault(currentInteraction => currentInteraction.gameObject.name == shopReplacement.NpcName);
+            GameObject npcObject = _objectFinder.FindObject(new ByName(shopReplacement.NpcName, typeof(RandomizerNpcTradingInteraction)));
+            RandomizerNpcTradingInteraction interaction = npcObject.GetComponent<RandomizerNpcTradingInteraction>();
             if (interaction == null)
             {
                 throw new GameObjectCreationException($"No RandomizerNpcTradingInteraction found for {shopReplacement.NpcName}");
             }
 
             RandomizedShopSlot shopSlot = new RandomizedShopSlot(location, item, location.DefaultPrice, location.DefaultCurrency);
-            interaction.AddShopSlot(shopSlot);
+            interaction.AddShopSlot(shopSlot, shopReplacement.LocationNames.IndexOf(location.Identifier));
 
             return new NullAction();
         }

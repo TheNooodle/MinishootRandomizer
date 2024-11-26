@@ -97,9 +97,21 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
         }
     }
 
-    public void AddShopSlot(RandomizedShopSlot shopSlot)
+    public void AddShopSlot(RandomizedShopSlot shopSlot, int slotIndex = 0)
     {
-        _shopSlots.Add(shopSlot);
+        if (slotIndex < 0 || slotIndex > _shopSlots.Count)
+        {
+            slotIndex = _shopSlots.Count;
+        }
+
+        if (slotIndex == _shopSlots.Count)
+        {
+            _shopSlots.Add(shopSlot);
+        }
+        else
+        {
+            _shopSlots.Insert(slotIndex, shopSlot);
+        }
     }
 
     public void Show(RandomizerPickup pickup = null)
