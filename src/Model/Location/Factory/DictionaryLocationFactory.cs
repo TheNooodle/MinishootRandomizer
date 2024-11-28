@@ -198,14 +198,42 @@ namespace MinishootRandomizer
 
         private static Dictionary<string, DestroyableReplacementData> _destroyableLocationToSelector = new()
         {
+            {"Abyss North Connector - Under debris", new DestroyableReplacementData(
+                new ByName("WreckShip2 (5)"),
+                Vector3.zero
+            )},
+            {"Abyss Shack - Under pot", new DestroyableReplacementData(
+                new ByName("CaveDestroyable306"),
+                Vector3.zero
+            )},
+            {"Beach - Coconut pile", new DestroyableReplacementData(
+                new ByProximity(typeof(CoconutPile), new Vector3(231.87f, 36.35f, 0f), 0.1f),
+                Vector3.zero
+            )},
+            {"Beach - Seashell above dungeon", new DestroyableReplacementData(
+                new ByName("Shell1"),
+                Vector3.zero
+            )},
             {"Cemetery - Under enemy", new DestroyableReplacementData(
                 new ByName("Overworld 170 JarrerT2 S3"),
-                new Vector3(0f, 0f, 0f)
+                Vector3.zero
+            )},
+            {"Cemetery - West pot", new DestroyableReplacementData(
+                new ByName("OverworldDestroyable423"),
+                Vector3.zero
+            )},
+            {"Crystal Grove Temple - West pot", new DestroyableReplacementData(
+                new ByName("Temple1Destroyable28"),
+                Vector3.zero
             )},
             {"Desert - Under ruins", new DestroyableReplacementData(
                 new ByName("WreckShipSnakerHead"),
                 Vector3.zero,
                 new ByName("MapPickupDesert")
+            )},
+            {"Desert Temple - North East pot", new DestroyableReplacementData(
+                new ByName("Temple2Destroyable72"),
+                Vector3.zero
             )},
             {"Dungeon 1 - East behind debris", new DestroyableReplacementData(
                 new ByName("Dungeon1Destroyable51"),
@@ -213,6 +241,10 @@ namespace MinishootRandomizer
             )},
             {"Dungeon 1 - Hidden in West Arena", new DestroyableReplacementData(
                 new ByName("Dungeon1Destroyable1"),
+                Vector3.zero
+            )},
+            {"Dungeon 2 - Secret room", new DestroyableReplacementData(
+                new ByName("Dungeon2Destroyable111"),
                 Vector3.zero
             )},
             {"Dungeon 2 - Treasure room", new DestroyableReplacementData(
@@ -223,18 +255,58 @@ namespace MinishootRandomizer
                 new ByName("Dungeon3Destroyable32"),
                 Vector3.zero
             )},
+            {"Dungeon 3 - East rock 2", new DestroyableReplacementData(
+                new ByName("Dungeon3Destroyable24"),
+                Vector3.zero
+            )},
             {"Dungeon 3 - Inside middle pot", new DestroyableReplacementData(
                 new ByName("Dungeon3Destroyable58"),
                 Vector3.zero,
                 new ByName("Dungeon3CrystalKey4")
             )},
+            {"Dungeon 3 - Pot Island", new DestroyableReplacementData(
+                new ByName("Dungeon3Destroyable73"),
+                Vector3.zero
+            )},
             {"Forest - Bush behind tree", new DestroyableReplacementData(
                 new ByName("BushCuttable (3)"),
+                Vector3.zero
+            )},
+            {"Forest - Pot", new DestroyableReplacementData(
+                new ByName("OverworldDestroyable394"),
+                Vector3.zero
+            )},
+            {"Forest - Secret pond bush", new DestroyableReplacementData(
+                new ByName("BushCuttable (2)"),
                 Vector3.zero
             )},
             {"Green - Grove under ruins", new DestroyableReplacementData(
                 new ByProximity(typeof(Destroyable), new Vector3(-51.9f, 9.5f, 0f), 0.1f, false),
                 new Vector3(0f, -1.5f, 0f)
+            )},
+            {"Sewers - North pot room", new DestroyableReplacementData(
+                new ByName("CaveDestroyable254"),
+                Vector3.zero
+            )},
+            {"Sewers - South pot room", new DestroyableReplacementData(
+                new ByName("CaveDestroyable253"),
+                Vector3.zero
+            )},
+            {"Sunken City - North West pot", new DestroyableReplacementData(
+                new ByName("OverworldDestroyable401"),
+                Vector3.zero
+            )},
+            {"Sunken City - West bridge pot", new DestroyableReplacementData(
+                new ByName("OverworldDestroyable396"),
+                Vector3.zero
+            )},
+            {"Sunken Temple - Under the lilypad", new DestroyableReplacementData(
+                new ByName("FlowerLilly (54)"),
+                Vector3.zero
+            )},
+            {"Swamp - Hidden in plant", new DestroyableReplacementData(
+                new ByProximity(typeof(PlantDestroyable), new Vector3(169.19f, 92.83f, 0f), 0.1f),
+                Vector3.zero
             )},
             {"Swamp - Under rocks", new DestroyableReplacementData(
                 new ByName("OverworldDestroyable369"),

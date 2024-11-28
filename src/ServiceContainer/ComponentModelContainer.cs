@@ -161,6 +161,13 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (VanillaRandomizerEngine)_serviceContainer.GetService(typeof(VanillaRandomizerEngine)),
             (IRandomizerContextProvider)_serviceContainer.GetService(typeof(IRandomizerContextProvider))
         ));
+
+        // Activate to use a local test seed.
+        // _serviceContainer.AddService(typeof(IRandomizerEngine), new DummyRandomizerEngine(
+        //     (IItemRepository)_serviceContainer.GetService(typeof(IItemRepository)),
+        //     (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository)),
+        //     (IProgressionStorage)_serviceContainer.GetService(typeof(IProgressionStorage))
+        // ));
         
         _serviceContainer.AddService(typeof(RandomizerEngineManager), new RandomizerEngineManager(
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
@@ -271,6 +278,16 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             += ((BossPatcher)_serviceContainer.GetService(typeof(BossPatcher))).OnEnteringGameLocation;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
             += ((BossPatcher)_serviceContainer.GetService(typeof(BossPatcher))).OnExitingGame;
+
+        _serviceContainer.AddService(typeof(ScarabRemovalPatcher), new ScarabRemovalPatcher(
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
+            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((ScarabRemovalPatcher)_serviceContainer.GetService(typeof(ScarabRemovalPatcher))).OnEnteringGameLocation;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((ScarabRemovalPatcher)_serviceContainer.GetService(typeof(ScarabRemovalPatcher))).OnExitingGame;
 
         _isBuilt = true;
     }
