@@ -68,7 +68,7 @@ namespace MinishootRandomizer
             Dictionary<Type, ISetting> settings = new()
             {
                 { typeof(NpcSanity), new NpcSanity(true) },
-                { typeof(ScarabSanity), new ScarabSanity(false) },
+                { typeof(ScarabSanity), new ScarabSanity(true) },
                 { typeof(ShardSanity), new ShardSanity(true) },
                 { typeof(KeySanity), new KeySanity(true) },
                 { typeof(BossKeySanity), new BossKeySanity(true) },
@@ -308,6 +308,24 @@ Swamp Shop 3: XP Crystals x10
 Swamp Shop Extra: HP Crystal Shard
 Swamp Tower - Top of tower: XP Crystals x5
 Town Pillars Grotto - Reward: Sunken City Map
+Abyss North Connector - Under debris: XP Crystals x65
+Abyss Shack - Under pot: XP Crystals x65
+Beach - Coconut pile: XP Crystals x65
+Beach - Seashell above dungeon: XP Crystals x65
+Cemetery - West pot: XP Crystals x65
+Crystal Grove Temple - West pot: XP Crystals x65
+Desert Temple - North East pot: XP Crystals x65
+Dungeon 2 - Secret room: XP Crystals x65
+Dungeon 3 - East rock 2: XP Crystals x65
+Dungeon 3 - Pot Island: XP Crystals x65
+Forest - Pot: XP Crystals x65
+Forest - Secret pond bush: XP Crystals x65
+Sewers - North pot room: XP Crystals x65
+Sewers - South pot room: XP Crystals x65
+Sunken City - North West pot: XP Crystals x65
+Sunken City - West bridge pot: XP Crystals x65
+Sunken Temple - Under the lilypad: XP Crystals x65
+Swamp - Hidden in plant: XP Crystals x65
 Zelda 1 Grotto - Behind the closed doors: Small Key (Dungeon 1)";
     }
 }
