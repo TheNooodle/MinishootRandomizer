@@ -96,8 +96,13 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
-        _serviceContainer.AddService(typeof(ISpriteProvider), new ArchipelagoSpriteProvider(
-            (PrefabSpriteProvider)_serviceContainer.GetService(typeof(PrefabSpriteProvider))
+        ((PrefabSpriteProvider)_serviceContainer.GetService(typeof(PrefabSpriteProvider))).AddStrategy(new RootExtractionStrategy());
+        ((PrefabSpriteProvider)_serviceContainer.GetService(typeof(PrefabSpriteProvider))).AddStrategy(new SpriteChildExtractionStrategy());
+        ((PrefabSpriteProvider)_serviceContainer.GetService(typeof(PrefabSpriteProvider))).AddStrategy(new TweenableExtractionStrategy());
+
+        _serviceContainer.AddService(typeof(ISpriteProvider), new FileSpriteProvider(
+            (PrefabSpriteProvider)_serviceContainer.GetService(typeof(PrefabSpriteProvider)),
+            "MinishootRandomizer.Resources.images"
         ));
 
         _serviceContainer.AddService(typeof(IItemPresentationProvider), new CoreItemPresentationProvider(

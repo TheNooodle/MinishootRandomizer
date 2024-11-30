@@ -9,6 +9,8 @@ public class PrefabSpriteProvider : ISpriteProvider, IPrefabCollector
     private readonly IObjectFinder _objectFinder;
     private readonly ILogger _logger = new NullLogger();
 
+    private List<IPrefabSpriteExtractionStrategy> _strategies = new List<IPrefabSpriteExtractionStrategy>();
+
     private readonly Dictionary<string, SpriteData> _sprites = new Dictionary<string, SpriteData>();
 
     private readonly Dictionary<string, Tuple<float, float>> _spriteParameters = new Dictionary<string, Tuple<float, float>>()
@@ -32,47 +34,29 @@ public class PrefabSpriteProvider : ISpriteProvider, IPrefabCollector
         _logger = logger ?? new NullLogger();
     }
 
+    public void AddStrategy(IPrefabSpriteExtractionStrategy strategy)
+    {
+        _strategies.Add(strategy);
+    }
+
     public void AddPrefab(string prefabIdentifier, ISelector selector, CloningType cloningType)
     {
         try
         {
             GameObject prefab = _objectFinder.FindObject(selector);
 
-            // Case where the SpriteRenderer is on the root object
-            SpriteRenderer spriteRenderer = prefab.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
+            foreach (IPrefabSpriteExtractionStrategy strategy in _strategies)
             {
-                _sprites[prefabIdentifier] = CreateSpriteData(prefabIdentifier, spriteRenderer.sprite);
-            }
-            else
-            {
-                // Case where the SpriteRenderer is on a child object called "Sprite"
-                Transform spriteTransform = prefab.transform.Find("Sprite");
-                if (spriteTransform == null)
+                try
                 {
-                    Transform tweenableTransform = prefab.transform.Find("Tweenable");
-                    if (tweenableTransform == null)
-                    {
-                        _logger.LogWarning($"No Sprite object was found for {prefabIdentifier} with selector {selector}");
-                        return;
-                    }
-                    else
-                    {
-                        spriteTransform = tweenableTransform.Find("Sprite");
-                        if (spriteTransform == null)
-                        {
-                            _logger.LogWarning($"No Sprite object was found for {prefabIdentifier} with selector {selector}");
-                            return;
-                        }
-                    }
-                }
-                spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
-                if (spriteRenderer == null)
-                {
-                    _logger.LogWarning($"No SpriteRenderer was found for {prefabIdentifier} with selector {selector}");
+                    Sprite sprite = strategy.ExtractSprite(prefabIdentifier, prefab);
+                    _sprites[prefabIdentifier] = CreateSpriteData(prefabIdentifier, sprite);
                     return;
                 }
-                _sprites[prefabIdentifier] = CreateSpriteData(prefabIdentifier, spriteRenderer.sprite);
+                catch (CannotExtractSpriteException)
+                {
+                    continue;
+                }
             }
         }
         catch (ObjectNotFoundException)

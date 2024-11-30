@@ -19,11 +19,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Randomizer data -->
     <EmbeddedResource Include="Resources/items.csv" />
     <EmbeddedResource Include="Resources/locations.csv" />
     <EmbeddedResource Include="Resources/transitions.csv" />
     <EmbeddedResource Include="Resources/regions.csv" />
     <EmbeddedResource Include="Resources/zones.csv" />
+
+    <!-- Images -->
+    <EmbeddedResource Include="Resources/images/archipelago.png" />
+    <EmbeddedResource Include="Resources/images/scarab.png" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">

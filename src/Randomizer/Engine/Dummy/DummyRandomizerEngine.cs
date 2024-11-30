@@ -242,7 +242,7 @@ Green - Behind Closed Arena: HP Crystal Shard
 Green - Crossroad Arena Item: Ancient Tablet
 Green - Bridge Shortcut: Boost
 Green - Button Item: Power of protection
-Town - Plaza: XP Crystals x10
+Town - Plaza: Scarab
 Town - Scarab Collector Item 2: XP Crystals x10
 Town - Scarab Collector Item 1: HP Crystal Shard
 Town - Scarab Collector Item 3: Advanced Energy
