@@ -157,16 +157,16 @@ Green - Town > Family House,Green - Town,Family House Cave - House,true
 Green - Town > Forest Secret Path,Green - Town,Forest - Secret Path,true
 Green - Town > Green Grotto,Green - Town,Green Grotto,true
 Green - Town > Island Arena,Green - Town,Green - Island Arena,can_fight or can_surf
-Green - Town > Scarab Temple Bottom Right Torch,Green - Town,Scarab Temple - Bottom Right Torch,can_fight and can_destroy_debris
-Green - Town > Scarab Temple Middle Entrance,Green - Town,Scarab Temple - Middle Entrance,can_fight and can_destroy_debris
+Green - Town > Scarab Temple Bottom Right Torch,Green - Town,Scarab Temple - Bottom Right Torch,can_fight and can_destroy_crystals
+Green - Town > Scarab Temple Middle Entrance,Green - Town,Scarab Temple - Middle Entrance,can_fight and can_destroy_crystals
 Green - Town > Scarab Temple Statue,Green - Town,Scarab Temple - Statue,can_destroy_rocks
 Green - Town > Starting Grotto,Green - Town,Starting Grotto - Entrance,true
 Green - Town > Swamp Entrance,Green - Town,Beach - Swamp Entrance,can_surf
 Green - Town > To Forest,Green - Town,Green - To Forest,can_destroy_bushes
-Green - Town > Town Pillars,Green - Town,Green - Town Pillars,can_destroy_debris
+Green - Town > Town Pillars,Green - Town,Green - Town Pillars,can_destroy_crystals
 Green - Town > Zelda 1 Grotto,Green - Town,Zelda 1 Grotto,true
-Green - Town Pillars > Town,Green - Town Pillars,Green - Town,can_destroy_debris
-Green - Town Pillars > Town Pillars Grotto,Green - Town Pillars,Town Pillars Grotto,can_destroy_debris
+Green - Town Pillars > Town,Green - Town Pillars,Green - Town,can_destroy_crystals
+Green - Town Pillars > Town Pillars Grotto,Green - Town Pillars,Town Pillars Grotto,can_destroy_crystals
 Green Grotto > Beach Coast Grotto,Green Grotto,Beach Coast Grotto,true
 Green Grotto > Town,Green Grotto,Green - Town,true
 Green Grotto Drop > Green Grotto,Green Grotto - Drop,Green Grotto,true
@@ -235,10 +235,10 @@ Sewers - West drop (right) > West,Sewers - West drop (right),Sewers - West,can_s
 Sewers - West waterfalls > Sunken City Middle,Sewers - West waterfalls,Sunken City - Middle,true
 Sewers - West waterfalls > West,Sewers - West waterfalls,Sewers - West,can_surf and can_destroy_walls
 Spirit Tower > Forest Spirit Tower Exterior,Spirit Tower,Forest - Spirit Tower Exterior,true
-Starting Grotto - Corridor > Lake,Starting Grotto - Corridor,Starting Grotto - Lake,can_destroy_debris
-Starting Grotto - Entrance > Town,Starting Grotto - Entrance,Green - Town,can_destroy_debris
-Starting Grotto - Lake > Corridor,Starting Grotto - Lake,Starting Grotto - Corridor,can_destroy_debris
-Starting Grotto - Lake > Entrance,Starting Grotto - Lake,Starting Grotto - Entrance,can_destroy_debris
+Starting Grotto - Corridor > Lake,Starting Grotto - Corridor,Starting Grotto - Lake,can_destroy_crystals
+Starting Grotto - Entrance > Town,Starting Grotto - Entrance,Green - Town,can_destroy_crystals
+Starting Grotto - Lake > Corridor,Starting Grotto - Lake,Starting Grotto - Corridor,can_destroy_crystals
+Starting Grotto - Lake > Entrance,Starting Grotto - Lake,Starting Grotto - Entrance,can_destroy_crystals
 Sunken City - Central Island > City,Sunken City - Central Island,Sunken City - City,can_open_north_city_bridge and can_surf
 Sunken City - Central Island > East,Sunken City - Central Island,Sunken City - East,can_surf
 Sunken City - Central Island > Sewers West drop (right),Sunken City - Central Island,Sewers - West drop (right),can_destroy_rocks

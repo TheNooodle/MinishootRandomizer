@@ -7,7 +7,7 @@ Abyss - South of spinning enemy,XP Crystals x10,XP Crystals,Abyss - Dungeon Exte
 Abyss - Village Entrance,XP Crystals x50,XP Crystals,Abyss - Village,can_destroy_crystals
 Abyss - Within Crystal Grove,XP Crystals x20,XP Crystals,Abyss - Within Crystal Grove,true
 Abyss Church - Unchosen statue,Dark Heart,Default,Abyss - Church,have_cleared_d5
-Abyss North Connector - Under debris,Scarab,Scarab,Abyss North Connector,can_destroy_crystals and can_destroy_ruins
+Abyss North Connector - Under ruins,Scarab,Scarab,Abyss North Connector,can_destroy_crystals and can_destroy_ruins
 Abyss Ruined shop - Item,Abyss Map,Default,Ruined shop,true
 Abyss Shack - Hidden corridor,XP Crystals x10,XP Crystals,Abyss - Village Shack,can_destroy_crystals
 Abyss Shack - Hidden room,HP Crystal Shard,Default,Abyss - Village Shack,can_destroy_crystals
@@ -22,8 +22,8 @@ Beach - Protected item,Beach Map,Default,Beach - Dungeon 3 Island,can_surf and c
 Beach - Seashell above dungeon,Scarab,Scarab,Beach - Dungeon 3 Island,can_destroy_shells
 Beach - South East Island,HP Crystal Shard,Default,Beach - Dungeon 3 Island,can_dash and can_surf and can_destroy_coconuts
 Cemetery - Crying house,HP Crystal Shard,Default,Cemetery,can_destroy_crystals
-Cemetery - Under enemy,XP Crystals x20,XP Crystals,Cemetery,can_surf and can_fight_lvl4 or can_dash and can_fight_lvl4
-Cemetery - West pot,Scarab,Scarab,Cemetery,can_destroy_pots and can_surf or can_destroy_pots and can_dash
+Cemetery - Under enemy,XP Crystals x20,XP Crystals,Cemetery,can_surf and can_fight_lvl4
+Cemetery - West pot,Scarab,Scarab,Cemetery,can_destroy_pots and can_surf
 Cemetery Tower - Top of tower,Ancient Tablet,Default,Cemetery Tower,can_destroy_walls
 Crystal Grove Temple - Boss reward,Power of protection,Default,Crystal Grove Temple - North wing,can_fight_lvl2
 Crystal Grove Temple - Dodge the east cannons,XP Crystals x25,XP Crystals,Crystal Grove Temple - East wing,can_surf or can_dash
@@ -37,22 +37,23 @@ Desert - On the river,XP Crystals x15,XP Crystals,Desert,can_dash or can_surf
 Desert - Under ruins,Desert Map,Default,Desert,can_destroy_ruins
 Desert Grotto - Both torches lighted,Family Parent 1,NPC,Desert Grotto - Main,can_light_desert_grotto_torches
 Desert Temple - Boss reward,Power of time,Default,Desert Temple,can_dash and can_fight_lvl3 and can_light_torches and can_destroy_crystals
-Desert Temple - North East pot,Scarab,Scarab,Desert Temple,can_light_torches and can_dash and can_fight_lvl3
+Desert Temple - North East pot,Scarab,Scarab,Desert Temple,can_light_torches and can_dash and can_fight_lvl3 and can_destroy_crystals
 Desert Temple - Secret room,XP Crystals x140,XP Crystals,Desert Temple,can_light_torches and can_dash and can_destroy_walls
 Dungeon 1 - Central item,Dash,Default,Dungeon 1 - After Bridge,true
-Dungeon 1 - Debris wall item,HP Crystal Shard,Default,Dungeon 1 - After Bridge,can_dash
+Dungeon 1 - Crystal near east armored spinner,XP Crystals x10,XP Crystals,Dungeon 1 - Entrance,can_dash and can_destroy_crystals
 Dungeon 1 - Dungeon reward,Dungeon 1 Reward,Dungeon Reward,Dungeon 1 - After Bridge,have_d1_boss_key and can_fight_lvl2 and can_dodge_homing_charges
-Dungeon 1 - East behind debris,XP Crystals x10,XP Crystals,Dungeon 1 - Entrance,can_dash and can_destroy_debris
 Dungeon 1 - Entrance after south ramp,XP Crystals x10,XP Crystals,Dungeon 1 - Entrance,true
 Dungeon 1 - Entrance East Arena,XP Crystals x55,XP Crystals,Dungeon 1 - Entrance,can_fight_lvl2
 Dungeon 1 - Entrance west bridge,Small Key (Dungeon 1),Dungeon Small Key,Dungeon 1 - Entrance,can_fight_lvl2 or can_dash
-Dungeon 1 - Far West Arena after spinning enemy,Small Key (Dungeon 1),Dungeon Small Key,Dungeon 1 - Entrance,can_fight_lvl2
-Dungeon 1 - Hidden below debris wall,XP Crystals x20,XP Crystals,Dungeon 1 - After Bridge,can_dash
-Dungeon 1 - Hidden in West Arena,XP Crystals x10,XP Crystals,Dungeon 1 - Entrance,can_fight_lvl2 and can_destroy_debris
+Dungeon 1 - Far West Arena after spinner,Small Key (Dungeon 1),Dungeon Small Key,Dungeon 1 - Entrance,can_fight_lvl2
+Dungeon 1 - Hidden below crystal wall,XP Crystals x20,XP Crystals,Dungeon 1 - After Bridge,can_dash
+Dungeon 1 - Hidden in West Arena,XP Crystals x10,XP Crystals,Dungeon 1 - Entrance,can_fight_lvl2 and can_destroy_crystals
+Dungeon 1 - Inside the crystal wall,XP Crystals x5,XP Crystals,Dungeon 1 - After Bridge,can_destroy_crystals
 Dungeon 1 - Near boss,XP Crystals x10,XP Crystals,Dungeon 1 - After Bridge,can_dash
-Dungeon 1 - Near east spinning enemy,Small Key (Dungeon 1),Dungeon Small Key,Dungeon 1 - Entrance,can_dash and can_destroy_debris
-Dungeon 1 - Near west spinning enemy,XP Crystals x10,XP Crystals,Dungeon 1 - Entrance,can_fight_lvl2 or can_dash
+Dungeon 1 - Near east armored spinner,Small Key (Dungeon 1),Dungeon Small Key,Dungeon 1 - Entrance,can_dash and can_destroy_crystals
+Dungeon 1 - Near west armored spinner,XP Crystals x10,XP Crystals,Dungeon 1 - Entrance,can_fight_lvl2 or can_dash
 Dungeon 1 - North West Arena,Small Key (Dungeon 1),Dungeon Small Key,Dungeon 1 - After Bridge,can_dash and can_fight_lvl2
+Dungeon 1 - Platform after crystal wall,HP Crystal Shard,Default,Dungeon 1 - After Bridge,can_dash
 Dungeon 1 - South item,Boss Key (Dungeon 1),Dungeon Big Key,Dungeon 1 - Entrance,can_dash and have_d1_keys(4)
 Dungeon 1 - West bridge hidden item,Energy Crystal Shard,Default,Dungeon 1 - Entrance,can_fight_lvl2 or can_dash
 Dungeon 2 - Central item,Boss Key (Dungeon 2),Dungeon Big Key,Dungeon 2 - Main,can_destroy_rocks and can_light_torches and have_d2_keys(4)

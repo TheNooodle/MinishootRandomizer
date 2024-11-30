@@ -21,11 +21,11 @@ namespace MinishootRandomizer
             { "Desert - North east platforms", "OverworldEnergy3" },
             { "Desert Temple - Boss reward", "Temple2PowerSlowLevel0" },
             { "Dungeon 1 - Central item", "SkillDash"},
-            { "Dungeon 1 - Debris wall item", "Dungeon1Hp0"},
             { "Dungeon 1 - Entrance west bridge", "Dungeon1CrystalKey2"},
-            { "Dungeon 1 - Far West Arena after spinning enemy", "Dungeon1CrystalKey1"},
-            { "Dungeon 1 - Near east spinning enemy", "Dungeon1CrystalKey3"},
+            { "Dungeon 1 - Far West Arena after spinner", "Dungeon1CrystalKey1"},
+            { "Dungeon 1 - Near east armored spinner", "Dungeon1CrystalKey3"},
             { "Dungeon 1 - North West Arena", "Dungeon1CrystalKey0"},
+            { "Dungeon 1 - Platform after crystal wall", "Dungeon1Hp0"},
             { "Dungeon 1 - South item", "Dungeon1BossKey"},
             { "Dungeon 1 - West bridge hidden item", "Dungeon1Energy0"},
             { "Dungeon 2 - Central item", "Dungeon2BossKey" },
@@ -100,9 +100,9 @@ namespace MinishootRandomizer
             { "Desert Temple - Secret room", new ShardLocationReplacementData(-505f, -430f, 0f) },
             { "Dungeon 1 - Entrance after south ramp", new ShardLocationReplacementData(547f, 200f, 0f) },
             { "Dungeon 1 - Entrance East Arena", new ShardLocationReplacementData(616f, 206f, 0f) },
-            { "Dungeon 1 - Hidden below debris wall", new ShardLocationReplacementData(544f, 217f, 0f) },
+            { "Dungeon 1 - Hidden below crystal wall", new ShardLocationReplacementData(544f, 217f, 0f) },
             { "Dungeon 1 - Near boss", new ShardLocationReplacementData(492f, 273f, 0f) },
-            { "Dungeon 1 - Near west spinning enemy", new ShardLocationReplacementData(428f, 207f, 0f) },
+            { "Dungeon 1 - Near west armored spinner", new ShardLocationReplacementData(428f, 207f, 0f) },
             { "Dungeon 2 - Hidden by plants", new ShardLocationReplacementData(924f, 318f, 0f) },
             { "Dungeon 2 - North east beyond arena", new ShardLocationReplacementData(1032f, 336f, 0f) },
             { "Dungeon 2 - Treasure room entrance", new ShardLocationReplacementData(1018f, 278f, 0f) },
@@ -198,7 +198,7 @@ namespace MinishootRandomizer
 
         private static Dictionary<string, DestroyableReplacementData> _destroyableLocationToSelector = new()
         {
-            {"Abyss North Connector - Under debris", new DestroyableReplacementData(
+            {"Abyss North Connector - Under ruins", new DestroyableReplacementData(
                 new ByName("WreckShip2 (5)"),
                 new Vector3(0f, -0.3f, 0f)
             )},
@@ -235,12 +235,16 @@ namespace MinishootRandomizer
                 new ByName("Temple2Destroyable72"),
                 Vector3.zero
             )},
-            {"Dungeon 1 - East behind debris", new DestroyableReplacementData(
+            {"Dungeon 1 - Crystal near east armored spinner", new DestroyableReplacementData(
                 new ByName("Dungeon1Destroyable51"),
                 Vector3.zero
             )},
             {"Dungeon 1 - Hidden in West Arena", new DestroyableReplacementData(
                 new ByName("Dungeon1Destroyable1"),
+                Vector3.zero
+            )},
+            {"Dungeon 1 - Inside the crystal wall", new DestroyableReplacementData(
+                new ByName("Dungeon1Destroyable44"),
                 Vector3.zero
             )},
             {"Dungeon 2 - Secret room", new DestroyableReplacementData(

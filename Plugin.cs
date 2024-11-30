@@ -11,7 +11,7 @@ namespace MinishootRandomizer
 
         public static IServiceContainer ServiceContainer { get; private set; }
 
-        public static bool IsDebug => false;
+        public static bool IsDebug => true;
 
         private void Awake()
         {
