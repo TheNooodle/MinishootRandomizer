@@ -41,9 +41,9 @@ public class PickupItem : Item
             PlayerState.SetModule(Modules.SpiritDash, true);
             PlayerState.SetModule(Modules.PrimordialCrystal, true);
 
-            PlayerState.SetStatsLevel(Stats.PowerAllyLevel, 4);
-            PlayerState.SetStatsLevel(Stats.PowerBombLevel, 4);
-            PlayerState.SetStatsLevel(Stats.PowerSlowLevel, 4);
+            PlayerState.SetStatsLevel(Stats.PowerAllyLevel, 3);
+            PlayerState.SetStatsLevel(Stats.PowerBombLevel, 3);
+            PlayerState.SetStatsLevel(Stats.PowerSlowLevel, 3);
             ReflectionHelper.InvokeStaticAction(typeof(StatsPickup), "PowerCollected");
 
             Player.Instance.UpdateStats(updateCurrentHP: true);

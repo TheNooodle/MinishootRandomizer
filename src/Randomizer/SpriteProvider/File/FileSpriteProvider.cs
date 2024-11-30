@@ -31,7 +31,7 @@ public class FileSpriteProvider : ISpriteProvider
 
         SpriteFileData spriteFileData = _spriteFiles[identifier];
         Assembly assembly = Assembly.GetExecutingAssembly();
-        Stream stream = assembly.GetManifestResourceStream(_rootPath + "." + spriteFileData.FileName);
+        using Stream stream = assembly.GetManifestResourceStream(_rootPath + "." + spriteFileData.FileName);
         Texture2D texture = new Texture2D(spriteFileData.Width, spriteFileData.Height, TextureFormat.DXT1, false);
         byte[] buffer = new byte[stream.Length];
         stream.Read(buffer, 0, buffer.Length);
