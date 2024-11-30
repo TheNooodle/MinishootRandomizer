@@ -63,6 +63,8 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
 
 * NPC Sanity
     * Randomizes all trapped NPCs, which means NPCs are now items, and their previous locations (especially the towers) are now locations to check.
+* Scarab Sanity
+    * Randomizes all 18 scarabs locations, hidden by their respectives destroyable objects. Scarabs will be available as normal pickup items.
 * ShardSanity
     * Randomizes the XP shards "groups" (not individual crystals). You will be able to receive XP via items.
 * Key Sanity

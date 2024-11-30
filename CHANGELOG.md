@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Changelog file
+- New setting : Scarab Sanity
+    - Adds 18 new locations, where the scarabs in the vanilla game are hidden.
+    - Those locations only appear when their respective destroyable objects are entirely destroyed.
 
 ### Fixed
 
