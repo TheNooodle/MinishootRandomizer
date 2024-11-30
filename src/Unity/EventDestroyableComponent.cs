@@ -7,6 +7,7 @@ public class EventDestroyableComponent : MonoBehaviour
 {
     private BaseDestroyable _baseDestroyable = null;
     private Destroyable _destroyable = null;
+    private CoconutPile _coconutPile = null;
     private bool _isDestroyed = false;
 
     public event Action Destroyed;
@@ -16,7 +17,7 @@ public class EventDestroyableComponent : MonoBehaviour
     void Awake()
     {
         _destroyable = GetComponent<Destroyable>();
-        
+        _coconutPile = GetComponent<CoconutPile>();
     }
 
     void Start()
@@ -64,6 +65,28 @@ public class EventDestroyableComponent : MonoBehaviour
         else if (_baseDestroyable && !_baseDestroyable.IsDestroyed && _isDestroyed)
         {
             HandleRestore();
+        }
+        else if (_coconutPile)
+        {
+            bool areFloorCleared = true;
+            CoconutFloor[] floors = GetComponentsInChildren<CoconutFloor>();
+            foreach (CoconutFloor floor in floors)
+            {
+                if (!floor.IsCleared)
+                {
+                    areFloorCleared = false;
+                    break;
+                }
+            }
+
+            if (areFloorCleared && !_isDestroyed)
+            {
+                HandleDestroyed();
+            }
+            else if (!areFloorCleared && _isDestroyed)
+            {
+                HandleRestore();
+            }
         }
     }
 }
