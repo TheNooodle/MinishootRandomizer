@@ -200,7 +200,7 @@ namespace MinishootRandomizer
         {
             {"Abyss North Connector - Under debris", new DestroyableReplacementData(
                 new ByName("WreckShip2 (5)"),
-                Vector3.zero
+                new Vector3(0f, -0.3f, 0f)
             )},
             {"Abyss Shack - Under pot", new DestroyableReplacementData(
                 new ByName("CaveDestroyable306"),
@@ -290,7 +290,7 @@ namespace MinishootRandomizer
             )},
             {"Sewers - South pot room", new DestroyableReplacementData(
                 new ByName("CaveDestroyable253"),
-                Vector3.zero
+                new Vector3(0f, -0.3f, 0f)
             )},
             {"Sunken City - North West pot", new DestroyableReplacementData(
                 new ByName("OverworldDestroyable401"),
@@ -298,7 +298,7 @@ namespace MinishootRandomizer
             )},
             {"Sunken City - West bridge pot", new DestroyableReplacementData(
                 new ByName("OverworldDestroyable396"),
-                Vector3.zero
+                new Vector3(0f, -0.5f, 0f)
             )},
             {"Sunken Temple - Under the lilypad", new DestroyableReplacementData(
                 new ByName("FlowerLilly (54)"),
