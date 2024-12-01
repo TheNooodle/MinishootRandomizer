@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Changed Dungeon 2 logic :
-    - "Hidden by plants" now needs Dash and a way to destroy rocks (this is fix, as this location used to have no requirements at all)
+    - "Hidden by plants" now needs Dash and a way to destroy rocks (this is a fix, as this location used to have no requirements at all)
     - Small gaps in this dungeon now needs the Dash, and are no longer in logic with the Boost
         - You can still use the Boost to cross those gaps, as the coyote time prevent you from falling
         - For now, you will need to dash across them.
