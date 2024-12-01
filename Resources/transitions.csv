@@ -82,7 +82,7 @@ Dungeon 1 - Entrance > After Bridge,Dungeon 1 - Entrance,Dungeon 1 - After Bridg
 Dungeon 1 - Entrance > Green Dungeon 1 Exterior,Dungeon 1 - Entrance,Green - Dungeon 1 Exterior,true
 Dungeon 1 Cave > Outside Dungeon 1 Cave,Dungeon 1 Cave,Green - Outside Dungeon 1 Cave,can_fight_lvl2
 Dungeon 2 - Entrance > Exterior,Dungeon 2 - Entrance,Abyss - Dungeon Exterior,true
-Dungeon 2 - Entrance > Main,Dungeon 2 - Entrance,Dungeon 2 - Main,can_dash or can_boost
+Dungeon 2 - Entrance > Main,Dungeon 2 - Entrance,Dungeon 2 - Main,can_dash
 Dungeon 2 - Entrance > North East,Dungeon 2 - Entrance,Dungeon 2 - North East,have_d2_keys(4) and can_fight_lvl3
 Dungeon 2 - Main > West,Dungeon 2 - Main,Dungeon 2 - West,true
 Dungeon 3 - Entrance > Beach Dungeon Exterior,Dungeon 3 - Entrance,Beach - Dungeon Exterior,true

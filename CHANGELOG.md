@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2024-12-01
+
+### Changed
+
+- Changed Dungeon 2 logic :
+    - "Hidden by plants" now needs Dash and a way to destroy rocks (this is fix, as this location used to have no requirements at all)
+    - Small gaps in this dungeon now needs the Dash, and are no longer in logic with the Boost
+        - You can still use the Boost to cross those gaps, as the coyote time prevent you from falling
+        - For now, you will need to dash across them.
+        - This mainly impact all locations after the entrance area, as well as the "North West arena" location
+    - "South West arena" will now require the proper amount of cannon level depending on your settings
+
 ## [0.2.0] - 2024-12-01
 
 ### Added

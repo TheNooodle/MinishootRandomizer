@@ -58,13 +58,13 @@ Dungeon 1 - South item,Boss Key (Dungeon 1),Dungeon Big Key,Dungeon 1 - Entrance
 Dungeon 1 - West bridge hidden item,Energy Crystal Shard,Default,Dungeon 1 - Entrance,can_fight_lvl2 or can_dash
 Dungeon 2 - Central item,Boss Key (Dungeon 2),Dungeon Big Key,Dungeon 2 - Main,can_destroy_rocks and can_light_torches and have_d2_keys(4)
 Dungeon 2 - Dungeon reward,Dungeon 2 Reward,Dungeon Reward,Dungeon 2 - Main,have_d2_boss_key and can_destroy_rocks and can_dash and can_fight and have_d2_keys(4)
-Dungeon 2 - Hidden by plants,XP Crystals x20,XP Crystals,Dungeon 2 - Main,true
+Dungeon 2 - Hidden by plants,XP Crystals x20,XP Crystals,Dungeon 2 - Main,can_dash and can_destroy_rocks
 Dungeon 2 - Item after jumps,Supershot,Default,Dungeon 2 - North East,can_fight_lvl3 and can_boost and can_dash
 Dungeon 2 - North east beyond arena,XP Crystals x10,XP Crystals,Dungeon 2 - North East,can_fight_lvl3
-Dungeon 2 - North item,HP Crystal Shard,Default,Dungeon 2 - Main,can_dash and can_boost and can_destroy_walls and have_d2_keys(4)
-Dungeon 2 - North west arena,Small Key (Dungeon 2),Dungeon Small Key,Dungeon 2 - West,can_fight_lvl3 and can_dash or can_fight_lvl3 and can_boost
+Dungeon 2 - North item,HP Crystal Shard,Default,Dungeon 2 - Main,can_dash and can_boost and can_destroy_walls and can_destroy_rocks and have_d2_keys(4)
+Dungeon 2 - North west arena,Small Key (Dungeon 2),Dungeon Small Key,Dungeon 2 - West,can_fight_lvl3 and can_dash
 Dungeon 2 - Secret room,Scarab,Scarab,Dungeon 2 - North East,can_fight_lvl3 and can_dash and can_destroy_pots
-Dungeon 2 - South west arena,Small Key (Dungeon 2),Dungeon Small Key,Dungeon 2 - Main,can_destroy_rocks
+Dungeon 2 - South west arena,Small Key (Dungeon 2),Dungeon Small Key,Dungeon 2 - Main,can_destroy_rocks and can_fight_lvl3
 Dungeon 2 - Treasure room,XP Crystals x55,XP Crystals,Dungeon 2 - Entrance,can_destroy_walls and can_destroy_rocks
 Dungeon 2 - Treasure room entrance,XP Crystals x5,XP Crystals,Dungeon 2 - Entrance,true
 Dungeon 2 - Walled arena extra,XP Crystals x10,XP Crystals,Dungeon 2 - Entrance,can_fight_lvl3 and can_destroy_walls
