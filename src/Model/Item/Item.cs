@@ -23,6 +23,16 @@ abstract public class Item
     public const string Boost = "Boost";
     public const string Compass = "Compass";
     public const string CrystalBullet = "Crystal Bullet";
+    public const string D1BossKey = "Boss Key (Dungeon 1)";
+    public const string D1SmallKey = "Small Key (Dungeon 1)";
+    public const string D1Reward = "Dungeon 1 Reward";
+    public const string D2BossKey = "Boss Key (Dungeon 2)";
+    public const string D2SmallKey = "Small Key (Dungeon 2)";
+    public const string D2Reward = "Dungeon 2 Reward";
+    public const string D3BossKey = "Boss Key (Dungeon 3)";
+    public const string D3SmallKey = "Small Key (Dungeon 3)";
+    public const string D3Reward = "Dungeon 3 Reward";
+    public const string D4Reward = "Dungeon 4 Reward";
     public const string DarkHeart = "Dark Heart";
     public const string DarkKey = "Dark Key";
     public const string Dash = "Dash";
@@ -62,7 +72,6 @@ abstract public class Item
     public const string VengefulTalisman = "Vengeful Talisman";
     public const string VillageStar = "Village Star";
     public const string WoundedHeart = "Wounded Heart";
-
 
     private string _identifier;
     private ItemCategory _category;
