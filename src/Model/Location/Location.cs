@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace MinishootRandomizer
 {
     abstract public class Location
