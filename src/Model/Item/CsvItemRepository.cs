@@ -34,6 +34,16 @@ public class CsvItemRepository : IItemRepository
         return _items[identifier];
     }
 
+    public List<Item> GetAll()
+    {
+        if (_items == null)
+        {
+            LoadItems();
+        }
+
+        return new List<Item>(_items.Values);
+    }
+
     private void LoadItems()
     {
         var assembly = Assembly.GetExecutingAssembly();

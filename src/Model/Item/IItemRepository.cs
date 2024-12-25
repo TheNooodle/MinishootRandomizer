@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+
 namespace MinishootRandomizer;
 
 public interface IItemRepository
 {
     public Item Get(string identifier);
+    public List<Item> GetAll();
 }
 
 public class ItemNotFoundException : System.Exception

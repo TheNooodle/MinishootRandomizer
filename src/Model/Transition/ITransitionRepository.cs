@@ -4,6 +4,6 @@ namespace MinishootRandomizer;
 
 public interface ITransitionRepository
 {
-    Transition GetTransition(string name);
+    Transition Get(string identifier);
     List<Transition> GetFromOriginRegion(Region region);
 }

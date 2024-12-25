@@ -21,12 +21,36 @@ public class CsvTransitionRepository : ITransitionRepository
 
     public List<Transition> GetFromOriginRegion(Region region)
     {
-        throw new System.NotImplementedException();
+        if (_transitions == null)
+        {
+            LoadTransitions();
+        }
+
+        List<Transition> transitions = new List<Transition>();
+        foreach (Transition transition in _transitions.Values)
+        {
+            if (transition.From == region.Name)
+            {
+                transitions.Add(transition);
+            }
+        }
+
+        return transitions;
     }
 
-    public Transition GetTransition(string name)
+    public Transition Get(string identifier)
     {
-        throw new System.NotImplementedException();
+        if (_transitions == null)
+        {
+            LoadTransitions();
+        }
+
+        if (!_transitions.ContainsKey(identifier))
+        {
+            throw new TransitionNotFoundException(identifier);
+        }
+
+        return _transitions[identifier];
     }
 
     private void LoadTransitions()

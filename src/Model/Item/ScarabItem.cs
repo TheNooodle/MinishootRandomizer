@@ -16,4 +16,9 @@ public class ScarabItem : Item
     {
         return "Scarab";
     }
+
+    public override int GetOwnedQuantity()
+    {
+        return PlayerState.Currency[Currency.Scarab];
+    }
 }

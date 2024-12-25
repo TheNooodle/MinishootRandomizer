@@ -30,6 +30,11 @@ public class VanillaRandomizerEngine : IRandomizerEngine
         throw new ArgumentException("GetSetting should not be called on VanillaRandomizerEngine.");
     }
 
+    public List<ISetting> GetSettings()
+    {
+        throw new ArgumentException("GetSettings should not be called on VanillaRandomizerEngine.");
+    }
+
     public void Initialize()
     {
         // no-op

@@ -78,6 +78,11 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             "MinishootRandomizer.Resources.regions.csv"
         ));
 
+        _serviceContainer.AddService(typeof(ITransitionRepository), new CsvTransitionRepository(
+            "MinishootRandomizer.Resources.transitions.csv",
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+
         _serviceContainer.AddService(typeof(ICloningPassChain), new CloningPassChain());
         ((ICloningPassChain)_serviceContainer.GetService(typeof(ICloningPassChain))).AddPass(new PickupPass());
         ((ICloningPassChain)_serviceContainer.GetService(typeof(ICloningPassChain))).AddPass(new ColliderPass());
@@ -174,6 +179,33 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         //     (IProgressionStorage)_serviceContainer.GetService(typeof(IProgressionStorage))
         // ));
         
+        _serviceContainer.AddService(typeof(ISettingsProvider), new EngineAwareSettingsProvider(
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
+        ));
+
+        _serviceContainer.AddService(typeof(ILogicParser), new SimpleLogicParser(
+            (IItemRepository)_serviceContainer.GetService(typeof(IItemRepository)),
+            (IRegionRepository)_serviceContainer.GetService(typeof(IRegionRepository))
+        ));
+
+        _serviceContainer.AddService(typeof(ILogicStateProvider), new LocalLogicStateProvider(
+            (ILogicParser)_serviceContainer.GetService(typeof(ILogicParser)),
+            (IRegionRepository)_serviceContainer.GetService(typeof(IRegionRepository)),
+            (ITransitionRepository)_serviceContainer.GetService(typeof(ITransitionRepository)),
+            (IItemRepository)_serviceContainer.GetService(typeof(IItemRepository)),
+            (ISettingsProvider)_serviceContainer.GetService(typeof(ISettingsProvider)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+
+        _serviceContainer.AddService(typeof(ILogicChecker), new CoreLogicChecker(
+            (ILogicStateProvider)_serviceContainer.GetService(typeof(ILogicStateProvider)),
+            (ILogicParser)_serviceContainer.GetService(typeof(ILogicParser)),
+            (ISettingsProvider)_serviceContainer.GetService(typeof(ISettingsProvider)),
+            (IRegionRepository)_serviceContainer.GetService(typeof(IRegionRepository)),
+            (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+
         _serviceContainer.AddService(typeof(RandomizerEngineManager), new RandomizerEngineManager(
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
         ));

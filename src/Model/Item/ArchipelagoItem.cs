@@ -15,4 +15,10 @@ public class ArchipelagoItem : Item
     {
         return "Archipelago";
     }
+
+    public override int GetOwnedQuantity()
+    {
+        // An ArchipelagoItem cannot be owned, as it belong to another world.
+        return 0;
+    }
 }

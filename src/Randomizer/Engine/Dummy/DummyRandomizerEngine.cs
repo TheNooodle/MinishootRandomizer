@@ -9,6 +9,19 @@ namespace MinishootRandomizer
         private ILocationRepository _locationRepository;
         private IProgressionStorage _progressionStorage;
 
+        private Dictionary<Type, ISetting> _settings = new()
+        {
+            { typeof(NpcSanity), new NpcSanity(true) },
+            { typeof(ScarabSanity), new ScarabSanity(true) },
+            { typeof(ShardSanity), new ShardSanity(true) },
+            { typeof(KeySanity), new KeySanity(true) },
+            { typeof(BossKeySanity), new BossKeySanity(true) },
+            { typeof(SimpleTempleExit), new SimpleTempleExit(true) },
+            { typeof(BlockedForest), new BlockedForest(true) },
+            { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(true) },
+            { typeof(CompletionGoals), new CompletionGoals(Goals.Both) },
+        };
+
         public DummyRandomizerEngine(
             IItemRepository itemRepository,
             ILocationRepository locationRepository,
@@ -65,25 +78,17 @@ namespace MinishootRandomizer
 
         public T GetSetting<T>() where T : ISetting
         {
-            Dictionary<Type, ISetting> settings = new()
-            {
-                { typeof(NpcSanity), new NpcSanity(true) },
-                { typeof(ScarabSanity), new ScarabSanity(true) },
-                { typeof(ShardSanity), new ShardSanity(true) },
-                { typeof(KeySanity), new KeySanity(true) },
-                { typeof(BossKeySanity), new BossKeySanity(true) },
-                { typeof(SimpleTempleExit), new SimpleTempleExit(true) },
-                { typeof(BlockedForest), new BlockedForest(true) },
-                { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(true) },
-                { typeof(CompletionGoals), new CompletionGoals(Goals.Both) },
-            };
-
-            if (settings.TryGetValue(typeof(T), out ISetting setting))
+            if (_settings.TryGetValue(typeof(T), out ISetting setting))
             {
                 return (T)setting;
             }
 
             throw new SettingNotSupported($"Setting {typeof(T).Name} is not supported by DummyRandomizerEngine!");
+        }
+
+        public List<ISetting> GetSettings()
+        {
+            return new List<ISetting>(_settings.Values);
         }
 
         private void GenerateSpoilerLog()

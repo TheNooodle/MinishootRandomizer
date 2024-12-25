@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using CsvHelper;
 
@@ -30,6 +31,24 @@ namespace MinishootRandomizer
             }
 
             return _regions[identifier];
+        }
+
+        public Region GetRegionByLocation(Location location)
+        {
+            if (_regions == null)
+            {
+                LoadRegions();
+            }
+
+            foreach (Region region in _regions.Values)
+            {
+                if (region.GetLocationNames().Contains(location.Identifier))
+                {
+                    return region;
+                }
+            }
+
+            throw new RegionNotFoundException(location.Identifier);
         }
 
         private void LoadRegions()
