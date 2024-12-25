@@ -65,4 +65,9 @@ public class PickupItem : Item
             }
         }
     }
+
+    public override int GetOwnedQuantity()
+    {
+        return PlayerState.StatsLevel[Stats];
+    }
 }

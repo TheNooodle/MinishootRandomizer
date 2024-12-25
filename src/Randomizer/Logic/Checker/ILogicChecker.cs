@@ -2,5 +2,6 @@ namespace MinishootRandomizer;
 
 public interface ILogicChecker
 {
-    LogicAccessibility CheckLogic(Location location);
+    LogicAccessibility CheckLocationLogic(Location location);
+    LocationAccessibilitySet CheckAllLocationsLogic();
 }

@@ -60,6 +60,11 @@ public class ContextualRandomizerEngine : IRandomizerEngine
         return GetEngine().GetSetting<T>();
     }
 
+    public List<ISetting> GetSettings()
+    {
+        return GetEngine().GetSettings();
+    }
+
     public bool IsLocationChecked(Location location)
     {
         return GetEngine().IsLocationChecked(location);

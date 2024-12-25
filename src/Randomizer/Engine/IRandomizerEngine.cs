@@ -5,6 +5,7 @@ namespace MinishootRandomizer
     public interface IRandomizerEngine
     {
         public T GetSetting<T>() where T : ISetting;
+        public List<ISetting> GetSettings();
         public List<Location> GetRandomizedLocations();
         public Item PeekLocation(Location location);
         public Item CheckLocation(Location location);

@@ -20,4 +20,9 @@ public class BossKeyItem : Item
     {
         return "Boss Key";
     }
+
+    public override int GetOwnedQuantity()
+    {
+        return PlayerState.DungeonBossKeys[DungeonId];
+    }
 }

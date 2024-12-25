@@ -20,4 +20,9 @@ public class SmallKeyItem : Item
     {
         return "Small Key";
     }
+
+    public override int GetOwnedQuantity()
+    {
+        return PlayerState.DungeonKeys[DungeonId];
+    }
 }

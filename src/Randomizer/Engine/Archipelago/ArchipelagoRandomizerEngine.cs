@@ -52,6 +52,11 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
         return _locations;
     }
 
+    public List<ISetting> GetSettings()
+    {
+        return new List<ISetting>(_settings.Values);
+    }
+
     public T GetSetting<T>() where T : ISetting
     {
         if (_settings.TryGetValue(typeof(T), out ISetting setting))

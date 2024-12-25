@@ -13,6 +13,7 @@ public class Region
     public const string ScarabTempleBottomRightTorch = "Scarab Temple - Bottom Right Torch";
     public const string ScarabTempleTopLeftTorch = "Scarab Temple - Top Left Torch";
     public const string ScarabTempleTopRightTorch = "Scarab Temple - Top Right Torch";
+    public const string StartingGrottoLake = "Starting Grotto - Lake";
     public const string SunkenCityCity = "Sunken City - City";
     public const string SunkenCityEast = "Sunken City - East";
     public const string SunkenCityEastTorch = "Sunken City - East torch";

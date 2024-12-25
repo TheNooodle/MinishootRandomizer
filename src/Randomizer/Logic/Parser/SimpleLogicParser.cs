@@ -119,6 +119,7 @@ public class SimpleLogicParser : ILogicParser
             { "can_fight_lvl4", p => CanFight(p, 4) },
             { "can_fight_lvl5", p => CanFight(p, 5) },
             { "can_dash", p => CanDash(p) },
+            { "can_surf", p => CanSurf(p, WaterType.Normal) },
             { "can_boost", p => p.State.HasItem(boost) },
             { "can_destroy_bushes", p => p.State.HasItem(cannon) },
             { "can_destroy_ruins", p => p.State.HasItem(cannon) },

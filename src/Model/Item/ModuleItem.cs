@@ -13,4 +13,9 @@ public class ModuleItem : Item
     {
         PlayerState.SetModule(Module, true);
     }
+
+    public override int GetOwnedQuantity()
+    {
+        return PlayerState.Modules.TryGetValue(Module, out bool owned) && owned ? 1 : 0;
+    }
 }

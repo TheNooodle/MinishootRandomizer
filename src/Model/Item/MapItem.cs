@@ -13,4 +13,9 @@ public class MapItem : Item
     {
         PlayerState.SetMap(_region, MapRegionState.Unlocked);
     }
+
+    public override int GetOwnedQuantity()
+    {
+        return (PlayerState.Map.TryGetValue(_region, out MapRegionState state) && state != MapRegionState.Locked) ? 1 : 0;
+    }
 }

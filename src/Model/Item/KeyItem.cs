@@ -15,4 +15,9 @@ public class KeyItem : Item
     {
         PlayerState.SetUniqueKey(_key, true);
     }
+
+    public override int GetOwnedQuantity()
+    {
+        return (PlayerState.UniqueKeys.TryGetValue(_key, out bool owned) && owned) ? 1 : 0;
+    }
 }

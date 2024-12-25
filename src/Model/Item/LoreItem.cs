@@ -9,4 +9,9 @@ public class LoreItem : Item
     {
         PlayerState.SetCurrency(Currency.Lore, 1);
     }
+
+    public override int GetOwnedQuantity()
+    {
+        return PlayerState.Currency[Currency.Lore];
+    }
 }

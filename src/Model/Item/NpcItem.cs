@@ -21,4 +21,9 @@ public class NpcItem : Item
     {
         return Identifier + " NPC";
     }
+
+    public override int GetOwnedQuantity()
+    {
+        return WorldState.Get(_npcId.Str()) ? 1 : 0;
+    }
 }

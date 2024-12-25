@@ -91,4 +91,9 @@ abstract public class Item
     {
         return _identifier;
     }
+
+    public virtual int GetOwnedQuantity()
+    {
+        return 0;
+    }
 }

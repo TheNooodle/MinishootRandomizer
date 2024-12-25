@@ -11,6 +11,13 @@ public class DungeonRewardItem : Item
 
     public override void Collect()
     {
+        // @TODO: Implement this method
         throw new System.NotImplementedException();
+    }
+
+    public override int GetOwnedQuantity()
+    {
+        // @TODO: Implement this method
+        return 0;
     }
 }
