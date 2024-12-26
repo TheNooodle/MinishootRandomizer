@@ -22,7 +22,7 @@ public class LogicState
 
     public void SetItemCount(Item item, int count = 1)
     {
-        _itemCount.Add(item.Identifier, count);
+        _itemCount[item.Identifier] = count;
     }
 
     public bool HasItem(Item item, int count = 1)

@@ -32,9 +32,9 @@ public class CoreLogicChecker : ILogicChecker
             return LogicAccessibility.Inaccessible;
         }
 
-        bool canAccess = _logicParser.ParseLogic(location.LogicRule, state, settings);
+        LogicParsingResult parsingResult = _logicParser.ParseLogic(location.LogicRule, state, settings);
 
-        return canAccess ? LogicAccessibility.InLogic : LogicAccessibility.Inaccessible;
+        return parsingResult.Result ? LogicAccessibility.InLogic : LogicAccessibility.Inaccessible;
     }
 
     public LocationAccessibilitySet CheckAllLocationsLogic()

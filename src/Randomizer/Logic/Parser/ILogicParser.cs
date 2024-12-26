@@ -7,5 +7,5 @@ namespace MinishootRandomizer;
 // Also, in case of a standalone engine implementation, the perceived randomization of different objects must be consistent.
 public interface ILogicParser
 {
-    bool ParseLogic(string logicRule, LogicState state, List<ISetting> settings);
+    LogicParsingResult ParseLogic(string logicRule, LogicState state, List<ISetting> settings);
 }
