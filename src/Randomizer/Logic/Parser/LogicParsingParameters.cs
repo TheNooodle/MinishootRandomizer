@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace MinishootRandomizer;
 
-public class SimpleLogicParameters
+public class LogicParsingParameters
 {
     private LogicState _state;
     private int _arg;
@@ -12,7 +12,7 @@ public class SimpleLogicParameters
     public int Arg => _arg;
     public List<ISetting> Settings => _settings;
 
-    public SimpleLogicParameters(LogicState state, int arg, List<ISetting> settings)
+    public LogicParsingParameters(LogicState state, int arg, List<ISetting> settings)
     {
         _state = state;
         _arg = arg;

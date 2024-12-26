@@ -11,6 +11,9 @@ public class LocalLogicStateProvider : ILogicStateProvider
     private readonly ISettingsProvider _settingsProvider;
     private readonly ILogger _logger = new NullLogger();
 
+    private LogicState _logicState = null;
+    private List<Transition> _traversedTransitions = new List<Transition>();
+
     public LocalLogicStateProvider(ILogicParser logicParser, IRegionRepository regionRepository, ITransitionRepository transitionRepository, IItemRepository itemRepository, ISettingsProvider settingsProvider, ILogger logger = null)
     {
         _logicParser = logicParser;
@@ -23,9 +26,10 @@ public class LocalLogicStateProvider : ILogicStateProvider
 
     public LogicState GetLogicState()
     {
-        LogicState logicState = new LogicState();
+        LogicState logicState = _logicState ?? new LogicState();
         ItemsPass(logicState);
         RegionsPass(logicState);
+        _logicState = logicState;
 
         return logicState;
     }
@@ -49,7 +53,7 @@ public class LocalLogicStateProvider : ILogicStateProvider
         Region startRegion = _regionRepository.Get(Region.StartingGrottoLake);
         logicState.AddReachableRegion(startRegion);
 
-        List<Transition> traversedTransitions = new List<Transition>();
+        List<Transition> traversedTransitions = _traversedTransitions.Count > 0 ? _traversedTransitions : new List<Transition>();
         List<ISetting> settings = _settingsProvider.GetSettings();
         int previousReachableCount;
         int maxIterations = 1000; // Prevent infinite loops
@@ -72,8 +76,8 @@ public class LocalLogicStateProvider : ILogicStateProvider
                         continue;
                     }
 
-                    bool canTraverse = _logicParser.ParseLogic(transition.LogicRule, logicState, settings);
-                    if (canTraverse)
+                    LogicParsingResult parsingResult = _logicParser.ParseLogic(transition.LogicRule, logicState, settings);
+                    if (parsingResult.Result)
                     {
                         traversedTransitions.Add(transition);
                         Region destinationRegion = _regionRepository.Get(transition.To);
@@ -92,5 +96,13 @@ public class LocalLogicStateProvider : ILogicStateProvider
         {
             _logger.LogError("Error: Infinite loop detected in region reachability calculation");
         }
+
+        _traversedTransitions = traversedTransitions;
+    }
+
+    public void OnExitingGame()
+    {
+        _logicState = null;
+        _traversedTransitions.Clear();
     }
 }

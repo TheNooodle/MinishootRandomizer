@@ -7,21 +7,33 @@ public class ContextualRandomizerEngine : IRandomizerEngine
 {
     private readonly IRandomizerEngine _archipelagoEngine;
     private readonly IRandomizerEngine _vanillaEngine;
+    private readonly IRandomizerEngine _dummyEngine;
     private readonly IRandomizerContextProvider _contextProvider;
     private readonly ILogger _logger = new NullLogger();
 
     private RandomizerContext _context;
 
-    public ContextualRandomizerEngine(IRandomizerEngine archipelagoEngine, IRandomizerEngine vanillaEngine, IRandomizerContextProvider contextProvider, ILogger logger = null)
-    {
+    public ContextualRandomizerEngine(
+        IRandomizerEngine archipelagoEngine,
+        IRandomizerEngine vanillaEngine,
+        IRandomizerEngine dummyEngine,
+        IRandomizerContextProvider contextProvider,
+        ILogger logger = null
+    ) {
         _archipelagoEngine = archipelagoEngine;
         _vanillaEngine = vanillaEngine;
+        _dummyEngine = dummyEngine;
         _contextProvider = contextProvider;
         _logger = logger ?? new NullLogger();
     }
 
     private IRandomizerEngine GetEngine()
     {
+        if (Plugin.UseDummyEngine)
+        {
+            return _dummyEngine;
+        }
+
         if (_context == null)
         {
             throw new ArgumentException("ContextualRandomizerEngine has not been initialized.");
