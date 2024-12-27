@@ -359,6 +359,15 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
             += ((ScarabRemovalPatcher)_serviceContainer.GetService(typeof(ScarabRemovalPatcher))).OnExitingGame;
 
+        _serviceContainer.AddService(typeof(GiveInitialItemsPatcher), new GiveInitialItemsPatcher(
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((GiveInitialItemsPatcher)_serviceContainer.GetService(typeof(GiveInitialItemsPatcher))).OnEnteringGameLocation;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((GiveInitialItemsPatcher)_serviceContainer.GetService(typeof(GiveInitialItemsPatcher))).OnExitingGame;
+
         _isBuilt = true;
     }
 
