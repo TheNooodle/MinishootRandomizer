@@ -183,10 +183,7 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (IRandomizerContextProvider)_serviceContainer.GetService(typeof(IRandomizerContextProvider))
         ));
 
-        _serviceContainer.AddService(typeof(EventRandomizerEngine), new EventRandomizerEngine(
-            (ContextualRandomizerEngine)_serviceContainer.GetService(typeof(ContextualRandomizerEngine))
-        ));
-        _serviceContainer.AddService(typeof(IRandomizerEngine), _serviceContainer.GetService(typeof(EventRandomizerEngine)));
+        _serviceContainer.AddService(typeof(IRandomizerEngine), _serviceContainer.GetService(typeof(ContextualRandomizerEngine)));
         
         _serviceContainer.AddService(typeof(ISettingsProvider), new EngineAwareSettingsProvider(
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
@@ -203,8 +200,8 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         ));
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
             += ((CachedLogicParser)_serviceContainer.GetService(typeof(CachedLogicParser))).OnExitingGame;
-        ((EventRandomizerEngine)_serviceContainer.GetService(typeof(EventRandomizerEngine))).OnCheckLocation
-            += ((CachedLogicParser)_serviceContainer.GetService(typeof(CachedLogicParser))).OnCheckLocation;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
+            += ((CachedLogicParser)_serviceContainer.GetService(typeof(CachedLogicParser))).OnItemCollected;
         
         _serviceContainer.AddService(typeof(ILogicParser), _serviceContainer.GetService(typeof(CachedLogicParser)));
 
@@ -221,7 +218,7 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         
         _serviceContainer.AddService(typeof(ILogicStateProvider), _serviceContainer.GetService(typeof(LocalLogicStateProvider)));
 
-        _serviceContainer.AddService(typeof(ILogicChecker), new CoreLogicChecker(
+        _serviceContainer.AddService(typeof(CoreLogicChecker), new CoreLogicChecker(
             (ILogicStateProvider)_serviceContainer.GetService(typeof(ILogicStateProvider)),
             (ILogicParser)_serviceContainer.GetService(typeof(ILogicParser)),
             (ISettingsProvider)_serviceContainer.GetService(typeof(ISettingsProvider)),
@@ -229,6 +226,16 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository)),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
+
+        _serviceContainer.AddService(typeof(CachedLogicChecker), new CachedLogicChecker(
+            (CoreLogicChecker)_serviceContainer.GetService(typeof(CoreLogicChecker))
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnExitingGame;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
+            += ((CachedLogicParser)_serviceContainer.GetService(typeof(CachedLogicParser))).OnItemCollected;
+
+        _serviceContainer.AddService(typeof(ILogicChecker), _serviceContainer.GetService(typeof(CachedLogicChecker)));
 
         _serviceContainer.AddService(typeof(RandomizerEngineManager), new RandomizerEngineManager(
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
@@ -252,7 +259,9 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (SendGoalHandler)_serviceContainer.GetService(typeof(SendGoalHandler))
         );
 
-        _serviceContainer.AddService(typeof(ReceiveItemHandler), new ReceiveItemHandler());
+        _serviceContainer.AddService(typeof(ReceiveItemHandler), new ReceiveItemHandler(
+            (GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))
+        ));
         ((CoreMessageConsumer)_serviceContainer.GetService(typeof(IMessageConsumer))).AddHandler<ReceiveItemMessage>(
             (ReceiveItemHandler)_serviceContainer.GetService(typeof(ReceiveItemHandler))
         );

@@ -35,6 +35,12 @@ public class GameEventDispatcher
     public delegate void ExitingEncounterHandler();
     public event ExitingEncounterHandler ExitingEncounter;
 
+    // An item has been collected, whether it was by the player themselves or received remotely.
+    // This event is fired after the player state has been updated with the new item.
+    // So it is safe to assume that the player has the item in their inventory.
+    public delegate void ItemCollectedHandler(Item item);
+    public event ItemCollectedHandler ItemCollected;
+
     public GameEventDispatcher(ILogger logger)
     {
         _logger = logger ?? new NullLogger();
@@ -80,5 +86,11 @@ public class GameEventDispatcher
     {
         _logger.LogInfo("Dispatching ExitingEncounter event");
         ExitingEncounter?.Invoke();
+    }
+
+    public void DispatchItemCollected(Item item)
+    {
+        _logger.LogInfo($"Dispatching ItemCollected event with item: {item}");
+        ItemCollected?.Invoke(item);
     }
 }

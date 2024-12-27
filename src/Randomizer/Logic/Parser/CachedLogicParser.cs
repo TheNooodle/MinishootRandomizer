@@ -40,7 +40,7 @@ public class CachedLogicParser : ILogicParser
         _cachePool.Clear();
     }
 
-    public void OnCheckLocation(Location location, Item item)
+    public void OnItemCollected(Item item)
     {
         _cachePool.PurgeTags(new List<string> { item.Identifier, LogicParsingResult.AnyItemName });
     }

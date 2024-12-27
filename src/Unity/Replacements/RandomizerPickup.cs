@@ -6,6 +6,7 @@ namespace MinishootRandomizer;
 public class RandomizerPickup : MonoBehaviour, IActivationChecker
 {
     private IRandomizerEngine _randomizerEngine = Plugin.ServiceContainer.Get<IRandomizerEngine>();
+    private GameEventDispatcher _gameEventDispatcher = Plugin.ServiceContainer.Get<GameEventDispatcher>();
     private ILogger _logger = Plugin.ServiceContainer.Get<ILogger>();
 
     private Collider2D _collectCollider;
@@ -230,6 +231,7 @@ public class RandomizerPickup : MonoBehaviour, IActivationChecker
         {
             Item.Collect();
             _randomizerEngine.CheckLocation(Location);
+            _gameEventDispatcher.DispatchItemCollected(Item);
         }
         EndCollect();
         // TweenSettingsExtensions.OnComplete<Sequence>(Fx.Pickup(this), new TweenCallback(EndCollect));
