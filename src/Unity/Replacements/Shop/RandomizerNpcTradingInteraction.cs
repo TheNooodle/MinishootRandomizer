@@ -8,6 +8,7 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
 {
     private IRandomizerEngine _randomizerEngine;
     private IItemPresentationProvider _itemPresentationProvider;
+    private GameEventDispatcher _gameEventDispatcher;
     private ILogger _logger = new NullLogger();
 
     private Vector2 _dialogOffset = Vector2.zero;
@@ -56,6 +57,7 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
 
         _randomizerEngine = Plugin.ServiceContainer.Get<IRandomizerEngine>();
         _itemPresentationProvider = Plugin.ServiceContainer.Get<IItemPresentationProvider>();
+        _gameEventDispatcher = Plugin.ServiceContainer.Get<GameEventDispatcher>();
         _logger = Plugin.ServiceContainer.Get<ILogger>();
     }
 
@@ -204,12 +206,14 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
 
             if (_currentPickup != null)
             {
+                // The randomizer engine and the event dispatcher are called within the pickup's Collect method.
                 _currentPickup.Collect();
             }
             else
             {
                 _currentSlot.Item.Collect();
                 _randomizerEngine.CheckLocation(_currentSlot.Location);
+                _gameEventDispatcher.DispatchItemCollected(_currentSlot.Item);
             }
             Fx.PickupBuy();
 
