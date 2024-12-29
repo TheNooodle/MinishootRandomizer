@@ -11,7 +11,7 @@ public class MapItem : Item
 
     public override void Collect()
     {
-        PlayerState.SetMap(_region, MapRegionState.Unlocked);
+        PlayerState.SetMap(_region, MapRegionState.Scanned);
     }
 
     public override int GetOwnedQuantity()

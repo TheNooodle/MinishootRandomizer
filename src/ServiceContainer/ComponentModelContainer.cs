@@ -233,7 +233,7 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
             += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnExitingGame;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
-            += ((CachedLogicParser)_serviceContainer.GetService(typeof(CachedLogicParser))).OnItemCollected;
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnItemCollected;
 
         _serviceContainer.AddService(typeof(ILogicChecker), _serviceContainer.GetService(typeof(CachedLogicChecker)));
 
@@ -273,6 +273,12 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         ((ChainPrefabCollector)_serviceContainer.GetService(typeof(IPrefabCollector))).AddCollector(
             (IPrefabCollector)_serviceContainer.GetService(typeof(PrefabSpriteProvider))
         );
+
+        _serviceContainer.AddService(typeof(IMarkerProvider), new LocationMarkerProvider(
+            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
+            (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
 
         // Patchers
         _serviceContainer.AddService(typeof(ShopReplacementPatcher), new ShopReplacementPatcher(
@@ -367,6 +373,29 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             += ((GiveInitialItemsPatcher)_serviceContainer.GetService(typeof(GiveInitialItemsPatcher))).OnEnteringGameLocation;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
             += ((GiveInitialItemsPatcher)_serviceContainer.GetService(typeof(GiveInitialItemsPatcher))).OnExitingGame;
+
+        _serviceContainer.AddService(typeof(TrackerPatcher), new TrackerPatcher(
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
+            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
+            (IMarkerProvider)_serviceContainer.GetService(typeof(IMarkerProvider)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((TrackerPatcher)_serviceContainer.GetService(typeof(TrackerPatcher))).OnEnteringGameLocation;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((TrackerPatcher)_serviceContainer.GetService(typeof(TrackerPatcher))).OnExitingGame;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
+            += ((TrackerPatcher)_serviceContainer.GetService(typeof(TrackerPatcher))).OnItemCollected;
+
+        _serviceContainer.AddService(typeof(QualityOfLifePatcher), new QualityOfLifePatcher(
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
+            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((QualityOfLifePatcher)_serviceContainer.GetService(typeof(QualityOfLifePatcher))).OnEnteringGameLocation;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((QualityOfLifePatcher)_serviceContainer.GetService(typeof(QualityOfLifePatcher))).OnExitingGame;
 
         _isBuilt = true;
     }
