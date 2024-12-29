@@ -48,49 +48,49 @@ public class GameEventDispatcher
 
     public void DispatchLoadingSaveFile(bool isNewGame)
     {
-        _logger.LogInfo("Dispatching LoadingSaveFile event with isNewGame: " + isNewGame);
+        _logger.LogDebug("Dispatching LoadingSaveFile event with isNewGame: " + isNewGame);
         LoadingSaveFile?.Invoke(isNewGame);
     }
 
     public void DispatchEnteringGameLocation(string locationName)
     {
-        _logger.LogInfo($"Dispatching EnteringGameLocation event with location name: {locationName}");
+        _logger.LogDebug($"Dispatching EnteringGameLocation event with location name: {locationName}");
         EnteringGameLocation?.Invoke(locationName);
     }
 
     public void DispatchExitingGame()
     {
-        _logger.LogInfo("Dispatching ExitingGame event");
+        _logger.LogDebug("Dispatching ExitingGame event");
         ExitingGame?.Invoke();
     }
 
     public void DispatchNpcFreed()
     {
-        _logger.LogInfo("Dispatching NpcFreed event");
+        _logger.LogDebug("Dispatching NpcFreed event");
         NpcFreed?.Invoke();
     }
 
     public void DispatchPlayerStatsChanged()
     {
-        _logger.LogInfo("Dispatching PlayerStatsChanged event");
+        _logger.LogDebug("Dispatching PlayerStatsChanged event");
         PlayerStatsChanged?.Invoke();
     }
 
     public void DispatchEnteringEncounter()
     {
-        _logger.LogInfo("Dispatching EnteringEncounter event");
+        _logger.LogDebug("Dispatching EnteringEncounter event");
         EnteringEncounter?.Invoke();
     }
 
     public void DispatchExitingEncounter()
     {
-        _logger.LogInfo("Dispatching ExitingEncounter event");
+        _logger.LogDebug("Dispatching ExitingEncounter event");
         ExitingEncounter?.Invoke();
     }
 
     public void DispatchItemCollected(Item item)
     {
-        _logger.LogInfo($"Dispatching ItemCollected event with item: {item}");
+        _logger.LogDebug($"Dispatching ItemCollected event with item: {item}");
         ItemCollected?.Invoke(item);
     }
 }
