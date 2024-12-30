@@ -332,10 +332,358 @@ public class LocationMarkerProvider : IMarkerProvider
         }, new List<Tuple<float, float>> {
             new Tuple<float, float>(4.46f, -2.91f),
         }),
-
-
-
-
+        // new LocationMarkerData(new List<string> {
+        //     "Dungeon 4 - Dungeon reward",
+        // }, new List<Tuple<float, float>> {
+        //     new Tuple<float, float>(-3.74f, 5.28f),
+        // }),
+        new LocationMarkerData(new List<string> {
+            "Dungeon 5 - Central Item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(1.66f, 6.98f),
+            new Tuple<float, float>(-1.09f, 6.98f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Family House Cave - Before shortcut",
+            "Family House Cave - Hidden Tunnel",
+            "Family House Cave - Near button",
+            "Family House Cave - Near tree",
+            "Family House Cave - Reunited Family",
+            "Family House Cave - Sewers"
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-0.13f, 0.62f),
+            new Tuple<float, float>(-3.73f, 0.42f),
+            new Tuple<float, float>(-3.74f, -0.41f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Boss Reward",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(1.46f, -4.21f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Bush behind tree",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-0.23f, -1.26f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Enemy tree near Beach",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(2.40f, -3.26f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Far South East",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(2.63f, -7.77f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Faraway island item",
+            "Forest - Faraway island extra"
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-2.48f, -7.57f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Hidden east tunnel",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(1.54f, -5.38f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Pot",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(2.57f, -4.01f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Secret pond behind bushes",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(0.28f, -2.98f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Secret pond bush",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(0.52f, -1.46f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Secret within Secret",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(0.86f, -0.86f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest - Tunnel below big tree enemy",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-1.37f, -4.58f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest Grotto - After ramp",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(0.94f, -2.82f),
+            new Tuple<float, float>(-0.09f, -0.93f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Forest Shop 1",
+            "Forest Shop 2",
+            "Forest Shop 3"
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-0.51f, -2.96f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Behind Closed Arena",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(2.43f, -0.98f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Bridge Shortcut",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(1.77f, 0.77f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Button Item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(2.26f, 1.65f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Closed Arena Item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(2.43f, -0.72f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Crossroad Arena Item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(2.89f, 0.82f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Forest Entrance",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(1.52f, -1.10f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Grove near button",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-0.57f, -0.11f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Grove under ruins",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-1.14f, 0.00f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Hidden before Island Arena",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(3.71f, -0.06f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Island Arena Item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(3.71f, 2.05f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Outside Dungeon 1 Cave",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(1.54f, 1.36f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - River near Forest Entrance",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-1.25f, -1.11f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green - Shortcut to Town Pillars",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-1.34f, 0.82f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Green Grotto - Before race",
+            "Green Grotto - Corner",
+            "Green Grotto - Drop",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(2.43f, -0.10f),
+            new Tuple<float, float>(1.37f, -0.62f),
+            new Tuple<float, float>(2.37f, -1.54f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Jar Shop 1",
+            "Jar Shop 2",
+            "Jar Shop 3",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-1.49f, 0.39f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Junkyard - East pond",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(1.83f, 5.54f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Junkyard - Inside Sunken City",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-2.74f, 4.80f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Junkyard - South East",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(0.88f, 3.57f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Junkyard East Shack - Item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(1.26f, 5.21f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Junkyard West Shack - Item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-1.60f, 6.00f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Primordial Cave - Meet the Primordial Scarab",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-3.74f, 7.25f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Scarab Temple - Backroom",
+            "Scarab Temple - Central Item",
+            "Scarab Temple - East side",
+            "Scarab Temple - Middle Entrance"
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(0.53f, 1.02f),
+            new Tuple<float, float>(2.34f, 1.32f),
+            new Tuple<float, float>(2.89f, 1.95f),
+            new Tuple<float, float>(2.88f, 2.72f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Scarab Temple - Bottom Left Torch Item",
+            "Swamp Jumps Grotto - Drop"
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(0.97f, 2.65f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sewers - Behind West Entrance",
+            "Sewers - Central room boss reward",
+            "Sewers - Central room corner",
+            "Sewers - Drop",
+            "Sewers - Near Family House Cave",
+            "Sewers - North pot room",
+            "Sewers - South pot room",
+            "Sunken City - Inside the walls"
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-4.77f, 2.92f),
+            new Tuple<float, float>(-5.92f, 3.52f),
+            new Tuple<float, float>(-7.52f, 3.72f),
+            new Tuple<float, float>(-6.97f, 4.52f),
+            new Tuple<float, float>(-5.31f, 5.84f),
+            new Tuple<float, float>(-4.00f, 4.87f),
+            new Tuple<float, float>(-3.48f, 4.87f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Spirit Tower - Item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(0.26f, -4.51f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken City - Below West bridge",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-4.35f, 4.31f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken City - Inside the walls",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-3.75f, 4.28f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken City - Near West entrance",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-4.40f, 3.05f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken City - North bridge",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-3.33f, 5.54f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken City - North East district",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-3.26f, 5.36f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken City - North West pot",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-7.74f, 7.39f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken City - South West building item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-7.52f, 3.60f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken City - West bridge",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-4.57f, 4.62f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken City - West bridge pot",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-4.57f, 4.01f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken City Building - Drop",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-3.03f, 4.22f),
+            new Tuple<float, float>(-3.03f, 5.12f),
+            new Tuple<float, float>(-3.29f, 5.08f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Sunken Temple - Boss reward",
+            "Sunken Temple - Entrance",
+            "Sunken Temple - Secret tunnel",
+            "Sunken Temple - South West tunnel",
+            "Sunken Temple - Under the lilypad"
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(-5.92f, 5.02f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Swamp - Blocked tunnel",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(5.77f, 3.20f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Swamp - Hidden Before Big Enemy",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(3.46f, 4.31f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Swamp - Hidden in plant",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(5.17f, 2.40f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Swamp - Near cracked wall",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(5.03f, 5.11f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Swamp - North item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(5.26f, 7.19f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Swamp - South West Island Hidden in trees Item",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(2.20f, 3.02f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Swamp - Under rocks",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(2.95f, 4.57f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Swamp Shop 1",
+            "Swamp Shop 2",
+            "Swamp Shop 3",
+            "Swamp Shop Extra",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(4.46f, 4.34f),
+        }),
+        new LocationMarkerData(new List<string> {
+            "Swamp Tower - Top of tower",
+        }, new List<Tuple<float, float>> {
+            new Tuple<float, float>(3.71f, 2.82f),
+        }),
         new LocationMarkerData(new List<string> {
             "Town - Blacksmith Item 1",
             "Town - Blacksmith Item 2",
