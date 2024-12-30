@@ -194,16 +194,7 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (IRegionRepository)_serviceContainer.GetService(typeof(IRegionRepository))
         ));
 
-        _serviceContainer.AddService(typeof(CachedLogicParser), new CachedLogicParser(
-            (CoreLogicParser)_serviceContainer.GetService(typeof(CoreLogicParser)),
-            new InMemoryCachePool<LogicParsingResult>((ILogger)_serviceContainer.GetService(typeof(ILogger)))
-        ));
-        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
-            += ((CachedLogicParser)_serviceContainer.GetService(typeof(CachedLogicParser))).OnExitingGame;
-        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
-            += ((CachedLogicParser)_serviceContainer.GetService(typeof(CachedLogicParser))).OnItemCollected;
-        
-        _serviceContainer.AddService(typeof(ILogicParser), _serviceContainer.GetService(typeof(CachedLogicParser)));
+        _serviceContainer.AddService(typeof(ILogicParser), _serviceContainer.GetService(typeof(CoreLogicParser)));
 
         _serviceContainer.AddService(typeof(LocalLogicStateProvider), new LocalLogicStateProvider(
             (ILogicParser)_serviceContainer.GetService(typeof(ILogicParser)),
