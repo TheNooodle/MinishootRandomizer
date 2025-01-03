@@ -6,6 +6,7 @@ namespace MinishootRandomizer;
 
 public class LocationMarkerProvider : IMarkerProvider
 {
+    private readonly IRandomizerEngine _engine;
     private readonly IObjectFinder _objectFinder;
     private readonly ILocationRepository _locationRepository;
     private readonly ILogger _logger = new NullLogger();
@@ -13,8 +14,9 @@ public class LocationMarkerProvider : IMarkerProvider
     private GameObject _markerParent;
     private GameObject _markerPrefab = null;
 
-    public LocationMarkerProvider(IObjectFinder objectFinder, ILocationRepository locationRepository, ILogger logger = null)
+    public LocationMarkerProvider(IRandomizerEngine engine, IObjectFinder objectFinder, ILocationRepository locationRepository, ILogger logger = null)
     {
+        _engine = engine;
         _objectFinder = objectFinder;
         _locationRepository = locationRepository;
         _logger = logger ?? new NullLogger();
@@ -49,6 +51,7 @@ public class LocationMarkerProvider : IMarkerProvider
             }
         }
 
+        List<Location> randomizedLocations = _engine.GetRandomizedLocations();
         List<Location> locations = new List<Location>();
         foreach (string locationName in markerData.LocationNames)
         {
@@ -58,7 +61,16 @@ public class LocationMarkerProvider : IMarkerProvider
                 _logger.LogError($"Location {locationName} not found while creating marker");
                 continue;
             }
+            if (!randomizedLocations.Contains(location))
+            {
+                continue;
+            }
             locations.Add(location);
+        }
+
+        if (locations.Count == 0)
+        {
+            return new List<GameObject>();
         }
 
         List<GameObject> markers = new List<GameObject>();

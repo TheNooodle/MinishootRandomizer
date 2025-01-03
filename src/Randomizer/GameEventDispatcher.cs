@@ -27,6 +27,10 @@ public class GameEventDispatcher
     public delegate void PlayerStatsChangedHandler();
     public event PlayerStatsChangedHandler PlayerStatsChanged;
 
+    // PlayerCurrencyChanged means the player's currency has changed (e.g. coins, gems, etc.).
+    public delegate void PlayerCurrencyChangedHandler(Currency currency);
+    public event PlayerCurrencyChangedHandler PlayerCurrencyChanged;
+
     // Entering an encounter means the player is entering a battle against waves of enemies.
     public delegate void EnteringEncounterHandler();
     public event EnteringEncounterHandler EnteringEncounter;
@@ -74,6 +78,12 @@ public class GameEventDispatcher
     {
         _logger.LogDebug("Dispatching PlayerStatsChanged event");
         PlayerStatsChanged?.Invoke();
+    }
+
+    public void DispatchPlayerCurrencyChanged(Currency currency)
+    {
+        _logger.LogDebug("Dispatching PlayerCurrencyChanged event");
+        PlayerCurrencyChanged?.Invoke(currency);
     }
 
     public void DispatchEnteringEncounter()

@@ -225,6 +225,10 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnExitingGame;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
             += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnItemCollected;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).NpcFreed
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnNpcFreed;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).PlayerCurrencyChanged
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnPlayerCurrencyChanged;
 
         _serviceContainer.AddService(typeof(ILogicChecker), _serviceContainer.GetService(typeof(CachedLogicChecker)));
 
@@ -266,6 +270,7 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         );
 
         _serviceContainer.AddService(typeof(IMarkerProvider), new LocationMarkerProvider(
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
             (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
             (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository)),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))

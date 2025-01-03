@@ -45,4 +45,17 @@ public class CachedLogicChecker : ILogicChecker
     {
         _isStale = true;
     }
+
+    public void OnNpcFreed()
+    {
+        _isStale = true;
+    }
+
+    public void OnPlayerCurrencyChanged(Currency currency)
+    {
+        if (currency == Currency.Scarab)
+        {
+            _isStale = true;
+        }
+    }
 }

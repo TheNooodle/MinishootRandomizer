@@ -23,6 +23,7 @@ public class RandomizerManagerComponent: MonoBehaviour
         GameManager.GameReset += OnGameReset;
         Player.StatsChanged += _gameEventDispatcher.DispatchPlayerStatsChanged;
         CrystalNpc.Freed += _gameEventDispatcher.DispatchNpcFreed;
+        PlayerState.CurrencyChanged += _gameEventDispatcher.DispatchPlayerCurrencyChanged;
         EncounterClose.StaticBegun += _gameEventDispatcher.DispatchEnteringEncounter;
         EncounterClose.StaticEnded += _gameEventDispatcher.DispatchExitingEncounter;
     }

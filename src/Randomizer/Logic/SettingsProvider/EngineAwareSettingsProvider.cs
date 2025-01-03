@@ -25,7 +25,6 @@ public class EngineAwareSettingsProvider : ISettingsProvider
             typeof(BlockedForest),
             typeof(CannonLevelLogicalRequirements),
             typeof(CompletionGoals),
-            typeof(TrackerEnabled),
         };
 
         List<ISetting> settings = new List<ISetting>();
