@@ -28,12 +28,6 @@ public class TrackerPatcher
             return;
         }
 
-        TrackerEnabled trackerEnabled = _randomizerEngine.GetSetting<TrackerEnabled>();
-        if (!trackerEnabled.Enabled)
-        {
-            return;
-        }
-
         if (_patchAction == null)
         {
             _patchAction = CreatePatchAction();

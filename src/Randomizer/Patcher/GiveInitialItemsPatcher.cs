@@ -67,18 +67,14 @@ public class GiveInitialItemsPatcher
             compositeAction.Add(new GiveStatsAction(Stats.BulletNumber, 1));
         }
 
-        TrackerEnabled trackerEnabled = _randomizerEngine.GetSetting<TrackerEnabled>();
-        if (trackerEnabled.Enabled)
+        foreach (MapRegion mapRegion in _trackerMapRegions)
         {
-            foreach (MapRegion mapRegion in _trackerMapRegions)
-            {
-                compositeAction.Add(new ScanMapAction(mapRegion));
-            }
+            compositeAction.Add(new ScanMapAction(mapRegion));
+        }
 
-            foreach (Modules module in _trackerModules)
-            {
-                compositeAction.Add(new GiveModuleAction(module));
-            }
+        foreach (Modules module in _trackerModules)
+        {
+            compositeAction.Add(new GiveModuleAction(module));
         }
 
         return new LoggableAction(compositeAction, _logger);

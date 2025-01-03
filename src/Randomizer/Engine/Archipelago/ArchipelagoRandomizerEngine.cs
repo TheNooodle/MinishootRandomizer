@@ -181,7 +181,6 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(BlockedForest), new BlockedForest(GetBooleanSettingValue("blocked_forest")) },
             { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(GetBooleanSettingValue("cannon_level_logical_requirements")) },
             { typeof(CompletionGoals), new CompletionGoals(GetGoalsSettingValue()) },
-            { typeof(TrackerEnabled), new TrackerEnabled(GetBooleanSettingValue("tracker_enabled")) }
         };
     }
 

@@ -20,7 +20,6 @@ namespace MinishootRandomizer
             { typeof(BlockedForest), new BlockedForest(true) },
             { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(true) },
             { typeof(CompletionGoals), new CompletionGoals(Goals.Both) },
-            { typeof(TrackerEnabled), new TrackerEnabled(true) }
         };
 
         public DummyRandomizerEngine(
