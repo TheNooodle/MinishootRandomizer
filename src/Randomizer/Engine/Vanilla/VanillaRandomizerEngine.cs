@@ -35,6 +35,11 @@ public class VanillaRandomizerEngine : IRandomizerEngine
         throw new ArgumentException("GetSettings should not be called on VanillaRandomizerEngine.");
     }
 
+    public List<LocationPool> GetLocationPools()
+    {
+        throw new ArgumentException("GetLocationPools should not be called on VanillaRandomizerEngine.");
+    }
+
     public void Initialize()
     {
         // no-op

@@ -269,8 +269,10 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (IPrefabCollector)_serviceContainer.GetService(typeof(PrefabSpriteProvider))
         );
 
-        _serviceContainer.AddService(typeof(IMarkerProvider), new LocationMarkerProvider(
-            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
+        _serviceContainer.AddService(typeof(IMarkerDataProvider), new InMemoryMarkerDataProvider());
+
+        _serviceContainer.AddService(typeof(IMarkerFactory), new CoreMarkerFactory(
+            (IMarkerDataProvider)_serviceContainer.GetService(typeof(IMarkerDataProvider)),
             (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
             (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository)),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
@@ -373,7 +375,7 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         _serviceContainer.AddService(typeof(TrackerPatcher), new TrackerPatcher(
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
             (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
-            (IMarkerProvider)_serviceContainer.GetService(typeof(IMarkerProvider)),
+            (IMarkerFactory)_serviceContainer.GetService(typeof(IMarkerFactory)),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation

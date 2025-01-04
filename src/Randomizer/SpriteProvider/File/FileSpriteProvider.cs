@@ -13,7 +13,9 @@ public class FileSpriteProvider : ISpriteProvider
     private Dictionary<string, SpriteFileData> _spriteFiles = new Dictionary<string, SpriteFileData>()
     {
         { "Archipelago", new SpriteFileData("archipelago.png", 128, 128, 0.7f) },
-        { "Scarab", new SpriteFileData("scarab.png", 108, 108)}
+        { "Scarab", new SpriteFileData("scarab.png", 108, 108)},
+        { "LocationMarker", new SpriteFileData("location_marker.png", 116, 180)},
+        { "NpcMarker", new SpriteFileData("npc_marker.png", 148, 172)},
     };
 
     public FileSpriteProvider(ISpriteProvider innerProvider, string rootPath)

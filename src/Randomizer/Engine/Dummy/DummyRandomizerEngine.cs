@@ -1,135 +1,168 @@
 using System;
 using System.Collections.Generic;
 
-namespace MinishootRandomizer
-{
-    public class DummyRandomizerEngine : IRandomizerEngine
-    {
-        private IItemRepository _itemRepository;
-        private ILocationRepository _locationRepository;
-        private IProgressionStorage _progressionStorage;
+namespace MinishootRandomizer;
 
-        private Dictionary<Type, ISetting> _settings = new()
+public class DummyRandomizerEngine : IRandomizerEngine
+{
+    private IItemRepository _itemRepository;
+    private ILocationRepository _locationRepository;
+    private IProgressionStorage _progressionStorage;
+
+    private Dictionary<Type, ISetting> _settings = new()
+    {
+        { typeof(NpcSanity), new NpcSanity(false) },
+        { typeof(ScarabSanity), new ScarabSanity(true) },
+        { typeof(ShardSanity), new ShardSanity(true) },
+        { typeof(KeySanity), new KeySanity(true) },
+        { typeof(BossKeySanity), new BossKeySanity(true) },
+        { typeof(SimpleTempleExit), new SimpleTempleExit(true) },
+        { typeof(BlockedForest), new BlockedForest(true) },
+        { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(true) },
+        { typeof(CompletionGoals), new CompletionGoals(Goals.Both) },
+    };
+
+    public DummyRandomizerEngine(
+        IItemRepository itemRepository,
+        ILocationRepository locationRepository,
+        IProgressionStorage progressionStorage
+    ) {
+        _itemRepository = itemRepository;
+        _locationRepository = locationRepository;
+        _progressionStorage = progressionStorage;
+    }
+
+    public List<Location> GetRandomizedLocations()
+    {
+        List<Location> locations = new();
+        if (_dummySpoilerLog == null)
         {
-            { typeof(NpcSanity), new NpcSanity(true) },
-            { typeof(ScarabSanity), new ScarabSanity(true) },
-            { typeof(ShardSanity), new ShardSanity(true) },
-            { typeof(KeySanity), new KeySanity(true) },
-            { typeof(BossKeySanity), new BossKeySanity(true) },
-            { typeof(SimpleTempleExit), new SimpleTempleExit(true) },
-            { typeof(BlockedForest), new BlockedForest(true) },
-            { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(true) },
-            { typeof(CompletionGoals), new CompletionGoals(Goals.Both) },
+            GenerateSpoilerLog();
+        }
+
+        List<LocationPool> locationPools = GetLocationPools();
+        foreach (string locationIdentifier in _dummySpoilerLog.Keys)
+        {
+            Location newLocation = _locationRepository.Get(locationIdentifier);
+            if (locationPools.Contains(newLocation.Pool))
+            {
+                locations.Add(newLocation);
+            }
+        }
+
+        return locations;
+    }
+
+    public Item PeekLocation(Location location)
+    {
+        if (_dummySpoilerLog == null)
+        {
+            GenerateSpoilerLog();
+        }
+
+        if (!_dummySpoilerLog.ContainsKey(location.Identifier))
+        {
+            throw new System.Exception($"Location {location.Identifier} not found in dummy spoiler log!");
+        }
+        Item item = _itemRepository.Get(_dummySpoilerLog[location.Identifier]);
+
+        return item;
+    }
+
+    public Item CheckLocation(Location location)
+    {
+        Item item = PeekLocation(location);
+        _progressionStorage.SetLocationChecked(location);
+
+        return item;
+    }
+
+    public bool IsLocationChecked(Location location)
+    {
+        return _progressionStorage.IsLocationChecked(location);
+    }
+
+    public T GetSetting<T>() where T : ISetting
+    {
+        if (_settings.TryGetValue(typeof(T), out ISetting setting))
+        {
+            return (T)setting;
+        }
+
+        throw new SettingNotSupported($"Setting {typeof(T).Name} is not supported by DummyRandomizerEngine!");
+    }
+
+    public List<LocationPool> GetLocationPools()
+    {
+        List<LocationPool> pools = new()
+        {
+            LocationPool.Default,
+            LocationPool.DungeonSmallKey,
+            LocationPool.DungeonBigKey,
+            LocationPool.DungeonReward,
+            LocationPool.Goal
         };
 
-        public DummyRandomizerEngine(
-            IItemRepository itemRepository,
-            ILocationRepository locationRepository,
-            IProgressionStorage progressionStorage
-        ) {
-            _itemRepository = itemRepository;
-            _locationRepository = locationRepository;
-            _progressionStorage = progressionStorage;
-        }
-
-        public List<Location> GetRandomizedLocations()
+        if (GetSetting<NpcSanity>().Enabled)
         {
-            List<Location> locations = new();
-            if (_dummySpoilerLog == null)
-            {
-                GenerateSpoilerLog();
-            }
-            foreach (string locationIdentifier in _dummySpoilerLog.Keys)
-            {
-                locations.Add(_locationRepository.Get(locationIdentifier));
-            }
-
-            return locations;
+            pools.Add(LocationPool.Npc);
         }
-
-        public Item PeekLocation(Location location)
+        if (GetSetting<ScarabSanity>().Enabled)
         {
-            if (_dummySpoilerLog == null)
-            {
-                GenerateSpoilerLog();
-            }
-
-            if (!_dummySpoilerLog.ContainsKey(location.Identifier))
-            {
-                throw new System.Exception($"Location {location.Identifier} not found in dummy spoiler log!");
-            }
-            Item item = _itemRepository.Get(_dummySpoilerLog[location.Identifier]);
-
-            return item;
+            pools.Add(LocationPool.Scarab);
         }
-
-        public Item CheckLocation(Location location)
+        if (GetSetting<ShardSanity>().Enabled)
         {
-            Item item = PeekLocation(location);
-            _progressionStorage.SetLocationChecked(location);
-
-            return item;
+            pools.Add(LocationPool.XpCrystals);
         }
 
-        public bool IsLocationChecked(Location location)
+        return pools;
+    }
+
+    public List<ISetting> GetSettings()
+    {
+        return new List<ISetting>(_settings.Values);
+    }
+
+    private void GenerateSpoilerLog()
+    {
+        _dummySpoilerLog = new();
+        string[] lines = _rawSpoilerLog.Split("\n");
+        foreach (string line in lines)
         {
-            return _progressionStorage.IsLocationChecked(location);
+            string[] parts = line.Split(": ");
+            _dummySpoilerLog.Add(parts[0], parts[1]);
         }
+    }
 
-        public T GetSetting<T>() where T : ISetting
-        {
-            if (_settings.TryGetValue(typeof(T), out ISetting setting))
-            {
-                return (T)setting;
-            }
+    public void CompleteGoal(Goals goal)
+    {
+        // no op
+    }
 
-            throw new SettingNotSupported($"Setting {typeof(T).Name} is not supported by DummyRandomizerEngine!");
-        }
+    public bool IsRandomized()
+    {
+        return true;
+    }
 
-        public List<ISetting> GetSettings()
-        {
-            return new List<ISetting>(_settings.Values);
-        }
+    public void SetContext(RandomizerContext context)
+    {
+        // no op
+    }
 
-        private void GenerateSpoilerLog()
-        {
-            _dummySpoilerLog = new();
-            string[] lines = _rawSpoilerLog.Split("\n");
-            foreach (string line in lines)
-            {
-                string[] parts = line.Split(": ");
-                _dummySpoilerLog.Add(parts[0], parts[1]);
-            }
-        }
+    public void Initialize()
+    {
+        // no op
+    }
 
-        public void CompleteGoal(Goals goal)
-        {
-            // no op
-        }
+    public void Dispose()
+    {
+        // no op
+    }
 
-        public bool IsRandomized()
-        {
-            return true;
-        }
+    private Dictionary<string, string> _dummySpoilerLog = null;
 
-        public void SetContext(RandomizerContext context)
-        {
-            // no op
-        }
-
-        public void Initialize()
-        {
-            // no op
-        }
-
-        public void Dispose()
-        {
-            // no op
-        }
-
-        private Dictionary<string, string> _dummySpoilerLog = null;
-
-        private string _rawSpoilerLog = @"Abyss - Ambush Island: HP Crystal Shard
+    private string _rawSpoilerLog = @"Abyss - Ambush Island: HP Crystal Shard
 Abyss Church - Unchosen statue: Progressive Cannon
 Abyss - Backroom item: Desert Map
 Abyss - Near dungeon entrance: Power of time
@@ -186,7 +219,7 @@ Dungeon 1 - South item: Ancient Tablet
 Dungeon 1 - Crystal near east armored spinner: XP Crystals x50
 Dungeon 1 - Near east armored spinner: Crystal Bullet
 Dungeon 2 - Walled arena item: HP Crystal Shard
-Dungeon 2 - Walled arena extra: Boost
+Dungeon 2 - Walled arena extra: HP Crystal Shard
 Dungeon 2 - Treasure room: XP Crystals x25
 Dungeon 2 - Treasure room entrance: Scarab
 Dungeon 2 - Central item: Scarab
@@ -301,7 +334,7 @@ Sewers - Drop: Healer
 Spirit Tower - Item: Dark Key
 Starting Grotto - North Corridor: XP Crystals x20
 Starting Grotto - Secret Wall: XP Crystals x5
-Starting Grotto - Entrance: HP Crystal Shard
+Starting Grotto - Entrance: Boost
 Starting Grotto - West Item: Progressive Cannon
 Sunken City - North West pot: Scarab
 Sunken City - North bridge: XP Crystals x25
@@ -333,5 +366,4 @@ Swamp Shop Extra: XP Crystals x5
 Swamp Tower - Top of tower: XP Crystals x45
 Town Pillars Grotto - Reward: XP Crystals x20
 Zelda 1 Grotto - Behind the closed doors: XP Crystals x20";
-    }
 }
