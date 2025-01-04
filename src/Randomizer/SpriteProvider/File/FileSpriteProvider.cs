@@ -16,6 +16,7 @@ public class FileSpriteProvider : ISpriteProvider
         { "Scarab", new SpriteFileData("scarab.png", 108, 108)},
         { "LocationMarker", new SpriteFileData("location_marker.png", 116, 180)},
         { "NpcMarker", new SpriteFileData("npc_marker.png", 148, 172)},
+        { "ScarabMarker", new SpriteFileData("scarab_marker.png", 148, 172)},
     };
 
     public FileSpriteProvider(ISpriteProvider innerProvider, string rootPath)

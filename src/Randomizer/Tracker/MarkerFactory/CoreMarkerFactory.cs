@@ -64,7 +64,8 @@ public class CoreMarkerFactory : IMarkerFactory
             locations.Add(location);
         }
 
-        NpcMarkerData npcMarkerData = markerData.NpcMarkerData; 
+        NpcMarkerData npcMarkerData = markerData.NpcMarkerData;
+        ScarabMarkerData scarabMarkerData = markerData.ScarabMarkerData;
 
         List<GameObject> markers = new List<GameObject>();
         for (int i = 0; i < markerData.Coordinates.Count; i++)
@@ -107,6 +108,26 @@ public class CoreMarkerFactory : IMarkerFactory
                     NpcMarker npcMarker = new NpcMarker(npcLocation, npcMarkerData.NpcIdentifier);
                     markerComponent.AddMarker(npcMarker);
                 }
+            }
+
+            if (scarabMarkerData != null)
+            {
+                Dictionary<string, Location> scarabLocations = new Dictionary<string, Location>();
+                foreach (KeyValuePair<string, string> scarabLocationPair in scarabMarkerData.ScarabLocationMap)
+                {
+                    Location scarabLocation = _locationRepository.Get(scarabLocationPair.Value);
+                    if (scarabLocation == null)
+                    {
+                        _logger.LogError($"Location {scarabLocationPair.Value} not found while creating marker");
+                    }
+                    else
+                    {
+                        scarabLocations.Add(scarabLocationPair.Key, scarabLocation);
+                    }
+                }
+
+                ScarabMarker scarabMarker = new ScarabMarker(scarabLocations);
+                markerComponent.AddMarker(scarabMarker);
             }
 
             markerObject.SetActive(true);
