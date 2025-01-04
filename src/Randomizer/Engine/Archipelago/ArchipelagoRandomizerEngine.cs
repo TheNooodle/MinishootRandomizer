@@ -296,6 +296,11 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
         }
     }
 
+    public List<LocationPool> GetLocationPools()
+    {
+        return _locationPools;
+    }
+
     public void CompleteGoal(Goals goal)
     {
         CompletionGoals completionGoals = GetSetting<CompletionGoals>();

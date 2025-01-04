@@ -29,6 +29,8 @@
     <!-- Images -->
     <EmbeddedResource Include="Resources/images/archipelago.png" />
     <EmbeddedResource Include="Resources/images/scarab.png" />
+    <EmbeddedResource Include="Resources/images/location_marker.png" />
+    <EmbeddedResource Include="Resources/images/npc_marker.png" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
@@ -38,6 +40,9 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>lib\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>lib\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

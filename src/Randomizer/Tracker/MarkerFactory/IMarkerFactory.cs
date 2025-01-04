@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MinishootRandomizer;
 
-public interface IMarkerProvider
+public interface IMarkerFactory
 {
-    List<GameObject> GetMarkerObjects();
+    List<GameObject> CreateMarkerObjects();
 }

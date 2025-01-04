@@ -7,17 +7,17 @@ public class TrackerPatcher
 {
     private readonly IRandomizerEngine _randomizerEngine;
     private readonly IObjectFinder _objectFinder;
-    private readonly IMarkerProvider _markerProvider;
+    private readonly IMarkerFactory _markerFactory;
     private readonly ILogger _logger = new NullLogger();
 
     private IPatchAction _patchAction = null;
-    private List<RandomizerLocationMarker> _markers = new List<RandomizerLocationMarker>();
+    private List<RandomizerTrackerMarkerComponent> _markers = new List<RandomizerTrackerMarkerComponent>();
 
-    public TrackerPatcher(IRandomizerEngine randomizerEngine, IObjectFinder objectFinder, IMarkerProvider markerProvider, ILogger logger = null)
+    public TrackerPatcher(IRandomizerEngine randomizerEngine, IObjectFinder objectFinder, IMarkerFactory markerFactory, ILogger logger = null)
     {
         _randomizerEngine = randomizerEngine;
         _objectFinder = objectFinder;
-        _markerProvider = markerProvider;
+        _markerFactory = markerFactory;
         _logger = logger ?? new NullLogger();
     }
 
@@ -37,7 +37,7 @@ public class TrackerPatcher
 
     public void OnItemCollected(Item item)
     {
-        foreach (RandomizerLocationMarker marker in _markers)
+        foreach (RandomizerTrackerMarkerComponent marker in _markers)
         {
             marker.CheckActivation();
         }
@@ -65,10 +65,10 @@ public class TrackerPatcher
         }
 
         // Add the new markers
-        List<GameObject> newMarkers = _markerProvider.GetMarkerObjects();
+        List<GameObject> newMarkers = _markerFactory.CreateMarkerObjects();
         foreach (GameObject newMarker in newMarkers)
         {
-            RandomizerLocationMarker randomizerLocationMarker = newMarker.GetComponent<RandomizerLocationMarker>();
+            RandomizerTrackerMarkerComponent randomizerLocationMarker = newMarker.GetComponent<RandomizerTrackerMarkerComponent>();
             if (randomizerLocationMarker == null)
             {
                 throw new InvalidActionException($"Replacement GameObject {newMarker.name} does not have a RandomizerLocationMarker component");
