@@ -13,16 +13,23 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(-1.34f, -2.30f),
             }),
-            new MarkerData(new List<string> {
-                "Abyss - Backroom item",
-                "Abyss Church - Unchosen statue",
-                "Abyss North Connector - Under ruins",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-1.57f, -2.27f),
-                new Tuple<float, float>(-5.78f, -1.86f),
-                new Tuple<float, float>(-2.77f, 0.40f),
-                new Tuple<float, float>(-6.72f, -2.85f),
-            }),
+            new MarkerData(
+                markerName: "Abyss Connector",
+                locationNames: new List<string> {
+                    "Abyss - Backroom item",
+                    "Abyss Church - Unchosen statue",
+                    "Abyss North Connector - Under ruins",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-1.57f, -2.27f),
+                    new Tuple<float, float>(-5.78f, -1.86f),
+                    new Tuple<float, float>(-2.77f, 0.40f),
+                    new Tuple<float, float>(-6.72f, -2.85f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "CaveScarabPickup2", "Abyss North Connector - Under ruins" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Abyss - Near dungeon entrance",
             }, new List<Tuple<float, float>> {
@@ -53,13 +60,20 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(-1.85f, -1.47f),
             }),
-            new MarkerData(new List<string> {
-                "Abyss Shack - Hidden corridor",
-                "Abyss Shack - Hidden room",
-                "Abyss Shack - Under pot",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-6.54f, -3.21f),
-            }),
+            new MarkerData(
+                markerName: "Abyss Shack",
+                locationNames: new List<string> {
+                    "Abyss Shack - Hidden corridor",
+                    "Abyss Shack - Hidden room",
+                    "Abyss Shack - Under pot",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-6.54f, -3.21f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "CaveScarabPickup3", "Abyss Shack - Under pot" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Abyss Tower - Top of tower",
             }, new List<Tuple<float, float>> {
@@ -80,11 +94,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(3.05f, -1.19f),
             }),
-            new MarkerData(new List<string> {
-                "Beach - Coconut pile",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(7.00f, 0.78f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Beach - Coconut pile",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(7.00f, 0.78f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "OverworldScarabPickup6", "Beach - Coconut pile" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Beach - East Island",
             }, new List<Tuple<float, float>> {
@@ -95,11 +115,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(5.51f, -0.95f),
             }),
-            new MarkerData(new List<string> {
-                "Beach - Seashell above dungeon",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(3.96f, -1.67f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Beach - Seashell above dungeon",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(3.96f, -1.67f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "OverworldScarabPickup5", "Beach - Seashell above dungeon" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Beach - South East Island",
             }, new List<Tuple<float, float>> {
@@ -115,11 +141,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(-0.77f, 2.31f),
             }),
-            new MarkerData(new List<string> {
-                "Cemetery - West pot",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-1.53f, 2.25f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Cemetery - West pot",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-1.53f, 2.25f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "OverworldScarabPickup7", "Cemetery - West pot" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Cemetery Tower - Top of tower",
                 "Scarab Temple - After race 1",
@@ -128,16 +160,23 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(2.00f, 3.85f),
             }),
-            new MarkerData(new List<string> {
-                "Crystal Grove Temple - Boss reward",
-                "Crystal Grove Temple - Dodge the east cannons",
-                "Crystal Grove Temple - East tunnels",
-                "Crystal Grove Temple - North east hidden room",
-                "Crystal Grove Temple - South West Hidden pond",
-                "Crystal Grove Temple - West pot"
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-2.15f, 0.66f),
-            }),
+            new MarkerData(
+                markerName: "Crystal Grove Temple",
+                locationNames: new List<string> {
+                    "Crystal Grove Temple - Boss reward",
+                    "Crystal Grove Temple - Dodge the east cannons",
+                    "Crystal Grove Temple - East tunnels",
+                    "Crystal Grove Temple - North east hidden room",
+                    "Crystal Grove Temple - South West Hidden pond",
+                    "Crystal Grove Temple - West pot"
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-2.15f, 0.66f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "Temple1ScarabPickup0", "Crystal Grove Temple - West pot" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Crystal Grove Tower - Top of tower",
             }, new List<Tuple<float, float>> {
@@ -165,74 +204,100 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                 new Tuple<float, float>(-5.97f, -0.20f),
                 new Tuple<float, float>(-6.89f, -0.58f),
             }),
-            new MarkerData(new List<string> {
-                "Desert Temple - Boss reward",
-                "Desert Temple - North East pot",
-                "Desert Temple - Secret room"
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-5.94f, 1.03f),
-            }),
-            new MarkerData(new List<string> {
-                "Dungeon 1 - Central item",
-                "Dungeon 1 - Crystal near east armored spinner",
-                // "Dungeon 1 - Dungeon reward",
-                "Dungeon 1 - Entrance after south ramp",
-                "Dungeon 1 - Entrance East Arena",
-                "Dungeon 1 - Entrance west bridge",
-                "Dungeon 1 - Far West Arena after spinner",
-                "Dungeon 1 - Hidden below crystal wall",
-                "Dungeon 1 - Hidden in West Arena",
-                "Dungeon 1 - Inside the crystal wall",
-                "Dungeon 1 - Near boss",
-                "Dungeon 1 - Near east armored spinner",
-                "Dungeon 1 - Near west armored spinner",
-                "Dungeon 1 - North West Arena",
-                "Dungeon 1 - Platform after crystal wall",
-                "Dungeon 1 - South item",
-                "Dungeon 1 - West bridge hidden item",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(1.54f, 2.09f),
-            }),
-            new MarkerData(new List<string> {
-                "Dungeon 2 - Central item",
-                // "Dungeon 2 - Dungeon reward",
-                "Dungeon 2 - Hidden by plants",
-                "Dungeon 2 - Item after jumps",
-                "Dungeon 2 - North east beyond arena",
-                "Dungeon 2 - North item",
-                "Dungeon 2 - North west arena",
-                "Dungeon 2 - Secret room",
-                "Dungeon 2 - South west arena",
-                "Dungeon 2 - Treasure room",
-                "Dungeon 2 - Treasure room entrance",
-                "Dungeon 2 - Walled arena extra",
-                "Dungeon 2 - Walled arena item",
-                "Dungeon 2 - West arena",
-                "Dungeon 2 - West arena extra",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-2.74f, -0.65f),
-            }),
-            new MarkerData(new List<string> {
-                "Dungeon 3 - Behind North West doors",
-                "Dungeon 3 - Central Item",
-                // "Dungeon 3 - Dungeon reward",
-                "Dungeon 3 - East Island",
-                "Dungeon 3 - East rock 1",
-                "Dungeon 3 - East rock 2",
-                "Dungeon 3 - East wall",
-                "Dungeon 3 - Hidden Tunnel",
-                "Dungeon 3 - Inside middle pot",
-                "Dungeon 3 - Item protected by spikes",
-                "Dungeon 3 - North arena",
-                "Dungeon 3 - Over the pit",
-                "Dungeon 3 - Pot Island",
-                "Dungeon 3 - Race on the water",
-                "Dungeon 3 - South corridor",
-                "Dungeon 3 - South of torches",
-                "Dungeon 3 - South west of torches",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(4.46f, -2.91f),
-            }),
+            new MarkerData(
+                markerName: "Desert Temple",
+                locationNames: new List<string> {
+                    "Desert Temple - Boss reward",
+                    "Desert Temple - North East pot",
+                    "Desert Temple - Secret room"
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-5.94f, 1.03f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "Temple2ScarabPickup0", "Desert Temple - North East pot" },
+                })
+            ),
+            new MarkerData(
+                markerName: "Dungeon 1",
+                locationNames: new List<string> {
+                    "Dungeon 1 - Central item",
+                    "Dungeon 1 - Crystal near east armored spinner",
+                    // "Dungeon 1 - Dungeon reward",
+                    "Dungeon 1 - Entrance after south ramp",
+                    "Dungeon 1 - Entrance East Arena",
+                    "Dungeon 1 - Entrance west bridge",
+                    "Dungeon 1 - Far West Arena after spinner",
+                    "Dungeon 1 - Hidden below crystal wall",
+                    "Dungeon 1 - Hidden in West Arena",
+                    "Dungeon 1 - Inside the crystal wall",
+                    "Dungeon 1 - Near boss",
+                    "Dungeon 1 - Near east armored spinner",
+                    "Dungeon 1 - Near west armored spinner",
+                    "Dungeon 1 - North West Arena",
+                    "Dungeon 1 - Platform after crystal wall",
+                    "Dungeon 1 - South item",
+                    "Dungeon 1 - West bridge hidden item",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(1.54f, 2.09f),
+                }
+            ),
+            new MarkerData(
+                markerName: "Dungeon 2",
+                locationNames: new List<string> {
+                    "Dungeon 2 - Central item",
+                    // "Dungeon 2 - Dungeon reward",
+                    "Dungeon 2 - Hidden by plants",
+                    "Dungeon 2 - Item after jumps",
+                    "Dungeon 2 - North east beyond arena",
+                    "Dungeon 2 - North item",
+                    "Dungeon 2 - North west arena",
+                    "Dungeon 2 - Secret room",
+                    "Dungeon 2 - South west arena",
+                    "Dungeon 2 - Treasure room",
+                    "Dungeon 2 - Treasure room entrance",
+                    "Dungeon 2 - Walled arena extra",
+                    "Dungeon 2 - Walled arena item",
+                    "Dungeon 2 - West arena",
+                    "Dungeon 2 - West arena extra",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-2.74f, -0.65f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "Dungeon2ScarabPickup0", "Dungeon 2 - Secret room" },
+                })
+            ),
+            new MarkerData(
+                markerName: "Dungeon 3",
+                locationNames: new List<string> {
+                    "Dungeon 3 - Behind North West doors",
+                    "Dungeon 3 - Central Item",
+                    // "Dungeon 3 - Dungeon reward",
+                    "Dungeon 3 - East Island",
+                    "Dungeon 3 - East rock 1",
+                    "Dungeon 3 - East rock 2",
+                    "Dungeon 3 - East wall",
+                    "Dungeon 3 - Hidden Tunnel",
+                    "Dungeon 3 - Inside middle pot",
+                    "Dungeon 3 - Item protected by spikes",
+                    "Dungeon 3 - North arena",
+                    "Dungeon 3 - Over the pit",
+                    "Dungeon 3 - Pot Island",
+                    "Dungeon 3 - Race on the water",
+                    "Dungeon 3 - South corridor",
+                    "Dungeon 3 - South of torches",
+                    "Dungeon 3 - South west of torches",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(4.46f, -2.91f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "Dungeon3ScarabPickup0", "Dungeon 3 - East rock 2" },
+                    { "Dungeon3ScarabPickup1", "Dungeon 3 - Pot Island" },
+                })
+            ),
             // new LocationMarkerData(new List<string> {
             //     "Dungeon 4 - Dungeon reward",
             // }, new List<Tuple<float, float>> {
@@ -287,21 +352,33 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(1.54f, -5.38f),
             }),
-            new MarkerData(new List<string> {
-                "Forest - Pot",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(2.57f, -4.01f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Forest - Pot",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(2.57f, -4.01f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "OverworldScarabPickup1", "Forest - Pot" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Forest - Secret pond behind bushes",
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(0.28f, -2.98f),
             }),
-            new MarkerData(new List<string> {
-                "Forest - Secret pond bush",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(0.52f, -1.46f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Forest - Secret pond bush",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.52f, -1.46f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "OverworldScarabPickup0", "Forest - Secret pond bush" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Forest - Secret within Secret",
             }, new List<Tuple<float, float>> {
@@ -458,24 +535,32 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(0.97f, 2.65f),
             }),
-            new MarkerData(new List<string> {
-                "Sewers - Behind West Entrance",
-                "Sewers - Central room boss reward",
-                "Sewers - Central room corner",
-                "Sewers - Drop",
-                "Sewers - Near Family House Cave",
-                "Sewers - North pot room",
-                "Sewers - South pot room",
-                "Sunken City - Inside the walls"
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-4.77f, 2.92f),
-                new Tuple<float, float>(-5.92f, 3.52f),
-                new Tuple<float, float>(-7.52f, 3.72f),
-                new Tuple<float, float>(-6.97f, 4.52f),
-                new Tuple<float, float>(-5.31f, 5.84f),
-                new Tuple<float, float>(-4.00f, 4.87f),
-                new Tuple<float, float>(-3.48f, 4.87f),
-            }),
+            new MarkerData(
+                markerName: "Sewers",
+                locationNames: new List<string> {
+                    "Sewers - Behind West Entrance",
+                    "Sewers - Central room boss reward",
+                    "Sewers - Central room corner",
+                    "Sewers - Drop",
+                    "Sewers - Near Family House Cave",
+                    "Sewers - North pot room",
+                    "Sewers - South pot room",
+                    "Sunken City - Inside the walls"
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-4.77f, 2.92f),
+                    new Tuple<float, float>(-5.92f, 3.52f),
+                    new Tuple<float, float>(-7.52f, 3.72f),
+                    new Tuple<float, float>(-6.97f, 4.52f),
+                    new Tuple<float, float>(-5.31f, 5.84f),
+                    new Tuple<float, float>(-4.00f, 4.87f),
+                    new Tuple<float, float>(-3.48f, 4.87f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "CaveScarabPickup0", "Sewers - South pot room" },
+                    { "CaveScarabPickup1", "Sewers - North pot room" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Spirit Tower - Item",
             }, new List<Tuple<float, float>> {
@@ -506,11 +591,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(-3.26f, 5.36f),
             }),
-            new MarkerData(new List<string> {
-                "Sunken City - North West pot",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-7.74f, 7.39f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Sunken City - North West pot",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-7.74f, 7.39f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "OverworldScarabPickup4", "Sunken City - North West pot" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Sunken City - South West building item",
             }, new List<Tuple<float, float>> {
@@ -521,11 +612,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(-4.57f, 4.62f),
             }),
-            new MarkerData(new List<string> {
-                "Sunken City - West bridge pot",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-4.57f, 4.01f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Sunken City - West bridge pot",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-4.57f, 4.01f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "OverworldScarabPickup3", "Sunken City - West bridge pot" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Sunken City Building - Drop",
             }, new List<Tuple<float, float>> {
@@ -533,15 +630,22 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                 new Tuple<float, float>(-3.03f, 5.12f),
                 new Tuple<float, float>(-3.29f, 5.08f),
             }),
-            new MarkerData(new List<string> {
-                "Sunken Temple - Boss reward",
-                "Sunken Temple - Entrance",
-                "Sunken Temple - Secret tunnel",
-                "Sunken Temple - South West tunnel",
-                "Sunken Temple - Under the lilypad"
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-5.92f, 5.02f),
-            }),
+            new MarkerData(
+                markerName: "Sunken Temple",
+                locationNames: new List<string> {
+                    "Sunken Temple - Boss reward",
+                    "Sunken Temple - Entrance",
+                    "Sunken Temple - Secret tunnel",
+                    "Sunken Temple - South West tunnel",
+                    "Sunken Temple - Under the lilypad"
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-5.92f, 5.02f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "Temple3ScarabPickup0", "Sunken Temple - Under the lilypad" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Swamp - Blocked tunnel",
             }, new List<Tuple<float, float>> {
@@ -552,11 +656,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(3.46f, 4.31f),
             }),
-            new MarkerData(new List<string> {
-                "Swamp - Hidden in plant",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(5.17f, 2.40f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Swamp - Hidden in plant",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(5.17f, 2.40f),
+                },
+                scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                    { "OverworldScarabPickup2", "Swamp - Hidden in plant" },
+                })
+            ),
             new MarkerData(new List<string> {
                 "Swamp - Near cracked wall",
             }, new List<Tuple<float, float>> {
