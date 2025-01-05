@@ -11,7 +11,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
     private Dictionary<Type, ISetting> _settings = new()
     {
-        { typeof(NpcSanity), new NpcSanity(true) },
+        { typeof(NpcSanity), new NpcSanity(false) },
         { typeof(ScarabSanity), new ScarabSanity(false) },
         { typeof(ShardSanity), new ShardSanity(true) },
         { typeof(SpiritSanity), new SpiritSanity(false) },
