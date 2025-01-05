@@ -175,6 +175,7 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(NpcSanity), new NpcSanity(GetBooleanSettingValue("npc_sanity")) },
             { typeof(ScarabSanity), new ScarabSanity(GetBooleanSettingValue("scarab_sanity")) },
             { typeof(ShardSanity), new ShardSanity(GetBooleanSettingValue("shard_sanity")) },
+            { typeof(SpiritSanity), new SpiritSanity(false) },
             { typeof(KeySanity), new KeySanity(GetBooleanSettingValue("key_sanity")) },
             { typeof(BossKeySanity), new BossKeySanity(GetBooleanSettingValue("boss_key_sanity")) },
             { typeof(SimpleTempleExit), new SimpleTempleExit(GetBooleanSettingValue("simple_temple_exit")) },
@@ -293,6 +294,10 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
         if (GetSetting<ShardSanity>().Enabled)
         {
             _locationPools.Add(LocationPool.XpCrystals);
+        }
+        if (GetSetting<SpiritSanity>().Enabled)
+        {
+            _locationPools.Add(LocationPool.Spirit);
         }
     }
 

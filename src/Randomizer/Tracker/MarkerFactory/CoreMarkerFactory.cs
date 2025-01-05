@@ -66,6 +66,7 @@ public class CoreMarkerFactory : IMarkerFactory
 
         NpcMarkerData npcMarkerData = markerData.NpcMarkerData;
         ScarabMarkerData scarabMarkerData = markerData.ScarabMarkerData;
+        SpiritMarkerData spiritMarkerData = markerData.SpiritMarkerData;
 
         List<GameObject> markers = new List<GameObject>();
         for (int i = 0; i < markerData.Coordinates.Count; i++)
@@ -128,6 +129,20 @@ public class CoreMarkerFactory : IMarkerFactory
 
                 ScarabMarker scarabMarker = new ScarabMarker(scarabLocations);
                 markerComponent.AddMarker(scarabMarker);
+            }
+
+            if (spiritMarkerData != null)
+            {
+                Location spiritLocation = _locationRepository.Get(spiritMarkerData.LocationName);
+                if (spiritLocation == null)
+                {
+                    _logger.LogError($"Location {spiritMarkerData.LocationName} not found while creating marker");
+                }
+                else
+                {
+                    SpiritMarker spiritMarker = new SpiritMarker(spiritLocation, spiritMarkerData.SpiritIdentifier);
+                    markerComponent.AddMarker(spiritMarker);
+                }
             }
 
             markerObject.SetActive(true);

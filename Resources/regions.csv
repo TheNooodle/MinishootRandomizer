@@ -10,7 +10,7 @@ Abyss - Village,Abyss - Village Entrance,"Abyss - Village > Village Shack,Abyss 
 Abyss - Village Shack,"Abyss Shack - Hidden corridor,Abyss Shack - Hidden room,Abyss Shack - Under pot",Abyss - Village Shack > Village,Abyss - Village > Village Shack
 Abyss - Within Crystal Grove,Abyss - Within Crystal Grove,"Abyss - Within Crystal Grove > Dungeon Exterior,Abyss - Within Crystal Grove > Dungeon 2 Entrance,Abyss - Within Crystal Grove > Abyss North Connector",Abyss - North Connector > Abyss Within Crystal Grove
 Abyss North Connector,Abyss North Connector - Under ruins,"Abyss - North Connector > Church,Abyss - North Connector > South Connector,Abyss - North Connector > Abyss Within Crystal Grove","Abyss - Church > North Connector,Abyss South Connector > North Connector,Abyss - Within Crystal Grove > Abyss North Connector"
-Abyss Race,,Abyss Race > Jumping Loop,Abyss - Jumping Loop > Abyss Race
+Abyss Race,Abyss Race - Reward,Abyss Race > Jumping Loop,Abyss - Jumping Loop > Abyss Race
 Abyss South Connector,,"Abyss South Connector > Abyss Middle Platform,Abyss South Connector > North Connector","Abyss - Ambush Island > Abyss South Connector,Abyss - Middle Platform > South Connector,Abyss - North Connector > South Connector"
 Abyss Tower,Abyss Tower - Top of tower,Abyss Tower > Tower Exterior,Abyss - Tower Exterior > Abyss Tower
 Beach - Coast,"Beach - Coast South hidden alcove,Beach - Coast Hidden by plants","Beach - Coast > Beach Coast Grotto,Beach - Coast > Town,Beach - Coast > Swamp Entrance,Beach - Coast > Dungeon 3 Island,Beach - Coast > Forest North","Beach Coast Grotto > Coast,Beach - Swamp Entrance > Coast,Beach - Dungeon 3 Island > Coast,Forest - North > Beach Coast"
@@ -19,7 +19,7 @@ Beach - Dungeon 3 Island,"Beach - South East Island,Beach - Protected item,Beach
 Beach - Dungeon Exterior,,"Beach - Dungeon Exterior > Dungeon 3 Island,Beach - Dungeon Exterior > Dungeon 3 Entrance","Beach - Dungeon 3 Island > Dungeon Exterior,Dungeon 3 - Entrance > Beach Dungeon Exterior"
 Beach - Swamp Entrance,Beach - Coast North hidden alcove,"Beach - Swamp Entrance > Town,Beach - Swamp Entrance > Coast,Beach - Swamp Entrance > Swamp Turtle's domain,Beach - Swamp Entrance > Coconut Island","Beach - Coast > Swamp Entrance,Green - Town > Swamp Entrance,Beach - Coconut Island > Swamp Entrance"
 Beach Coast Grotto,,Beach Coast Grotto > Coast,"Green Grotto > Beach Coast Grotto,Beach - Coast > Beach Coast Grotto"
-Beach Race,,Beach Race > Coconut Island,Beach - Coconut Island > Beach Race
+Beach Race,Beach Race - Reward,Beach Race > Coconut Island,Beach - Coconut Island > Beach Race
 Cemetery,"Cemetery - Crying house,Cemetery - Under enemy,Cemetery - West pot",Cemetery > Scarab Temple Bottom Left Torch drop,"Green - Town > Cemetery,Sunken City - East > Cemetery,Junkyard - South > Cemetery"
 Cemetery - Tower Exterior,,"Cemetery - Tower Exterior > Swamp South West Island,Cemetery - Tower Exterior > Cemetery Tower","Swamp - South West Island > Cemetery Tower Exterior,Cemetery Tower > Tower Exterior"
 Cemetery Tower,Cemetery Tower - Top of tower,"Cemetery Tower > Tower Exterior,Cemetery Tower > Scarab Temple Back drop",Cemetery - Tower Exterior > Cemetery Tower
@@ -35,7 +35,7 @@ Desert - Temple Exterior,,"Desert - Temple Exterior > Desert,Desert - Temple Ext
 Desert Grotto - East Drop,,Desert Grotto - East Drop > Main,Desert > Desert Grotto East Drop
 Desert Grotto - Main,Desert Grotto - Both torches lighted,Desert Grotto - Main > Grotto Exterior,"Desert Grotto - West Drop > Main,Desert - Grotto Exterior > Desert Grotto Main,Desert Grotto - East Drop > Main"
 Desert Grotto - West Drop,,Desert Grotto - West Drop > Main,Desert > Desert Grotto West Drop
-Desert Race,,Desert Race > Desert,Desert > Race
+Desert Race,Desert Race - Reward,Desert Race > Desert,Desert > Race
 Desert Temple,"Desert Temple - Secret room,Desert Temple - Boss reward,Desert Temple - North East pot",Desert Temple > Temple Exterior,Desert - Temple Exterior > Temple
 Dungeon 1 - After Bridge,"Dungeon 1 - Central item,Dungeon 1 - Platform after crystal wall,Dungeon 1 - North West Arena,Dungeon 1 - Dungeon reward,Dungeon 1 - Near boss,Dungeon 1 - Hidden below crystal wall,Dungeon 1 - Inside the crystal wall",,Dungeon 1 - Entrance > After Bridge
 Dungeon 1 - Entrance,"Dungeon 1 - Entrance after south ramp,Dungeon 1 - Entrance East Arena,Dungeon 1 - Near west armored spinner,Dungeon 1 - Far West Arena after spinner,Dungeon 1 - Hidden in West Arena,Dungeon 1 - Entrance west bridge,Dungeon 1 - West bridge hidden item,Dungeon 1 - South item,Dungeon 1 - Crystal near east armored spinner,Dungeon 1 - Near east armored spinner","Dungeon 1 - Entrance > Green Dungeon 1 Exterior,Dungeon 1 - Entrance > After Bridge",Green - Dungeon 1 Exterior > Entrance
@@ -67,7 +67,7 @@ Forest - West,Forest - Bush behind tree,"Forest - West > Forest Grotto West,Fore
 Forest Grotto - East,,"Forest Grotto - East > Forest North,Forest Grotto - East > West",Forest - North > Forest Grotto East
 Forest Grotto - West,Forest Grotto - After ramp,Forest Grotto - West > Forest West,"Forest Grotto - East > West,Forest - West > Forest Grotto West,Scarab Temple - From Forest > Forest West"
 Forest Shop,"Forest Shop 1,Forest Shop 2,Forest Shop 3","Forest - Shop > Shop Exterior,Forest - Shop > Shop Race","Forest - Shop Exterior > Shop,Forest Shop Race > Shop"
-Forest Shop Race,,Forest Shop Race > Shop,Forest - Shop > Shop Race
+Forest Shop Race,Forest Shop Race - Reward,Forest Shop Race > Shop,Forest - Shop > Shop Race
 Forest Waterways,,"Forest Waterways > Forest South,Forest Waterways > Junkyard Waterways East","Forest - South > Forest Waterways,Junkyard Waterways - East > Forest Waterways"
 Green - Crystal Grove,"Green - Grove under ruins,Green - Grove near button,Green - River near Forest Entrance,Green - Shortcut to Town Pillars","Green - Crystal Grove > Forest West,Green - Crystal Grove > Green Town,Green - Crystal Grove > Temple Exterior,Green - Crystal Grove > Abyss Dungeon Exterior,Green - Crystal Grove > Jar Shop,Green - Crystal Grove > Tower Exterior,Green - Crystal Grove > Desert","Forest - West > Green - Crystal Grove,Green - Crystal Grove Temple Exterior > Crystal Grove,Abyss - Dungeon Exterior > Green Crystal Grove,Jar Shop > Crystal Grove,Desert > Green Crystal Grove,Green - Town > Crystal Grove"
 Green - Crystal Grove Temple Exterior,,"Green - Crystal Grove Temple Exterior > Crystal Grove,Green - Crystal Grove Temple Exterior > Temple Entrance","Green - Crystal Grove > Temple Exterior,Crystal Grove Temple - Entrance > Temple Exterior,Crystal Grove Temple - North wing > Temple Exterior"
@@ -78,7 +78,7 @@ Green - Outside Dungeon 1 Cave,Green - Outside Dungeon 1 Cave,"Green - Outside D
 Green - To Forest,Green - Forest Entrance,"Green - To Forest > Town,Green - To Forest > Green Grotto Drop,Green - To Forest > Forest North",Green - Town > To Forest
 Green - Town,"Town - Blacksmith Item 1,Town - Blacksmith Item 2,Town - Blacksmith Item 3,Town - Blacksmith Item 4,Town - Mercant Item 1,Town - Mercant Item 2,Town - Mercant Item 3,Green - Closed Arena Item,Green - Behind Closed Arena,Green - Crossroad Arena Item,Green - Bridge Shortcut,Green - Button Item,Town - Plaza,Town - Scarab Collector Item 2,Town - Scarab Collector Item 1,Town - Scarab Collector Item 3,Town - Scarab Collector Item 4,Town - Scarab Collector Item 5,Town - Scarab Collector Item 6,Green - Hidden before Island Arena","Green - Town > Family House,Green - Town > Starting Grotto,Green - Town > Zelda 1 Grotto,Green - Town > To Forest,Green - Town > Green Grotto,Green - Town > Town Pillars,Green - Town > Scarab Temple Bottom Right Torch,Green - Town > Scarab Temple Middle Entrance,Green - Town > Island Arena,Green - Town > Forest Secret Path,Green - Town > Dungeon 1 Cave,Green - Town > Swamp Entrance,Green - Town > Scarab Temple Statue,Green - Town > Cemetery,Green - Town > Crystal Grove","Starting Grotto - Entrance > Town,Zelda 1 Grotto > Town,Green - To Forest > Town,Green Grotto > Town,Green - Town Pillars > Town,Scarab Temple - Bottom Right Torch > Town,Scarab Temple - Middle Entrance > Town,Green - Island Arena > Town,Family House Cave - House > Town,Green - Crystal Grove > Green Town,Green - Outside Dungeon 1 Cave > Town,Beach - Coast > Town,Beach - Swamp Entrance > Town,Scarab Temple - Statue > Green Town,Forest - Secret Path > Green Town"
 Green - Town Pillars,"Town Pillars - Hidden Pond,Town Pillars - Hidden below bridge","Green - Town Pillars > Town,Green - Town Pillars > Town Pillars Grotto","Green - Town > Town Pillars,Town Pillars Grotto > Town Pillars"
-Green Grotto,"Green Grotto - Corner,Green Grotto - Before race","Green Grotto > Town,Green Grotto > Beach Coast Grotto","Green - Town > Green Grotto,Green Grotto Drop > Green Grotto"
+Green Grotto,"Green Grotto - Corner,Green Grotto - Before race,Green Grotto - Race Reward","Green Grotto > Town,Green Grotto > Beach Coast Grotto","Green - Town > Green Grotto,Green Grotto Drop > Green Grotto"
 Green Grotto - Drop,Green Grotto - Drop,Green Grotto Drop > Green Grotto,Green - To Forest > Green Grotto Drop
 Inside the tree,,"Inside the tree > Forest South,Inside the tree > Snow",Forest - South > Inside the tree
 Jar Shop,"Jar Shop 1,Jar Shop 2,Jar Shop 3",Jar Shop > Crystal Grove,Green - Crystal Grove > Jar Shop
@@ -101,7 +101,7 @@ Scarab Temple - Bottom Left Torch drop,,Scarab Temple - Bottom Left Torch drop >
 Scarab Temple - Bottom Right Torch,Scarab Temple - Central Item,"Scarab Temple - Bottom Right Torch > Town,Scarab Temple - Bottom Right Torch > Middle Entrance,Scarab Temple - Bottom Right Torch > Back",Green - Town > Scarab Temple Bottom Right Torch
 Scarab Temple - From Forest,,Scarab Temple - From Forest > Forest West,"Forest - West > Scarab Temple From Forest,Scarab Temple - After Race > From Forest"
 Scarab Temple - Middle Entrance,Scarab Temple - Middle Entrance,Scarab Temple - Middle Entrance > Town,"Green - Town > Scarab Temple Middle Entrance,Scarab Temple - Bottom Right Torch > Middle Entrance"
-Scarab Temple - Race,,Scarab Temple - Race > After Race,"Scarab Temple - Back drop > Race,Scarab Temple - After Race > Race"
+Scarab Temple - Race,Scarab Temple - Race Reward,Scarab Temple - Race > After Race,"Scarab Temple - Back drop > Race,Scarab Temple - After Race > Race"
 Scarab Temple - Statue,,Scarab Temple - Statue > Green Town,"Scarab Temple - Back > Statue,Green - Town > Scarab Temple Statue"
 Scarab Temple - Top Left Torch,,Scarab Temple - Top Left Torch > Top Right Torch,Scarab Temple - Top Right Torch > Top Left Torch
 Scarab Temple - Top Right Torch,Scarab Temple - East side,"Scarab Temple - Top Right Torch > Swamp South West Island Shack,Scarab Temple - Top Right Torch > Top Left Torch","Swamp - South West Island Shack > Scarab Temple Top Right Torch,Scarab Temple - Top Left Torch > Top Right Torch"
@@ -141,7 +141,7 @@ Sunken City - West torch,,"Sunken City - West torch > Sewers East,Sunken City - 
 Sunken City Building,,"Sunken City Building > City,Sunken City Building > Sunken City North East district","Sunken CIty - City > Building,Sunken City - North East district > Building,Sunken City Building - Drop > Building"
 Sunken City Building - Drop,Sunken City Building - Drop,Sunken City Building - Drop > Building,Sunken City - North East district > Building drop
 Sunken City Hall,,"Sunken City Hall > City,Sunken City Hall > Dungeon Exterior","Sunken City - City > Hall,Sunken City - Dungeon Exterior > Hall"
-Sunken City Race,,Sunken City Race > Sunken City East,Sunken City - East > Race
+Sunken City Race,Sunken City Race - Reward,Sunken City Race > Sunken City East,Sunken City - East > Race
 Sunken Temple - East,,Sunken Temple - East > North,Sunken Temple - West > East
 Sunken Temple - Entrance,,"Sunken Temple - Entrance > Sunken City Temple Exterior,Sunken Temple - Entrance > South",Sunken City - Temple Exterior > Sunken Temple Entrance
 Sunken Temple - North,Sunken Temple - Boss reward,,Sunken Temple - East > North
@@ -156,7 +156,7 @@ Swamp - Turtle's domain,"Swamp - Under rocks,Swamp - Blocked tunnel,Swamp - Hidd
 Swamp Jumps Grotto Drop,Swamp Jumps Grotto - Drop,Swamp Jumps Grotto Drop > North,Scarab Temple - Bottom Left Torch > Swamp Jumps Grotto Drop
 Swamp Jumps Grotto North,,"Swamp Jumps Grotto - North > South,Swamp Jumps Grotto - North > Swamp Before Big Enemy","Swamp - Before Big Enemy > Swamp Jumps Grotto North,Swamp Jumps Grotto - South > North"
 Swamp Jumps Grotto South,,"Swamp Jumps Grotto - South > North,Swamp Jumps Grotto - South > Swamp South West Island","Swamp Jumps Grotto - North > South,Swamp - South West Island > Swamp Jumps Grotto South,Swamp Jumps Grotto Drop > North"
-Swamp Race,,Swamp Race > Turtle's domain,Swamp - Turtle's domain > Race
+Swamp Race,Swamp Race - Reward,Swamp Race > Turtle's domain,Swamp - Turtle's domain > Race
 Swamp Shop,"Swamp Shop 1,Swamp Shop 2,Swamp Shop 3,Swamp Shop Extra",Swamp Shop > Turtle's domain,Swamp - Turtle's domain > Shop
 Swamp Tower,Swamp Tower - Top of tower,Swamp Tower > Tower Exterior,Swamp - Tower Exterior > Swamp Tower
 Town Pillars Grotto,Town Pillars Grotto - Reward,Town Pillars Grotto > Town Pillars,Green - Town Pillars > Town Pillars Grotto

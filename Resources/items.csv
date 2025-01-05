@@ -51,6 +51,7 @@ Scarab Key,Progression,Default,1,PickupKeyScarab
 Small Key (Dungeon 1),Progression,Dungeon Small Key,4,
 Small Key (Dungeon 2),Progression,Dungeon Small Key,4,Dungeon2CrystalKey0
 Small Key (Dungeon 3),Progression,Dungeon Small Key,5,Dungeon3CrystalKey0
+Spirit,Token,Spirit,8,
 Spirit Dash,Progression,Default,1,PickupModuleSpiritDash
 Sunken City Map,Filler,Default,1,MapPickupSunkenCity
 Supershot,Progression,Default,1,SkillSupershot
