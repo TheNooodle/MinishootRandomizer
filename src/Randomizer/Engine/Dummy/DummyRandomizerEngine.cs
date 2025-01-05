@@ -14,6 +14,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(NpcSanity), new NpcSanity(true) },
         { typeof(ScarabSanity), new ScarabSanity(false) },
         { typeof(ShardSanity), new ShardSanity(true) },
+        { typeof(SpiritSanity), new SpiritSanity(false) },
         { typeof(KeySanity), new KeySanity(true) },
         { typeof(BossKeySanity), new BossKeySanity(true) },
         { typeof(SimpleTempleExit), new SimpleTempleExit(true) },
@@ -114,6 +115,10 @@ public class DummyRandomizerEngine : IRandomizerEngine
         if (GetSetting<ShardSanity>().Enabled)
         {
             pools.Add(LocationPool.XpCrystals);
+        }
+        if (GetSetting<SpiritSanity>().Enabled)
+        {
+            pools.Add(LocationPool.Spirit);
         }
 
         return pools;

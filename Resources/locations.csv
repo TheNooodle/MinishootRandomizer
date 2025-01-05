@@ -8,6 +8,7 @@ Abyss - Village Entrance,XP Crystals x50,XP Crystals,Abyss - Village,can_destroy
 Abyss - Within Crystal Grove,XP Crystals x20,XP Crystals,Abyss - Within Crystal Grove,true
 Abyss Church - Unchosen statue,Dark Heart,Default,Abyss - Church,have_cleared_d5
 Abyss North Connector - Under ruins,Scarab,Scarab,Abyss North Connector,can_destroy_crystals and can_destroy_ruins
+Abyss Race - Reward,Spirit,Spirit,Abyss Race,can_boost
 Abyss Ruined shop - Item,Abyss Map,Default,Ruined shop,true
 Abyss Shack - Hidden corridor,XP Crystals x10,XP Crystals,Abyss - Village Shack,can_destroy_crystals
 Abyss Shack - Hidden room,HP Crystal Shard,Default,Abyss - Village Shack,can_destroy_crystals
@@ -21,6 +22,7 @@ Beach - East Island,Overcharge,Default,Beach - Dungeon 3 Island,can_surf and can
 Beach - Protected item,Beach Map,Default,Beach - Dungeon 3 Island,can_surf and can_fight_lvl4
 Beach - Seashell above dungeon,Scarab,Scarab,Beach - Dungeon 3 Island,can_destroy_shells
 Beach - South East Island,HP Crystal Shard,Default,Beach - Dungeon 3 Island,can_dash and can_surf and can_destroy_coconuts
+Beach Race - Reward,Spirit,Spirit,Beach Race,can_boost and can_surf
 Cemetery - Crying house,HP Crystal Shard,Default,Cemetery,can_destroy_crystals
 Cemetery - Under enemy,XP Crystals x20,XP Crystals,Cemetery,can_surf and can_fight_lvl4
 Cemetery - West pot,Scarab,Scarab,Cemetery,can_destroy_pots and can_surf
@@ -36,6 +38,7 @@ Desert - North east platforms,Energy Crystal Shard,Default,Desert,can_dash or ca
 Desert - On the river,XP Crystals x15,XP Crystals,Desert,can_dash or can_surf
 Desert - Under ruins,Desert Map,Default,Desert,can_destroy_ruins
 Desert Grotto - Both torches lighted,Family Parent 1,NPC,Desert Grotto - Main,can_light_desert_grotto_torches
+Desert Race - Reward,Spirit,Spirit,Desert Race,can_boost
 Desert Temple - Boss reward,Power of time,Default,Desert Temple,can_dash and can_fight_lvl3 and can_light_torches and can_destroy_crystals
 Desert Temple - North East pot,Scarab,Scarab,Desert Temple,can_light_torches and can_dash and can_fight_lvl3 and can_destroy_crystals
 Desert Temple - Secret room,XP Crystals x140,XP Crystals,Desert Temple,can_light_torches and can_dash and can_destroy_walls
@@ -112,6 +115,7 @@ Forest Grotto - After ramp,Explorer,NPC,Forest Grotto - West,true
 Forest Shop 1,Energy Crystal Shard,Default,Forest Shop,can_obtain_super_crystals(7)
 Forest Shop 2,Restoration Enhancer,Default,Forest Shop,can_obtain_super_crystals(12)
 Forest Shop 3,Ancient Tablet,Default,Forest Shop,can_obtain_super_crystals(4)
+Forest Shop Race - Reward,Spirit,Spirit,Forest Shop Race,can_boost
 Green - Behind Closed Arena,XP Crystals x50,XP Crystals,Green - Town,can_surf
 Green - Bridge Shortcut,XP Crystals x10,XP Crystals,Green - Town,can_fight
 Green - Button Item,XP Crystals x10,XP Crystals,Green - Town,true
@@ -128,6 +132,7 @@ Green - Shortcut to Town Pillars,Mercant,NPC,Green - Crystal Grove,true
 Green Grotto - Before race,XP Crystals x25,XP Crystals,Green Grotto,can_fight
 Green Grotto - Corner,XP Crystals x15,XP Crystals,Green Grotto,true
 Green Grotto - Drop,Crystal Bullet,Default,Green Grotto - Drop,true
+Green Grotto - Race Reward,Spirit,Spirit,Green Grotto,can_boost
 Jar Shop 1,HP Crystal Shard,Default,Jar Shop,can_obtain_super_crystals(5)
 Jar Shop 2,Advanced Energy,Default,Jar Shop,can_obtain_super_crystals(10)
 Jar Shop 3,Blue Forest Map,Default,Jar Shop,can_obtain_super_crystals(5)
@@ -145,6 +150,7 @@ Scarab Temple - Bottom Left Torch Item,XP Crystals x60,XP Crystals,Scarab Temple
 Scarab Temple - Central Item,Scarab Key,Default,Scarab Temple - Bottom Right Torch,can_light_all_scarab_temple_torches
 Scarab Temple - East side,XP Crystals x75,XP Crystals,Scarab Temple - Top Right Torch,can_destroy_walls
 Scarab Temple - Middle Entrance,HP Crystal Shard,Default,Scarab Temple - Middle Entrance,can_fight
+Scarab Temple - Race Reward,Spirit,Spirit,Scarab Temple - Race,can_surf and can_boost
 Sewers - Behind West Entrance,XP Crystals x20,XP Crystals,Sewers - West,can_surf
 Sewers - Central room boss reward,Ancient Tablet,Default,Sewers - Central room,can_surf and can_fight_lvl4
 Sewers - Central room corner,XP Crystals x25,XP Crystals,Sewers - Central room,can_surf
@@ -167,6 +173,7 @@ Sunken City - South West building item,HP Crystal Shard,Default,Sunken City - So
 Sunken City - West bridge,Sunken City Map,Default,Sunken City - City,true
 Sunken City - West bridge pot,Scarab,Scarab,Sunken City - City,can_destroy_pots
 Sunken City Building - Drop,XP Crystals x75,XP Crystals,Sunken City Building - Drop,true
+Sunken City Race - Reward,Spirit,Spirit,Sunken City Race,can_surf and can_boost
 Sunken Temple - Boss reward,Power of spirits,Default,Sunken Temple - North,can_fight_lvl4
 Sunken Temple - Entrance,XP Crystals x5,XP Crystals,Sunken Temple - South,true
 Sunken Temple - Secret tunnel,XP Crystals x40,XP Crystals,Sunken Temple - West,can_fight_lvl4 and can_destroy_rocks
@@ -180,6 +187,7 @@ Swamp - North item,HP Crystal Shard,Default,Swamp - North,can_fight_lvl3 and can
 Swamp - South West Island Hidden in trees Item,Energy Crystal Shard,Default,Swamp - South West Island,true
 Swamp - Under rocks,HP Crystal Shard,Default,Swamp - Turtle's domain,can_dash and can_destroy_rocks and can_destroy_walls or can_surf and can_destroy_rocks
 Swamp Jumps Grotto - Drop,HP Crystal Shard,Default,Swamp Jumps Grotto Drop,true
+Swamp Race - Reward,Spirit,Spirit,Swamp Race,can_boost
 Swamp Shop 1,Swamp Map,Default,Swamp Shop,can_obtain_super_crystals(5)
 Swamp Shop 2,Lucky Heart,Default,Swamp Shop,can_obtain_super_crystals(15)
 Swamp Shop 3,Ancient Tablet,Default,Swamp Shop,can_obtain_super_crystals(14)

@@ -29,9 +29,11 @@
     <!-- Images -->
     <EmbeddedResource Include="Resources/images/archipelago.png" />
     <EmbeddedResource Include="Resources/images/scarab.png" />
+    <EmbeddedResource Include="Resources/images/spirit.png" />
     <EmbeddedResource Include="Resources/images/location_marker.png" />
     <EmbeddedResource Include="Resources/images/npc_marker.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker.png" />
+    <EmbeddedResource Include="Resources/images/spirit_marker.png" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">

@@ -319,6 +319,18 @@ namespace MinishootRandomizer
             )},
         };
 
+        private static Dictionary<string, ISelector> _raceLocationToSelector = new()
+        {
+            {"Abyss Race - Reward", new ByName("NpcTiny3")},
+            {"Beach Race - Reward", new ByName("NpcTiny7")},
+            {"Scarab Temple - Race Reward", new ByName("NpcTiny1")},
+            {"Desert Race - Reward", new ByName("NpcTiny5")},
+            {"Forest Shop Race - Reward", new ByName("NpcTiny2")},
+            {"Green Grotto - Race Reward", new ByName("NpcTiny0")},
+            {"Sunken City Race - Reward", new ByName("NpcTiny6")},
+            {"Swamp Race - Reward", new ByName("NpcTiny4")},
+        };
+
         public Location CreateLocation(string name, string logicRule, LocationPool pool)
         {
             if (_pickupLocationToGameObjectName.ContainsKey(name))
@@ -397,7 +409,15 @@ namespace MinishootRandomizer
             if (pool == LocationPool.DungeonReward)
             {
                 return new DungeonRewardLocation(name, logicRule, pool);
-            }       
+            }
+            if (_raceLocationToSelector.ContainsKey(name))
+            {
+                return new RaceLocation(
+                    name,
+                    logicRule,
+                    pool
+                );
+            }
 
             throw new InvalidLocationException($"Location {name} have invalid data");
         }

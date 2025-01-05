@@ -30,6 +30,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                     { "CaveScarabPickup2", "Abyss North Connector - Under ruins" },
                 })
             ),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Abyss Race - Reward",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-1.55f, -4.08f),
+                },
+                spiritMarkerData: new SpiritMarkerData(
+                    "Abyss Race - Reward", "NpcTiny3"
+                )
+            ),
             new MarkerData(new List<string> {
                 "Abyss - Near dungeon entrance",
             }, new List<Tuple<float, float>> {
@@ -131,6 +142,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(6.23f, -2.43f),
             }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Beach Race - Reward",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(6.62f, 0.86f),
+                },
+                spiritMarkerData: new SpiritMarkerData(
+                    "Beach Race - Reward", "NpcTiny7"
+                )
+            ),
             new MarkerData(new List<string> {
                 "Cemetery - Crying house",
             }, new List<Tuple<float, float>> {
@@ -152,14 +174,21 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                     { "OverworldScarabPickup7", "Cemetery - West pot" },
                 })
             ),
-            new MarkerData(new List<string> {
-                "Cemetery Tower - Top of tower",
-                "Scarab Temple - After race 1",
-                "Scarab Temple - After race 2",
-                "Scarab Temple - After race 3"
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(2.00f, 3.85f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Cemetery Tower - Top of tower",
+                    "Scarab Temple - After race 1",
+                    "Scarab Temple - After race 2",
+                    "Scarab Temple - After race 3",
+                    "Scarab Temple - Race Reward",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(2.00f, 3.85f),
+                },
+                spiritMarkerData: new SpiritMarkerData(
+                    "Scarab Temple - Race Reward", "NpcTiny1"
+                )
+            ),
             new MarkerData(
                 markerName: "Crystal Grove Temple",
                 locationNames: new List<string> {
@@ -204,6 +233,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                 new Tuple<float, float>(-5.97f, -0.20f),
                 new Tuple<float, float>(-6.89f, -0.58f),
             }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Desert Race - Reward",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-6.86f, 1.55f),
+                },
+                spiritMarkerData: new SpiritMarkerData(
+                    "Desert Race - Reward", "NpcTiny5"
+                )
+            ),
             new MarkerData(
                 markerName: "Desert Temple",
                 locationNames: new List<string> {
@@ -400,13 +440,20 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                 },
                 npcMarkerData: new NpcMarkerData("Forest Grotto - After ramp", NpcIds.Explorer.Str())
             ),
-            new MarkerData(new List<string> {
-                "Forest Shop 1",
-                "Forest Shop 2",
-                "Forest Shop 3"
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(-0.51f, -2.96f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Forest Shop 1",
+                    "Forest Shop 2",
+                    "Forest Shop 3",
+                    "Forest Shop Race - Reward"
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-0.51f, -2.96f),
+                },
+                spiritMarkerData: new SpiritMarkerData(
+                    "Forest Shop Race - Reward", "NpcTiny2"
+                )
+            ),
             new MarkerData(new List<string> {
                 "Green - Behind Closed Arena",
             }, new List<Tuple<float, float>> {
@@ -472,15 +519,22 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(-1.34f, 0.82f),
             }),
-            new MarkerData(new List<string> {
-                "Green Grotto - Before race",
-                "Green Grotto - Corner",
-                "Green Grotto - Drop",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(2.43f, -0.10f),
-                new Tuple<float, float>(1.37f, -0.62f),
-                new Tuple<float, float>(2.37f, -1.54f),
-            }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Green Grotto - Before race",
+                    "Green Grotto - Corner",
+                    "Green Grotto - Drop",
+                    "Green Grotto - Race Reward"
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(2.43f, -0.10f),
+                    new Tuple<float, float>(1.37f, -0.62f),
+                    new Tuple<float, float>(2.37f, -1.54f),
+                },
+                spiritMarkerData: new SpiritMarkerData(
+                    "Green Grotto - Race Reward", "NpcTiny0"
+                )
+            ),
             new MarkerData(new List<string> {
                 "Jar Shop 1",
                 "Jar Shop 2",
@@ -631,6 +685,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                 new Tuple<float, float>(-3.29f, 5.08f),
             }),
             new MarkerData(
+                locationNames: new List<string> {
+                    "Sunken City Race - Reward",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-2.66f, 3.45f),
+                },
+                spiritMarkerData: new SpiritMarkerData(
+                    "Sunken City Race - Reward", "NpcTiny6"
+                )
+            ),
+            new MarkerData(
                 markerName: "Sunken Temple",
                 locationNames: new List<string> {
                     "Sunken Temple - Boss reward",
@@ -687,6 +752,17 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             }, new List<Tuple<float, float>> {
                 new Tuple<float, float>(2.95f, 4.57f),
             }),
+            new MarkerData(
+                locationNames: new List<string> {
+                    "Swamp Race - Reward",
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(7.60f, 2.58f),
+                },
+                spiritMarkerData: new SpiritMarkerData(
+                    "Swamp Race - Reward", "NpcTiny4"
+                )
+            ),
             new MarkerData(new List<string> {
                 "Swamp Shop 1",
                 "Swamp Shop 2",
