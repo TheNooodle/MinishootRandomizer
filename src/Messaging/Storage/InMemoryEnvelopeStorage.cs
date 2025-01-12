@@ -20,4 +20,9 @@ public class InMemoryEnvelopeStorage : IEnvelopeStorage
     {
         _envelopes.Remove(envelope);
     }
+
+    public void Clear()
+    {
+        _envelopes.Clear();
+    }
 }

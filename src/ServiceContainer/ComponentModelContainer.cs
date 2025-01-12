@@ -28,6 +28,8 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         ));
 
         _serviceContainer.AddService(typeof(IEnvelopeStorage), new InMemoryEnvelopeStorage());
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((IEnvelopeStorage)_serviceContainer.GetService(typeof(IEnvelopeStorage))).Clear;
 
         _serviceContainer.AddService(typeof(IMessageProcessor), new MessageProcessor());
 
