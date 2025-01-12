@@ -8,6 +8,8 @@ public class SendGoalMessage : IMessage
     public Goals Goal => _goal;
     public bool SendCompletion => _sendCompletion;
 
+    public MessageQueue MessageQueue => MessageQueue.MainThread;
+
     public SendGoalMessage(Goals goal, bool sendCompletion = false)
     {
         _goal = goal;

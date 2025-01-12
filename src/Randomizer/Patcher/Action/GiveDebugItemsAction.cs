@@ -31,6 +31,7 @@ public class GiveDebugItemsAction : IPatchAction
         PlayerState.SetSkill(Skill.Supershot, true);
         PlayerState.SetSkill(Skill.Hover, true);
 
+        WorldState.Set(NpcIds.Bard.Str() + "Introduced", true);
         WorldState.Set(NpcIds.Bard.Str(), true);
         ReflectionHelper.InvokeStaticAction(typeof(CrystalNpc), "Freed");
 

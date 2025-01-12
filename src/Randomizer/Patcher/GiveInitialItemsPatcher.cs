@@ -25,6 +25,10 @@ public class GiveInitialItemsPatcher
         Modules.CollectableScan
     };
 
+    private List<NpcIds> _freedNpcs = new() {
+        NpcIds.Explorer,
+    };
+
     public GiveInitialItemsPatcher(IRandomizerEngine randomizerEngine, ILogger logger = null)
     {
         _randomizerEngine = randomizerEngine;
@@ -75,6 +79,11 @@ public class GiveInitialItemsPatcher
         foreach (Modules module in _trackerModules)
         {
             compositeAction.Add(new GiveModuleAction(module));
+        }
+
+        foreach (NpcIds npcId in _freedNpcs)
+        {
+            compositeAction.Add(new FreeNpcAction(npcId));
         }
 
         return new LoggableAction(compositeAction, _logger);

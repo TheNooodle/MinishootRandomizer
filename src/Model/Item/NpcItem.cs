@@ -13,6 +13,7 @@ public class NpcItem : Item
 
     public override void Collect()
     {
+        WorldState.Set(_npcId.Str() + "Introduced", true);
         WorldState.Set(_npcId.Str(), true);
         ReflectionHelper.InvokeStaticAction(typeof(CrystalNpc), "Freed");
     }
