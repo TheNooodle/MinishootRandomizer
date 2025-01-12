@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- The ingame map now shows accessible locations for the player to get, acting as an ingame tracker of sort.
+    - Locations are indicated with markers, just like in the vanilla game using the Ancien Astrolabe.
+    - Indoor locations are indicated with possible entrances being marked, like the vanilla game
+    - Scarabs and spirits are marked with a special marker when they are not shuffled to help new players route locations such as the spirit tower or the scarab collector items.
+    - Pre-release note : dungeon rewards are **not yet** indicated on the tracker when accessible
+- With the addition of the ingame tracker, when starting a new game file, the following items are given for free :
+    - All maps (scanned with entrances, buildings and point of interests shown)
+    - Ancient Astrolabe
+    - Compass
+    - Explorer NPC
+    - Pre-release note : those items are **not yet** replaced in the AP World.
+- Added a patch that remove the trigger in the starting grotto that asks the player what type of aiming do they want
+- Added a patch that removed NPCs introduction cutscenes
+    - Known issue : the Unchosen (their blue version) still have their cutscene played.
+
 ## [0.2.1] - 2024-12-01
 
 ### Changed
