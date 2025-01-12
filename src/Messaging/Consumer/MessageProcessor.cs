@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace MinishootRandomizer;
 
@@ -6,6 +7,12 @@ public class MessageProcessor : IMessageProcessor
 {
     public MessageProcessingResult ProcessMessage(Envelope envelope, IMessageHandler handler)
     {
+        if (envelope.Message.MessageQueue == MessageQueue.BackgroundThread)
+        {
+            Task.Run(() => handler.Handle(envelope.Message));
+            return new MessageProcessingResult(true);
+        }
+
         try
         {
             handler.Handle(envelope.Message);

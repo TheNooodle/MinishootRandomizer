@@ -219,7 +219,8 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         ));
 
         _serviceContainer.AddService(typeof(CachedLogicChecker), new CachedLogicChecker(
-            (CoreLogicChecker)_serviceContainer.GetService(typeof(CoreLogicChecker))
+            (CoreLogicChecker)_serviceContainer.GetService(typeof(CoreLogicChecker)),
+            (IMessageDispatcher)_serviceContainer.GetService(typeof(IMessageDispatcher))
         ));
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
             += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnExitingGame;
@@ -231,6 +232,11 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnPlayerCurrencyChanged;
 
         _serviceContainer.AddService(typeof(ILogicChecker), _serviceContainer.GetService(typeof(CachedLogicChecker)));
+
+        _serviceContainer.AddService(typeof(RefreshLogicCheckerCacheHandler), new RefreshLogicCheckerCacheHandler());
+        ((CoreMessageConsumer)_serviceContainer.GetService(typeof(IMessageConsumer))).AddHandler<RefreshLogicCheckerCacheMessage>(
+            (RefreshLogicCheckerCacheHandler)_serviceContainer.GetService(typeof(RefreshLogicCheckerCacheHandler))
+        );
 
         _serviceContainer.AddService(typeof(RandomizerEngineManager), new RandomizerEngineManager(
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))

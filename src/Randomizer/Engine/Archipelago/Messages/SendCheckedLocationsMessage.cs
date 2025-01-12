@@ -8,6 +8,8 @@ public class SendCheckedLocationsMessage : IMessage
 
     public List<Location> CheckedLocation => _checkedLocation;
 
+    public MessageQueue MessageQueue => MessageQueue.MainThread;
+
     public SendCheckedLocationsMessage(List<Location> checkedLocation)
     {
         _checkedLocation = checkedLocation;
