@@ -25,7 +25,7 @@ public class CoreMessageConsumer : IMessageConsumer
 
     public void Consume()
     {
-        List<Envelope> envelopes = _storage.GetAll();
+        List<Envelope> envelopes = new List<Envelope>(_storage.GetAll());
         List<Envelope> envelopesToRemove = new();
         foreach (Envelope envelope in envelopes)
         {

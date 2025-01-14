@@ -20,6 +20,7 @@ public class ReceiveItemHandler : IMessageHandler
 
         Item item = ((ReceiveItemMessage)message).Item;
         item.Collect();
+        _gameEventDispatcher.DispatchItemCollected(item);
 
         switch (item.Category)
         {
