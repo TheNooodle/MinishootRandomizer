@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a patch that removes NPCs introduction cutscenes.
 - Added a new Super Crystals item (the red money the player can spend at the shop).
 - Replaced items (such as tracker items and the extra cannon level, cf "Removed") are now replaced by filler items.
-    - Those filler items can be XP or Super Crystals of various amounts.
+    - Those filler items are Super Crystals drops of various amounts.
     - On Archipelago, in case a location cannot be filled, it will be filled with a filler item instead.
 - A new setting called "Boostless Springboards" has been added
     - When enabled, the springboards can logically be used with the dash, instead of needing the boost.
