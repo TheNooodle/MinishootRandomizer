@@ -11,18 +11,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The ingame map now shows accessible locations for the player to get, acting as an ingame tracker of sort.
     - Locations are indicated with markers, just like in the vanilla game using the Ancien Astrolabe.
-    - Indoor locations are indicated with possible entrances being marked, like the vanilla game
+    - Indoor locations are indicated with possible entrances being marked, like the vanilla game.
     - Scarabs and spirits are marked with a special marker when they are not shuffled to help new players route locations such as the spirit tower or the scarab collector items.
-    - Pre-release note : dungeon rewards are **not yet** indicated on the tracker when accessible
+    - Note : dungeon rewards are **not yet** indicated on the tracker when accessible.
 - With the addition of the ingame tracker, when starting a new game file, the following items are given for free :
     - All maps (scanned with entrances, buildings and point of interests shown)
     - Ancient Astrolabe
     - Compass
     - Explorer NPC
-    - Pre-release note : those items are **not yet** replaced in the AP World.
-- Added a patch that remove the trigger in the starting grotto that asks the player what type of aiming do they want
-- Added a patch that removed NPCs introduction cutscenes
-    - Known issue : the Unchosen (their blue version) still have their cutscene played.
+    - Those items are replaced by filler items.
+- Added a patch that removes the trigger in the starting grotto that asks the player what type of aiming do they want.
+- Added a patch that removes NPCs introduction cutscenes.
+- Added a new Super Crystals item (the red money the player can spend at the shop).
+- Replaced items (such as tracker items and the extra cannon level, cf "Removed") are now replaced by filler items.
+    - Those filler items can be XP or Super Crystals of various amounts.
+    - On Archipelago, in case a location cannot be filled, it will be filled with a filler item instead.
+- A new setting called "Boostless Springboards" has been added
+    - When enabled, the springboards can logically be used with the dash, instead of needing the boost.
+- A new setting called "Boostless Spirit Races" has been added
+    - When enabled, most races against spirits can logically be beaten with the dash, instead of needing the boost.
+    - Note that the races at Beach, Scarab Temple and Sunken City still logically need the boost.
+- A new setting called "Boostless Torch Races" has been added
+    - When enabled, torch races (where the player must navigate through torch gates in a limited time) can be cleared without the need for boost.
+
+### Removed
+
+- Removed the extra progressive cannon level and replaced it with a filler item.
+
+### Changed
+
+- Changed the logic for the location "Crystal Grove Tower - Top of tower"
+    - Now no longer needs the dash or boost to get to the top.
+- Changed the logic for the vanilla access to Dungeon 3 Exterior (without the surf, using the turtle)
+    - Can no longer be cleared with the boost to get to the button to activate the bridge to D3.
+    - The boost used to be considered because the coyote time to get to the button could be used to clear the gap.
 
 ## [0.2.1] - 2024-12-01
 

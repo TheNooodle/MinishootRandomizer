@@ -16,7 +16,6 @@ public class FreeNpcAction : IPatchAction
 
     public void Patch()
     {
-        WorldState.Set(_npcId.Str() + "Introduced", true);
         WorldState.Set(_npcId.Str(), true);
         ReflectionHelper.InvokeStaticAction(typeof(CrystalNpc), "Freed");
     }

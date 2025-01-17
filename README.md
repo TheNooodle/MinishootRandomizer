@@ -8,11 +8,12 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
 
 (Please note that this mod is in very early development, and that it was only tested on Windows. If you plan to play on Mac OS or Linux, the following steps might not suffice).
 
-* Download BepInEx **5** [here](https://github.com/BepInEx/BepInEx/releases)
+* Download the [latest BepInEx 5 release here](https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.2).
     * BepInEx 6 will **not** work.
+    * Choose the right version depending on your machine architecture (in 99% of the case, choose "BepInEx_win_x64_5.4.23.2.zip")
 * Extract the BepInEx archive content into the root of the game directory
     * e.g. on Windows, you should have a `BepInEx` folder alongside `Minishoot.exe`, in a folder called `Windows`.
-* Launch the game a first time. This will allow BepInEx to create all necessary files. You can close the game afterwards.
+* Launch the game a first time. This will allow BepInEx to create all necessary files. You can close the game afterwards when you arrive at the main menu.
 * **IMPORTANT** : For the randomizer to work, you need to modify the configuration file of BepInEx. Once the game is closed, go to `<game-root-directory>/BepInEx/config` and edit the `BepInEx.cfg` file (for example, with Notepad).
     * After that, search for the line containing `HideManagerGameObject` (it should be near the top of the file by default), and ensure that its value is set to `true`.
 * Download the randomizer [here](https://github.com/TheNooodle/MinishootRandomizer/releases).
@@ -26,13 +27,14 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
 ### Hosting an AP server
 
 * Download the AP World [here](https://github.com/TheNooodle/Archipelago/releases).
-    * If you have to use the version compatible with `v0.5.0` of Archipelago, don't forget to rename the `.apworld` to `minishoot.apworld`.
 * Go over your root Archipelago directory, and put the `.apworld` file in the `custom_worlds` directory.
 * Also in the Archipelago directory, put the players `.yaml` files in the `Players` folder
     * The `archipelago-template.yaml` file in the [release assets](https://github.com/TheNooodle/MinishootRandomizer/releases) should document every available settings.
     * For more info, head over the Archipelago website/Discord server.
-* Execute `ArchipelagoGenerate.exe` to generate the seed.
-* To start hosting the game, execute `ArchipelagoServer.exe output/<seed-zip-file>`, where `<seed-zip-file>` is the generated file from the step before.
+* Execute `ArchipelagoLauncher.exe`, and click on "Generate" to generate the seed.
+* To start hosting the game, execute `ArchipelagoLauncher.exe`, and click on "Host" to host your seed.
+    * As an alternative, you can upload the `.zip` file created when you clicked on "Generate" to [this URL](https://archipelago.gg/uploads) to let `archipelago.gg` host your game.
+    * The zip file is located in the `output` folder by default.
 
 ### Joining an AP server
 
@@ -55,9 +57,12 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
     * Right now, connection attempts block the game. A future update will make sure that everything network-related plays in the background.
 * When starting or continuing a save file, the mod will attempt to resync with the server (i.e. you will receive all the items that other players sent you while you were away).
     * This also works if you deleted your save file (you will still need to progress the game locally, e.g. push buttons, gain xp on enemies, complete dungeons...).
-* You will start the game with a level one cannon.
-    * Right now, this means that a spare cannon level is available.
-    * There is no level 6 upgrade : picking up the 6th upgrade will do nothing.
+* You will start the game with the following item unlocked :
+    * The starting cannon
+    * All maps (scanned with entrances, buildings and point of interests shown)
+    * Ancient Astrolabe
+    * Compass
+    * Explorer NPC
 
 ## Available settings
 
@@ -85,6 +90,18 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
     * When enabled, any locations or transitions with a obligatory fight will require a certain amount of progressive cannon level.
     * The main goal of this setting is to make sure that an appropriate number of progressive cannon items are available before necessary difficult fights.
         * e.g no dungeon 3 boss with a level 2 cannon
+* Boostless Springboards
+    * When this setting is off, the logic will require you to use the boost to jump from springboards.
+    * When this setting is on, the dash will be enough to jump from springboards logically, which make the dash even more useful.
+* Boostless Spirit Races
+    * When this setting is off, races against spirits will logically require the boost.
+    * When this setting is on, the logic will assume that you can complete those races with the dash instead.
+    * Note that you will still need the boost to complete the the spirits races of the Beach, Scarab Temple and Sunken City.
+    * Also note that this setting may require you to farm some XP to level up your speed.
+* Boostless Torch Races
+    * When this setting is off, timed torch races will logically require the boost.
+    * When this setting is on, the logic will assume that you can complete those races without it.
+    * Note that this setting may require you to farm some XP to level up your speed.
 * Completion Goal
     * Determines the goal of the seed.
     * "Dungeon 5" means you have to beat the normal ending. You will need all 4 skills, all 4 dungeon rewards, and the Dark Key (the item you get in the vanilla game when beating both dark spirits in the Junkyard)
@@ -95,8 +112,11 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
 
 ## Gameplay tips
 
+* The ingame map shows the locations you can check with your current inventory, just like in the vanilla game with the Ancient Astrolabe.
+    * Indoor locations are indicated with possible entrances being marked, like the vanilla game.
+    * Scarabs and spirits are marked with a special marker when they are not shuffled to help new players route locations such as the spirit tower or the scarab collector items.
+    * Note : dungeon rewards are **not yet** indicated on the tracker when accessible.
 * The Primordial Crystal can break rocks and walls. It **cannot** light torches or break cracks in trees (such as shop entrances).
 * You can use your dash to cross most gaps with a springboard (by dashing in mid-air, from the springboard, or both at the same time).
-    * This trick is **not** in logic at the moment, as it make the Boost not that important. A new setting will handle this aspect in the future.
 * Some items might only appear when destroying certains objects, such as pots, rocks or bushes.
 * When beating both endings, it is recommended to beat the true ending first, as the normal ending triggers an unskippable credits scene.

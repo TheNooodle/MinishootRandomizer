@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MinishootRandomizer;
@@ -9,6 +10,18 @@ public class QualityOfLifePatcher
     private readonly ILogger _logger = new NullLogger();
 
     private IPatchAction _patchAction = null;
+
+    private List<NpcIds> _npcsToPatch = new()
+    {
+        NpcIds.Bard,
+        NpcIds.Blacksmith,
+        NpcIds.ScarabCollector,
+        NpcIds.MercantHub,
+        NpcIds.UnchosenBlue,
+        NpcIds.Explorer,
+        NpcIds.Healer,
+        NpcIds.Academician
+    };
 
     public QualityOfLifePatcher(IRandomizerEngine randomizerEngine, IObjectFinder objectFinder, ILogger logger = null)
     {
@@ -50,6 +63,15 @@ public class QualityOfLifePatcher
         {
             compositeAction.Add(new RemoveGameObjectAction(trigger));
         }
+
+        // Introduce all npcs to skip their cutscenes
+        foreach (NpcIds npcId in _npcsToPatch)
+        {
+            compositeAction.Add(new SetWorldStateAction(npcId.Str() + "Introduced"));
+        }
+
+        // Patch the cutscene that plays when you meet the primordial scarab.
+        compositeAction.Add(new SetWorldStateAction("PrimordialDialogsMeet"));
 
         return new LoggableAction(compositeAction, _logger);
     }
