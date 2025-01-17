@@ -20,6 +20,7 @@ public class Region
     public const string SunkenCityFountain = "Sunken City - Fountain";
     public const string SunkenCityWestIsland = "Sunken City - West Island";
     public const string SunkenCityWestTorch = "Sunken City - West torch";
+    public const string SwampSouthWestIsland = "Swamp - South West Island";
 
     private List<string> _locationNames = new List<string>();
 

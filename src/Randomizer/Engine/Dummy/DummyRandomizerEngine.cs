@@ -20,6 +20,9 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(SimpleTempleExit), new SimpleTempleExit(true) },
         { typeof(BlockedForest), new BlockedForest(true) },
         { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(true) },
+        { typeof(BoostlessSpringboards), new BoostlessSpringboards(true) },
+        { typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(true) },
+        { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(true) },
         { typeof(CompletionGoals), new CompletionGoals(Goals.Both) },
     };
 
@@ -339,7 +342,7 @@ Sewers - Drop: Healer
 Spirit Tower - Item: Dark Key
 Starting Grotto - North Corridor: XP Crystals x20
 Starting Grotto - Secret Wall: XP Crystals x5
-Starting Grotto - Entrance: Boost
+Starting Grotto - Entrance: Super Crystals x10
 Starting Grotto - West Item: Progressive Cannon
 Sunken City - North West pot: Scarab
 Sunken City - North bridge: XP Crystals x25

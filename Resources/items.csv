@@ -54,6 +54,10 @@ Small Key (Dungeon 3),Progression,Dungeon Small Key,5,Dungeon3CrystalKey0
 Spirit,Token,Spirit,8,
 Spirit Dash,Progression,Default,1,PickupModuleSpiritDash
 Sunken City Map,Filler,Default,1,MapPickupSunkenCity
+Super Crystals x2,Filler,,0,
+Super Crystals x5,Filler,,0,
+Super Crystals x10,Filler,,0,
+Super Crystals x15,Filler,,0,
 Supershot,Progression,Default,1,SkillSupershot
 Surf,Progression,Default,1,
 Swamp Map,Filler,Default,1,MapPickupSwamp

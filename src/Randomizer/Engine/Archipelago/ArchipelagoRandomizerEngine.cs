@@ -181,6 +181,9 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(SimpleTempleExit), new SimpleTempleExit(GetBooleanSettingValue("simple_temple_exit")) },
             { typeof(BlockedForest), new BlockedForest(GetBooleanSettingValue("blocked_forest")) },
             { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(GetBooleanSettingValue("cannon_level_logical_requirements")) },
+            { typeof(BoostlessSpringboards), new BoostlessSpringboards(GetBooleanSettingValue("boostless_springboards")) },
+            { typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(GetBooleanSettingValue("boostless_spirit_races")) },
+            { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(GetBooleanSettingValue("boostless_torch_races")) },
             { typeof(CompletionGoals), new CompletionGoals(GetGoalsSettingValue()) },
         };
     }

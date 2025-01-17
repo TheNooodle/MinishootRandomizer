@@ -8,13 +8,13 @@ Abyss - Church backroom > Church,Abyss - Church backroom,Abyss - Church,true
 Abyss - Dungeon Exterior > Ambush Island,Abyss - Dungeon Exterior,Abyss - Ambush Island,can_dash
 Abyss - Dungeon Exterior > Desert Island,Abyss - Dungeon Exterior,Desert - Island,can_dash
 Abyss - Dungeon Exterior > Green Crystal Grove,Abyss - Dungeon Exterior,Green - Crystal Grove,can_dash
-Abyss - Dungeon Exterior > Jumping Loop,Abyss - Dungeon Exterior,Abyss - Jumping Loop,can_boost and can_dash
+Abyss - Dungeon Exterior > Jumping Loop,Abyss - Dungeon Exterior,Abyss - Jumping Loop,can_use_springboards and can_dash
 Abyss - Dungeon Exterior > Ruined shop,Abyss - Dungeon Exterior,Ruined shop,can_dash
 Abyss - Jumping Loop > Abyss Race,Abyss - Jumping Loop,Abyss Race,can_destroy_trees
-Abyss - Jumping Loop > Dungeon Exterior,Abyss - Jumping Loop,Abyss - Dungeon Exterior,can_dash and can_boost
+Abyss - Jumping Loop > Dungeon Exterior,Abyss - Jumping Loop,Abyss - Dungeon Exterior,can_dash and can_use_springboards
 Abyss - Middle Platform > Dungeon Exterior,Abyss - Middle Platform,Abyss - Dungeon Exterior,can_dash
 Abyss - Middle Platform > South Connector,Abyss - Middle Platform,Abyss South Connector,can_dash and can_fight_lvl2
-Abyss - Middle Platform > Village,Abyss - Middle Platform,Abyss - Village,can_boost and can_dash
+Abyss - Middle Platform > Village,Abyss - Middle Platform,Abyss - Village,can_use_springboards and can_dash
 Abyss - North Connector > Abyss Within Crystal Grove,Abyss North Connector,Abyss - Within Crystal Grove,can_destroy_ruins
 Abyss - North Connector > Church,Abyss North Connector,Abyss - Church,can_destroy_ruins
 Abyss - North Connector > South Connector,Abyss North Connector,Abyss South Connector,can_surf
@@ -38,7 +38,7 @@ Beach - Coast > Town,Beach - Coast,Green - Town,true
 Beach - Coconut Island > Beach Race,Beach - Coconut Island,Beach Race,can_destroy_coconuts
 Beach - Coconut Island > Swamp Entrance,Beach - Coconut Island,Beach - Swamp Entrance,can_surf
 Beach - Dungeon 3 Island > Coast,Beach - Dungeon 3 Island,Beach - Coast,true
-Beach - Dungeon 3 Island > Dungeon Exterior,Beach - Dungeon 3 Island,Beach - Dungeon Exterior,can_surf or can_destroy_coconuts and can_dash or can_destroy_coconuts and can_boost
+Beach - Dungeon 3 Island > Dungeon Exterior,Beach - Dungeon 3 Island,Beach - Dungeon Exterior,can_surf or can_destroy_coconuts and can_dash
 Beach - Dungeon Exterior > Dungeon 3 Entrance,Beach - Dungeon Exterior,Dungeon 3 - Entrance,true
 Beach - Dungeon Exterior > Dungeon 3 Island,Beach - Dungeon Exterior,Beach - Dungeon 3 Island,can_surf
 Beach - Swamp Entrance > Coast,Beach - Swamp Entrance,Beach - Coast,can_surf
@@ -53,7 +53,7 @@ Cemetery > Scarab Temple Bottom Left Torch drop,Cemetery,Scarab Temple - Bottom 
 Cemetery Tower > Scarab Temple Back drop,Cemetery Tower,Scarab Temple - Back drop,can_destroy_walls
 Cemetery Tower > Tower Exterior,Cemetery Tower,Cemetery - Tower Exterior,true
 Crystal Grove Temple - Entrance > East wing,Crystal Grove Temple - Entrance,Crystal Grove Temple - East wing,can_fight_lvl2
-Crystal Grove Temple - Entrance > North wing,Crystal Grove Temple - Entrance,Crystal Grove Temple - North wing,can_surf or can_dash and can_boost
+Crystal Grove Temple - Entrance > North wing,Crystal Grove Temple - Entrance,Crystal Grove Temple - North wing,can_surf or can_dash and can_use_springboards
 Crystal Grove Temple - Entrance > Temple Exterior,Crystal Grove Temple - Entrance,Green - Crystal Grove Temple Exterior,true
 Crystal Grove Temple - Entrance > West wing,Crystal Grove Temple - Entrance,Crystal Grove Temple - West wing,can_fight_lvl2
 Crystal Grove Temple - North wing > Temple Exterior,Crystal Grove Temple - North wing,Green - Crystal Grove Temple Exterior,can_fight_lvl2
@@ -91,8 +91,8 @@ Dungeon 3 - Entrance > Middle,Dungeon 3 - Entrance,Dungeon 3 - Middle,can_surf o
 Dungeon 3 - Entrance > West,Dungeon 3 - Entrance,Dungeon 3 - West,can_surf or can_dash and can_destroy_pots and can_fight_lvl4
 Dungeon 3 - West > North West,Dungeon 3 - West,Dungeon 3 - North West,can_surf or cannot_surf and have_d3_keys(2) and can_light_torches
 Dungeon 4 > Sunken City Dungeon Exterior,Dungeon 4,Sunken City - Dungeon Exterior,true
-Dungeon 5 - Central wing > Dungeon 5 Boss,Dungeon 5 - Central wing,Dungeon 5 - Boss,can_dash and can_boost and can_surf and can_destroy_walls and can_light_torches
-Dungeon 5 - Central wing > Junkyard North (shortcut),Dungeon 5 - Central wing,Junkyard - North,can_dash and can_boost and can_surf and can_destroy_walls and can_light_torches
+Dungeon 5 - Central wing > Dungeon 5 Boss,Dungeon 5 - Central wing,Dungeon 5 - Boss,can_dash and can_use_springboards and can_surf and can_destroy_walls and can_light_torches
+Dungeon 5 - Central wing > Junkyard North (shortcut),Dungeon 5 - Central wing,Junkyard - North,can_dash and can_use_springboards and can_surf and can_destroy_walls and can_light_torches
 Dungeon 5 - East wing > Junkyard North,Dungeon 5 - East wing,Junkyard - North,true
 Dungeon 5 - West wing > Junkyard West,Dungeon 5 - West wing,Junkyard - West,true
 Family House Cave - After Jumps > Desert,Family House Cave - After Jumps,Desert,true
@@ -100,7 +100,7 @@ Family House Cave - After Jumps > Drop,Family House Cave - After Jumps,Family Ho
 Family House Cave - Drop > Main,Family House Cave - Drop,Family House Cave - Main,can_dash and can_fight_lvl2
 Family House Cave - House > Main,Family House Cave - House,Family House Cave - Main,can_destroy_crystals
 Family House Cave - House > Town,Family House Cave - House,Green - Town,true
-Family House Cave - Main > After Jumps,Family House Cave - Main,Family House Cave - After Jumps,can_boost
+Family House Cave - Main > After Jumps,Family House Cave - Main,Family House Cave - After Jumps,can_use_springboards
 Forest - North > Beach Coast,Forest - North,Beach - Coast,can_dash or can_surf
 Forest - North > Forest Grotto East,Forest - North,Forest Grotto - East,can_destroy_bushes
 Forest - North > West,Forest - North,Forest - West,can_surf
@@ -110,7 +110,7 @@ Forest - Shop > Shop Exterior,Forest Shop,Forest - Shop Exterior,true
 Forest - Shop > Shop Race,Forest Shop,Forest Shop Race,can_destroy_bushes
 Forest - Shop Exterior > Shop,Forest - Shop Exterior,Forest Shop,can_fight_lvl2
 Forest - Shop Exterior > South,Forest - Shop Exterior,Forest - South,can_destroy_rocks
-Forest - Shop Exterior > West,Forest - Shop Exterior,Forest - West,can_boost or can_surf
+Forest - Shop Exterior > West,Forest - Shop Exterior,Forest - West,can_use_springboards or can_surf
 Forest - South > Forest Waterways,Forest - South,Forest Waterways,true
 Forest - South > Inside the tree,Forest - South,Inside the tree,can_free_bard
 Forest - South > North,Forest - South,Forest - North,can_fight_lvl3
@@ -119,10 +119,10 @@ Forest - South > Spirit Tower Exterior,Forest - South,Forest - Spirit Tower Exte
 Forest - Spirit Tower Exterior > South,Forest - Spirit Tower Exterior,Forest - South,can_surf and can_fight_lvl3
 Forest - Spirit Tower Exterior > Spirit Tower,Forest - Spirit Tower Exterior,Spirit Tower,have_all_spirits
 Forest - West > Forest Grotto West,Forest - West,Forest Grotto - West,true
-Forest - West > Green - Crystal Grove,Forest - West,Green - Crystal Grove,can_boost or can_surf
+Forest - West > Green - Crystal Grove,Forest - West,Green - Crystal Grove,can_use_springboards or can_surf
 Forest - West > North,Forest - West,Forest - North,true
 Forest - West > Scarab Temple From Forest,Forest - West,Scarab Temple - From Forest,true
-Forest - West > Shop Exterior,Forest - West,Forest - Shop Exterior,can_boost or can_surf
+Forest - West > Shop Exterior,Forest - West,Forest - Shop Exterior,can_use_springboards or can_surf
 Forest Grotto - East > Forest North,Forest Grotto - East,Forest - North,true
 Forest Grotto - East > West,Forest Grotto - East,Forest Grotto - West,true
 Forest Grotto - West > Forest West,Forest Grotto - West,Forest - West,true
@@ -131,7 +131,7 @@ Forest Waterways > Forest South,Forest Waterways,Forest - South,can_surf and can
 Forest Waterways > Junkyard Waterways East,Forest Waterways,Junkyard Waterways - East,can_dash and can_surf
 Green - Crystal Grove > Abyss Dungeon Exterior,Green - Crystal Grove,Abyss - Dungeon Exterior,can_dash
 Green - Crystal Grove > Desert,Green - Crystal Grove,Desert,can_surf
-Green - Crystal Grove > Forest West,Green - Crystal Grove,Forest - West,can_boost or can_surf
+Green - Crystal Grove > Forest West,Green - Crystal Grove,Forest - West,can_use_springboards or can_surf
 Green - Crystal Grove > Green Town,Green - Crystal Grove,Green - Town,true
 Green - Crystal Grove > Jar Shop,Green - Crystal Grove,Jar Shop,can_destroy_trees
 Green - Crystal Grove > Temple Exterior,Green - Crystal Grove,Green - Crystal Grove Temple Exterior,can_dash or can_surf
@@ -141,13 +141,14 @@ Green - Crystal Grove Temple Exterior > Temple Entrance,Green - Crystal Grove Te
 Green - Crystal Grove Tower Exterior > Tower,Green - Crystal Grove Tower Exterior,Crystal Grove Tower,true
 Green - Dungeon 1 Exterior > Entrance,Green - Dungeon 1 Exterior,Dungeon 1 - Entrance,true
 Green - Dungeon 1 Exterior > Island Arena,Green - Dungeon 1 Exterior,Green - Island Arena,can_surf
-Green - Island Arena > Dungeon 1 Exterior,Green - Island Arena,Green - Dungeon 1 Exterior,can_boost or can_surf
-Green - Island Arena > Swamp Before Big Enemy,Green - Island Arena,Swamp - Before Big Enemy,can_boost or can_surf
+Green - Island Arena > Dungeon 1 Exterior,Green - Island Arena,Green - Dungeon 1 Exterior,can_use_springboards or can_surf
+Green - Island Arena > Swamp Before Big Enemy,Green - Island Arena,Swamp - Before Big Enemy,can_use_springboards or can_surf
 Green - Island Arena > Swamp South West Island,Green - Island Arena,Swamp - South West Island,can_surf
-Green - Island Arena > Town,Green - Island Arena,Green - Town,can_boost or can_surf
+Green - Island Arena > Tower Exterior,Green - Island Arena,Swamp - Tower Exterior,can_surf or can_open_swamp_tower
+Green - Island Arena > Town,Green - Island Arena,Green - Town,can_use_springboards or can_surf
 Green - Outside Dungeon 1 Cave > Dungeon 1 Cave,Green - Outside Dungeon 1 Cave,Dungeon 1 Cave,true
 Green - Outside Dungeon 1 Cave > Town,Green - Outside Dungeon 1 Cave,Green - Town,can_dash or can_surf
-Green - To Forest > Forest North,Green - To Forest,Forest - North,can_boost
+Green - To Forest > Forest North,Green - To Forest,Forest - North,can_use_springboards
 Green - To Forest > Green Grotto Drop,Green - To Forest,Green Grotto - Drop,can_destroy_bushes
 Green - To Forest > Town,Green - To Forest,Green - Town,can_destroy_bushes
 Green - Town > Cemetery,Green - Town,Cemetery,can_surf or can_blast_crystals and can_dash
@@ -188,7 +189,7 @@ Junkyard - West > Dungeon 5 West wing,Junkyard - West,Dungeon 5 - West wing,can_
 Junkyard - West > South,Junkyard - West,Junkyard - South,can_dash and can_fight_lvl5
 Junkyard East Shack > Junkyard East,Junkyard East Shack,Junkyard - East,true
 Junkyard Waterways - East > Forest Waterways,Junkyard Waterways - East,Forest Waterways,true
-Junkyard Waterways - East > West,Junkyard Waterways - East,Junkyard Waterways - West,can_surf and can_boost
+Junkyard Waterways - East > West,Junkyard Waterways - East,Junkyard Waterways - West,can_surf and can_use_springboards
 Junkyard Waterways - West > Junkyard South,Junkyard Waterways - West,Junkyard - South,true
 Junkyard West Shack > Junkyard North,Junkyard West Shack,Junkyard - North,true
 Primordial Cave Entrance > Primordial Cave,Primordial Cave Entrance,Primordial Cave,can_unlock_primordial_cave_door
@@ -211,11 +212,11 @@ Scarab Temple - Statue > Green Town,Scarab Temple - Statue,Green - Town,true
 Scarab Temple - Top Left Torch > Top Right Torch,Scarab Temple - Top Left Torch,Scarab Temple - Top Right Torch,true
 Scarab Temple - Top Right Torch > Swamp South West Island Shack,Scarab Temple - Top Right Torch,Swamp - South West Island Shack,true
 Scarab Temple - Top Right Torch > Top Left Torch,Scarab Temple - Top Right Torch,Scarab Temple - Top Left Torch,true
-Sewers - After jump > Central tunnel,Sewers - After jump,Sewers - After jump,can_surf and can_boost
+Sewers - After jump > Central tunnel,Sewers - After jump,Sewers - After jump,can_surf and can_use_springboards
 Sewers - After jump > Sunken City East torch,Sewers - After jump,Sunken City - East torch,true
 Sewers - After pillars > Sunken City South West building,Sewers - After pillars,Sunken City - South West building,can_surf and can_fight_lvl4
 Sewers - Central room > East,Sewers - Central room,Sewers - East,can_fight_lvl4 and can_surf
-Sewers - Central tunnel > After jump,Sewers - Central tunnel,Sewers - After jump,can_surf and can_boost
+Sewers - Central tunnel > After jump,Sewers - Central tunnel,Sewers - After jump,can_surf and can_use_springboards
 Sewers - Central tunnel > West,Sewers - Central tunnel,Sewers - West,true
 Sewers - Desert Entrance > Desert,Sewers - Desert Entrance,Desert,true
 Sewers - Desert Entrance > West,Sewers - Desert Entrance,Sewers - West,can_surf
@@ -229,7 +230,7 @@ Sewers - Ruined house > West,Sewers - Ruined house,Sewers - West,can_destroy_roc
 Sewers - West > After pillars,Sewers - West,Sewers - After pillars,can_surf and can_destroy_rocks
 Sewers - West > Desert Entrance,Sewers - West,Sewers - Desert Entrance,can_surf
 Sewers - West > Sunken City West entrance,Sewers - West,Sunken City - West entrance,true
-Sewers - West > West waterfalls,Sewers - West,Sewers - West waterfalls,can_surf and can_boost
+Sewers - West > West waterfalls,Sewers - West,Sewers - West waterfalls,can_surf and can_use_springboards
 Sewers - West drop (left) > West,Sewers - West drop (left),Sewers - West,can_surf
 Sewers - West drop (right) > West,Sewers - West drop (right),Sewers - West,can_surf and can_destroy_walls
 Sewers - West waterfalls > Sunken City Middle,Sewers - West waterfalls,Sunken City - Middle,true
@@ -286,31 +287,30 @@ Sunken Temple - East > North,Sunken Temple - East,Sunken Temple - North,can_dest
 Sunken Temple - Entrance > South,Sunken Temple - Entrance,Sunken Temple - South,can_surf
 Sunken Temple - Entrance > Sunken City Temple Exterior,Sunken Temple - Entrance,Sunken City - Temple Exterior,can_dash or can_surf
 Sunken Temple - South > West,Sunken Temple - South,Sunken Temple - West,can_dash
-Sunken Temple - West > East,Sunken Temple - West,Sunken Temple - East,can_fight_lvl4 and can_boost
+Sunken Temple - West > East,Sunken Temple - West,Sunken Temple - East,can_fight_lvl4 and can_destroy_rocks and can_use_springboards and can_dash and can_race_torches
 Swamp - Before Big Enemy > Green Island Arena,Swamp - Before Big Enemy,Green - Island Arena,can_surf
 Swamp - Before Big Enemy > South West Island,Swamp - Before Big Enemy,Swamp - South West Island,can_surf
 Swamp - Before Big Enemy > Swamp Jumps Grotto North,Swamp - Before Big Enemy,Swamp Jumps Grotto North,true
 Swamp - Before Big Enemy > Turtle's domain,Swamp - Before Big Enemy,Swamp - Turtle's domain,can_surf
 Swamp - South West Island > Before Big Enemy,Swamp - South West Island,Swamp - Before Big Enemy,can_fight
 Swamp - South West Island > Cemetery Tower Exterior,Swamp - South West Island,Cemetery - Tower Exterior,can_surf
-Swamp - South West Island > Green Island Arena,Swamp - South West Island,Green - Island Arena,can_boost or can_surf
+Swamp - South West Island > Green Island Arena,Swamp - South West Island,Green - Island Arena,can_use_springboards or can_surf
 Swamp - South West Island > South West Island Shack,Swamp - South West Island,Swamp - South West Island Shack,can_surf
 Swamp - South West Island > Swamp Jumps Grotto South,Swamp - South West Island,Swamp Jumps Grotto South,true
-Swamp - South West Island > Tower Exterior,Swamp - South West Island,Swamp - Tower Exterior,can_surf or can_boost
 Swamp - South West Island Shack > Scarab Temple Top Right Torch,Swamp - South West Island Shack,Scarab Temple - Top Right Torch,true
 Swamp - South West Island Shack > South West Island,Swamp - South West Island Shack,Swamp - South West Island,can_surf
 Swamp - Tower Exterior > South West Island,Swamp - Tower Exterior,Swamp - South West Island,can_surf
 Swamp - Tower Exterior > Swamp Tower,Swamp - Tower Exterior,Swamp Tower,true
-Swamp - Turtle's domain > Beach Dungeon 3 Island,Swamp - Turtle's domain,Beach - Dungeon 3 Island,can_surf or can_dash and can_destroy_walls and can_destroy_rocks and can_destroy_plants and can_boost and can_fight_lvl3
+Swamp - Turtle's domain > Beach Dungeon 3 Island,Swamp - Turtle's domain,Beach - Dungeon 3 Island,can_surf or can_dash and can_destroy_walls and can_destroy_rocks and can_destroy_plants and can_use_springboards and can_fight_lvl3
 Swamp - Turtle's domain > Before Big Enemy,Swamp - Turtle's domain,Swamp - Before Big Enemy,can_fight_lvl3 or can_surf
 Swamp - Turtle's domain > North,Swamp - Turtle's domain,Swamp - North,can_destroy_walls
 Swamp - Turtle's domain > Race,Swamp - Turtle's domain,Swamp Race,can_destroy_rocks or can_surf
 Swamp - Turtle's domain > Shop,Swamp - Turtle's domain,Swamp Shop,can_destroy_trees
-Swamp Jumps Grotto - North > South,Swamp Jumps Grotto North,Swamp Jumps Grotto South,can_boost or can_surf
+Swamp Jumps Grotto - North > South,Swamp Jumps Grotto North,Swamp Jumps Grotto South,can_use_springboards or can_surf
 Swamp Jumps Grotto - North > Swamp Before Big Enemy,Swamp Jumps Grotto North,Swamp - Before Big Enemy,true
 Swamp Jumps Grotto - South > North,Swamp Jumps Grotto South,Swamp Jumps Grotto North,can_surf
 Swamp Jumps Grotto - South > Swamp South West Island,Swamp Jumps Grotto South,Swamp - South West Island,true
-Swamp Jumps Grotto Drop > North,Swamp Jumps Grotto Drop,Swamp Jumps Grotto South,can_boost or can_surf
+Swamp Jumps Grotto Drop > South,Swamp Jumps Grotto Drop,Swamp Jumps Grotto South,can_use_springboards or can_surf
 Swamp Race > Turtle's domain,Swamp Race,Swamp - Turtle's domain,true
 Swamp Shop > Turtle's domain,Swamp Shop,Swamp - Turtle's domain,true
 Swamp Tower > Tower Exterior,Swamp Tower,Swamp - Tower Exterior,true

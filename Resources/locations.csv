@@ -8,7 +8,7 @@ Abyss - Village Entrance,XP Crystals x50,XP Crystals,Abyss - Village,can_destroy
 Abyss - Within Crystal Grove,XP Crystals x20,XP Crystals,Abyss - Within Crystal Grove,true
 Abyss Church - Unchosen statue,Dark Heart,Default,Abyss - Church,have_cleared_d5
 Abyss North Connector - Under ruins,Scarab,Scarab,Abyss North Connector,can_destroy_crystals and can_destroy_ruins
-Abyss Race - Reward,Spirit,Spirit,Abyss Race,can_boost
+Abyss Race - Reward,Spirit,Spirit,Abyss Race,can_use_springboards and can_race_spirits
 Abyss Ruined shop - Item,Abyss Map,Default,Ruined shop,true
 Abyss Shack - Hidden corridor,XP Crystals x10,XP Crystals,Abyss - Village Shack,can_destroy_crystals
 Abyss Shack - Hidden room,HP Crystal Shard,Default,Abyss - Village Shack,can_destroy_crystals
@@ -33,12 +33,12 @@ Crystal Grove Temple - East tunnels,XP Crystals x20,XP Crystals,Crystal Grove Te
 Crystal Grove Temple - North east hidden room,XP Crystals x85,XP Crystals,Crystal Grove Temple - East wing,true
 Crystal Grove Temple - South West Hidden pond,HP Crystal Shard,Default,Crystal Grove Temple - West wing,can_dash or can_surf
 Crystal Grove Temple - West pot,Scarab,Scarab,Crystal Grove Temple - West wing,can_dash and can_fight_lvl2 or can_surf and can_fight_lvl2
-Crystal Grove Tower - Top of tower,Scarab Collector,NPC,Crystal Grove Tower,can_fight_lvl3 and can_dash or can_fight_lvl3 and can_boost
+Crystal Grove Tower - Top of tower,Scarab Collector,NPC,Crystal Grove Tower,can_fight_lvl3
 Desert - North east platforms,Energy Crystal Shard,Default,Desert,can_dash or can_surf
 Desert - On the river,XP Crystals x15,XP Crystals,Desert,can_dash or can_surf
 Desert - Under ruins,Desert Map,Default,Desert,can_destroy_ruins
 Desert Grotto - Both torches lighted,Family Parent 1,NPC,Desert Grotto - Main,can_light_desert_grotto_torches
-Desert Race - Reward,Spirit,Spirit,Desert Race,can_boost
+Desert Race - Reward,Spirit,Spirit,Desert Race,can_use_springboards and can_race_spirits
 Desert Temple - Boss reward,Power of time,Default,Desert Temple,can_dash and can_fight_lvl3 and can_light_torches and can_destroy_crystals
 Desert Temple - North East pot,Scarab,Scarab,Desert Temple,can_light_torches and can_dash and can_fight_lvl3 and can_destroy_crystals
 Desert Temple - Secret room,XP Crystals x140,XP Crystals,Desert Temple,can_light_torches and can_dash and can_destroy_walls
@@ -62,9 +62,9 @@ Dungeon 1 - West bridge hidden item,Energy Crystal Shard,Default,Dungeon 1 - Ent
 Dungeon 2 - Central item,Boss Key (Dungeon 2),Dungeon Big Key,Dungeon 2 - Main,can_destroy_rocks and can_light_torches and have_d2_keys(4)
 Dungeon 2 - Dungeon reward,Dungeon 2 Reward,Dungeon Reward,Dungeon 2 - Main,have_d2_boss_key and can_destroy_rocks and can_dash and can_fight and have_d2_keys(4)
 Dungeon 2 - Hidden by plants,XP Crystals x20,XP Crystals,Dungeon 2 - Main,can_dash and can_destroy_rocks
-Dungeon 2 - Item after jumps,Supershot,Default,Dungeon 2 - North East,can_fight_lvl3 and can_boost and can_dash
+Dungeon 2 - Item after jumps,Supershot,Default,Dungeon 2 - North East,can_fight_lvl3 and can_use_springboards and can_dash
 Dungeon 2 - North east beyond arena,XP Crystals x10,XP Crystals,Dungeon 2 - North East,can_fight_lvl3
-Dungeon 2 - North item,HP Crystal Shard,Default,Dungeon 2 - Main,can_dash and can_boost and can_destroy_walls and can_destroy_rocks and have_d2_keys(4)
+Dungeon 2 - North item,HP Crystal Shard,Default,Dungeon 2 - Main,can_dash and can_use_springboards and can_destroy_walls and can_destroy_rocks and have_d2_keys(4)
 Dungeon 2 - North west arena,Small Key (Dungeon 2),Dungeon Small Key,Dungeon 2 - West,can_fight_lvl3 and can_dash
 Dungeon 2 - Secret room,Scarab,Scarab,Dungeon 2 - North East,can_fight_lvl3 and can_dash and can_destroy_pots
 Dungeon 2 - South west arena,Small Key (Dungeon 2),Dungeon Small Key,Dungeon 2 - Main,can_destroy_rocks and can_fight_lvl3
@@ -75,19 +75,19 @@ Dungeon 2 - Walled arena item,Small Key (Dungeon 2),Dungeon Small Key,Dungeon 2 
 Dungeon 2 - West arena,Small Key (Dungeon 2),Dungeon Small Key,Dungeon 2 - West,can_dash and can_fight_lvl3
 Dungeon 2 - West arena extra,XP Crystals x15,XP Crystals,Dungeon 2 - West,can_dash and can_fight_lvl3
 Dungeon 3 - Behind North West doors,XP Crystals x70,XP Crystals,Dungeon 3 - North West,can_surf and have_d3_keys(5)
-Dungeon 3 - Central Item,Surf,Default,Dungeon 3 - North West,can_surf or have_d3_keys(2) and can_boost and can_dash and can_destroy_pots and can_destroy_rocks
+Dungeon 3 - Central Item,Surf,Default,Dungeon 3 - North West,can_surf or have_d3_keys(2) and can_use_springboards and can_dash and can_destroy_pots and can_destroy_rocks
 Dungeon 3 - Dungeon reward,Dungeon 3 Reward,Dungeon Reward,Dungeon 3 - Entrance,can_surf and can_fight_lvl4 and have_d3_boss_key
-Dungeon 3 - East Island,Small Key (Dungeon 3),Dungeon Small Key,Dungeon 3 - Entrance,can_surf and can_fight_lvl4 or can_destroy_rocks and can_boost and can_fight_lvl4 or can_dash and can_boost and can_fight_lvl4
+Dungeon 3 - East Island,Small Key (Dungeon 3),Dungeon Small Key,Dungeon 3 - Entrance,can_surf and can_fight_lvl4 or can_destroy_rocks and can_use_springboards and can_fight_lvl4 or can_dash and can_use_springboards and can_fight_lvl4
 Dungeon 3 - East rock 1,XP Crystals x5,XP Crystals,Dungeon 3 - East,can_destroy_rocks
 Dungeon 3 - East rock 2,Scarab,Scarab,Dungeon 3 - East,can_destroy_pots and can_destroy_rocks
 Dungeon 3 - East wall,XP Crystals x25,XP Crystals,Dungeon 3 - East,true
 Dungeon 3 - Hidden Tunnel,Energy Crystal Shard,Default,Dungeon 3 - North West,can_surf
 Dungeon 3 - Inside middle pot,Small Key (Dungeon 3),Dungeon Small Key,Dungeon 3 - Middle,can_destroy_pots
 Dungeon 3 - Item protected by spikes,HP Crystal Shard,Default,Dungeon 3 - East,can_destroy_rocks
-Dungeon 3 - North arena,XP Crystals x10,XP Crystals,Dungeon 3 - North West,can_boost and can_destroy_rocks and can_fight_lvl4 or can_surf
-Dungeon 3 - Over the pit,Small Key (Dungeon 3),Dungeon Small Key,Dungeon 3 - East,can_boost
+Dungeon 3 - North arena,XP Crystals x10,XP Crystals,Dungeon 3 - North West,can_use_springboards and can_destroy_rocks and can_fight_lvl4 or can_surf
+Dungeon 3 - Over the pit,Small Key (Dungeon 3),Dungeon Small Key,Dungeon 3 - East,can_use_springboards
 Dungeon 3 - Pot Island,Scarab,Scarab,Dungeon 3 - West,can_surf and can_destroy_pots
-Dungeon 3 - Race on the water,Small Key (Dungeon 3),Dungeon Small Key,Dungeon 3 - North West,can_surf and can_boost
+Dungeon 3 - Race on the water,Small Key (Dungeon 3),Dungeon Small Key,Dungeon 3 - North West,can_surf and can_use_springboards and can_race_torches
 Dungeon 3 - South corridor,Boss Key (Dungeon 3),Dungeon Big Key,Dungeon 3 - East,have_d3_keys(5)
 Dungeon 3 - South of torches,Small Key (Dungeon 3),Dungeon Small Key,Dungeon 3 - West,can_surf
 Dungeon 3 - South west of torches,XP Crystals x15,XP Crystals,Dungeon 3 - West,can_surf
@@ -115,7 +115,7 @@ Forest Grotto - After ramp,Explorer,NPC,Forest Grotto - West,true
 Forest Shop 1,Energy Crystal Shard,Default,Forest Shop,can_obtain_super_crystals(7)
 Forest Shop 2,Restoration Enhancer,Default,Forest Shop,can_obtain_super_crystals(12)
 Forest Shop 3,Ancient Tablet,Default,Forest Shop,can_obtain_super_crystals(4)
-Forest Shop Race - Reward,Spirit,Spirit,Forest Shop Race,can_boost
+Forest Shop Race - Reward,Spirit,Spirit,Forest Shop Race,can_use_springboards and can_race_spirits
 Green - Behind Closed Arena,XP Crystals x50,XP Crystals,Green - Town,can_surf
 Green - Bridge Shortcut,XP Crystals x10,XP Crystals,Green - Town,can_fight
 Green - Button Item,XP Crystals x10,XP Crystals,Green - Town,true
@@ -132,7 +132,7 @@ Green - Shortcut to Town Pillars,Mercant,NPC,Green - Crystal Grove,true
 Green Grotto - Before race,XP Crystals x25,XP Crystals,Green Grotto,can_fight
 Green Grotto - Corner,XP Crystals x15,XP Crystals,Green Grotto,true
 Green Grotto - Drop,Crystal Bullet,Default,Green Grotto - Drop,true
-Green Grotto - Race Reward,Spirit,Spirit,Green Grotto,can_boost
+Green Grotto - Race Reward,Spirit,Spirit,Green Grotto,can_race_spirits
 Jar Shop 1,HP Crystal Shard,Default,Jar Shop,can_obtain_super_crystals(5)
 Jar Shop 2,Advanced Energy,Default,Jar Shop,can_obtain_super_crystals(10)
 Jar Shop 3,Blue Forest Map,Default,Jar Shop,can_obtain_super_crystals(5)
@@ -187,12 +187,12 @@ Swamp - North item,HP Crystal Shard,Default,Swamp - North,can_fight_lvl3 and can
 Swamp - South West Island Hidden in trees Item,Energy Crystal Shard,Default,Swamp - South West Island,true
 Swamp - Under rocks,HP Crystal Shard,Default,Swamp - Turtle's domain,can_dash and can_destroy_rocks and can_destroy_walls or can_surf and can_destroy_rocks
 Swamp Jumps Grotto - Drop,HP Crystal Shard,Default,Swamp Jumps Grotto Drop,true
-Swamp Race - Reward,Spirit,Spirit,Swamp Race,can_boost
+Swamp Race - Reward,Spirit,Spirit,Swamp Race,can_race_spirits
 Swamp Shop 1,Swamp Map,Default,Swamp Shop,can_obtain_super_crystals(5)
 Swamp Shop 2,Lucky Heart,Default,Swamp Shop,can_obtain_super_crystals(15)
 Swamp Shop 3,Ancient Tablet,Default,Swamp Shop,can_obtain_super_crystals(14)
 Swamp Shop Extra,XP Crystals x35,XP Crystals,Swamp Shop,true
-Swamp Tower - Top of tower,Family Child,NPC,Swamp Tower,can_fight_lvl2 and can_surf or can_fight_lvl2 and can_dash and can_boost
+Swamp Tower - Top of tower,Family Child,NPC,Swamp Tower,can_fight_lvl2 and can_surf or can_fight_lvl2 and can_dash and can_use_springboards
 Town - Blacksmith Item 1,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(5)
 Town - Blacksmith Item 2,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(27)
 Town - Blacksmith Item 3,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(92)

@@ -24,6 +24,9 @@ public class EngineAwareSettingsProvider : ISettingsProvider
             typeof(SimpleTempleExit),
             typeof(BlockedForest),
             typeof(CannonLevelLogicalRequirements),
+            typeof(BoostlessSpringboards),
+            typeof(BoostlessSpiritRaces),
+            typeof(BoostlessTorchRaces),
             typeof(CompletionGoals),
         };
 

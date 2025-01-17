@@ -95,6 +95,7 @@ public class CoreLogicParser : ILogicParser
         Item d4Reward = _itemRepository.Get(Item.D4Reward);
 
         Item scarab = _itemRepository.Get(Item.Scarab);
+        Item spirit = _itemRepository.Get(Item.Spirit);
 
         Item darkKey = _itemRepository.Get(Item.DarkKey);
         Item darkHeart = _itemRepository.Get(Item.DarkHeart);
@@ -115,6 +116,7 @@ public class CoreLogicParser : ILogicParser
         Region d5WestWing = _regionRepository.Get(Region.Dungeon5WestWing);
         Region d5EastWing = _regionRepository.Get(Region.Dungeon5EastWing);
         Region d5Boss = _regionRepository.Get(Region.Dungeon5Boss);
+        Region swampSouthWestIsland = _regionRepository.Get(Region.SwampSouthWestIsland);
 
         Dictionary<string, Func<LogicParsingParameters, LogicParsingResult>> rules = new()
         {
@@ -270,7 +272,7 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.Bard}
             )},
             { "have_all_spirits", p => new LogicParsingResult(
-                CanSurf(p, WaterType.Normal) && CanDash(p) && p.State.HasItem(boost) && p.State.HasItem(supershot),
+                CanSurf(p, WaterType.Normal) && CanDash(p) && p.State.HasItem(boost) && p.State.HasItem(supershot), // @TODO: replace with actual spirit count
                 new List<string>() {Item.Surf, Item.Dash, Item.Boost, Item.Supershot}
             )},
             { "can_open_dungeon_5", p => new LogicParsingResult(
@@ -322,7 +324,23 @@ public class CoreLogicParser : ILogicParser
             { "can_destroy_trees", p => new LogicParsingResult(
                 p.State.HasItem(supershot),
                 new List<string>() {Item.Supershot}
-            )}
+            )},
+            { "can_use_springboards", p => new LogicParsingResult(
+                CanUseSpringboards(p),
+                new List<string>() {Item.Boost, Item.Dash}
+            )},
+            { "can_race_spirits", p => new LogicParsingResult(
+                CanRaceSpirits(p),
+                new List<string>() {Item.Boost, Item.Dash}
+            )},
+            { "can_race_torches", p => new LogicParsingResult(
+                CanRaceTorches(p),
+                new List<string>() {Item.Boost}
+            )},
+            { "can_open_swamp_tower", p => new LogicParsingResult(
+                p.State.CanReach(swampSouthWestIsland),
+                new List<string>() {Item.Boost}
+            )},
         };
 
         if (rules.ContainsKey(rule))
@@ -360,6 +378,48 @@ public class CoreLogicParser : ILogicParser
     private bool CanSurf(LogicParsingParameters parameters, WaterType waterType)
     {
         return parameters.State.HasItem(_itemRepository.Get(Item.Surf));
+    }
+
+    private bool CanUseSpringboards(LogicParsingParameters parameters)
+    {
+        BoostlessSpringboards setting = (BoostlessSpringboards)parameters.Settings.Find(s => s is BoostlessSpringboards);
+
+        if (setting.Enabled)
+        {
+            return parameters.State.HasItem(_itemRepository.Get(Item.Boost)) || CanDash(parameters);
+        }
+        else
+        {
+            return parameters.State.HasItem(_itemRepository.Get(Item.Boost));
+        }
+    }
+
+    private bool CanRaceSpirits(LogicParsingParameters parameters)
+    {
+        BoostlessSpiritRaces setting = (BoostlessSpiritRaces)parameters.Settings.Find(s => s is BoostlessSpiritRaces);
+
+        if (setting.Enabled)
+        {
+            return parameters.State.HasItem(_itemRepository.Get(Item.Boost)) || CanDash(parameters);
+        }
+        else
+        {
+            return parameters.State.HasItem(_itemRepository.Get(Item.Boost));
+        }
+    }
+
+    private bool CanRaceTorches(LogicParsingParameters parameters)
+    {
+        BoostlessTorchRaces setting = (BoostlessTorchRaces)parameters.Settings.Find(s => s is BoostlessTorchRaces);
+
+        if (setting.Enabled)
+        {
+            return true;
+        }
+        else
+        {
+            return parameters.State.HasItem(_itemRepository.Get(Item.Boost));
+        }
     }
 
     private bool IsSettingEnabled<T>(LogicParsingParameters parameters) where T : BooleanSetting

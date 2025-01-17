@@ -34,6 +34,7 @@
     <EmbeddedResource Include="Resources/images/npc_marker.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker.png" />
     <EmbeddedResource Include="Resources/images/spirit_marker.png" />
+    <EmbeddedResource Include="Resources/images/super_crystal.png" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">

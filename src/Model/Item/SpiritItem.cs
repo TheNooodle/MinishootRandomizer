@@ -10,4 +10,18 @@ public class SpiritItem : Item
     {
         throw new System.NotImplementedException();
     }
+
+    public override int GetOwnedQuantity()
+    {
+        int count = 0;
+        for (int i = 0; i < 8; i++)
+        {
+            if (WorldState.Get("NpcTiny" + i))
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
 }

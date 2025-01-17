@@ -68,8 +68,7 @@ public class GiveInitialItemsPatcher
         }
         else
         {
-            // @TODO: reactivate when the AP server no longer adds the bullet number itself.
-            // compositeAction.Add(new GiveStatsAction(Stats.BulletNumber, 1));
+            compositeAction.Add(new GiveStatsAction(Stats.BulletNumber, 1));
         }
 
         foreach (MapRegion mapRegion in _trackerMapRegions)

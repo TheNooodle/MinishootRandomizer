@@ -135,6 +135,18 @@ public class DictionaryItemFactory : IItemFactory
 
             return new XpCrystalsItem(identifier, category, int.Parse(match.Value));
         }
+        else if (identifier.Contains("Super Crystals x"))
+        {
+            // "Super Crystals x20" must return 20 for example.
+            Match match = Regex.Match(identifier, @"\d+");
+            if (!match.Success)
+            {
+                _logger.LogError($"Invalid item identifier: {identifier}");
+                throw new InvalidItemException();
+            }
+
+            return new SuperCrystalsItem(identifier, category, int.Parse(match.Value));
+        }
         else if (identifier.Contains("Small Key (Dungeon"))
         {
             // "Small Key (Dungeon 1)" must return 1 for example.
