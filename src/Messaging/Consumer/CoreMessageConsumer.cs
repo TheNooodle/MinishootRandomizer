@@ -39,14 +39,16 @@ public class CoreMessageConsumer : IMessageConsumer
             if (CanHandleEnvelope(envelope))
             {
                 IMessageHandler handler = _handlers[messageType];
+                _logger.LogInfo($"Processing message of type {messageType} with handler {handler.GetType()}");
                 MessageProcessingResult result = _messageProcessor.ProcessMessage(envelope, handler);
                 if (result.Success)
                 {
+                    _logger.LogInfo($"Message of type {messageType} processed successfully");
                     envelopesToRemove.Add(envelope);
                 }
                 else
                 {
-                    _logger.LogError($"Failed to process message: {result.ErrorMessage}");
+                    _logger.LogError($"Failed to process message of type {messageType} : {result.ErrorMessage}");
                 }
             }
         }
