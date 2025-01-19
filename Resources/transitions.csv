@@ -301,7 +301,7 @@ Swamp - South West Island Shack > Scarab Temple Top Right Torch,Swamp - South We
 Swamp - South West Island Shack > South West Island,Swamp - South West Island Shack,Swamp - South West Island,can_surf
 Swamp - Tower Exterior > South West Island,Swamp - Tower Exterior,Swamp - South West Island,can_surf
 Swamp - Tower Exterior > Swamp Tower,Swamp - Tower Exterior,Swamp Tower,true
-Swamp - Turtle's domain > Beach Dungeon 3 Island,Swamp - Turtle's domain,Beach - Dungeon 3 Island,can_surf or can_dash and can_destroy_walls and can_destroy_rocks and can_destroy_plants and can_use_springboards and can_fight_lvl3
+Swamp - Turtle's domain > Beach Dungeon 3 Island,Swamp - Turtle's domain,Beach - Dungeon 3 Island,can_surf or can_dash and can_destroy_walls and can_destroy_rocks and can_destroy_plants and can_use_springboards and can_light_torches and can_fight_lvl3
 Swamp - Turtle's domain > Before Big Enemy,Swamp - Turtle's domain,Swamp - Before Big Enemy,can_fight_lvl3 or can_surf
 Swamp - Turtle's domain > North,Swamp - Turtle's domain,Swamp - North,can_destroy_walls
 Swamp - Turtle's domain > Race,Swamp - Turtle's domain,Swamp Race,can_destroy_rocks or can_surf

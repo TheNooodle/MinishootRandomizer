@@ -13,6 +13,7 @@ public class ArchipelagoItem : Item
 
     public override string GetSpriteIdentifier()
     {
+        // Note that the sprite might be different depending on settings, cf ItemPresentationProvider.
         return "Archipelago";
     }
 

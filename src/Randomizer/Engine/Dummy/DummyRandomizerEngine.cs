@@ -23,6 +23,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(BoostlessSpringboards), new BoostlessSpringboards(true) },
         { typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(true) },
         { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(true) },
+        { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(false) },
         { typeof(CompletionGoals), new CompletionGoals(Goals.Both) },
     };
 

@@ -26,13 +26,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced items (such as tracker items and the extra cannon level, cf "Removed") are now replaced by filler items.
     - Those filler items are Super Crystals drops of various amounts.
     - On Archipelago, in case a location cannot be filled, it will be filled with a filler item instead.
-- A new setting called "Boostless Springboards" has been added
+- A new setting called "Boostless Springboards" has been added.
     - When enabled, the springboards can logically be used with the dash, instead of needing the boost.
-- A new setting called "Boostless Spirit Races" has been added
+- A new setting called "Boostless Spirit Races" has been added.
     - When enabled, most races against spirits can logically be beaten with the dash, instead of needing the boost.
     - Note that the races at Beach, Scarab Temple and Sunken City still logically need the boost.
-- A new setting called "Boostless Torch Races" has been added
+- A new setting called "Boostless Torch Races" has been added.
     - When enabled, torch races (where the player must navigate through torch gates in a limited time) can be cleared without the need for boost.
+- A new setting called "Show Archipelago item category" has been added.
+    - When enabled, Archipelago items sprites will indicate if its an important item (with an arrow pointing up), an helpful one (with the default icon), or not important (with a black and white sprite).
 
 ### Removed
 
@@ -40,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Archipelago items sprites now have a black outline to increase visibility in certain areas.
 - Changed the logic for the location "Crystal Grove Tower - Top of tower"
     - Now no longer needs the dash or boost to get to the top.
 - Changed the logic for the vanilla access to Dungeon 3 Exterior (without the surf, using the turtle)

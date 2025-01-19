@@ -77,6 +77,8 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
     * When disabled, the keys will still be randomized within their dungeons.
 * Boss Key Sanity
     * Same thing as above, but with boss keys.
+* Show Archipelago item category
+    * When enabled, Archipelago items sprites will indicate if its an important item (with an arrow pointing up), an helpful one (with the default icon), or not important (with a black and white sprite).
 * Simple Temple Exit
     * When enabled, this setting simplifies the exit after the scarab boss in the three temples and remove the checkpoints at the three statues (where the vanilla powers are located).
     * For Temple 1 : it removes the scripted encounter, the barriers and activate the bridge.

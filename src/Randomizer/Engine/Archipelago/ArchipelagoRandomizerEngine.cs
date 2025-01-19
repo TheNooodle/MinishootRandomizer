@@ -184,6 +184,7 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(BoostlessSpringboards), new BoostlessSpringboards(GetBooleanSettingValue("boostless_springboards")) },
             { typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(GetBooleanSettingValue("boostless_spirit_races")) },
             { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(GetBooleanSettingValue("boostless_torch_races")) },
+            { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(GetBooleanSettingValue("show_archipelago_item_category")) },
             { typeof(CompletionGoals), new CompletionGoals(GetGoalsSettingValue()) },
         };
     }

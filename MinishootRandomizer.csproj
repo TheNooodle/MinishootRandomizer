@@ -28,6 +28,8 @@
 
     <!-- Images -->
     <EmbeddedResource Include="Resources/images/archipelago.png" />
+    <EmbeddedResource Include="Resources/images/archipelago_arrow_up.png" />
+    <EmbeddedResource Include="Resources/images/archipelago_grayscale.png" />
     <EmbeddedResource Include="Resources/images/scarab.png" />
     <EmbeddedResource Include="Resources/images/spirit.png" />
     <EmbeddedResource Include="Resources/images/location_marker.png" />

@@ -116,16 +116,6 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             "MinishootRandomizer.Resources.images"
         ));
 
-        _serviceContainer.AddService(typeof(IItemPresentationProvider), new CoreItemPresentationProvider(
-            (ISpriteProvider)_serviceContainer.GetService(typeof(ISpriteProvider))
-        ));
-
-        _serviceContainer.AddService(typeof(IGameObjectFactory), new SpriteBasedFactory(
-            (CloneBasedFactory)_serviceContainer.GetService(typeof(CloneBasedFactory)),
-            (IItemPresentationProvider)_serviceContainer.GetService(typeof(IItemPresentationProvider)),
-            (ILogger)_serviceContainer.GetService(typeof(ILogger))
-        ));
-
         _serviceContainer.AddService(typeof(PickupManager), new PickupManager());
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).LoadingSaveFile
             += ((PickupManager)_serviceContainer.GetService(typeof(PickupManager))).OnLoadingSaveFile;
@@ -137,13 +127,6 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             += ((PickupManager)_serviceContainer.GetService(typeof(PickupManager))).OnEnteringEncounter;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingEncounter
             += ((PickupManager)_serviceContainer.GetService(typeof(PickupManager))).OnExitingEncounter;
-
-        _serviceContainer.AddService(typeof(ILocationVisitor), new GameObjectCreationVisitor(
-            (IGameObjectFactory)_serviceContainer.GetService(typeof(IGameObjectFactory)),
-            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
-            (PickupManager)_serviceContainer.GetService(typeof(PickupManager)),
-            (ILogger)_serviceContainer.GetService(typeof(ILogger))
-        ));
 
         _serviceContainer.AddService(typeof(IProgressionStorage), new WorldStateProgressionStorage());
 
@@ -187,6 +170,24 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
 
         _serviceContainer.AddService(typeof(IRandomizerEngine), _serviceContainer.GetService(typeof(ContextualRandomizerEngine)));
         
+        _serviceContainer.AddService(typeof(IItemPresentationProvider), new CoreItemPresentationProvider(
+            (ISpriteProvider)_serviceContainer.GetService(typeof(ISpriteProvider)),
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
+        ));
+
+        _serviceContainer.AddService(typeof(IGameObjectFactory), new SpriteBasedFactory(
+            (CloneBasedFactory)_serviceContainer.GetService(typeof(CloneBasedFactory)),
+            (IItemPresentationProvider)_serviceContainer.GetService(typeof(IItemPresentationProvider)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+
+        _serviceContainer.AddService(typeof(ILocationVisitor), new GameObjectCreationVisitor(
+            (IGameObjectFactory)_serviceContainer.GetService(typeof(IGameObjectFactory)),
+            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
+            (PickupManager)_serviceContainer.GetService(typeof(PickupManager)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+
         _serviceContainer.AddService(typeof(ISettingsProvider), new EngineAwareSettingsProvider(
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
         ));
