@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [0.3.0] - 2025-01-19
 
 ### Added
 
@@ -46,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed the logic for the location "Crystal Grove Tower - Top of tower"
     - Now no longer needs the dash or boost to get to the top.
 - Changed the logic for the vanilla access to Dungeon 3 Exterior (without the surf, using the turtle)
+    - Now properly requires the usage of Supershot to light torches if the player doesn't have access to Surf (D3 used to be accessible with Dash/Boost and Primordial Crystal)
     - Can no longer be cleared with the boost to get to the button to activate the bridge to D3.
     - The boost used to be considered because the coyote time to get to the button could be used to clear the gap.
 
