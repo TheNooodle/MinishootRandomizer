@@ -3,6 +3,9 @@ using BepInEx.Logging;
 
 namespace MinishootRandomizer;
 
+// @todo: Use IServiceCollection and IServiceProvider, with IServiceCollection::AddSingleton and IServiceProvider::GetService.
+// This will allow to use the built-in dependency injection system of .NET Core and don't need to maintain instantiation order.
+// The implemented interface will still allow interoperability with the existing code and other third-party DI frameworks.
 public class ComponentModelContainer : IServiceContainer, IBuildable
 {
     private readonly ServiceContainer _serviceContainer = new ServiceContainer();
@@ -287,6 +290,24 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
 
+        _serviceContainer.AddService(typeof(INotificationObjectFactory), new CoreNotificationObjectFactory(
+            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder))
+        ));
+
+        _serviceContainer.AddService(typeof(NotificationManager), new NotificationManager(
+            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
+            (IMessageDispatcher)_serviceContainer.GetService(typeof(IMessageDispatcher))
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
+            += ((NotificationManager)_serviceContainer.GetService(typeof(NotificationManager))).OnItemCollected;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((NotificationManager)_serviceContainer.GetService(typeof(NotificationManager))).OnExitingGame;
+
+        _serviceContainer.AddService(typeof(ShowItemNotificationHandler), new ShowItemNotificationHandler());
+        ((CoreMessageConsumer)_serviceContainer.GetService(typeof(IMessageConsumer))).AddHandler<ShowItemNotificationMessage>(
+            (ShowItemNotificationHandler)_serviceContainer.GetService(typeof(ShowItemNotificationHandler))
+        );  
+
         // Patchers
         _serviceContainer.AddService(typeof(ShopReplacementPatcher), new ShopReplacementPatcher(
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
@@ -393,6 +414,16 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             += ((TrackerPatcher)_serviceContainer.GetService(typeof(TrackerPatcher))).OnExitingGame;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
             += ((TrackerPatcher)_serviceContainer.GetService(typeof(TrackerPatcher))).OnItemCollected;
+            
+        _serviceContainer.AddService(typeof(NotificationPatcher), new NotificationPatcher(
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
+            (INotificationObjectFactory)_serviceContainer.GetService(typeof(INotificationObjectFactory)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((NotificationPatcher)_serviceContainer.GetService(typeof(NotificationPatcher))).OnEnteringGameLocation;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((NotificationPatcher)_serviceContainer.GetService(typeof(NotificationPatcher))).OnExitingGame;
 
         _serviceContainer.AddService(typeof(QualityOfLifePatcher), new QualityOfLifePatcher(
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
