@@ -38,9 +38,14 @@ public class CoreNotificationObjectFactory : INotificationObjectFactory
         RectTransform rectTransform = notificationViewObject.AddComponent<RectTransform>();
         rectTransform.anchorMin = new Vector2(1.0f, 0.0f);
         rectTransform.anchorMax = new Vector2(1.0f, 0.0f);
-        rectTransform.sizeDelta = new Vector2(400.0f, 200.0f);
-        rectTransform.offsetMin = new Vector2(-500.0f, 150.0f);
-        rectTransform.offsetMax = new Vector2(-500.0f, 150.0f);
+        rectTransform.pivot = new Vector2(1.0f, 0.0f);
+        rectTransform.anchoredPosition = new Vector2(-100.0f, 100.0f);
+
+        HorizontalLayoutGroup layout = notificationViewObject.AddComponent<HorizontalLayoutGroup>();
+        layout.spacing = 50.0f;
+        layout.childAlignment = TextAnchor.MiddleLeft;
+        layout.childControlWidth = false;
+        layout.childControlHeight = false;
 
         return notificationViewObject;
     }
@@ -50,9 +55,7 @@ public class CoreNotificationObjectFactory : INotificationObjectFactory
         GameObject spriteObject = new GameObject("Sprite");
         spriteObject.transform.SetParent(notificationViewObject.transform, false);
         RectTransform spriteRectTransform = spriteObject.AddComponent<RectTransform>();
-        spriteRectTransform.anchorMin = new Vector2(0.0f, 0.0f);
-        spriteRectTransform.anchorMax = new Vector2(0.0f, 0.0f);
-        spriteRectTransform.sizeDelta = new Vector2(100.0f, 100.0f);
+        spriteRectTransform.pivot = new Vector2(0.5f, 0.5f);
         spriteObject.AddComponent<CanvasRenderer>();
         spriteObject.AddComponent<Image>();
 
@@ -66,11 +69,9 @@ public class CoreNotificationObjectFactory : INotificationObjectFactory
         RectTransform textRectTransform = textObject.AddComponent<RectTransform>();
         textRectTransform.anchorMin = new Vector2(0.0f, 0.0f);
         textRectTransform.anchorMax = new Vector2(0.0f, 0.0f);
-        textRectTransform.offsetMin = new Vector2(70.0f, -25.0f);
-        textRectTransform.offsetMax = new Vector2(430.0f, 25.0f);
-        textRectTransform.sizeDelta = new Vector2(360.0f, 50.0f);
         textObject.AddComponent<CanvasRenderer>();
         TextMeshProUGUI text = textObject.AddComponent<TextMeshProUGUI>();
+        text.verticalAlignment = VerticalAlignmentOptions.Middle;
         text.font = GetFont();
         text.fontMaterial = GetFontMaterial();
         text.UpdateFontAsset();
