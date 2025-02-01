@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2025-02-01
+
+### Added
+
+- When collecting an item (either locally or by receiving it from a remote source), a message will appear in the bottom right corner.
+    - When receiving multiple items at once, messages will queue and display in order.
+    - Items will still be collected instantly.
+
+### Fixed
+
+- Fixed tracker logic for spirit tower entrance to correctly require 8 spirits.
+    - This change only affects the tracker.
+
 ## [0.3.0] - 2025-01-19
 
 ### Added

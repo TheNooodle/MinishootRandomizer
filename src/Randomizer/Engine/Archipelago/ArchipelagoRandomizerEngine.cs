@@ -162,7 +162,10 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
     public void OnItemReceived(ArchipelagoItemData itemData)
     {
         _logger.LogInfo($"Received item {itemData.ItemName} at {itemData.SlotName}");
-        Item item = _itemRepository.Get(itemData.ItemName);
+        ReceivedItem item = ReceivedItem.Create(
+            _itemRepository.Get(itemData.ItemName),
+            itemData.SlotName
+        );
         _messageDispatcher.Dispatch(new ReceiveItemMessage(item), new List<IStamp> {
             new MustBeInGameStamp()
         });

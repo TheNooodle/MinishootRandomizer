@@ -272,8 +272,8 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.Bard}
             )},
             { "have_all_spirits", p => new LogicParsingResult(
-                CanSurf(p, WaterType.Normal) && CanDash(p) && p.State.HasItem(boost) && p.State.HasItem(supershot), // @TODO: replace with actual spirit count
-                new List<string>() {Item.Surf, Item.Dash, Item.Boost, Item.Supershot}
+                p.State.HasItem(spirit, 8),
+                new List<string>() {Item.Spirit}
             )},
             { "can_open_dungeon_5", p => new LogicParsingResult(
                 p.State.HasItem(d1Reward) && p.State.HasItem(d2Reward) && p.State.HasItem(d3Reward) && p.State.HasItem(d4Reward) && p.State.HasItem(darkKey),
