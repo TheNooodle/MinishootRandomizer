@@ -435,6 +435,17 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
             += ((QualityOfLifePatcher)_serviceContainer.GetService(typeof(QualityOfLifePatcher))).OnExitingGame;
 
+        _serviceContainer.AddService(typeof(DungeonRewardPatcher), new DungeonRewardPatcher(
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
+            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
+            (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((DungeonRewardPatcher)_serviceContainer.GetService(typeof(DungeonRewardPatcher))).OnEnteringGameLocation;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((DungeonRewardPatcher)_serviceContainer.GetService(typeof(DungeonRewardPatcher))).OnExitingGame;
+
         _isBuilt = true;
     }
 
