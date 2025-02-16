@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - The randomizer will now properly checks dungeon reward locations when collecting the "skulls" at the 4 dungeons.
+- The map will now show objective markers according to the player's goal.
+    - Setting the goal to "Dungeon 5" will show the 4 dungeon rewards when accessible, as well as the boss of dungeon 5.
+    - Setting the goal to "Snow" will show the objective to beat the Unchosen when accessible.
+    - Setting the goal to "Both" will do all of the above.
 
 ### Fixed
 
