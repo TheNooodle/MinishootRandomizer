@@ -11,10 +11,10 @@ public class DungeonRewardPatcher
         public string ItemIdentifier { get; }
         public ISelector Selector { get; }
 
-        public DungeonRewardPatcherData(string locationIdentifier, string ItemIdentifier, ISelector selector)
+        public DungeonRewardPatcherData(string locationIdentifier, string itemIdentifier, ISelector selector)
         {
             LocationIdentifier = locationIdentifier;
-            ItemIdentifier = ItemIdentifier;
+            ItemIdentifier = itemIdentifier;
             Selector = selector;
         }
     }
