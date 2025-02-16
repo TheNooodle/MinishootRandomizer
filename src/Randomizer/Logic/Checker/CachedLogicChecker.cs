@@ -7,8 +7,13 @@ public class CachedLogicChecker : ILogicChecker
 
     private LocationAccessibilitySet _cachedAccessibilitySet = new LocationAccessibilitySet();
 
+    // isRefreshInProgress means that the cache is being refreshed right now.
     private bool _isRefreshInProgress = false;
-    private bool _isStale = true;
+    // isStale means that the cache is outdated and, while we still serve the cached data, a refresh 
+    // task is being scheduled to update the cache.
+    private bool _isStale = false;
+    // isInitialized means that the cache has been initialized at least once.
+    private bool _isInitialized = false;
 
     public CachedLogicChecker(ILogicChecker innerChecker, IMessageDispatcher messageDispatcher)
     {
@@ -18,8 +23,9 @@ public class CachedLogicChecker : ILogicChecker
 
     public LocationAccessibilitySet CheckAllLocationsLogic()
     {
-        if (_isStale && !_isRefreshInProgress)
+        if (!_isInitialized)
         {
+            _isInitialized = true;
             InvalidateCache();
         }
 
@@ -42,7 +48,8 @@ public class CachedLogicChecker : ILogicChecker
     {
         _cachedAccessibilitySet = new LocationAccessibilitySet();
         _isRefreshInProgress = false;
-        _isStale = true;
+        _isStale = false;
+        _isInitialized = false;
     }
 
     public void OnItemCollected(Item item)
@@ -70,8 +77,12 @@ public class CachedLogicChecker : ILogicChecker
 
     private void InvalidateCache()
     {
-        _isStale = true;
-        _messageDispatcher.Dispatch(new RefreshLogicCheckerCacheMessage(this));
+        // If the cache is already stale, we don't need to do anything, as a refresh task is already scheduled.
+        if (!_isStale)
+        {
+            _isStale = true;
+            _messageDispatcher.Dispatch(new RefreshLogicCheckerCacheMessage(this));
+        }
     }
 
     public void RefreshCache()
@@ -91,6 +102,7 @@ public class CachedLogicChecker : ILogicChecker
         catch
         {
             _isRefreshInProgress = false;
+            _isStale = false;
             throw;
         }
     }

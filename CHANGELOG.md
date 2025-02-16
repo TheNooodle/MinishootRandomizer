@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The randomizer will now properly checks dungeon reward locations when collecting the "skulls" at the 4 dungeons.
 
+### Fixed
+
+- Fixed cache stampede issue when receiving a remote item while being on the map screen.
+
 ## [0.3.1] - 2025-02-01
 
 ### Added
