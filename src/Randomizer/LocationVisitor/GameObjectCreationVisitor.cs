@@ -256,6 +256,12 @@ namespace MinishootRandomizer
             // do nothing
             return new NullAction();
         }
+
+        public IPatchAction VisitGoal(GoalLocation location, Item item)
+        {
+            // do nothing
+            return new NullAction();
+        }
     }
 
     public class GameObjectCreationException : System.Exception

@@ -285,7 +285,6 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                 locationNames: new List<string> {
                     "Dungeon 1 - Central item",
                     "Dungeon 1 - Crystal near east armored spinner",
-                    // "Dungeon 1 - Dungeon reward",
                     "Dungeon 1 - Entrance after south ramp",
                     "Dungeon 1 - Entrance East Arena",
                     "Dungeon 1 - Entrance west bridge",
@@ -303,13 +302,15 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                 },
                 coordinates: new List<Tuple<float, float>> {
                     new Tuple<float, float>(1.54f, 2.30f),
-                }
+                },
+                objectiveMarkerData: new ObjectiveMarkerData(
+                    "Dungeon 1 - Dungeon reward", Goals.Dungeon5
+                )
             ),
             new MarkerData(
                 markerName: "Dungeon 2",
                 locationNames: new List<string> {
                     "Dungeon 2 - Central item",
-                    // "Dungeon 2 - Dungeon reward",
                     "Dungeon 2 - Hidden by plants",
                     "Dungeon 2 - Item after jumps",
                     "Dungeon 2 - North east beyond arena",
@@ -329,14 +330,16 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                 },
                 scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
                     { "Dungeon2ScarabPickup0", "Dungeon 2 - Secret room" },
-                })
+                }),
+                objectiveMarkerData: new ObjectiveMarkerData(
+                    "Dungeon 2 - Dungeon reward", Goals.Dungeon5
+                )
             ),
             new MarkerData(
                 markerName: "Dungeon 3",
                 locationNames: new List<string> {
                     "Dungeon 3 - Behind North West doors",
                     "Dungeon 3 - Central Item",
-                    // "Dungeon 3 - Dungeon reward",
                     "Dungeon 3 - East Island",
                     "Dungeon 3 - East rock 1",
                     "Dungeon 3 - East rock 2",
@@ -358,13 +361,35 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                 scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
                     { "Dungeon3ScarabPickup0", "Dungeon 3 - East rock 2" },
                     { "Dungeon3ScarabPickup1", "Dungeon 3 - Pot Island" },
-                })
+                }),
+                objectiveMarkerData: new ObjectiveMarkerData(
+                    "Dungeon 3 - Dungeon reward", Goals.Dungeon5
+                )
             ),
-            // new LocationMarkerData(new List<string> {
-            //     "Dungeon 4 - Dungeon reward",
-            // }, new List<Tuple<float, float>> {
-            //     new Tuple<float, float>(-3.76f, 5.37f),
-            // }),
+            new MarkerData(
+                markerName: "Dungeon 4",
+                locationNames: new List<string> {
+                    // nothing
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-3.76f, 5.36f),
+                },
+                objectiveMarkerData: new ObjectiveMarkerData(
+                    "Dungeon 4 - Dungeon reward", Goals.Dungeon5
+                )
+            ),
+            new MarkerData(
+                markerName: "Dungeon 5",
+                locationNames: new List<string> {
+                    // nothing
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.25f, 6.70f),
+                },
+                objectiveMarkerData: new ObjectiveMarkerData(
+                    "Dungeon 5 - Beat the boss", Goals.Dungeon5
+                )
+            ),
             new MarkerData(new List<string> {
                 "Dungeon 5 - Central Item",
             }, new List<Tuple<float, float>> {
@@ -669,6 +694,18 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                     { "CaveScarabPickup0", "Sewers - South pot room" },
                     { "CaveScarabPickup1", "Sewers - North pot room" },
                 })
+            ),
+            new MarkerData(
+                markerName: "Snow",
+                locationNames: new List<string> {
+                    // nothing
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(1.27f, -7.28f),
+                },
+                objectiveMarkerData: new ObjectiveMarkerData(
+                    "Snow - Beat the Unchosen", Goals.Snow
+                )
             ),
             new MarkerData(new List<string> {
                 "Spirit Tower - Item",

@@ -63,11 +63,17 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
 
-        _serviceContainer.AddService(typeof(ILocationRepository), new CsvLocationRepository(
+        _serviceContainer.AddService(typeof(CsvLocationRepository), new CsvLocationRepository(
             "MinishootRandomizer.Resources.locations.csv",
             (ILocationFactory)_serviceContainer.GetService(typeof(ILocationFactory)),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
+
+        _serviceContainer.AddService(typeof(InMemoryLocationRepository), new InMemoryLocationRepository(
+            (CsvLocationRepository)_serviceContainer.GetService(typeof(CsvLocationRepository))
+        ));
+
+        _serviceContainer.AddService(typeof(ILocationRepository), _serviceContainer.GetService(typeof(InMemoryLocationRepository)));
 
         _serviceContainer.AddService(typeof(IItemFactory), new DictionaryItemFactory(
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
@@ -83,9 +89,15 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (IZoneFactory)_serviceContainer.GetService(typeof(IZoneFactory))
         ));
 
-        _serviceContainer.AddService(typeof(IRegionRepository), new CsvRegionRepository(
+        _serviceContainer.AddService(typeof(CsvRegionRepository), new CsvRegionRepository(
             "MinishootRandomizer.Resources.regions.csv"
         ));
+
+        _serviceContainer.AddService(typeof(InMemoryRegionRepository), new InMemoryRegionRepository(
+            (CsvRegionRepository)_serviceContainer.GetService(typeof(CsvRegionRepository))
+        ));
+
+        _serviceContainer.AddService(typeof(IRegionRepository), _serviceContainer.GetService(typeof(InMemoryRegionRepository)));
 
         _serviceContainer.AddService(typeof(ITransitionRepository), new CsvTransitionRepository(
             "MinishootRandomizer.Resources.transitions.csv",
@@ -439,6 +451,7 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
             (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
             (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository)),
+            (IItemRepository)_serviceContainer.GetService(typeof(IItemRepository)),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation

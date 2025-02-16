@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace MinishootRandomizer
 {
     public interface ILocationVisitor
@@ -11,5 +9,6 @@ namespace MinishootRandomizer
         IPatchAction VisitParallelShop(ChoiceShopLocation location, Item item);
         IPatchAction VisitDestroyable(DestroyableLocation location, Item item);
         IPatchAction VisitDungeonReward(DungeonRewardLocation location, Item item);
+        IPatchAction VisitGoal(GoalLocation location, Item item);
     }
 }

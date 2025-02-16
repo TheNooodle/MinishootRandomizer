@@ -15,6 +15,11 @@ public class VanillaRandomizerEngine : IRandomizerEngine
         throw new ArgumentException("CompleteGoal should not be called on VanillaRandomizerEngine.");
     }
 
+    public bool IsGoalCompleted(Goals goal)
+    {
+        throw new ArgumentException("IsGoalCompleted should not be called on VanillaRandomizerEngine.");
+    }
+
     public void Dispose()
     {
         // no-op

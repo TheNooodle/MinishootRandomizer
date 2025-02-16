@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace MinishootRandomizer;
 
 public class DungeonRewardLocation : Location

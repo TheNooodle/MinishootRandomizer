@@ -149,6 +149,11 @@ public class DummyRandomizerEngine : IRandomizerEngine
         // no op
     }
 
+    public bool IsGoalCompleted(Goals goal)
+    {
+        return _progressionStorage.IsGoalCompleted(goal);
+    }
+
     public bool IsRandomized()
     {
         return true;
