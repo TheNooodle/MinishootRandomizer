@@ -30,11 +30,16 @@
     <EmbeddedResource Include="Resources/images/archipelago_arrow_up.png" />
     <EmbeddedResource Include="Resources/images/archipelago_grayscale.png" />
     <EmbeddedResource Include="Resources/images/archipelago.png" />
+    <EmbeddedResource Include="Resources/images/location_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/location_marker.png" />
+    <EmbeddedResource Include="Resources/images/npc_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/npc_marker.png" />
+    <EmbeddedResource Include="Resources/images/scarab_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker.png" />
     <EmbeddedResource Include="Resources/images/scarab.png" />
+    <EmbeddedResource Include="Resources/images/skull_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/skull_marker.png" />
+    <EmbeddedResource Include="Resources/images/spirit_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/spirit_marker.png" />
     <EmbeddedResource Include="Resources/images/spirit.png" />
     <EmbeddedResource Include="Resources/images/super_crystal.png" />

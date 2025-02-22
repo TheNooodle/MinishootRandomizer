@@ -15,14 +15,19 @@ public class FileSpriteProvider : ISpriteProvider
         { "Archipelago", new SpriteFileData("archipelago.png", 128, 128, 0.7f) },
         { "ArchipelagoArrowUp", new SpriteFileData("archipelago_arrow_up.png", 128, 128, 0.7f) },
         { "ArchipelagoGrayscale", new SpriteFileData("archipelago_grayscale.png", 128, 128, 0.7f) },
-        { "Scarab", new SpriteFileData("scarab.png", 108, 108)},
-        { "Spirit", new SpriteFileData("spirit.png", 51, 73)},
+        { "LocationMarkerSimple", new SpriteFileData("location_marker_simple.png", 116, 180)},
         { "LocationMarker", new SpriteFileData("location_marker.png", 116, 180)},
+        { "NpcMarkerSimple", new SpriteFileData("npc_marker_simple.png", 148, 172)},
         { "NpcMarker", new SpriteFileData("npc_marker.png", 148, 172)},
-        { "ScarabMarker", new SpriteFileData("scarab_marker.png", 148, 172)},
+        { "Scarab", new SpriteFileData("scarab.png", 108, 108)},
+        { "ScarabMarkerSimple", new SpriteFileData("scarab_marker_simple.png", 132, 156)},
+        { "ScarabMarker", new SpriteFileData("scarab_marker.png", 132, 156)},
+        { "SkullMarkerSimple", new SpriteFileData("skull_marker_simple.png", 160, 188) },
+        { "SkullMarker", new SpriteFileData("skull_marker.png", 160, 188) },
+        { "Spirit", new SpriteFileData("spirit.png", 51, 73)},
+        { "SpiritMarkerSimple", new SpriteFileData("spirit_marker_simple.png", 148, 172)},
         { "SpiritMarker", new SpriteFileData("spirit_marker.png", 148, 172)},
         { "SuperCrystal", new SpriteFileData("super_crystal.png", 92, 92, 1f, -20f) },
-        { "SkullMarker", new SpriteFileData("skull_marker.png", 160, 188) },
     };
 
     public FileSpriteProvider(ISpriteProvider innerProvider, string rootPath)
