@@ -183,7 +183,11 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (IRandomizerContextProvider)_serviceContainer.GetService(typeof(IRandomizerContextProvider))
         ));
 
-        _serviceContainer.AddService(typeof(IRandomizerEngine), _serviceContainer.GetService(typeof(ContextualRandomizerEngine)));
+        _serviceContainer.AddService(typeof(EventRandomizerEngine), new EventRandomizerEngine(
+            (ContextualRandomizerEngine)_serviceContainer.GetService(typeof(ContextualRandomizerEngine))
+        ));
+
+        _serviceContainer.AddService(typeof(IRandomizerEngine), _serviceContainer.GetService(typeof(EventRandomizerEngine)));
         
         _serviceContainer.AddService(typeof(IItemPresentationProvider), new CoreItemPresentationProvider(
             (ISpriteProvider)_serviceContainer.GetService(typeof(ISpriteProvider)),
@@ -248,6 +252,10 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnNpcFreed;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).PlayerCurrencyChanged
             += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnPlayerCurrencyChanged;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnEnteringGameLocation;
+        ((EventRandomizerEngine)_serviceContainer.GetService(typeof(EventRandomizerEngine))).GoalCompleted
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnGoalCompleted;
 
         _serviceContainer.AddService(typeof(ILogicChecker), _serviceContainer.GetService(typeof(CachedLogicChecker)));
 

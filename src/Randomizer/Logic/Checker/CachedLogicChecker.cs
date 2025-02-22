@@ -75,6 +75,11 @@ public class CachedLogicChecker : ILogicChecker
         }
     }
 
+    public void OnGoalCompleted(Goals goal)
+    {
+        InvalidateCache();
+    }
+
     private void InvalidateCache()
     {
         // If the cache is already stale, we don't need to do anything, as a refresh task is already scheduled.
