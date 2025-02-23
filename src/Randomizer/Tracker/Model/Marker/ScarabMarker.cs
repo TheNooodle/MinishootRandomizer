@@ -6,7 +6,8 @@ namespace MinishootRandomizer;
 public class ScarabMarker : AbstractMarker
 {
     private readonly Dictionary<string, Location> _scarabLocations;
-    private bool _mustShow = false;
+
+    private LogicAccessibility _accessibility = LogicAccessibility.Inaccessible;
 
     public Dictionary<string, Location> ScarabLocations => _scarabLocations;
 
@@ -18,26 +19,32 @@ public class ScarabMarker : AbstractMarker
     public override void ComputeVisibility(IRandomizerEngine engine, ILogicChecker logicChecker)
     {
         ScarabSanity scarabSanity = engine.GetSetting<ScarabSanity>();
+        LogicAccessibility newAccessibility = LogicAccessibility.Inaccessible;
         if (scarabSanity.Enabled)
         {
-            _mustShow = false;
+            _accessibility = LogicAccessibility.Inaccessible;
             return;
         }
 
-        bool mustShow = false;
         foreach (KeyValuePair<string, Location> scarabLocation in _scarabLocations)
         {
             bool owned = WorldState.Get(scarabLocation.Key);
-            bool accessible = logicChecker.CheckLocationLogic(scarabLocation.Value) == LogicAccessibility.InLogic;
 
-            if (!owned && accessible)
+            if (!owned)
             {
-                mustShow = true;
-                break;
+                if (logicChecker.CheckLocationLogic(scarabLocation.Value) == LogicAccessibility.InLogic)
+                {
+                    newAccessibility = LogicAccessibility.InLogic;
+                    break;
+                }
+                else if (logicChecker.CheckLocationLogic(scarabLocation.Value) == LogicAccessibility.OutOfLogic)
+                {
+                    newAccessibility = LogicAccessibility.OutOfLogic;
+                }
             }
         }
 
-        _mustShow = mustShow;
+        _accessibility = newAccessibility;
     }
 
     public override int GetSortIndex()
@@ -47,11 +54,11 @@ public class ScarabMarker : AbstractMarker
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo("ScarabMarker", new Tuple<float, float>(1.5f, 1.1f));
+        return new MarkerSpriteInfo(_accessibility == LogicAccessibility.OutOfLogic ? "ScarabMarkerSimple" : "ScarabMarker", new Tuple<float, float>(1.5f, 1.1f));
     }
 
     public override bool MustShow()
     {
-        return _mustShow;
+        return _accessibility != LogicAccessibility.Inaccessible;
     }
 }

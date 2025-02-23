@@ -7,7 +7,8 @@ public class NpcMarker : AbstractMarker
     private Location _location;
     private string _npcIdentifier;
 
-    private bool _mustShow = false;
+    private bool _owned = false;
+    private LogicAccessibility _accessibility = LogicAccessibility.Inaccessible;
 
     public Location Location => _location;
     public string NpcIdentifier => _npcIdentifier;
@@ -23,24 +24,22 @@ public class NpcMarker : AbstractMarker
         NpcSanity npcSanity = engine.GetSetting<NpcSanity>();
         if (npcSanity.Enabled)
         {
-            _mustShow = false;
+            _owned = true;
             return;
         }
 
-        bool owned = WorldState.Get(_npcIdentifier);
-        bool accessible = logicChecker.CheckLocationLogic(_location) == LogicAccessibility.InLogic;
-
-        _mustShow = !owned && accessible;
+        _owned = WorldState.Get(_npcIdentifier);
+        _accessibility = logicChecker.CheckLocationLogic(_location);
     }
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo("NpcMarker", new Tuple<float, float>(1.5f, 1.1f));
+        return new MarkerSpriteInfo(_accessibility == LogicAccessibility.OutOfLogic ? "NpcMarkerSimple" : "NpcMarker", new Tuple<float, float>(1.5f, 1.1f));
     }
 
     public override bool MustShow()
     {
-        return _mustShow;
+        return !_owned && _accessibility != LogicAccessibility.Inaccessible;
     }
 
     public override int GetSortIndex()

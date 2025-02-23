@@ -50,7 +50,7 @@ public class LocationMarker : AbstractMarker
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo("LocationMarker", new Tuple<float, float>(1.0f, 1.0f));
+        return new MarkerSpriteInfo(_accessibility == LogicAccessibility.OutOfLogic ? "LocationMarkerSimple" : "LocationMarker", new Tuple<float, float>(1.0f, 1.0f));
     }
 
     public override int GetSortIndex()

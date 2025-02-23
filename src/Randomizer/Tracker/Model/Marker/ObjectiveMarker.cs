@@ -6,7 +6,9 @@ public class ObjectiveMarker : AbstractMarker
 {
     private Location _location;
     private Goals _goal;
-    private bool _mustShow = false;
+
+    private bool _isChecked = false;
+    private LogicAccessibility _logicAccessibility = LogicAccessibility.Inaccessible;
 
     public ObjectiveMarker(Location location, Goals goal)
     {
@@ -16,17 +18,14 @@ public class ObjectiveMarker : AbstractMarker
 
     public override void ComputeVisibility(IRandomizerEngine engine, ILogicChecker logicChecker)
     {
-        _mustShow = false;
         CompletionGoals completionGoals = engine.GetSetting<CompletionGoals>();
         if (engine.IsGoalCompleted(_goal) || (completionGoals.Goal != Goals.Both && completionGoals.Goal != _goal))
         {
             return;
         }
 
-        LogicAccessibility logicAccessibility = logicChecker.CheckLocationLogic(_location);
-        bool isChecked = engine.IsLocationChecked(_location);
-
-        _mustShow = logicAccessibility == LogicAccessibility.InLogic && !isChecked;
+        _logicAccessibility = logicChecker.CheckLocationLogic(_location);
+        _isChecked = engine.IsLocationChecked(_location);
     }
 
     public override int GetSortIndex()
@@ -36,11 +35,11 @@ public class ObjectiveMarker : AbstractMarker
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo("SkullMarker", new Tuple<float, float>(1.5f, 1.1f));
+        return new MarkerSpriteInfo(_logicAccessibility == LogicAccessibility.OutOfLogic ? "SkullMarkerSimple" : "SkullMarker", new Tuple<float, float>(1.5f, 1.1f));
     }
 
     public override bool MustShow()
     {
-        return _mustShow;
+        return !_isChecked && _logicAccessibility != LogicAccessibility.Inaccessible;
     }
 }

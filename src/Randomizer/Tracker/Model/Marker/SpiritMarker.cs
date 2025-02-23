@@ -7,7 +7,8 @@ public class SpiritMarker : AbstractMarker
     private readonly Location _location;
     private readonly string _spiritIdentifier;
 
-    private bool _mustShow = false;
+    private bool _isChecked = false;
+    private LogicAccessibility _logicAccessibility = LogicAccessibility.Inaccessible;
 
     public Location Location => _location;
     public string SpiritIdentifier => _spiritIdentifier;
@@ -23,14 +24,12 @@ public class SpiritMarker : AbstractMarker
         SpiritSanity spiritSanity = engine.GetSetting<SpiritSanity>();
         if (spiritSanity.Enabled)
         {
-            _mustShow = false;
+            _isChecked = true;
             return;
         }
 
-        bool owned = WorldState.Get(_spiritIdentifier);
-        bool accessible = logicChecker.CheckLocationLogic(_location) == LogicAccessibility.InLogic;
-
-        _mustShow = !owned && accessible;
+        _isChecked = WorldState.Get(_spiritIdentifier);
+        _logicAccessibility = logicChecker.CheckLocationLogic(_location);
     }
 
     public override int GetSortIndex()
@@ -40,11 +39,11 @@ public class SpiritMarker : AbstractMarker
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo("SpiritMarker", new Tuple<float, float>(1.5f, 1.1f));
+        return new MarkerSpriteInfo(_logicAccessibility == LogicAccessibility.OutOfLogic ? "SpiritMarkerSimple" : "SpiritMarker", new Tuple<float, float>(1.5f, 1.1f));
     }
 
     public override bool MustShow()
     {
-        return _mustShow;
+        return !_isChecked && _logicAccessibility != LogicAccessibility.Inaccessible;
     }
 }
