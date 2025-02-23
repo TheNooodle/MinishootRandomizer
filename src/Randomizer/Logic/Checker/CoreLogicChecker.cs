@@ -40,8 +40,20 @@ public class CoreLogicChecker : ILogicChecker
         }
 
         LogicParsingResult parsingResult = _logicParser.ParseLogic(location.LogicRule, state, settings);
+        if (parsingResult.Result)
+        {
+            return LogicAccessibility.InLogic;
+        }
+        else
+        {
+            LogicState outOfLogicState = _logicStateProvider.GetLogicState(LogicTolerance.Lenient);
 
-        return parsingResult.Result ? LogicAccessibility.InLogic : LogicAccessibility.Inaccessible;
+            // If the location is reachable out of logic and the location is attainable, it's accessible out of logic.
+            return _logicParser.ParseLogic(location.LogicRule, outOfLogicState, settings).Result
+                ? LogicAccessibility.OutOfLogic
+                : LogicAccessibility.Inaccessible
+            ;
+        }
     }
 
     public LocationAccessibilitySet CheckAllLocationsLogic()

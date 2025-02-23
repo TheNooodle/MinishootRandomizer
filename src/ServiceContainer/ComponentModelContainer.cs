@@ -228,17 +228,17 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
-            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnExitingGame;
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnExitingGame;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
-            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnItemCollected;
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnItemCollected;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).NpcFreed
-            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnNpcFreed;
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnNpcFreed;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).PlayerCurrencyChanged
-            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnPlayerCurrencyChanged;
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnPlayerCurrencyChanged;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
-            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnEnteringGameLocation;
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnEnteringGameLocation;
         ((EventRandomizerEngine)_serviceContainer.GetService(typeof(EventRandomizerEngine))).GoalCompleted
-            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnGoalCompleted;
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnGoalCompleted;
         
         _serviceContainer.AddService(typeof(ILogicStateProvider), _serviceContainer.GetService(typeof(LocalLogicStateProvider)));
 
