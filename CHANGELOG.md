@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Setting the goal to "Both" will do all of the above.
 - The map will now use smaller, more discrete markers to reveal locations or goals that are accessible out-of-logic
     - This mainly concerns key logic and cannon levels, as well as difficulty settings being disabled.
+- Restored animations for map markers.
+- Restored animations for item pickups.
 
 ### Changed
 
