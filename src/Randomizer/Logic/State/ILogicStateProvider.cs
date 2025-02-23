@@ -2,5 +2,5 @@ namespace MinishootRandomizer;
 
 public interface ILogicStateProvider
 {
-    LogicState GetLogicState();
+    LogicState GetLogicState(LogicTolerance tolerance = LogicTolerance.Strict);
 }

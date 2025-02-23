@@ -224,10 +224,21 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (ITransitionRepository)_serviceContainer.GetService(typeof(ITransitionRepository)),
             (IItemRepository)_serviceContainer.GetService(typeof(IItemRepository)),
             (ISettingsProvider)_serviceContainer.GetService(typeof(ISettingsProvider)),
+            new StandardCachePool<LogicState>(new DictionaryCacheStorage<LogicState>(), (ILogger)_serviceContainer.GetService(typeof(ILogger))),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
-            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnExitingGame;
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnExitingGame;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnItemCollected;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).NpcFreed
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnNpcFreed;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).PlayerCurrencyChanged
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnPlayerCurrencyChanged;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnEnteringGameLocation;
+        ((EventRandomizerEngine)_serviceContainer.GetService(typeof(EventRandomizerEngine))).GoalCompleted
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnGoalCompleted;
         
         _serviceContainer.AddService(typeof(ILogicStateProvider), _serviceContainer.GetService(typeof(LocalLogicStateProvider)));
 

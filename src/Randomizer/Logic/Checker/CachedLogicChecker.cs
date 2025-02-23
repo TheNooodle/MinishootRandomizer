@@ -40,6 +40,10 @@ public class CachedLogicChecker : ILogicChecker
         {
             return LogicAccessibility.InLogic;
         }
+        else if (accessibilitySet.IsOutOfLogic(location))
+        {
+            return LogicAccessibility.OutOfLogic;
+        }
 
         return LogicAccessibility.Inaccessible;
     }

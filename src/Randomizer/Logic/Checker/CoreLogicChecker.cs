@@ -29,7 +29,14 @@ public class CoreLogicChecker : ILogicChecker
 
         if (!state.CanReach(region))
         {
-            return LogicAccessibility.Inaccessible;
+            // If the location is not reachable, we check if it's out of logic
+            LogicState outOfLogicState = _logicStateProvider.GetLogicState(LogicTolerance.Lenient);
+
+            // If the location is reachable out of logic and the location is attainable, it's accessible out of logic.
+            return outOfLogicState.CanReach(region) && _logicParser.ParseLogic(location.LogicRule, outOfLogicState, settings).Result
+                ? LogicAccessibility.OutOfLogic
+                : LogicAccessibility.Inaccessible
+            ;
         }
 
         LogicParsingResult parsingResult = _logicParser.ParseLogic(location.LogicRule, state, settings);
@@ -49,6 +56,10 @@ public class CoreLogicChecker : ILogicChecker
             if (accessibility == LogicAccessibility.InLogic)
             {
                 accessibilitySet.AddInLogicLocation(location);
+            }
+            else if (accessibility == LogicAccessibility.OutOfLogic)
+            {
+                accessibilitySet.AddOutOfLogicLocation(location);
             }
             else
             {
