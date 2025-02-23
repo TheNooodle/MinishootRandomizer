@@ -7,8 +7,8 @@ public class NpcMarker : AbstractMarker
     private Location _location;
     private string _npcIdentifier;
 
-    private bool _owned = false;
-    private LogicAccessibility _accessibility = LogicAccessibility.Inaccessible;
+    protected bool _owned = false;
+    protected LogicAccessibility _accessibility = LogicAccessibility.Inaccessible;
 
     public Location Location => _location;
     public string NpcIdentifier => _npcIdentifier;
@@ -34,12 +34,12 @@ public class NpcMarker : AbstractMarker
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo(_accessibility == LogicAccessibility.OutOfLogic ? "NpcMarkerSimple" : "NpcMarker", new Tuple<float, float>(1.5f, 1.1f));
+        return new MarkerSpriteInfo("NpcMarker", new Tuple<float, float>(1.5f, 1.1f));
     }
 
     public override bool MustShow()
     {
-        return !_owned && _accessibility != LogicAccessibility.Inaccessible;
+        return !_owned && _accessibility == LogicAccessibility.InLogic;
     }
 
     public override int GetSortIndex()

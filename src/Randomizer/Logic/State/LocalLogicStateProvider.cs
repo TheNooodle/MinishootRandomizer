@@ -86,6 +86,7 @@ public class LocalLogicStateProvider : ILogicStateProvider
                         {
                             logicState.SetItemCount(item, count == 1 ? 1 : 4);
                         }
+                        continue;
                     }
 
                     // If the player have at least one of the item, we pretend they have all of them.

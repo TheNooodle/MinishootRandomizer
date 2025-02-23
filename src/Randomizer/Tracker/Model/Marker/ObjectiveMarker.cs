@@ -7,8 +7,8 @@ public class ObjectiveMarker : AbstractMarker
     private Location _location;
     private Goals _goal;
 
-    private bool _isChecked = false;
-    private LogicAccessibility _logicAccessibility = LogicAccessibility.Inaccessible;
+    protected bool _isChecked = false;
+    protected LogicAccessibility _logicAccessibility = LogicAccessibility.Inaccessible;
 
     public ObjectiveMarker(Location location, Goals goal)
     {
@@ -35,11 +35,11 @@ public class ObjectiveMarker : AbstractMarker
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo(_logicAccessibility == LogicAccessibility.OutOfLogic ? "SkullMarkerSimple" : "SkullMarker", new Tuple<float, float>(1.5f, 1.1f));
+        return new MarkerSpriteInfo("SkullMarker", new Tuple<float, float>(1.5f, 1.1f));
     }
 
     public override bool MustShow()
     {
-        return !_isChecked && _logicAccessibility != LogicAccessibility.Inaccessible;
+        return !_isChecked && _logicAccessibility == LogicAccessibility.InLogic;
     }
 }

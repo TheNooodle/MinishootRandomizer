@@ -7,7 +7,7 @@ public class ScarabMarker : AbstractMarker
 {
     private readonly Dictionary<string, Location> _scarabLocations;
 
-    private LogicAccessibility _accessibility = LogicAccessibility.Inaccessible;
+    protected LogicAccessibility _accessibility = LogicAccessibility.Inaccessible;
 
     public Dictionary<string, Location> ScarabLocations => _scarabLocations;
 
@@ -54,11 +54,11 @@ public class ScarabMarker : AbstractMarker
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo(_accessibility == LogicAccessibility.OutOfLogic ? "ScarabMarkerSimple" : "ScarabMarker", new Tuple<float, float>(1.5f, 1.1f));
+        return new MarkerSpriteInfo("ScarabMarker", new Tuple<float, float>(1.5f, 1.1f));
     }
 
     public override bool MustShow()
     {
-        return _accessibility != LogicAccessibility.Inaccessible;
+        return _accessibility == LogicAccessibility.InLogic;
     }
 }

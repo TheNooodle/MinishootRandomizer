@@ -7,8 +7,8 @@ public class SpiritMarker : AbstractMarker
     private readonly Location _location;
     private readonly string _spiritIdentifier;
 
-    private bool _isChecked = false;
-    private LogicAccessibility _logicAccessibility = LogicAccessibility.Inaccessible;
+    protected bool _isChecked = false;
+    protected LogicAccessibility _logicAccessibility = LogicAccessibility.Inaccessible;
 
     public Location Location => _location;
     public string SpiritIdentifier => _spiritIdentifier;
@@ -39,11 +39,11 @@ public class SpiritMarker : AbstractMarker
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo(_logicAccessibility == LogicAccessibility.OutOfLogic ? "SpiritMarkerSimple" : "SpiritMarker", new Tuple<float, float>(1.5f, 1.1f));
+        return new MarkerSpriteInfo("SpiritMarker", new Tuple<float, float>(1.5f, 1.1f));
     }
 
     public override bool MustShow()
     {
-        return !_isChecked && _logicAccessibility != LogicAccessibility.Inaccessible;
+        return !_isChecked && _logicAccessibility == LogicAccessibility.InLogic;
     }
 }

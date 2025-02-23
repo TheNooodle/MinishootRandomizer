@@ -6,7 +6,7 @@ namespace MinishootRandomizer;
 public class LocationMarker : AbstractMarker
 {
     private List<Location> _locations = new List<Location>();
-    private LogicAccessibility _accessibility = LogicAccessibility.Inaccessible;
+    protected LogicAccessibility _accessibility = LogicAccessibility.Inaccessible;
 
     public LocationMarker(List<Location> locations)
     {
@@ -45,12 +45,12 @@ public class LocationMarker : AbstractMarker
 
     public override bool MustShow()
     {
-        return _accessibility != LogicAccessibility.Inaccessible;
+        return _accessibility == LogicAccessibility.InLogic;
     }
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo(_accessibility == LogicAccessibility.OutOfLogic ? "LocationMarkerSimple" : "LocationMarker", new Tuple<float, float>(1.0f, 1.0f));
+        return new MarkerSpriteInfo("LocationMarker", new Tuple<float, float>(1.0f, 1.0f));
     }
 
     public override int GetSortIndex()

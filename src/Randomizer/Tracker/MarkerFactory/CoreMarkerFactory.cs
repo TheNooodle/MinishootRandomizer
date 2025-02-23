@@ -95,7 +95,9 @@ public class CoreMarkerFactory : IMarkerFactory
             if (locations.Count > 0)
             {
                 LocationMarker locationMarker = new LocationMarker(locations);
+                OolLocationMarker oolLocationMarker = new OolLocationMarker(locations);
                 markerComponent.AddMarker(locationMarker);
+                markerComponent.AddMarker(oolLocationMarker);
             }
 
             if (npcMarkerData != null)
@@ -108,7 +110,9 @@ public class CoreMarkerFactory : IMarkerFactory
                 else
                 {
                     NpcMarker npcMarker = new NpcMarker(npcLocation, npcMarkerData.NpcIdentifier);
+                    OolNpcMarker oolNpcMarker = new OolNpcMarker(npcLocation, npcMarkerData.NpcIdentifier);
                     markerComponent.AddMarker(npcMarker);
+                    markerComponent.AddMarker(oolNpcMarker);
                 }
             }
 
@@ -129,7 +133,9 @@ public class CoreMarkerFactory : IMarkerFactory
                 }
 
                 ScarabMarker scarabMarker = new ScarabMarker(scarabLocations);
+                OolScarabMarker oolScarabMarker = new OolScarabMarker(scarabLocations);
                 markerComponent.AddMarker(scarabMarker);
+                markerComponent.AddMarker(oolScarabMarker);
             }
 
             if (spiritMarkerData != null)
@@ -142,7 +148,9 @@ public class CoreMarkerFactory : IMarkerFactory
                 else
                 {
                     SpiritMarker spiritMarker = new SpiritMarker(spiritLocation, spiritMarkerData.SpiritIdentifier);
+                    OolSpiritMarker oolSpiritMarker = new OolSpiritMarker(spiritLocation, spiritMarkerData.SpiritIdentifier);
                     markerComponent.AddMarker(spiritMarker);
+                    markerComponent.AddMarker(oolSpiritMarker);
                 }
             }
 
@@ -156,7 +164,9 @@ public class CoreMarkerFactory : IMarkerFactory
                 else
                 {
                     ObjectiveMarker objectiveMarker = new ObjectiveMarker(objectiveLocation, objectiveMarkerData.ObjectiveGoal);
+                    OolObjectiveMarker oolObjectiveMarker = new OolObjectiveMarker(objectiveLocation, objectiveMarkerData.ObjectiveGoal);
                     markerComponent.AddMarker(objectiveMarker);
+                    markerComponent.AddMarker(oolObjectiveMarker);
                 }
             }
 
