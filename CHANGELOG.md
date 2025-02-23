@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Setting the goal to "Dungeon 5" will show the 4 dungeon rewards when accessible, as well as the boss of dungeon 5.
     - Setting the goal to "Snow" will show the objective to beat the Unchosen when accessible.
     - Setting the goal to "Both" will do all of the above.
+- The map will now use smaller, more discrete markers to reveal locations or goals that are accessible out-of-logic
+    - This mainly concerns key logic and cannon levels, as well as difficulty settings being disabled.
+
+### Changed
+
+- Changed custom markers on the map for scarab and spirits (when they are not shuffled) with better icons.
 
 ### Fixed
 
