@@ -23,4 +23,9 @@ public class OolLocationMarker : LocationMarker
     {
         return 10;
     }
+
+    public override float GetAnimationAmplitude()
+    {
+        return AbstractMarker.OUT_OF_LOGIC_ANIMATION_AMPLITUDE;
+    }
 }

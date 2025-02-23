@@ -23,4 +23,9 @@ public class OolScarabMarker : ScarabMarker
     {
         return _accessibility == LogicAccessibility.OutOfLogic;
     }
+
+    public override float GetAnimationAmplitude()
+    {
+        return AbstractMarker.OUT_OF_LOGIC_ANIMATION_AMPLITUDE;
+    }
 }

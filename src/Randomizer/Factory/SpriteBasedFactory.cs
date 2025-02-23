@@ -23,6 +23,9 @@ public class SpriteBasedFactory : IGameObjectFactory
     public GameObject CreateGameObjectForItem(Item item)
     {
         GameObject gameObject = _innerFactory.CreateGameObjectForItem(item);
+        FloatyAnimationComponent animationComponent = gameObject.AddComponent<FloatyAnimationComponent>();
+        animationComponent.SetSpeed(2.0f);
+        animationComponent.SetAmplitude(0.2f);
         SpriteData itemSpriteData;
         try
         {

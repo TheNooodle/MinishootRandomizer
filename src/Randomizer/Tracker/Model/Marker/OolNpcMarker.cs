@@ -22,4 +22,9 @@ public class OolNpcMarker : NpcMarker
     {
         return 11;
     }
+
+    public override float GetAnimationAmplitude()
+    {
+        return AbstractMarker.OUT_OF_LOGIC_ANIMATION_AMPLITUDE;
+    }
 }

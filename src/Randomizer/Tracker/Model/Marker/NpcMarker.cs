@@ -46,4 +46,9 @@ public class NpcMarker : AbstractMarker
     {
         return 1;
     }
+
+    public override float GetAnimationAmplitude()
+    {
+        return AbstractMarker.IN_LOGIC_ANIMATION_AMPLITUDE;
+    }
 }

@@ -22,4 +22,9 @@ public class OolSpiritMarker : SpiritMarker
     {
         return !_isChecked && _logicAccessibility == LogicAccessibility.OutOfLogic;
     }
+
+    public override float GetAnimationAmplitude()
+    {
+        return AbstractMarker.OUT_OF_LOGIC_ANIMATION_AMPLITUDE;
+    }
 }

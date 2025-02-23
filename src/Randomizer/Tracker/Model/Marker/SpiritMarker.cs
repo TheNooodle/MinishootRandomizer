@@ -46,4 +46,9 @@ public class SpiritMarker : AbstractMarker
     {
         return !_isChecked && _logicAccessibility == LogicAccessibility.InLogic;
     }
+    
+    public override float GetAnimationAmplitude()
+    {
+        return AbstractMarker.IN_LOGIC_ANIMATION_AMPLITUDE;
+    }
 }

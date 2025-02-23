@@ -89,6 +89,8 @@ public class CoreMarkerFactory : IMarkerFactory
             }
 
             GameObject spriteObject = markerObject.transform.Find("Image").gameObject;
+            FloatyAnimationComponent animationComponent = markerObject.AddComponent<FloatyAnimationComponent>();
+            animationComponent.SetSpeed(3.0f);
             RandomizerTrackerMarkerComponent markerComponent = markerObject.AddComponent<RandomizerTrackerMarkerComponent>();
             markerComponent.SetSpriteObject(spriteObject);
 

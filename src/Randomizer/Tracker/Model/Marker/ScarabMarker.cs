@@ -61,4 +61,9 @@ public class ScarabMarker : AbstractMarker
     {
         return _accessibility == LogicAccessibility.InLogic;
     }
+
+    public override float GetAnimationAmplitude()
+    {
+        return AbstractMarker.IN_LOGIC_ANIMATION_AMPLITUDE;
+    }
 }

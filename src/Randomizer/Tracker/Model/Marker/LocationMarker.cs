@@ -57,4 +57,9 @@ public class LocationMarker : AbstractMarker
     {
         return 0;
     }
+
+    public override float GetAnimationAmplitude()
+    {
+        return AbstractMarker.IN_LOGIC_ANIMATION_AMPLITUDE;
+    }
 }
