@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace MinishootRandomizer;
@@ -9,29 +10,44 @@ public class LocalLogicStateProvider : ILogicStateProvider
     private readonly ITransitionRepository _transitionRepository;
     private readonly IItemRepository _itemRepository;
     private readonly ISettingsProvider _settingsProvider;
+    private readonly ICachePool<LogicState> _cachePool;
     private readonly ILogger _logger = new NullLogger();
 
-    private LogicState _logicState = null;
-    private List<Transition> _traversedTransitions = new List<Transition>();
-
-    public LocalLogicStateProvider(ILogicParser logicParser, IRegionRepository regionRepository, ITransitionRepository transitionRepository, IItemRepository itemRepository, ISettingsProvider settingsProvider, ILogger logger = null)
+    private Dictionary<Type, ISetting> _outOfLogicSettings = new Dictionary<Type, ISetting>()
     {
+        {typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(false)},
+        {typeof(BoostlessSpringboards), new BoostlessSpringboards(true)},
+        {typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(true)},
+        {typeof(BoostlessTorchRaces), new BoostlessTorchRaces(true)},
+    };
+
+    public LocalLogicStateProvider(
+        ILogicParser logicParser,
+        IRegionRepository regionRepository,
+        ITransitionRepository transitionRepository,
+        IItemRepository itemRepository,
+        ISettingsProvider settingsProvider,
+        ICachePool<LogicState> cachePool,
+        ILogger logger = null
+    ) {
         _logicParser = logicParser;
         _regionRepository = regionRepository;
         _transitionRepository = transitionRepository;
         _itemRepository = itemRepository;
         _settingsProvider = settingsProvider;
+        _cachePool = cachePool;
         _logger = logger ?? new NullLogger();
     }
 
-    public LogicState GetLogicState()
+    public LogicState GetLogicState(LogicTolerance tolerance = LogicTolerance.Strict)
     {
-        LogicState logicState = _logicState ?? new LogicState();
-        ItemsPass(logicState);
-        RegionsPass(logicState);
-        _logicState = logicState;
+        return _cachePool.Get(tolerance.Str(), () => {
+            LogicState logicState = new LogicState();
+            ItemsPass(logicState);
+            RegionsPass(logicState, tolerance);
 
-        return logicState;
+            return new CacheItem<LogicState>(logicState);
+        });
     }
 
     private void ItemsPass(LogicState logicState)
@@ -47,14 +63,34 @@ public class LocalLogicStateProvider : ILogicStateProvider
         }
     }
 
-    private void RegionsPass(LogicState logicState)
+    private void RegionsPass(LogicState logicState, LogicTolerance tolerance)
     {
         // We start from the starting region
         Region startRegion = _regionRepository.Get(Region.StartingGrottoLake);
         logicState.AddReachableRegion(startRegion);
 
-        List<Transition> traversedTransitions = _traversedTransitions.Count > 0 ? _traversedTransitions : new List<Transition>();
-        List<ISetting> settings = _settingsProvider.GetSettings();
+        List<Transition> traversedTransitions = new List<Transition>();
+        List<ISetting> settings = new List<ISetting>();
+        List<ISetting> providedSettings = _settingsProvider.GetSettings();
+        foreach (ISetting setting in providedSettings)
+        {
+            if (tolerance == LogicTolerance.Strict)
+            {
+                settings.Add(setting);
+            }
+            else
+            {
+                // We override the settings with the out-of-logic settings
+                if (_outOfLogicSettings.ContainsKey(setting.GetType()))
+                {
+                    settings.Add(_outOfLogicSettings[setting.GetType()]);
+                }
+                else
+                {
+                    settings.Add(setting);
+                }
+            }
+        }
         int previousReachableCount;
         int maxIterations = 1000; // Prevent infinite loops
 
@@ -96,13 +132,38 @@ public class LocalLogicStateProvider : ILogicStateProvider
         {
             _logger.LogError("Error: Infinite loop detected in region reachability calculation");
         }
+    }
 
-        _traversedTransitions = traversedTransitions;
+    public void OnItemCollected(Item item)
+    {
+        _cachePool.Clear();
+    }
+
+    public void OnNpcFreed()
+    {
+        _cachePool.Clear();
+    }
+
+    public void OnEnteringGameLocation(string locationName)
+    {
+        _cachePool.Clear();
+    }
+
+    public void OnPlayerCurrencyChanged(Currency currency)
+    {
+        if (currency == Currency.Scarab)
+        {
+            _cachePool.Clear();
+        }
+    }
+
+    public void OnGoalCompleted(Goals goal)
+    {
+        _cachePool.Clear();
     }
 
     public void OnExitingGame()
     {
-        _logicState = null;
-        _traversedTransitions.Clear();
+        _cachePool.Clear();
     }
 }

@@ -11,6 +11,7 @@ public class MarkerData
     private readonly NpcMarkerData _npcMarkerData = null;
     private readonly ScarabMarkerData _scarabMarkerData = null;
     private readonly SpiritMarkerData _spiritMarkerData = null;
+    private readonly ObjectiveMarkerData _objectiveMarkerData = null;
 
     public List<string> LocationNames => _locationNames;
     public List<Tuple<float, float>> Coordinates => _coordinates;
@@ -18,6 +19,7 @@ public class MarkerData
     public NpcMarkerData NpcMarkerData => _npcMarkerData;
     public ScarabMarkerData ScarabMarkerData => _scarabMarkerData;
     public SpiritMarkerData SpiritMarkerData => _spiritMarkerData;
+    public ObjectiveMarkerData ObjectiveMarkerData => _objectiveMarkerData;
 
     public MarkerData(
         List<string> locationNames,
@@ -25,7 +27,8 @@ public class MarkerData
         string markerName = null,
         NpcMarkerData npcMarkerData = null,
         ScarabMarkerData scarabMarkerData = null,
-        SpiritMarkerData spiritMarkerData = null
+        SpiritMarkerData spiritMarkerData = null,
+        ObjectiveMarkerData objectiveMarkerData = null
     ) {
         _locationNames = locationNames;
         _coordinates = coordinates;
@@ -33,6 +36,7 @@ public class MarkerData
         _npcMarkerData = npcMarkerData;
         _scarabMarkerData = scarabMarkerData;
         _spiritMarkerData = spiritMarkerData;
+        _objectiveMarkerData = objectiveMarkerData;
     }
 
     public override string ToString()

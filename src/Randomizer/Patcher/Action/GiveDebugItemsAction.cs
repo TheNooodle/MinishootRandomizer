@@ -47,6 +47,15 @@ public class GiveDebugItemsAction : IPatchAction
 
         Player.Instance.UpdateStats(updateCurrentHP: true);
 
+        PlayerState.DungeonKeys[1] = 4;
+        PlayerState.DungeonKeys[2] = 4;
+        PlayerState.DungeonKeys[3] = 5;
+        PlayerState.DungeonBossKeys[1] = 1;
+        PlayerState.DungeonBossKeys[2] = 1;
+        PlayerState.DungeonBossKeys[3] = 1;
+        ReflectionHelper.InvokeStaticAction(typeof(PlayerState), "KeysChanged");
+        SaveManager.SaveSlot();
+
         WorldState.Set("DebugItems", true);
     }
 

@@ -13,6 +13,8 @@ public class SmallKeyItem : Item
     {
         PlayerState.DungeonKeys[DungeonId] += 1;
         ReflectionHelper.InvokeStaticAction(typeof(PlayerState), "KeysChanged");
+        int obtainedQuantity = GetObtainedQuantity();
+        WorldState.Set($"ObtainedD{DungeonId}SmallKey{obtainedQuantity}", true);
         SaveManager.SaveSlot();
     }
 
@@ -23,6 +25,19 @@ public class SmallKeyItem : Item
 
     public override int GetOwnedQuantity()
     {
-        return PlayerState.DungeonKeys[DungeonId];
+        return GetObtainedQuantity();
+    }
+
+    private int GetObtainedQuantity()
+    {
+        int count = 0;
+        string key = $"ObtainedD{DungeonId}SmallKey{count}";
+        while (WorldState.Get(key))
+        {
+            count++;
+            key = $"ObtainedD{DungeonId}SmallKey{count}";
+        }
+
+        return count;
     }
 }

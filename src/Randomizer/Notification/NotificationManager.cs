@@ -19,6 +19,11 @@ public class NotificationManager
 
     public void OnItemCollected(Item item)
     {
+        if (item is DungeonRewardItem)
+        {
+            return;
+        }
+
         NotificationHUDViewComponent notificationComponent = GetNotificationComponent();
 
         _messageDispatcher.Dispatch(

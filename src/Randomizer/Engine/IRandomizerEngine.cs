@@ -12,6 +12,7 @@ namespace MinishootRandomizer
         public Item CheckLocation(Location location);
         public bool IsLocationChecked(Location location);
         public void CompleteGoal(Goals goal);
+        public bool IsGoalCompleted(Goals goal);
         public bool IsRandomized();
         public void SetContext(RandomizerContext context);
         public void Initialize();

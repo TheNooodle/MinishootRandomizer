@@ -27,7 +27,7 @@ public class GameEventDispatcher
     public delegate void PlayerStatsChangedHandler();
     public event PlayerStatsChangedHandler PlayerStatsChanged;
 
-    // PlayerCurrencyChanged means the player's currency has changed (e.g. coins, gems, etc.).
+    // PlayerCurrencyChanged means the player's currency has changed (e.g. super crystals, scarabs, lore tablets).
     public delegate void PlayerCurrencyChangedHandler(Currency currency);
     public event PlayerCurrencyChangedHandler PlayerCurrencyChanged;
 

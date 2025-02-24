@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 namespace MinishootRandomizer;
 
+[RequireComponent(typeof(FloatyAnimationComponent))]
 public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecker
 {
     private IRandomizerEngine _randomizerEngine;
@@ -13,12 +14,15 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecke
     private List<AbstractMarker> _markers = new List<AbstractMarker>();
     private AbstractMarker _currentMarker = null;
     private GameObject _spriteObject = null;
+    private FloatyAnimationComponent _floatyAnimationComponent = null;
 
     void Awake()
     {
         _randomizerEngine = Plugin.ServiceContainer.Get<IRandomizerEngine>();
         _logicChecker = Plugin.ServiceContainer.Get<ILogicChecker>();
         _spriteProvider = Plugin.ServiceContainer.Get<ISpriteProvider>();
+
+        _floatyAnimationComponent = gameObject.GetComponent<FloatyAnimationComponent>();
     }
 
     public void AddMarker(AbstractMarker marker)
@@ -75,6 +79,8 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecke
 
         image.sprite = newSpriteData.Sprite;
         image.rectTransform.SetScale(new Vector2(spriteInfo.Scale.Item1, spriteInfo.Scale.Item2));
+
+        _floatyAnimationComponent.SetAmplitude(newMarker.GetAnimationAmplitude());
     }
 
     private void HideMarker()

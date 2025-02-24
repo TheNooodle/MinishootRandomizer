@@ -63,11 +63,17 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
 
-        _serviceContainer.AddService(typeof(ILocationRepository), new CsvLocationRepository(
+        _serviceContainer.AddService(typeof(CsvLocationRepository), new CsvLocationRepository(
             "MinishootRandomizer.Resources.locations.csv",
             (ILocationFactory)_serviceContainer.GetService(typeof(ILocationFactory)),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
+
+        _serviceContainer.AddService(typeof(InMemoryLocationRepository), new InMemoryLocationRepository(
+            (CsvLocationRepository)_serviceContainer.GetService(typeof(CsvLocationRepository))
+        ));
+
+        _serviceContainer.AddService(typeof(ILocationRepository), _serviceContainer.GetService(typeof(InMemoryLocationRepository)));
 
         _serviceContainer.AddService(typeof(IItemFactory), new DictionaryItemFactory(
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
@@ -83,9 +89,15 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (IZoneFactory)_serviceContainer.GetService(typeof(IZoneFactory))
         ));
 
-        _serviceContainer.AddService(typeof(IRegionRepository), new CsvRegionRepository(
+        _serviceContainer.AddService(typeof(CsvRegionRepository), new CsvRegionRepository(
             "MinishootRandomizer.Resources.regions.csv"
         ));
+
+        _serviceContainer.AddService(typeof(InMemoryRegionRepository), new InMemoryRegionRepository(
+            (CsvRegionRepository)_serviceContainer.GetService(typeof(CsvRegionRepository))
+        ));
+
+        _serviceContainer.AddService(typeof(IRegionRepository), _serviceContainer.GetService(typeof(InMemoryRegionRepository)));
 
         _serviceContainer.AddService(typeof(ITransitionRepository), new CsvTransitionRepository(
             "MinishootRandomizer.Resources.transitions.csv",
@@ -171,7 +183,11 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (IRandomizerContextProvider)_serviceContainer.GetService(typeof(IRandomizerContextProvider))
         ));
 
-        _serviceContainer.AddService(typeof(IRandomizerEngine), _serviceContainer.GetService(typeof(ContextualRandomizerEngine)));
+        _serviceContainer.AddService(typeof(EventRandomizerEngine), new EventRandomizerEngine(
+            (ContextualRandomizerEngine)_serviceContainer.GetService(typeof(ContextualRandomizerEngine))
+        ));
+
+        _serviceContainer.AddService(typeof(IRandomizerEngine), _serviceContainer.GetService(typeof(EventRandomizerEngine)));
         
         _serviceContainer.AddService(typeof(IItemPresentationProvider), new CoreItemPresentationProvider(
             (ISpriteProvider)_serviceContainer.GetService(typeof(ISpriteProvider)),
@@ -208,10 +224,21 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (ITransitionRepository)_serviceContainer.GetService(typeof(ITransitionRepository)),
             (IItemRepository)_serviceContainer.GetService(typeof(IItemRepository)),
             (ISettingsProvider)_serviceContainer.GetService(typeof(ISettingsProvider)),
+            new StandardCachePool<LogicState>(new DictionaryCacheStorage<LogicState>(), (ILogger)_serviceContainer.GetService(typeof(ILogger))),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
             += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnExitingGame;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnItemCollected;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).NpcFreed
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnNpcFreed;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).PlayerCurrencyChanged
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnPlayerCurrencyChanged;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnEnteringGameLocation;
+        ((EventRandomizerEngine)_serviceContainer.GetService(typeof(EventRandomizerEngine))).GoalCompleted
+            += ((LocalLogicStateProvider)_serviceContainer.GetService(typeof(LocalLogicStateProvider))).OnGoalCompleted;
         
         _serviceContainer.AddService(typeof(ILogicStateProvider), _serviceContainer.GetService(typeof(LocalLogicStateProvider)));
 
@@ -236,6 +263,10 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnNpcFreed;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).PlayerCurrencyChanged
             += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnPlayerCurrencyChanged;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnEnteringGameLocation;
+        ((EventRandomizerEngine)_serviceContainer.GetService(typeof(EventRandomizerEngine))).GoalCompleted
+            += ((CachedLogicChecker)_serviceContainer.GetService(typeof(CachedLogicChecker))).OnGoalCompleted;
 
         _serviceContainer.AddService(typeof(ILogicChecker), _serviceContainer.GetService(typeof(CachedLogicChecker)));
 
@@ -434,6 +465,18 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             += ((QualityOfLifePatcher)_serviceContainer.GetService(typeof(QualityOfLifePatcher))).OnEnteringGameLocation;
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
             += ((QualityOfLifePatcher)_serviceContainer.GetService(typeof(QualityOfLifePatcher))).OnExitingGame;
+
+        _serviceContainer.AddService(typeof(DungeonRewardPatcher), new DungeonRewardPatcher(
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
+            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
+            (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository)),
+            (IItemRepository)_serviceContainer.GetService(typeof(IItemRepository)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((DungeonRewardPatcher)_serviceContainer.GetService(typeof(DungeonRewardPatcher))).OnEnteringGameLocation;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((DungeonRewardPatcher)_serviceContainer.GetService(typeof(DungeonRewardPatcher))).OnExitingGame;
 
         _isBuilt = true;
     }

@@ -11,13 +11,11 @@ public class DungeonRewardItem : Item
 
     public override void Collect()
     {
-        // @TODO: Implement this method
-        throw new System.NotImplementedException();
+        // no-op
     }
 
     public override int GetOwnedQuantity()
     {
-        // @TODO: Implement this method
-        return 0;
+        return WorldState.Get($"Dungeon{DungeonId}CrystalBoss") ? 1 : 0;
     }
 }

@@ -62,6 +62,11 @@ public class ContextualRandomizerEngine : IRandomizerEngine
         GetEngine().CompleteGoal(goal);
     }
 
+    public bool IsGoalCompleted(Goals goal)
+    {
+        return GetEngine().IsGoalCompleted(goal);
+    }
+
     public List<Location> GetRandomizedLocations()
     {
         return GetEngine().GetRandomizedLocations();

@@ -5,6 +5,7 @@ namespace MinishootRandomizer;
 public class LocationAccessibilitySet
 {
     private List<Location> _inLogicLocations = new();
+    private List<Location> _outOfLogicLocations = new();
     private List<Location> _inaccessibleLocations = new();
 
     public void AddInLogicLocation(Location location)
@@ -41,5 +42,23 @@ public class LocationAccessibilitySet
     public IReadOnlyCollection<Location> GetInaccessibleLocations()
     {
         return _inaccessibleLocations.AsReadOnly();
+    }
+
+    public void AddOutOfLogicLocation(Location location)
+    {
+        if (!_outOfLogicLocations.Contains(location))
+        {
+            _outOfLogicLocations.Add(location);
+        }
+    }
+
+    public bool IsOutOfLogic(Location location)
+    {
+        return _outOfLogicLocations.Contains(location);
+    }
+
+    public IReadOnlyCollection<Location> GetOutOfLogicLocations()
+    {
+        return _outOfLogicLocations.AsReadOnly();
     }
 }

@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.2] - 2025-02-24
+
+### Added
+
+- The randomizer will now properly checks dungeon reward locations when collecting the "skulls" at the 4 dungeons.
+- The map will now show objective markers according to the player's goal.
+    - Setting the goal to "Dungeon 5" will show the 4 dungeon rewards when accessible, as well as the boss of dungeon 5.
+    - Setting the goal to "Snow" will show the objective to beat the Unchosen when accessible.
+    - Setting the goal to "Both" will do all of the above.
+- The map will now use smaller, more discrete markers to reveal locations or goals that are accessible out-of-logic
+    - Right now, out-of-logic checks are considered by your seed settings.
+    - In a future update, it will also check key logic for dungeons.
+- Restored floating animations for map markers.
+- Restored floating animations for item pickups.
+
+### Changed
+
+- Changed custom markers on the map for scarab and spirits (when they are not shuffled) with better icons.
+
+### Fixed
+
+- Fixed cache stampede issue when receiving a remote item while being on the map screen.
+- Tracker logic now correctly uses the total number of small key obtained, instead of using the current key count.
+
 ## [0.3.1] - 2025-02-01
 
 ### Added

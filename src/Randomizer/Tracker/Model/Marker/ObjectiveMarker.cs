@@ -2,51 +2,47 @@ using System;
 
 namespace MinishootRandomizer;
 
-public class SpiritMarker : AbstractMarker
+public class ObjectiveMarker : AbstractMarker
 {
-    private readonly Location _location;
-    private readonly string _spiritIdentifier;
+    private Location _location;
+    private Goals _goal;
 
     protected bool _isChecked = false;
     protected LogicAccessibility _logicAccessibility = LogicAccessibility.Inaccessible;
 
-    public Location Location => _location;
-    public string SpiritIdentifier => _spiritIdentifier;
-
-    public SpiritMarker(Location location, string spiritIdentifier)
+    public ObjectiveMarker(Location location, Goals goal)
     {
         _location = location;
-        _spiritIdentifier = spiritIdentifier;
+        _goal = goal;
     }
 
     public override void ComputeVisibility(IRandomizerEngine engine, ILogicChecker logicChecker)
     {
-        SpiritSanity spiritSanity = engine.GetSetting<SpiritSanity>();
-        if (spiritSanity.Enabled)
+        CompletionGoals completionGoals = engine.GetSetting<CompletionGoals>();
+        if (engine.IsGoalCompleted(_goal) || (completionGoals.Goal != Goals.Both && completionGoals.Goal != _goal))
         {
-            _isChecked = true;
             return;
         }
 
-        _isChecked = WorldState.Get(_spiritIdentifier);
         _logicAccessibility = logicChecker.CheckLocationLogic(_location);
+        _isChecked = engine.IsLocationChecked(_location);
     }
 
     public override int GetSortIndex()
     {
-        return 3;
+        return -1;
     }
 
     public override MarkerSpriteInfo GetSpriteInfo()
     {
-        return new MarkerSpriteInfo("SpiritMarker", new Tuple<float, float>(1.5f, 1.1f));
+        return new MarkerSpriteInfo("SkullMarker", new Tuple<float, float>(1.5f, 1.1f));
     }
 
     public override bool MustShow()
     {
         return !_isChecked && _logicAccessibility == LogicAccessibility.InLogic;
     }
-    
+
     public override float GetAnimationAmplitude()
     {
         return AbstractMarker.IN_LOGIC_ANIMATION_AMPLITUDE;

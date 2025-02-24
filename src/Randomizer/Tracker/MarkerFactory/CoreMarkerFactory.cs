@@ -67,6 +67,7 @@ public class CoreMarkerFactory : IMarkerFactory
         NpcMarkerData npcMarkerData = markerData.NpcMarkerData;
         ScarabMarkerData scarabMarkerData = markerData.ScarabMarkerData;
         SpiritMarkerData spiritMarkerData = markerData.SpiritMarkerData;
+        ObjectiveMarkerData objectiveMarkerData = markerData.ObjectiveMarkerData;
 
         List<GameObject> markers = new List<GameObject>();
         for (int i = 0; i < markerData.Coordinates.Count; i++)
@@ -88,13 +89,17 @@ public class CoreMarkerFactory : IMarkerFactory
             }
 
             GameObject spriteObject = markerObject.transform.Find("Image").gameObject;
+            FloatyAnimationComponent animationComponent = markerObject.AddComponent<FloatyAnimationComponent>();
+            animationComponent.SetSpeed(3.0f);
             RandomizerTrackerMarkerComponent markerComponent = markerObject.AddComponent<RandomizerTrackerMarkerComponent>();
             markerComponent.SetSpriteObject(spriteObject);
 
             if (locations.Count > 0)
             {
                 LocationMarker locationMarker = new LocationMarker(locations);
+                OolLocationMarker oolLocationMarker = new OolLocationMarker(locations);
                 markerComponent.AddMarker(locationMarker);
+                markerComponent.AddMarker(oolLocationMarker);
             }
 
             if (npcMarkerData != null)
@@ -107,7 +112,9 @@ public class CoreMarkerFactory : IMarkerFactory
                 else
                 {
                     NpcMarker npcMarker = new NpcMarker(npcLocation, npcMarkerData.NpcIdentifier);
+                    OolNpcMarker oolNpcMarker = new OolNpcMarker(npcLocation, npcMarkerData.NpcIdentifier);
                     markerComponent.AddMarker(npcMarker);
+                    markerComponent.AddMarker(oolNpcMarker);
                 }
             }
 
@@ -128,7 +135,9 @@ public class CoreMarkerFactory : IMarkerFactory
                 }
 
                 ScarabMarker scarabMarker = new ScarabMarker(scarabLocations);
+                OolScarabMarker oolScarabMarker = new OolScarabMarker(scarabLocations);
                 markerComponent.AddMarker(scarabMarker);
+                markerComponent.AddMarker(oolScarabMarker);
             }
 
             if (spiritMarkerData != null)
@@ -141,7 +150,25 @@ public class CoreMarkerFactory : IMarkerFactory
                 else
                 {
                     SpiritMarker spiritMarker = new SpiritMarker(spiritLocation, spiritMarkerData.SpiritIdentifier);
+                    OolSpiritMarker oolSpiritMarker = new OolSpiritMarker(spiritLocation, spiritMarkerData.SpiritIdentifier);
                     markerComponent.AddMarker(spiritMarker);
+                    markerComponent.AddMarker(oolSpiritMarker);
+                }
+            }
+
+            if (objectiveMarkerData != null)
+            {
+                Location objectiveLocation = _locationRepository.Get(objectiveMarkerData.ObjectiveLocationIdentifier);
+                if (objectiveLocation == null)
+                {
+                    _logger.LogError($"Location {objectiveMarkerData.ObjectiveLocationIdentifier} not found while creating marker");
+                }
+                else
+                {
+                    ObjectiveMarker objectiveMarker = new ObjectiveMarker(objectiveLocation, objectiveMarkerData.ObjectiveGoal);
+                    OolObjectiveMarker oolObjectiveMarker = new OolObjectiveMarker(objectiveLocation, objectiveMarkerData.ObjectiveGoal);
+                    markerComponent.AddMarker(objectiveMarker);
+                    markerComponent.AddMarker(oolObjectiveMarker);
                 }
             }
 
