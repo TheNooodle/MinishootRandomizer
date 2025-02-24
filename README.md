@@ -117,6 +117,7 @@ It uses [Archipelago](https://archipelago.gg) for seed generation and multiworld
 * The ingame map shows the locations you can check with your current inventory, just like in the vanilla game with the Ancient Astrolabe.
     * Indoor locations are indicated with possible entrances being marked, like the vanilla game.
     * Scarabs and spirits are marked with a special marker when they are not shuffled to help new players route locations such as the spirit tower or the scarab collector items.
+    * Markers without a golden outline are out-of-logic : you can access them, but the randomizer does not expect you to do so at this moment, and the next logical step might be elsewhere.
 * The Primordial Crystal can break rocks and walls. It **cannot** light torches or break cracks in trees (such as shop entrances).
 * You can use your dash to cross most gaps with a springboard (by dashing in mid-air, from the springboard, or both at the same time).
 * Some items might only appear when destroying certains objects, such as pots, rocks or bushes.
