@@ -13,6 +13,7 @@ public class BossKeyItem : Item
     {
         PlayerState.DungeonBossKeys[DungeonId] += 1;
         ReflectionHelper.InvokeStaticAction(typeof(PlayerState), "KeysChanged");
+        WorldState.Set($"ObtainedD{DungeonId}BossKey", true);
         SaveManager.SaveSlot();
     }
 
@@ -23,6 +24,6 @@ public class BossKeyItem : Item
 
     public override int GetOwnedQuantity()
     {
-        return PlayerState.DungeonBossKeys[DungeonId];
+        return WorldState.Get($"ObtainedD{DungeonId}BossKey") ? 1 : 0;
     }
 }

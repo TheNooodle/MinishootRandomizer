@@ -15,9 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Setting the goal to "Snow" will show the objective to beat the Unchosen when accessible.
     - Setting the goal to "Both" will do all of the above.
 - The map will now use smaller, more discrete markers to reveal locations or goals that are accessible out-of-logic
-    - This mainly concerns key logic and cannon levels, as well as difficulty settings being disabled.
-- Restored animations for map markers.
-- Restored animations for item pickups.
+    - Right now, out-of-logic checks are considered by your seed settings.
+    - In a future update, it will also check key logic for dungeons.
+- Restored floating animations for map markers.
+- Restored floating animations for item pickups.
 
 ### Changed
 
@@ -26,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed cache stampede issue when receiving a remote item while being on the map screen.
+- Tracker logic now correctly uses the total number of small key obtained, instead of using the current key count.
 
 ## [0.3.1] - 2025-02-01
 

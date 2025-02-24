@@ -13,14 +13,6 @@ public class LocalLogicStateProvider : ILogicStateProvider
     private readonly ICachePool<LogicState> _cachePool;
     private readonly ILogger _logger = new NullLogger();
 
-    private Dictionary<string, int> _outOfLogicItemCounts = new Dictionary<string, int>()
-    {
-        {Item.ProgressiveCannon, 5},
-        // We omit the D1 small keys because it's a special case
-        {Item.D2SmallKey, 4},
-        {Item.D3SmallKey, 5},
-    };
-
     private Dictionary<Type, ISetting> _outOfLogicSettings = new Dictionary<Type, ISetting>()
     {
         {typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(false)},
@@ -51,55 +43,22 @@ public class LocalLogicStateProvider : ILogicStateProvider
     {
         return _cachePool.Get(tolerance.Str(), () => {
             LogicState logicState = new LogicState();
-            ItemsPass(logicState, tolerance);
+            ItemsPass(logicState);
             RegionsPass(logicState, tolerance);
 
             return new CacheItem<LogicState>(logicState);
         });
     }
 
-    private void ItemsPass(LogicState logicState, LogicTolerance tolerance)
+    private void ItemsPass(LogicState logicState)
     {
         List<Item> items = _itemRepository.GetAll();
-        Item dashItem = _itemRepository.Get(Item.Dash);
         foreach (Item item in items)
         {
             int count = item.GetOwnedQuantity();
             if (count > 0)
             {
-                if (tolerance == LogicTolerance.Strict)
-                {
-                    logicState.SetItemCount(item, count);
-                }
-                else
-                {
-                    // Edge-case : when the player have the Dash, we must also consider the 2 consecutive doors at the south of D1.
-                    // If the player only has 1 key, they can't open both doors. If they have 2 keys, they can open both.
-                    // These doors require 4 key in logic, so we must set the key count to 4 if the player has the Dash.
-                    if (item.Identifier == Item.D1SmallKey && count > 0)
-                    {
-                        if (dashItem.GetOwnedQuantity() < 1)
-                        {
-                            logicState.SetItemCount(item, 4);
-                        }
-                        else
-                        {
-                            logicState.SetItemCount(item, count == 1 ? 1 : 4);
-                        }
-                        continue;
-                    }
-
-                    // If the player have at least one of the item, we pretend they have all of them.
-                    // This is done to consider certain logic rules that require multiple items, such as locked doors.
-                    if (_outOfLogicItemCounts.ContainsKey(item.Identifier) && count > 0)
-                    {
-                        logicState.SetItemCount(item, _outOfLogicItemCounts[item.Identifier]);
-                    }
-                    else
-                    {
-                        logicState.SetItemCount(item, count);
-                    }
-                }
+                logicState.SetItemCount(item, count);
             }
         }
     }
