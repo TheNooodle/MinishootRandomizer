@@ -48,11 +48,17 @@ public class GiveDebugItemsAction : IPatchAction
         Player.Instance.UpdateStats(updateCurrentHP: true);
 
         PlayerState.DungeonKeys[1] = 4;
+        WorldState.Set($"ObtainedD1SmallKey4", true);
         PlayerState.DungeonKeys[2] = 4;
+        WorldState.Set($"ObtainedD2SmallKey4", true);
         PlayerState.DungeonKeys[3] = 5;
+        WorldState.Set($"ObtainedD3SmallKey5", true);
         PlayerState.DungeonBossKeys[1] = 1;
+        WorldState.Set($"ObtainedD1BossKey", true);
         PlayerState.DungeonBossKeys[2] = 1;
+        WorldState.Set($"ObtainedD2BossKey", true);
         PlayerState.DungeonBossKeys[3] = 1;
+        WorldState.Set($"ObtainedD3BossKey", true);
         ReflectionHelper.InvokeStaticAction(typeof(PlayerState), "KeysChanged");
         SaveManager.SaveSlot();
 
