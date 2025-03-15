@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- A new setting called "Add Trap Items" has been added.
+    - When enabled, traps will be added in the item pool as filler items.
+    - As such, a new item called "Primordial Scarab Dialog" has been added, to trigger a dialog with the Primordial Scarab.
+- A new setting called "Trap Items Appearance" has been added.
+    - When set to "Major Items Only", trap items will be disguised as major items.
+    - When set to "Junk Items Only", trap items will be disguised as junk items.
+    - When set to "Anything", trap items can be disguised as any other items.
+    - This setting affects Minishoot' Adventures trap items, as well as Archipelago items.
+- A new setting called "Enable Primordial Crystal Logic" has been added.
+    - cf "Changed"
+- A new setting called "Progressive Dash" has been added.
+    - When enabled, the game will fuse the Dash and the Spirit Dash into two cumulative progressive upgrades.
+    - The first upgrade will always allow you to dash, and the second one will allow you to dash through bullets.
+    - As such, a new item called "Progressive Dash" has been added for this setting.
+- A new setting called "Dashless Gaps" has been added.
+    - When set on "Needs Dash", you will need the dash to cross gaps, regardless of their size.
+    - When set on "Needs Boost", you will be able to logically cross gaps with the boost if the gap is small enough.
+    - When set on "Needs neither", you will be able to cross certains, very tight gaps without any upgrade.
+    - Note that this last value may require you to farm some XP to level up your speed.
+
+### Changed
+
+- The setting "Cannon Level Logical Requirements" has been changed :
+    - It is now called "Ignore Cannon Level Requirements".
+    - Its function has been reversed (meaning that if set to true, fights will only check the first cannon level).
+    - This change has been made to normalize "difficulty settings", i.e. the seed will be harder if set to "true" (this setting was the only outlier, making the seed harder if set to "false").
+- The "Primordial Crystal" is no longer considered in logic to destroy rocks and walls.
+    - A new setting called "Enable Primordial Crystal Logic" has been added and, if set to true, can re-establish the previous logic.
+- In an effort to stabilize seed generation on Archipelago, several changes has been made to the randomizer logic :
+    - Dungeon 1 :
+        - One door leading to "Dungeon 1 - South Item" has been removed. This means that this dungeon now has an extra key.
+        - Removed the usage of the "cannot_dash" rule, meaning that small keys will likely be placed in the first part of the dungeon (when they are not shuffled).
+    - Dungeon 3 :
+        - One door leading to "Dungeon 3 - South corridor" has been removed. This means that this dungeon now has an extra key.
+        - Removed the usage of the "cannot_surf" rule.
+    - Abyss Church
+        - The Unchosen Statue now is opened by default (instead of being opened when the player defeats the boss of Dungeon 5).
+- Removed arbitrary logic rules for the fights against the boss of Dungeon 1 and the Busher boss in Forest (the one guarding the Spirit Tower).
+    - Those fight now only checks for cannon levels.
+- "Dungeon 3 - North arena" now properly checks for the "Boostless Torch Races" setting.
+
 ## [0.3.2] - 2025-02-24
 
 ### Added
