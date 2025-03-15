@@ -478,6 +478,16 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
             += ((DungeonRewardPatcher)_serviceContainer.GetService(typeof(DungeonRewardPatcher))).OnExitingGame;
 
+        _serviceContainer.AddService(typeof(DoorUnlockPatcher), new DoorUnlockPatcher(
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
+            (IObjectFinder)_serviceContainer.GetService(typeof(IObjectFinder)),
+            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).EnteringGameLocation
+            += ((DoorUnlockPatcher)_serviceContainer.GetService(typeof(DoorUnlockPatcher))).OnEnteringGameLocation;
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ExitingGame
+            += ((DoorUnlockPatcher)_serviceContainer.GetService(typeof(DoorUnlockPatcher))).OnExitingGame;
+
         _isBuilt = true;
     }
 
