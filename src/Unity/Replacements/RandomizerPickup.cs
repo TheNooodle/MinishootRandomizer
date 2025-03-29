@@ -51,6 +51,7 @@ public class RandomizerPickup : MonoBehaviour, IActivationChecker
     public event Action EndedCollect;
 
     public Item Item { get; set; }
+    public ItemPresentation ItemPresentation { get; set; }
     public Location Location { get; private set; } = null;
     public bool IsPrefab { get; set; } = true;
     public Npc Owner { get; set; } = null;
@@ -225,7 +226,7 @@ public class RandomizerPickup : MonoBehaviour, IActivationChecker
         //     componentsInChildren[i].GetComponent<Renderer>().sortingLayerName = SortingLayer.op_Implicit(SRSortingLayers.UI);
         // }
 
-        Player.Instance.SetActive(active: false, setFreezeUnfreezeGame: true);
+        // Player.Instance.SetActive(active: false, setFreezeUnfreezeGame: true);
         GetCollectCollider().enabled = false;
         if (Item != null)
         {
@@ -241,7 +242,7 @@ public class RandomizerPickup : MonoBehaviour, IActivationChecker
     {
         CameraManager.ForwardTiltToggled = true;
         FireEndedCollect();
-        Player.Instance.SetActive(active: true, setFreezeUnfreezeGame: true);
+        // Player.Instance.SetActive(active: true, setFreezeUnfreezeGame: true);
         CheckActivation();
 
         // Make minishoot a happy (or sad) little lad.

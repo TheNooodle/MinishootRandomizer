@@ -43,7 +43,9 @@ Power of protection,Progression,Default,1,CavePowerBombLevel0
 Power of spirits,Helpful,Default,1,Temple3PowerAllyLevel0
 Power of time,Helpful,Default,1,Temple2PowerSlowLevel0
 Primordial Crystal,Progression,Default,1,PickupModulePrimordialCrystal
+Primordial Scarab Dialog,Trap,,0,
 Progressive Cannon,Progression,Default,5,
+Progressive Dash,Progression,,0,
 Restoration Enhancer,Helpful,Default,1,
 Scarab,Token,Scarab,18,
 Scarab Collector,Progression,NPC,1,

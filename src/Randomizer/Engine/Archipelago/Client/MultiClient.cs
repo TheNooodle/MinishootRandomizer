@@ -83,6 +83,8 @@ public class MultiClient : IArchipelagoClient
             throw new ArchipelagoLoginException(errorMessage, null);
         }
 
+        CheckVersion();
+
         _logger.LogInfo($"Connected to {_options.Uri} as {_options.SlotName}");
         _loginResult = (LoginSuccessful)result;
         
@@ -94,6 +96,27 @@ public class MultiClient : IArchipelagoClient
         _session.Items.ItemReceived -= OnItemsReceived;
         _session.Items.ItemReceived += OnItemsReceived;
         _dataStorage = _session.DataStorage.GetSlotData();
+    }
+
+    private void CheckVersion()
+    {
+        string versionLabel;
+        try
+        {
+            versionLabel = (string)GetDataStorageValue("version");
+        }
+        catch (ArchipelagoLogicException)
+        {
+            // If the APWorld does not return a version, then the seed was generated with version 0.3.0 or older.
+            versionLabel = "0.3.0";
+        }
+
+        VersionNumber version = new VersionNumber(versionLabel);
+        if (!version.Satisfy(Plugin.ArchipelagoVersionConstraint))
+        {
+            Disconnect();
+            throw new ArchipelagoLoginException($"Archipelago version {versionLabel} does not satisfy the constraint {Plugin.ArchipelagoVersionConstraint}", null);
+        }
     }
 
     public void Disconnect()

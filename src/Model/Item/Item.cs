@@ -58,7 +58,9 @@ abstract public class Item
     public const string PowerOfSpirits = "Power of spirits";
     public const string PowerOfTime = "Power of time";
     public const string PrimordialCrystal = "Primordial Crystal";
+    public const string PrimordialScarabDialog = "Primordial Scarab Dialog";
     public const string ProgressiveCannon = "Progressive Cannon";
+    public const string ProgressiveDash = "Progressive Dash";
     public const string RestorationEnhancer = "Restoration Enhancer";
     public const string Scarab = "Scarab";
     public const string ScarabCollector = "Scarab Collector";
@@ -95,5 +97,10 @@ abstract public class Item
     public virtual int GetOwnedQuantity()
     {
         return 0;
+    }
+
+    public virtual string GetName()
+    {
+        return _identifier;
     }
 }

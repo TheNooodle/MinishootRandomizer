@@ -29,6 +29,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - When set on "Needs neither", you will be able to cross certains, very tight gaps without any upgrade.
     - Note that this last value may require you to farm some XP to level up your speed.
 
+### Removed
+
+- Removed the setting "Simple Temple Exit"
+    - This setting should be enabled all the time to avoid having the player getting stuck in temples.
+    - This is even more problematic with random settings on Archipelago.
+    - As such, it didn't make sense to keep this setting, and is now enabled by default.
+
 ### Changed
 
 - The setting "Cannon Level Logical Requirements" has been changed :
@@ -47,7 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Abyss Church
         - The Unchosen Statue now is opened by default (instead of being opened when the player defeats the boss of Dungeon 5).
 - Removed arbitrary logic rules for the fights against the boss of Dungeon 1 and the Busher boss in Forest (the one guarding the Spirit Tower).
-    - Those fight now only checks for cannon levels.
+    - Those fights now only checks for cannon levels.
 - "Dungeon 3 - North arena" now properly checks for the "Boostless Torch Races" setting.
 
 ## [0.3.2] - 2025-02-24

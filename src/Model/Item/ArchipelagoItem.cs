@@ -2,8 +2,11 @@ namespace MinishootRandomizer;
 
 public class ArchipelagoItem : Item
 {
-    public ArchipelagoItem(string identifier, ItemCategory category) : base(identifier, category)
+    private readonly string _owner;
+
+    public ArchipelagoItem(string identifier, ItemCategory category, string owner) : base(identifier, category)
     {
+        _owner = owner;
     }
 
     public override void Collect()
@@ -21,5 +24,10 @@ public class ArchipelagoItem : Item
     {
         // An ArchipelagoItem cannot be owned, as it belong to another world.
         return 0;
+    }
+
+    public override string GetName()
+    {
+        return $"{_owner}'s {Identifier}";
     }
 }

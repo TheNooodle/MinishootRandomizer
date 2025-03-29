@@ -34,6 +34,7 @@
     <EmbeddedResource Include="Resources/images/location_marker.png" />
     <EmbeddedResource Include="Resources/images/npc_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/npc_marker.png" />
+    <EmbeddedResource Include="Resources/images/prim_scarab_dialog.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker.png" />
     <EmbeddedResource Include="Resources/images/scarab.png" />

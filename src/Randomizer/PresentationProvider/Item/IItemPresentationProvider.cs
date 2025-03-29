@@ -2,5 +2,5 @@ namespace MinishootRandomizer;
 
 public interface IItemPresentationProvider
 {
-    public ItemPresenation GetItemPresentation(Item item);
+    public ItemPresentation GetItemPresentation(Item item);
 }

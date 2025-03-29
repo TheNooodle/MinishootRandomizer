@@ -184,6 +184,14 @@ public class DictionaryItemFactory : IItemFactory
 
             return new DungeonRewardItem(identifier, category, int.Parse(match.Value));
         }
+        else if (identifier == Item.ProgressiveDash)
+        {
+            return new ProgressiveDashItem(identifier, category);
+        }
+        else if(identifier == Item.PrimordialScarabDialog)
+        {
+            return new TrapItem(identifier, category);
+        }
         else
         {
             _logger.LogError($"Invalid item identifier: {identifier}");

@@ -84,8 +84,9 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             if (!_archipelagoItems.TryGetValue(itemData.ItemId, out ArchipelagoItem archipelagoItem))
             {
                 archipelagoItem = new ArchipelagoItem(
-                    itemData.SlotName + "'s " + itemData.ItemName,
-                    MapArchipelagoItemCategory(itemData.Category)
+                    itemData.ItemName,
+                    MapArchipelagoItemCategory(itemData.Category),
+                    itemData.SlotName
                 );
                 _archipelagoItems.Add(itemData.ItemId, archipelagoItem);
             }
@@ -181,7 +182,6 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(SpiritSanity), new SpiritSanity(false) },
             { typeof(KeySanity), new KeySanity(GetBooleanSettingValue("key_sanity")) },
             { typeof(BossKeySanity), new BossKeySanity(GetBooleanSettingValue("boss_key_sanity")) },
-            { typeof(SimpleTempleExit), new SimpleTempleExit(GetBooleanSettingValue("simple_temple_exit")) },
             { typeof(BlockedForest), new BlockedForest(GetBooleanSettingValue("blocked_forest")) },
             { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(GetBooleanSettingValue("cannon_level_logical_requirements")) },
             { typeof(BoostlessSpringboards), new BoostlessSpringboards(GetBooleanSettingValue("boostless_springboards")) },

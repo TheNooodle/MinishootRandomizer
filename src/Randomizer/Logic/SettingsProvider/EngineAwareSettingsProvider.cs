@@ -21,7 +21,6 @@ public class EngineAwareSettingsProvider : ISettingsProvider
             typeof(ShardSanity),
             typeof(KeySanity),
             typeof(BossKeySanity),
-            typeof(SimpleTempleExit),
             typeof(BlockedForest),
             typeof(CannonLevelLogicalRequirements),
             typeof(BoostlessSpringboards),

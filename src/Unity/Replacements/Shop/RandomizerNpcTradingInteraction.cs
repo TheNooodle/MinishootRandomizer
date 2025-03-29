@@ -121,6 +121,7 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
         _active = true;
 
         RandomizedShopSlot shopSlot = null;
+        ItemPresentation itemPresentation = null;
         if (pickup == null)
         {
             shopSlot = _shopSlots.FirstOrDefault(slot => !_randomizerEngine.IsLocationChecked(slot.Location));
@@ -134,6 +135,7 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
         else
         {
             shopSlot = pickup.ShopSlot;
+            itemPresentation = pickup.ItemPresentation;
         }
 
         _currentSlot = shopSlot;
@@ -142,7 +144,7 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
         if (HasInteractionLeft)
         {
             Player.Emote.Play(Emotes.Question);
-            PopDialog();
+            PopDialog(itemPresentation);
 
             // @TODO: import DOTween
             // Player.Instance.InputPrompt.PopOut();
@@ -163,15 +165,14 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
         // }
     }
 
-    private void PopDialog()
+    private void PopDialog(ItemPresentation itemPresentation)
     {
         ShowCurrency();
         try
         {
-            ItemPresenation itemPresenation = _itemPresentationProvider.GetItemPresentation(_currentSlot.Item);
-            string title = itemPresenation.Name;
-            string desc = itemPresenation.Description;
-            Sprite icon = itemPresenation.SpriteData.Sprite;
+            string title = itemPresentation.Name;
+            string desc = itemPresentation.Description;
+            Sprite icon = itemPresentation.SpriteData.Sprite;
             _dialog.Pop(transform.position, ItemType, Interaction.Trade, title, desc, icon, _currentSlot.Price, _currentSlot.Currency, false, _dialogOffset);
         }
         catch (SpriteNotFound)

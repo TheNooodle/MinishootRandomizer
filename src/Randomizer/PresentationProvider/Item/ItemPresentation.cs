@@ -1,6 +1,6 @@
 namespace MinishootRandomizer;
 
-public class ItemPresenation
+public class ItemPresentation
 {
     private Item _item;
     private string _name;
@@ -12,7 +12,7 @@ public class ItemPresenation
     public string Description => _description;
     public SpriteData SpriteData => _spriteData;
 
-    public ItemPresenation(Item item, string name, string description = "", SpriteData spriteData = null)
+    public ItemPresentation(Item item, string name, string description = "", SpriteData spriteData = null)
     {
         _item = item;
         _name = name;

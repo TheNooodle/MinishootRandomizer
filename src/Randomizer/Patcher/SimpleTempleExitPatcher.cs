@@ -66,8 +66,7 @@ public class SimpleTempleExitPatcher
             return;
         }
 
-        SimpleTempleExit simpleTempleExit = _randomizerEngine.GetSetting<SimpleTempleExit>();
-        if (simpleTempleExit.Enabled && !_patchActions.ContainsKey(locationName) && _objectsToDeactivate.ContainsKey(locationName))
+        if (!_patchActions.ContainsKey(locationName) && _objectsToDeactivate.ContainsKey(locationName))
         {
             IPatchAction patchAction = CreatePatchAction(locationName);
             _patchActions.Add(locationName, patchAction);

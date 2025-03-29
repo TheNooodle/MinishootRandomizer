@@ -69,7 +69,11 @@ public class NotificationHUDViewComponent : MonoBehaviour
     public void NotifyItemCollection(Item item)
     {
         _item = item;
-        ItemPresenation itemPresentation = _itemPresentationProvider.GetItemPresentation(item);
+        ItemPresentation itemPresentation = _itemPresentationProvider.GetItemPresentation(item);
+        if (itemPresentation is TrapItemPresentation trapItemPresentation)
+        {
+            itemPresentation = trapItemPresentation.TrueItemPresentation;
+        }
         _text.SetText(itemPresentation.Name);
         _image.sprite = itemPresentation.SpriteData.Sprite;
 

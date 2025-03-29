@@ -65,6 +65,7 @@ public class SceneCrawlerComponent : MonoBehaviour
             new CloningData("Boss Key", new ByName("Dungeon1BossKey", typeof(BossKey))),
             new CloningData("Small Key", new ByName("Dungeon1CrystalKey0", typeof(CrystalKey))),
             new CloningData(Item.Dash, new ByName("SkillDash", typeof(SkillPickup))),
+            new CloningData(Item.ProgressiveDash, new ByName("SkillDash", typeof(SkillPickup))),
         }),
         new CrawlableScene("Dungeon2", new List<CloningData>()
         {

@@ -24,13 +24,15 @@ public class SpriteBasedFactory : IGameObjectFactory
     {
         GameObject gameObject = _innerFactory.CreateGameObjectForItem(item);
         FloatyAnimationComponent animationComponent = gameObject.AddComponent<FloatyAnimationComponent>();
+        RandomizerPickup pickupComponent = gameObject.GetComponent<RandomizerPickup>();
         animationComponent.SetSpeed(2.0f);
         animationComponent.SetAmplitude(0.2f);
         SpriteData itemSpriteData;
         try
         {
-            ItemPresenation itemPresenation = _itemPresentationProvider.GetItemPresentation(item);
-            itemSpriteData = itemPresenation.SpriteData;
+            ItemPresentation itemPresentation = _itemPresentationProvider.GetItemPresentation(item);
+            itemSpriteData = itemPresentation.SpriteData;
+            pickupComponent.ItemPresentation = itemPresentation;
         }
         catch (SpriteNotFound)
         {

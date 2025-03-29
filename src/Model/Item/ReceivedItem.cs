@@ -15,7 +15,7 @@ public class ReceivedItem : Item
 
     public static ReceivedItem Create(Item item, string sender)
     {
-        return new ReceivedItem(item.Identifier + " from " + sender, item.Category, item, sender);
+        return new ReceivedItem(item.Identifier, item.Category, item, sender);
     }
 
     public string Sender => _sender;
@@ -33,5 +33,10 @@ public class ReceivedItem : Item
     public override int GetOwnedQuantity()
     {
         throw new Exception("ReceivedItem does not have owned quantity");
+    }
+
+    public override string GetName()
+    {
+        return $"{_innerItem.GetName()} from {_sender}";
     }
 }

@@ -17,7 +17,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(SpiritSanity), new SpiritSanity(false) },
         { typeof(KeySanity), new KeySanity(true) },
         { typeof(BossKeySanity), new BossKeySanity(true) },
-        { typeof(SimpleTempleExit), new SimpleTempleExit(true) },
+        { typeof(TrapItemsAppearance), new TrapItemsAppearance(TrapItemsAppearanceValue.MajorItems) },
         { typeof(BlockedForest), new BlockedForest(true) },
         { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(true) },
         { typeof(BoostlessSpringboards), new BoostlessSpringboards(true) },
@@ -321,7 +321,7 @@ Green Grotto - Corner: XP Crystals x60
 Green Grotto - Before race: HP Crystal Shard
 Green Grotto - Drop: Scarab
 Jar Shop 1: Lucky Heart
-Jar Shop 2: HP Crystal Shard
+Jar Shop 2: Primordial Scarab Dialog
 Jar Shop 3: Energy Crystal Shard
 Junkyard - East pond: XP Crystals x20
 Junkyard - South East: XP Crystals x10
@@ -346,10 +346,10 @@ Sewers - North pot room: XP Crystals x50
 Sewers - South pot room: Boss Key (Dungeon 3)
 Sewers - Drop: Healer
 Spirit Tower - Item: Dark Key
-Starting Grotto - North Corridor: XP Crystals x20
+Starting Grotto - North Corridor: Progressive Dash
 Starting Grotto - Secret Wall: XP Crystals x5
-Starting Grotto - Entrance: Super Crystals x10
-Starting Grotto - West Item: Progressive Cannon
+Starting Grotto - Entrance: Primordial Scarab Dialog
+Starting Grotto - West Item: Progressive Dash
 Sunken City - North West pot: Scarab
 Sunken City - North bridge: XP Crystals x25
 Sunken City - West bridge: Explorer

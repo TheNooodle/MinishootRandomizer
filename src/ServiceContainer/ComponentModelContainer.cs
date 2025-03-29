@@ -189,10 +189,17 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
 
         _serviceContainer.AddService(typeof(IRandomizerEngine), _serviceContainer.GetService(typeof(EventRandomizerEngine)));
         
-        _serviceContainer.AddService(typeof(IItemPresentationProvider), new CoreItemPresentationProvider(
+        _serviceContainer.AddService(typeof(CoreItemPresentationProvider), new CoreItemPresentationProvider(
             (ISpriteProvider)_serviceContainer.GetService(typeof(ISpriteProvider)),
             (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
         ));
+
+        _serviceContainer.AddService(typeof(TrapItemPresentationProvider), new TrapItemPresentationProvider(
+            (CoreItemPresentationProvider)_serviceContainer.GetService(typeof(CoreItemPresentationProvider)),
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
+        ));
+
+        _serviceContainer.AddService(typeof(IItemPresentationProvider), _serviceContainer.GetService(typeof(TrapItemPresentationProvider)));
 
         _serviceContainer.AddService(typeof(IGameObjectFactory), new SpriteBasedFactory(
             (CloneBasedFactory)_serviceContainer.GetService(typeof(CloneBasedFactory)),
@@ -337,7 +344,13 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         _serviceContainer.AddService(typeof(ShowItemNotificationHandler), new ShowItemNotificationHandler());
         ((CoreMessageConsumer)_serviceContainer.GetService(typeof(IMessageConsumer))).AddHandler<ShowItemNotificationMessage>(
             (ShowItemNotificationHandler)_serviceContainer.GetService(typeof(ShowItemNotificationHandler))
-        );  
+        );
+
+        _serviceContainer.AddService(typeof(TrapManager), new TrapManager(
+            new InMemoryTrapDialogProvider()
+        ));
+        ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
+            += ((TrapManager)_serviceContainer.GetService(typeof(TrapManager))).OnItemCollected;
 
         // Patchers
         _serviceContainer.AddService(typeof(ShopReplacementPatcher), new ShopReplacementPatcher(

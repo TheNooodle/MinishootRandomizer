@@ -13,7 +13,7 @@ public class CoreItemPresentationProvider : IItemPresentationProvider
         _randomizerEngine = randomizerEngine;
     }
 
-    public ItemPresenation GetItemPresentation(Item item)
+    public ItemPresentation GetItemPresentation(Item item)
     {
         string spriteIdentifier = item.GetSpriteIdentifier();
 
@@ -30,7 +30,6 @@ public class CoreItemPresentationProvider : IItemPresentationProvider
                         spriteIdentifier = "ArchipelagoArrowUp";
                         break;
                     case ItemCategory.Filler:
-                    case ItemCategory.Trap:
                         spriteIdentifier = "ArchipelagoGrayscale";
                         break;
                     default:
@@ -40,13 +39,13 @@ public class CoreItemPresentationProvider : IItemPresentationProvider
             }
         }
 
-        ItemPresenation itemPresenation = new ItemPresenation(
+        ItemPresentation itemPresentation = new ItemPresentation(
             item,
-            item.Identifier,
+            item.GetName(),
             "",
             _spriteProvider.GetSprite(spriteIdentifier)
         );
 
-        return itemPresenation;
+        return itemPresentation;
     }
 }

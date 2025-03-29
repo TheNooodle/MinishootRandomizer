@@ -14,6 +14,9 @@ namespace MinishootRandomizer
         public static bool IsDebug => true;
         public static bool UseDummyEngine = true;
 
+        public static VersionNumber RandomizerVersion = new VersionNumber(PluginInfo.PLUGIN_VERSION);
+        public static string ArchipelagoVersionConstraint = "~0.4.0";
+
         private void Awake()
         {
             ServiceContainer = new ComponentModelContainer(Logger);

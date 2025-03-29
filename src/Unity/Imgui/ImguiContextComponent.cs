@@ -36,7 +36,7 @@ public class ImguiContextComponent : MonoBehaviour
         }
 
         _lineCount = 0;
-        string versionLabel = $"v{PluginInfo.PLUGIN_VERSION}";
+        string versionLabel = $"v{Plugin.RandomizerVersion}";
         GUI.Box(new Rect(_xOrigin, _yOrigin, 350, 150), "Randomizer Menu " + versionLabel + (Plugin.IsDebug ? " (DEBUG MODE ACTIVE)" : ""));
         _serverUri = AddTextLine("Server URI: ", _serverUri);
         _slotName = AddTextLine("Slot name: ", _slotName);
