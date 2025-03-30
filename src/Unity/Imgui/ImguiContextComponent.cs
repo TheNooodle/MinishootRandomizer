@@ -11,8 +11,6 @@ public class ImguiContextComponent : MonoBehaviour
     private const float _labelWidth = 120;
 
     private IArchipelagoClient _archipelagoClient;
-    private ITranslator _translator;
-    private ILogger _logger = new NullLogger();
 
     private string _serverUri = "archipelago.gg:12345";
     private string _slotName = "Minishoot";
@@ -20,12 +18,11 @@ public class ImguiContextComponent : MonoBehaviour
     private bool _activateDeathlink = false;
     private int _lineCount = 0;
     private bool _haveError = false;
+    private string _errorMessage = "";
 
     void Awake()
     {
         _archipelagoClient = Plugin.ServiceContainer.Get<IArchipelagoClient>();
-        _translator = Plugin.ServiceContainer.Get<ITranslator>();
-        _logger = Plugin.ServiceContainer.Get<ILogger>() ?? new NullLogger();
     }
 
     void OnGUI()
@@ -37,7 +34,7 @@ public class ImguiContextComponent : MonoBehaviour
 
         _lineCount = 0;
         string versionLabel = $"v{Plugin.RandomizerVersion}";
-        GUI.Box(new Rect(_xOrigin, _yOrigin, 350, 150), "Randomizer Menu " + versionLabel + (Plugin.IsDebug ? " (DEBUG MODE ACTIVE)" : ""));
+        GUI.Box(new Rect(_xOrigin, _yOrigin, 350, 180), "Randomizer Menu " + versionLabel + (Plugin.IsDebug ? " (DEBUG MODE ACTIVE)" : ""));
         _serverUri = AddTextLine("Server URI: ", _serverUri);
         _slotName = AddTextLine("Slot name: ", _slotName);
         _password = AddPasswordLine("Password: ", _password);
@@ -58,15 +55,18 @@ public class ImguiContextComponent : MonoBehaviour
                 if (_archipelagoClient.IsConnected())
                 {
                     _haveError = false;
+                    _errorMessage = "";
                 }
                 else
                 {
                     _haveError = true;
+                    _errorMessage = "Failed to connect to Archipelago server.";
                 }
             }
-            catch (ArchipelagoLoginException)
+            catch (ArchipelagoLoginException e)
             {
                 _haveError = true;
+                _errorMessage = e.Message;
             }
         }
 
@@ -76,6 +76,7 @@ public class ImguiContextComponent : MonoBehaviour
         }
 
         AddStatusLine();
+        AddErrorMessageLine();
     }
 
     public RandomizerContext GetContext()
@@ -117,7 +118,21 @@ public class ImguiContextComponent : MonoBehaviour
             status += "Not connected";
             style.normal.textColor = Color.white;
         }
-        GUI.Label(new Rect(x, y, 200, _lineHeight), status, style);
+        GUI.Label(new Rect(x, y, 330, _lineHeight), status, style);
+    }
+
+    private void AddErrorMessageLine()
+    {
+        if (_haveError)
+        {
+            _lineCount++;
+            float x = _xOrigin + 10;
+            float y = _yOrigin + _lineHeight + _lineCount * _lineHeight;
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
+            style.wordWrap = true;
+            GUI.Label(new Rect(x, y, 330, _lineHeight), _errorMessage, style);
+        }
     }
 
     private string AddTextLine(string label, string value)

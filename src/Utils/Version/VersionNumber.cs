@@ -51,7 +51,7 @@ public class VersionNumber
             string[] parts = constraint.Substring(1).Split('.');
             if (parts.Length == 1)
             {
-                return _major > int.Parse(parts[0]);
+                return _major >= int.Parse(parts[0]);
             }
             if (parts.Length == 2)
             {

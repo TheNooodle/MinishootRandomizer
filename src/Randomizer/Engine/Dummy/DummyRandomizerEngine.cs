@@ -18,12 +18,14 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(KeySanity), new KeySanity(true) },
         { typeof(BossKeySanity), new BossKeySanity(true) },
         { typeof(TrapItemsAppearance), new TrapItemsAppearance(TrapItemsAppearanceValue.MajorItems) },
+        { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(false) },
         { typeof(BlockedForest), new BlockedForest(true) },
         { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(true) },
         { typeof(BoostlessSpringboards), new BoostlessSpringboards(true) },
         { typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(true) },
         { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(true) },
-        { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(false) },
+        { typeof(EnablePrimordialCrystalLogic), new EnablePrimordialCrystalLogic(false) },
+        { typeof(DashlessGaps), new DashlessGaps(DashlessGapsValue.NeedsDash) },
         { typeof(CompletionGoals), new CompletionGoals(Goals.Both) },
     };
 

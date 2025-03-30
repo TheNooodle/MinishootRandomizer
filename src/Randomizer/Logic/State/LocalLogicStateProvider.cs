@@ -9,7 +9,7 @@ public class LocalLogicStateProvider : ILogicStateProvider
     private readonly IRegionRepository _regionRepository;
     private readonly ITransitionRepository _transitionRepository;
     private readonly IItemRepository _itemRepository;
-    private readonly ISettingsProvider _settingsProvider;
+    private readonly IRandomizerEngine _randomizerEngine;
     private readonly ICachePool<LogicState> _cachePool;
     private readonly ILogger _logger = new NullLogger();
 
@@ -26,7 +26,7 @@ public class LocalLogicStateProvider : ILogicStateProvider
         IRegionRepository regionRepository,
         ITransitionRepository transitionRepository,
         IItemRepository itemRepository,
-        ISettingsProvider settingsProvider,
+        IRandomizerEngine randomizerEngine,
         ICachePool<LogicState> cachePool,
         ILogger logger = null
     ) {
@@ -34,7 +34,7 @@ public class LocalLogicStateProvider : ILogicStateProvider
         _regionRepository = regionRepository;
         _transitionRepository = transitionRepository;
         _itemRepository = itemRepository;
-        _settingsProvider = settingsProvider;
+        _randomizerEngine = randomizerEngine;
         _cachePool = cachePool;
         _logger = logger ?? new NullLogger();
     }
@@ -71,7 +71,7 @@ public class LocalLogicStateProvider : ILogicStateProvider
 
         List<Transition> traversedTransitions = new List<Transition>();
         List<ISetting> settings = new List<ISetting>();
-        List<ISetting> providedSettings = _settingsProvider.GetSettings();
+        List<ISetting> providedSettings = _randomizerEngine.GetSettings();
         foreach (ISetting setting in providedSettings)
         {
             if (tolerance == LogicTolerance.Strict)

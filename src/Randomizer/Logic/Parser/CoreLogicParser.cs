@@ -115,7 +115,6 @@ public class CoreLogicParser : ILogicParser
         Region desertGrottoEastDrop = _regionRepository.Get(Region.DesertGrottoEastDrop);
         Region d5WestWing = _regionRepository.Get(Region.Dungeon5WestWing);
         Region d5EastWing = _regionRepository.Get(Region.Dungeon5EastWing);
-        Region d5Boss = _regionRepository.Get(Region.Dungeon5Boss);
         Region swampSouthWestIsland = _regionRepository.Get(Region.SwampSouthWestIsland);
 
         Dictionary<string, Func<LogicParsingParameters, LogicParsingResult>> rules = new()
@@ -155,8 +154,16 @@ public class CoreLogicParser : ILogicParser
                 CanFight(p, 5),
                 new List<string>() {Item.ProgressiveCannon}
             )},
-            { "can_dash", p => new LogicParsingResult(
-                CanDash(p),
+            { "can_cross_gaps", p => new LogicParsingResult(
+                CanCrossGaps(p, GapSize.Normal),
+                new List<string>() {Item.Dash}
+            )},
+            { "can_cross_tight_gaps", p => new LogicParsingResult(
+                CanCrossGaps(p, GapSize.Tight),
+                new List<string>() {Item.Dash}
+            )},
+            { "can_cross_very_tight_gaps", p => new LogicParsingResult(
+                CanCrossGaps(p, GapSize.VeryTight),
                 new List<string>() {Item.Dash}
             )},
             { "can_surf", p => new LogicParsingResult(
@@ -183,17 +190,9 @@ public class CoreLogicParser : ILogicParser
                 p.State.HasItem(d1BossKey),
                 new List<string>() {Item.D1BossKey}
             )},
-            { "can_dodge_homing_charges", p => new LogicParsingResult(
-                CanDash(p) || p.State.HasItem(boost),
-                new List<string>() {Item.Dash, Item.Boost}
-            )},
             { "can_destroy_rocks", p => new LogicParsingResult(
-                p.State.HasItem(supershot) || p.State.HasItem(primordialCrystal),
+                CanDestroyWalls(p),
                 new List<string>() {Item.Supershot, Item.PrimordialCrystal}
-            )},
-            { "can_dodge_fast_patterns", p => new LogicParsingResult(
-                CanDash(p) || p.State.HasItem(boost),
-                new List<string>() {Item.Dash, Item.Boost}
             )},
             { "can_destroy_pots", p => new LogicParsingResult(
                 p.State.HasItem(cannon),
@@ -212,7 +211,7 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.D2BossKey}
             )},
             { "can_destroy_walls", p => new LogicParsingResult(
-                p.State.HasItem(supershot) || p.State.HasItem(primordialCrystal),
+                CanDestroyWalls(p),
                 new List<string>() {Item.Supershot, Item.PrimordialCrystal}
             )},
             { "can_obtain_scarabs", p => new LogicParsingResult(
@@ -307,10 +306,6 @@ public class CoreLogicParser : ILogicParser
                 !p.State.HasItem(surf),
                 new List<string>() {Item.Surf}
             )},
-            { "have_cleared_d5", p => new LogicParsingResult(
-                p.State.CanReach(d5Boss),
-                new List<string>() {LogicParsingResult.AnyItemName}
-            )},
             { "forest_is_blocked", p => new LogicParsingResult(
                 IsSettingEnabled<BlockedForest>(p)
             )},
@@ -372,6 +367,40 @@ public class CoreLogicParser : ILogicParser
         else
         {
             return parameters.State.HasItem(_itemRepository.Get(Item.ProgressiveCannon));
+        }
+    }
+
+    private bool CanCrossGaps(LogicParsingParameters parameters, GapSize gapSize)
+    {
+        if (CanDash(parameters))
+        {
+            return true;
+        }
+
+        DashlessGaps setting = (DashlessGaps)parameters.Settings.Find(s => s is DashlessGaps);
+        if ((gapSize == GapSize.Tight || gapSize == GapSize.VeryTight) && setting.Value != DashlessGapsValue.NeedsDash && parameters.State.HasItem(_itemRepository.Get(Item.Boost)))
+        {
+            return true;
+        }
+
+        if (gapSize == GapSize.VeryTight && setting.Value == DashlessGapsValue.NeedsNeither)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool CanDestroyWalls(LogicParsingParameters parameters)
+    {
+        EnablePrimordialCrystalLogic setting = (EnablePrimordialCrystalLogic)parameters.Settings.Find(s => s is EnablePrimordialCrystalLogic);
+        if (setting.Enabled)
+        {
+            return parameters.State.HasItem(_itemRepository.Get(Item.Supershot)) || parameters.State.HasItem(_itemRepository.Get(Item.PrimordialCrystal));
+        }
+        else
+        {
+            return parameters.State.HasItem(_itemRepository.Get(Item.Supershot));
         }
     }
 

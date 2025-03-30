@@ -182,13 +182,16 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(SpiritSanity), new SpiritSanity(false) },
             { typeof(KeySanity), new KeySanity(GetBooleanSettingValue("key_sanity")) },
             { typeof(BossKeySanity), new BossKeySanity(GetBooleanSettingValue("boss_key_sanity")) },
+            { typeof(TrapItemsAppearance), new TrapItemsAppearance(GetEnumSettingValue("trap_items_appearance", TrapItemsAppearanceValue.Anything)) },
+            { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(GetBooleanSettingValue("show_archipelago_item_category")) },
             { typeof(BlockedForest), new BlockedForest(GetBooleanSettingValue("blocked_forest")) },
             { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(GetBooleanSettingValue("cannon_level_logical_requirements")) },
             { typeof(BoostlessSpringboards), new BoostlessSpringboards(GetBooleanSettingValue("boostless_springboards")) },
             { typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(GetBooleanSettingValue("boostless_spirit_races")) },
             { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(GetBooleanSettingValue("boostless_torch_races")) },
-            { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(GetBooleanSettingValue("show_archipelago_item_category")) },
-            { typeof(CompletionGoals), new CompletionGoals(GetGoalsSettingValue()) },
+            { typeof(EnablePrimordialCrystalLogic), new EnablePrimordialCrystalLogic(GetBooleanSettingValue("enable_primordial_crystal_logic")) },
+            { typeof(DashlessGaps), new DashlessGaps(GetEnumSettingValue("dashless_gaps", DashlessGapsValue.NeedsDash)) },
+            { typeof(CompletionGoals), new CompletionGoals(GetEnumSettingValue("completion_goals", Goals.Dungeon5)) },
         };
     }
 
@@ -208,22 +211,22 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
         }
     }
 
-    private Goals GetGoalsSettingValue(Goals defaultValue = Goals.Both)
+    private T GetEnumSettingValue<T>(string dataStorageKey, T defaultValue) where T : Enum
     {
         try
         {
-            object value = _client.GetDataStorageValue("completion_goals");
-
-            switch ((long)value)
+            object value = _client.GetDataStorageValue(dataStorageKey);
+            long enumValue = (long)value;
+            if (Enum.IsDefined(typeof(T), (int)enumValue))
             {
-                case 0:
-                    return Goals.Dungeon5;
-                case 1:
-                    return Goals.Snow;
-                case 2:
-                    return Goals.Both;
-                default:
-                    return defaultValue;
+                return (T)Enum.ToObject(typeof(T), (int)enumValue);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(dataStorageKey),
+                    $"Value {(int)enumValue} is not defined in enum {typeof(T).Name}"
+                );
             }
         }
         catch (ArchipelagoLogicException e)
@@ -232,6 +235,7 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
 
             return defaultValue;
         }
+            
     }
 
     private void InitializeLocations()

@@ -6,24 +6,22 @@ public class CoreLogicChecker : ILogicChecker
 {
     private readonly ILogicStateProvider _logicStateProvider;
     private readonly ILogicParser _logicParser;
-    private readonly ISettingsProvider _settingsProvider;
+    private readonly IRandomizerEngine _randomizerEngine;
     private readonly IRegionRepository _regionRepository;
     private readonly ILocationRepository _locationRepository;
-    private readonly ILogger _logger = new NullLogger();
 
-    public CoreLogicChecker(ILogicStateProvider logicStateProvider, ILogicParser logicParser, ISettingsProvider settingsProvider, IRegionRepository regionRepository, ILocationRepository locationRepository, ILogger logger = null)
+    public CoreLogicChecker(ILogicStateProvider logicStateProvider, ILogicParser logicParser, IRandomizerEngine randomizerEngine, IRegionRepository regionRepository, ILocationRepository locationRepository)
     {
         _logicStateProvider = logicStateProvider;
         _logicParser = logicParser;
-        _settingsProvider = settingsProvider;
+        _randomizerEngine = randomizerEngine;
         _regionRepository = regionRepository;
         _locationRepository = locationRepository;
-        _logger = logger ?? new NullLogger();
     }
 
     public LogicAccessibility CheckLocationLogic(Location location)
     {
-        List<ISetting> settings = _settingsProvider.GetSettings();
+        List<ISetting> settings = _randomizerEngine.GetSettings();
         LogicState state = _logicStateProvider.GetLogicState();
         Region region = _regionRepository.GetRegionByLocation(location);
 

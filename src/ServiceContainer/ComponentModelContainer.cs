@@ -214,10 +214,6 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
 
-        _serviceContainer.AddService(typeof(ISettingsProvider), new EngineAwareSettingsProvider(
-            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
-        ));
-
         _serviceContainer.AddService(typeof(CoreLogicParser), new CoreLogicParser(
             (IItemRepository)_serviceContainer.GetService(typeof(IItemRepository)),
             (IRegionRepository)_serviceContainer.GetService(typeof(IRegionRepository))
@@ -230,7 +226,7 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (IRegionRepository)_serviceContainer.GetService(typeof(IRegionRepository)),
             (ITransitionRepository)_serviceContainer.GetService(typeof(ITransitionRepository)),
             (IItemRepository)_serviceContainer.GetService(typeof(IItemRepository)),
-            (ISettingsProvider)_serviceContainer.GetService(typeof(ISettingsProvider)),
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
             new StandardCachePool<LogicState>(new DictionaryCacheStorage<LogicState>(), (ILogger)_serviceContainer.GetService(typeof(ILogger))),
             (ILogger)_serviceContainer.GetService(typeof(ILogger))
         ));
@@ -252,10 +248,9 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
         _serviceContainer.AddService(typeof(CoreLogicChecker), new CoreLogicChecker(
             (ILogicStateProvider)_serviceContainer.GetService(typeof(ILogicStateProvider)),
             (ILogicParser)_serviceContainer.GetService(typeof(ILogicParser)),
-            (ISettingsProvider)_serviceContainer.GetService(typeof(ISettingsProvider)),
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
             (IRegionRepository)_serviceContainer.GetService(typeof(IRegionRepository)),
-            (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository)),
-            (ILogger)_serviceContainer.GetService(typeof(ILogger))
+            (ILocationRepository)_serviceContainer.GetService(typeof(ILocationRepository))
         ));
 
         _serviceContainer.AddService(typeof(CachedLogicChecker), new CachedLogicChecker(
@@ -346,8 +341,15 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
             (ShowItemNotificationHandler)_serviceContainer.GetService(typeof(ShowItemNotificationHandler))
         );
 
-        _serviceContainer.AddService(typeof(TrapManager), new TrapManager(
+        _serviceContainer.AddService(typeof(TriggerTrapDialogHandler), new TriggerTrapDialogHandler(
             new InMemoryTrapDialogProvider()
+        ));
+        ((CoreMessageConsumer)_serviceContainer.GetService(typeof(IMessageConsumer))).AddHandler<TriggerTrapDialogMessage>(
+            (TriggerTrapDialogHandler)_serviceContainer.GetService(typeof(TriggerTrapDialogHandler))
+        );
+
+        _serviceContainer.AddService(typeof(TrapManager), new TrapManager(
+            (IMessageDispatcher)_serviceContainer.GetService(typeof(IMessageDispatcher))
         ));
         ((GameEventDispatcher)_serviceContainer.GetService(typeof(GameEventDispatcher))).ItemCollected
             += ((TrapManager)_serviceContainer.GetService(typeof(TrapManager))).OnItemCollected;

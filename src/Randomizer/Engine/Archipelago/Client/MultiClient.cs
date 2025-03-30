@@ -83,19 +83,19 @@ public class MultiClient : IArchipelagoClient
             throw new ArchipelagoLoginException(errorMessage, null);
         }
 
+        _dataStorage.Clear();
+        _dataStorage = _session.DataStorage.GetSlotData();
         CheckVersion();
 
         _logger.LogInfo($"Connected to {_options.Uri} as {_options.SlotName}");
         _loginResult = (LoginSuccessful)result;
         
-        _dataStorage.Clear();
         _locationIdToName.Clear();
         _locationNameToItemData.Clear();
         GetAllLocationNames();
         ScoutItems();
         _session.Items.ItemReceived -= OnItemsReceived;
         _session.Items.ItemReceived += OnItemsReceived;
-        _dataStorage = _session.DataStorage.GetSlotData();
     }
 
     private void CheckVersion()
@@ -103,7 +103,7 @@ public class MultiClient : IArchipelagoClient
         string versionLabel;
         try
         {
-            versionLabel = (string)GetDataStorageValue("version");
+            versionLabel = (string)GetDataStorageValue("ap_world_version");
         }
         catch (ArchipelagoLogicException)
         {
@@ -115,7 +115,13 @@ public class MultiClient : IArchipelagoClient
         if (!version.Satisfy(Plugin.ArchipelagoVersionConstraint))
         {
             Disconnect();
-            throw new ArchipelagoLoginException($"Archipelago version {versionLabel} does not satisfy the constraint {Plugin.ArchipelagoVersionConstraint}", null);
+            _logger.LogError($"Archipelago version {versionLabel} does not satisfy the constraint {Plugin.ArchipelagoVersionConstraint}");
+            throw new InvalidArchipelagoVersionException(
+                Plugin.RandomizerVersion,
+                version,
+                Plugin.ArchipelagoVersionConstraint,
+                null
+            );
         }
     }
 
