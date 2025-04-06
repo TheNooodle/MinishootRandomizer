@@ -15,10 +15,12 @@ public class LocalLogicStateProvider : ILogicStateProvider
 
     private Dictionary<Type, ISetting> _outOfLogicSettings = new Dictionary<Type, ISetting>()
     {
-        {typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(false)},
+        {typeof(IgnoreCannonLevelRequirements), new IgnoreCannonLevelRequirements(true)},
         {typeof(BoostlessSpringboards), new BoostlessSpringboards(true)},
         {typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(true)},
         {typeof(BoostlessTorchRaces), new BoostlessTorchRaces(true)},
+        {typeof(EnablePrimordialCrystalLogic), new EnablePrimordialCrystalLogic(true)},
+        {typeof(DashlessGaps), new DashlessGaps(DashlessGapsValue.NeedsNeither)},
     };
 
     public LocalLogicStateProvider(

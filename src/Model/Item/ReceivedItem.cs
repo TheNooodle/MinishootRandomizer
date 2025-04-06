@@ -7,6 +7,9 @@ public class ReceivedItem : Item
     private readonly Item _innerItem;
     private readonly string _sender;
 
+    public Item InnerItem => _innerItem;
+    public string Sender => _sender;
+
     public ReceivedItem(string identifier, ItemCategory category, Item innerItem, string sender) : base(identifier, category)
     {
         _innerItem = innerItem;
@@ -17,8 +20,6 @@ public class ReceivedItem : Item
     {
         return new ReceivedItem(item.Identifier, item.Category, item, sender);
     }
-
-    public string Sender => _sender;
 
     public override void Collect()
     {

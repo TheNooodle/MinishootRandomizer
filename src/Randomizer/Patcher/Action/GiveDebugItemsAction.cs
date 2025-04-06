@@ -32,6 +32,7 @@ public class GiveDebugItemsAction : IPatchAction
         PlayerState.SetSkill(Skill.Hover, true);
 
         WorldState.Set(NpcIds.Bard.Str(), true);
+        WorldState.Set(NpcIds.ScarabCollector.Str(), true);
         ReflectionHelper.InvokeStaticAction(typeof(CrystalNpc), "Freed");
 
         PlayerState.SetUniqueKey(KeyUse.Darker, true);
@@ -46,6 +47,10 @@ public class GiveDebugItemsAction : IPatchAction
         ReflectionHelper.InvokeStaticAction(typeof(StatsPickup), "PowerCollected");
 
         Player.Instance.UpdateStats(updateCurrentHP: true);
+
+        PlayerState.SetGameStats(GameStatsId.ScarabCaught, 18f);
+        PlayerState.SetCurrency(Currency.Scarab, 18);
+        ReflectionHelper.InvokeStaticAction(typeof(ScarabPickup), "Collected");
 
         PlayerState.DungeonKeys[1] = 4;
         WorldState.Set($"ObtainedD1SmallKey4", true);

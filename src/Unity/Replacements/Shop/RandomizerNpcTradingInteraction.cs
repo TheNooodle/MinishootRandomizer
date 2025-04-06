@@ -131,6 +131,10 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
 
                 return;
             }
+            else
+            {
+                itemPresentation = _itemPresentationProvider.GetItemPresentation(shopSlot.Item);
+            }
         }
         else
         {

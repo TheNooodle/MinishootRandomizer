@@ -247,7 +247,7 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.D3BossKey}
             )},
             { "can_light_all_scarab_temple_torches", p => new LogicParsingResult(
-                p.State.CanReach(bottomLeftTorch) && p.State.CanReach(bottomRightTorch) && p.State.CanReach(topLeftTorch) && p.State.CanReach(topRightTorch) && p.State.HasItem(supershot),
+                CanSurf(p, WaterType.Normal) && p.State.HasItem(supershot) && CanFight(p, 4),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_dodge_purple_bullets", p => new LogicParsingResult(
@@ -259,12 +259,8 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.DarkHeart}
             )},
             { "can_open_north_city_bridge", p => new LogicParsingResult(
-                p.State.CanReach(sunkenCityFountain) && CanFight(p, 4) && CanSurf(p, WaterType.Gold),
+                CanDash(p) && CanFight(p, 4) && CanSurf(p, WaterType.Gold) && CanDestroyWalls(p),
                 new List<string>() {LogicParsingResult.AnyItemName}
-            )},
-            { "cannot_dash", p => new LogicParsingResult(
-                !CanDash(p),
-                new List<string>() {Item.Dash}
             )},
             { "can_free_bard", p => new LogicParsingResult(
                 p.State.HasItem(bard),
@@ -283,28 +279,24 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.ScarabKey}
             )},
             { "can_light_city_torches", p => new LogicParsingResult(
-                p.State.HasItem(supershot) && p.State.CanReach(sunkenCityWestTorch) && p.State.CanReach(sunkenCityEastTorch),
+                p.State.HasItem(supershot) && CanSurf(p, WaterType.Gold) && CanFight(p, 4) && CanUseSpringboards(p),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_open_sunken_temple", p => new LogicParsingResult(
-                CanSurf(p, WaterType.Gold) && CanFight(p, 4) && p.State.CanReach(sunkenCityWestIsland) && p.State.CanReach(sunkenCityCity) && p.State.CanReach(sunkenCityEast),
+                CanSurf(p, WaterType.Gold) && CanFight(p, 4) && CanDash(p) && CanDestroyWalls(p),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_light_desert_grotto_torches", p => new LogicParsingResult(
-                p.State.HasItem(supershot) && p.State.CanReach(desertGrottoWestDrop) && p.State.CanReach(desertGrottoEastDrop),
+                p.State.HasItem(supershot) && (CanSurf(p, WaterType.Normal) || CanCrossGaps(p, GapSize.Normal)) && CanFight(p, 3),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_clear_both_d5_arenas", p => new LogicParsingResult(
-                p.State.CanReach(d5WestWing) && p.State.CanReach(d5EastWing) && CanFight(p, 5) && CanDash(p),
+                CanFight(p, 5) && CanDash(p) && CanSurf(p, WaterType.Soiled),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_free_family", p => new LogicParsingResult(
                 p.State.HasItem(familyChild) && p.State.HasItem(familyParent1) && p.State.HasItem(familyParent2),
                 new List<string>() {Item.FamilyChild, Item.FamilyParent1, Item.FamilyParent2}
-            )},
-            { "cannot_surf", p => new LogicParsingResult(
-                !p.State.HasItem(surf),
-                new List<string>() {Item.Surf}
             )},
             { "forest_is_blocked", p => new LogicParsingResult(
                 IsSettingEnabled<BlockedForest>(p)
@@ -333,7 +325,7 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.Boost}
             )},
             { "can_open_swamp_tower", p => new LogicParsingResult(
-                p.State.CanReach(swampSouthWestIsland),
+                CanSurf(p, WaterType.Normal) || CanUseSpringboards(p),
                 new List<string>() {Item.Boost}
             )},
         };
@@ -358,9 +350,9 @@ public class CoreLogicParser : ILogicParser
 
     private bool CanFight(LogicParsingParameters parameters, int level = 1)
     {
-        CannonLevelLogicalRequirements setting = (CannonLevelLogicalRequirements)parameters.Settings.Find(s => s is CannonLevelLogicalRequirements);
+        IgnoreCannonLevelRequirements setting = (IgnoreCannonLevelRequirements)parameters.Settings.Find(s => s is IgnoreCannonLevelRequirements);
 
-        if (setting.Enabled)
+        if (!setting.Enabled)
         {
             return parameters.State.HasItem(_itemRepository.Get(Item.ProgressiveCannon), level);
         }

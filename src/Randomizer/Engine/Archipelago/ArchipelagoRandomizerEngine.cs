@@ -122,6 +122,13 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
                 _checkedLocations.Add(location);
                 locationsToSend.Add(location);
             }
+            else if (remoteCheckedLocationNames.Contains(location.Identifier) && !_progressionStorage.IsLocationChecked(location))
+            {
+                // If the remote server considers the location checked, but we don't, we need to check it locally.
+                // This can happen if a another game used the "collect" command to get all items from other games, including ours.
+                _checkedLocations.Add(location);
+                _progressionStorage.SetLocationChecked(location);
+            }
         }
 
         if (locationsToSend.Count > 0)
@@ -185,7 +192,7 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(TrapItemsAppearance), new TrapItemsAppearance(GetEnumSettingValue("trap_items_appearance", TrapItemsAppearanceValue.Anything)) },
             { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(GetBooleanSettingValue("show_archipelago_item_category")) },
             { typeof(BlockedForest), new BlockedForest(GetBooleanSettingValue("blocked_forest")) },
-            { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(GetBooleanSettingValue("cannon_level_logical_requirements")) },
+            { typeof(IgnoreCannonLevelRequirements), new IgnoreCannonLevelRequirements(GetBooleanSettingValue("ignore_cannon_level_requirements")) },
             { typeof(BoostlessSpringboards), new BoostlessSpringboards(GetBooleanSettingValue("boostless_springboards")) },
             { typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(GetBooleanSettingValue("boostless_spirit_races")) },
             { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(GetBooleanSettingValue("boostless_torch_races")) },

@@ -20,7 +20,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(TrapItemsAppearance), new TrapItemsAppearance(TrapItemsAppearanceValue.MajorItems) },
         { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(false) },
         { typeof(BlockedForest), new BlockedForest(true) },
-        { typeof(CannonLevelLogicalRequirements), new CannonLevelLogicalRequirements(true) },
+        { typeof(IgnoreCannonLevelRequirements), new IgnoreCannonLevelRequirements(false) },
         { typeof(BoostlessSpringboards), new BoostlessSpringboards(true) },
         { typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(true) },
         { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(true) },

@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - When set to "Major Items Only", trap items will be disguised as major items.
     - When set to "Junk Items Only", trap items will be disguised as junk items.
     - When set to "Anything", trap items can be disguised as any other items.
-    - This setting affects Minishoot' Adventures trap items, as well as Archipelago items.
+    - This setting affects Minishoot' Adventures trap items, as well as Archipelago items from other games.
 - A new setting called "Enable Primordial Crystal Logic" has been added.
     - cf "Changed"
 - A new setting called "Progressive Dash" has been added.
@@ -28,6 +28,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - When set on "Needs Boost", you will be able to logically cross gaps with the boost if the gap is small enough.
     - When set on "Needs neither", you will be able to cross certains, very tight gaps without any upgrade.
     - Note that this last value may require you to farm some XP to level up your speed.
+- On Archipelago, when another world uses the `/collect` command, this world's items in Minishoot' Adventures will be correctly removed next time the save file is started.
+- Added a version check when connecting to an Archipelago server.
+    - Each client version will be assigned a range of compatible APWorld it can connect to (based on semantic versioning)
+    - For example, client version 0.4.0 (as well as 0.4.1 and 0.4.2) will only be able to connect to APWorld version 0.4.0.
+    - If the version of the APWorld is incompatible, the client will force a disconnection.
+    - Note that the client will not check the version of Archipelago proper, only the Minishoot' Adventures APWorld.
 
 ### Removed
 
@@ -45,6 +51,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The "Primordial Crystal" is no longer considered in logic to destroy rocks and walls.
     - A new setting called "Enable Primordial Crystal Logic" has been added and, if set to true, can re-establish the previous logic.
 - In an effort to stabilize seed generation on Archipelago, several changes has been made to the randomizer logic :
+    - Changed logic rules that depends on the logic state being able to reach a certain region.
+        - For example, the entrance to Swamp Tower would check if the player have access to "Swamp - South West Island" to activate the corresponding button.
+        - Those checks were made to ease in a future entrance randomizer (ER) addition, but made seed generation on Archipelago failing some tests.
+        - For now, those checks are being replaced by checking the correct item, in a non-ER context. Those will be properly replaced when ER will be a thing.
     - Dungeon 1 :
         - One door leading to "Dungeon 1 - South Item" has been removed. This means that this dungeon now has an extra key.
         - Removed the usage of the "cannot_dash" rule, meaning that small keys will likely be placed in the first part of the dungeon (when they are not shuffled).

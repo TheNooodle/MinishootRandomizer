@@ -13,7 +13,7 @@ public class TrapManager
 
     public void OnItemCollected(Item item)
     {
-        if (item is TrapItem)
+        if (item is TrapItem || (item is ReceivedItem && ((ReceivedItem)item).InnerItem is TrapItem))
         {
             _messageDispatcher.Dispatch(new TriggerTrapDialogMessage(), new List<IStamp>{
                 new MustBeInGameStamp()
