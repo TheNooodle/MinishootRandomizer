@@ -191,9 +191,9 @@ namespace MinishootRandomizer
             {"Swamp Shop 1", new ChoiceShopLocationReplacementData("MercantFrogger", 5, Currency.SuperCrystal, "MapPickupSwamp")},
             {"Swamp Shop 2", new ChoiceShopLocationReplacementData("MercantFrogger", 15, Currency.SuperCrystal, "PickupModuleHpDrop")},
             {"Swamp Shop 3", new ChoiceShopLocationReplacementData("MercantFrogger", 14, Currency.SuperCrystal, "LorePickup3")},
-            {"Town - Mercant Item 1", new ChoiceShopLocationReplacementData("MercantHub", 65, Currency.SuperCrystal, "PickupModuleCompass")},
-            {"Town - Mercant Item 2", new ChoiceShopLocationReplacementData("MercantHub", 2, Currency.SuperCrystal, "PickupModuleCollectableScan")},
-            {"Town - Mercant Item 3", new ChoiceShopLocationReplacementData("MercantHub", 18, Currency.SuperCrystal, "PickupModuleTeleport")},
+            {"Town - Merchant Item 1", new ChoiceShopLocationReplacementData("MercantHub", 65, Currency.SuperCrystal, "PickupModuleCompass")},
+            {"Town - Merchant Item 2", new ChoiceShopLocationReplacementData("MercantHub", 2, Currency.SuperCrystal, "PickupModuleCollectableScan")},
+            {"Town - Merchant Item 3", new ChoiceShopLocationReplacementData("MercantHub", 18, Currency.SuperCrystal, "PickupModuleTeleport")},
         };
 
         private static Dictionary<string, DestroyableReplacementData> _destroyableLocationToSelector = new()

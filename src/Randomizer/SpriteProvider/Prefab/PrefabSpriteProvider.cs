@@ -24,7 +24,7 @@ public class PrefabSpriteProvider : ISpriteProvider, IPrefabCollector
         { "Family Parent 2 NPC", new Tuple<float, float>(0.7f, -50f) },
         { "Family Child NPC", new Tuple<float, float>(0.7f, -50f) },
         { "Healer NPC", new Tuple<float, float>(0.7f, -50f) },
-        { "Mercant NPC", new Tuple<float, float>(0.5f, -50f) },
+        { "Merchant NPC", new Tuple<float, float>(0.5f, -50f) },
         { "Scarab Collector NPC", new Tuple<float, float>(0.7f, -50f) },
     };
 

@@ -23,9 +23,9 @@ namespace MinishootRandomizer
                 "Town - Scarab Collector Item 6",
             }),
             new ShopReplacementData("MercantHub", new List<string> {
-                "Town - Mercant Item 1",
-                "Town - Mercant Item 2",
-                "Town - Mercant Item 3",
+                "Town - Merchant Item 1",
+                "Town - Merchant Item 2",
+                "Town - Merchant Item 3",
             }),
             new ShopReplacementData("MercantBusher", new List<string> {
                 "Forest Shop 1",

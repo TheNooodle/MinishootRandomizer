@@ -30,4 +30,10 @@ public class ArchipelagoItem : Item
     {
         return $"{_owner}'s {Identifier}";
     }
+
+    public override bool CanServeAsATrap()
+    {
+        // An ArchipelagoItem cannot be used as a trap.
+        return false;
+    }
 }

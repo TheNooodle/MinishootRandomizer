@@ -15,4 +15,9 @@ public class TrapItem : Item
     {
         return "PrimordialScarabDialog";
     }
+
+    public override bool CanServeAsATrap()
+    {
+        return false;
+    }
 }

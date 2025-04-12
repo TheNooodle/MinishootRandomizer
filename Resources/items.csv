@@ -37,7 +37,7 @@ Idol of spirits,Helpful,Default,1,PickupModuleIdolAlly
 Idol of time,Helpful,Default,1,PickupModuleIdolSlow
 Junkyard Map,Filler,Default,1,MapPickupJunkyard
 Lucky Heart,Helpful,Default,1,PickupModuleHpDrop
-Mercant,Progression,NPC,1,
+Merchant,Progression,NPC,1,
 Overcharge,Helpful,Default,1,PickupModuleOvercharge
 Power of protection,Progression,Default,1,CavePowerBombLevel0
 Power of spirits,Helpful,Default,1,Temple3PowerAllyLevel0

@@ -18,4 +18,10 @@ public class DungeonRewardItem : Item
     {
         return WorldState.Get($"Dungeon{DungeonId}CrystalBoss") ? 1 : 0;
     }
+
+    public override bool CanServeAsATrap()
+    {
+        // A DungeonRewardItem cannot be used as a trap.
+        return false;
+    }
 }

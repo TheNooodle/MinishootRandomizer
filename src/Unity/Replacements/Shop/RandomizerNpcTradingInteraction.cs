@@ -21,6 +21,7 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
     private List<RandomizedShopSlot> _shopSlots = new List<RandomizedShopSlot>();
     private RandomizedShopSlot _currentSlot = null;
     private RandomizerPickup _currentPickup = null;
+    private Dictionary<string, ItemPresentation> _itemPresentations = new Dictionary<string, ItemPresentation>();
 
     public ItemType ItemType { get; set; } = ItemType.NextPickup;
 
@@ -133,7 +134,15 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
             }
             else
             {
-                itemPresentation = _itemPresentationProvider.GetItemPresentation(shopSlot.Item);
+                if (_itemPresentations.ContainsKey(shopSlot.Location.Identifier))
+                {
+                    itemPresentation = _itemPresentations[shopSlot.Location.Identifier];
+                }
+                else
+                {
+                    itemPresentation = _itemPresentationProvider.GetItemPresentation(shopSlot.Item);
+                    _itemPresentations.Add(shopSlot.Location.Identifier, itemPresentation);
+                }
             }
         }
         else

@@ -56,7 +56,7 @@ public class SceneCrawlerComponent : MonoBehaviour
             new CloningData("Blacksmith NPC", new ByName("Blacksmith", typeof(Npc)), CloningType.Copy),
             new CloningData("Explorer NPC", new ByName("Explorer", typeof(Npc)), CloningType.Copy),
             new CloningData("Healer NPC", new ByName("Healer", typeof(Npc)), CloningType.Copy),
-            new CloningData("Mercant NPC", new ByName("MercantHub", typeof(Npc)), CloningType.Copy),
+            new CloningData("Merchant NPC", new ByName("MercantHub", typeof(Npc)), CloningType.Copy),
             new CloningData("Scarab Collector NPC", new ByName("ScarabCollector", typeof(Npc)), CloningType.Copy),
             new CloningData(Item.EnchantedPowers, new ByName("PickupModuleFreePower", typeof(ModulePickup))),
         }),

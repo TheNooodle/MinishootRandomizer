@@ -76,7 +76,7 @@ public class CoreLogicParser : ILogicParser
         Item powerOfProtection = _itemRepository.Get(Item.PowerOfProtection);
 
         Item blacksmith = _itemRepository.Get(Item.Blacksmith);
-        Item mercant = _itemRepository.Get(Item.Mercant);
+        Item mercant = _itemRepository.Get(Item.Merchant);
         Item scarabCollector = _itemRepository.Get(Item.ScarabCollector);
         Item bard = _itemRepository.Get(Item.Bard);
         Item familyChild = _itemRepository.Get(Item.FamilyChild);
@@ -128,7 +128,7 @@ public class CoreLogicParser : ILogicParser
             )},
             { "can_free_mercant", p => new LogicParsingResult(
                 p.State.HasItem(mercant),
-                new List<string>() {Item.Mercant}
+                new List<string>() {Item.Merchant}
             )},
             { "can_obtain_super_crystals", p => new LogicParsingResult(
                 p.State.HasItem(cannon) && CanDash(p) && p.State.HasItem(supershot) && CanSurf(p, WaterType.Normal),

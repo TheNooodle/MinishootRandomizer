@@ -46,7 +46,7 @@ public class TrapItemPresentationProvider : IItemPresentationProvider
         foreach (Location location in locations)
         {
             Item item = _randomizerEngine.PeekLocation(location);
-            if (item.Category == ItemCategory.Trap || item is ArchipelagoItem)
+            if (!item.CanServeAsATrap())
             {
                 continue;
             }

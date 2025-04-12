@@ -40,4 +40,9 @@ public class ReceivedItem : Item
     {
         return $"{_innerItem.GetName()} from {_sender}";
     }
+
+    public override bool CanServeAsATrap()
+    {
+        throw new Exception("This method should not be called on ReceivedItem");
+    }
 }

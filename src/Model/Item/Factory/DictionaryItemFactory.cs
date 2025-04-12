@@ -55,7 +55,7 @@ public class DictionaryItemFactory : IItemFactory
         {Item.FamilyParent2, new NpcItemData(NpcIds.Familly2)},
         {Item.Healer, new NpcItemData(NpcIds.Healer)},
         {Item.ScarabCollector, new NpcItemData(NpcIds.ScarabCollector)},
-        {Item.Mercant, new NpcItemData(NpcIds.MercantHub)},
+        {Item.Merchant, new NpcItemData(NpcIds.MercantHub)},
     };
 
     private static Dictionary<string, MapItemData> _mapItemData = new()

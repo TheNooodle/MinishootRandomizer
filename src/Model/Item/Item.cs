@@ -52,7 +52,7 @@ abstract public class Item
     public const string IdolOfTime = "Idol of time";
     public const string JunkyardMap = "Junkyard Map";
     public const string LuckyHeart = "Lucky Heart";
-    public const string Mercant = "Mercant";
+    public const string Merchant = "Merchant";
     public const string Overcharge = "Overcharge";
     public const string PowerOfProtection = "Power of protection";
     public const string PowerOfSpirits = "Power of spirits";
@@ -102,5 +102,10 @@ abstract public class Item
     public virtual string GetName()
     {
         return _identifier;
+    }
+    
+    public virtual bool CanServeAsATrap()
+    {
+        return _category != ItemCategory.Trap;
     }
 }

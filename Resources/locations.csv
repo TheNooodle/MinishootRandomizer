@@ -128,7 +128,7 @@ Green - Hidden before Island Arena,HP Crystal Shard,Default,Green - Town,can_fig
 Green - Island Arena Item,Boost,Default,Green - Island Arena,can_fight
 Green - Outside Dungeon 1 Cave,HP Crystal Shard,Default,Green - Outside Dungeon 1 Cave,true
 Green - River near Forest Entrance,Energy Crystal Shard,Default,Green - Crystal Grove,can_surf
-Green - Shortcut to Town Pillars,Mercant,NPC,Green - Crystal Grove,true
+Green - Shortcut to Town Pillars,Merchant,NPC,Green - Crystal Grove,true
 Green Grotto - Before race,XP Crystals x25,XP Crystals,Green Grotto,can_fight
 Green Grotto - Corner,XP Crystals x15,XP Crystals,Green Grotto,true
 Green Grotto - Drop,Crystal Bullet,Default,Green Grotto - Drop,true
@@ -197,9 +197,9 @@ Town - Blacksmith Item 1,Progressive Cannon,Default,Green - Town,can_free_blacks
 Town - Blacksmith Item 2,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(27)
 Town - Blacksmith Item 3,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(92)
 Town - Blacksmith Item 4,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(212)
-Town - Mercant Item 1,Ancient Astrolabe,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(65)
-Town - Mercant Item 2,Compass,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(2)
-Town - Mercant Item 3,Village Star,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(18)
+Town - Merchant Item 1,Ancient Astrolabe,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(65)
+Town - Merchant Item 2,Compass,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(2)
+Town - Merchant Item 3,Village Star,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(18)
 Town - Plaza,Blacksmith,NPC,Green - Town,true
 Town - Scarab Collector Item 1,Idol of protection,Default,Green - Town,can_free_scarab_collector and can_obtain_scarabs(3)
 Town - Scarab Collector Item 2,HP Crystal Shard,Default,Green - Town,can_free_scarab_collector and can_obtain_scarabs(6)

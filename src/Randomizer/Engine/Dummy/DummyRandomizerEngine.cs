@@ -215,7 +215,7 @@ Desert - Under ruins: Power of protection
 Desert - On the river: Idol of time
 Desert Grotto - Both torches lighted: Small Key (Dungeon 2)
 Desert Temple - Secret room: Small Key (Dungeon 2)
-Desert Temple - Boss reward: Mercant
+Desert Temple - Boss reward: Merchant
 Desert Temple - North East pot: HP Crystal Shard
 Dungeon 1 - Central item: HP Crystal Shard
 Dungeon 1 - Platform after crystal wall: XP Crystals x10
@@ -301,9 +301,9 @@ Town - Blacksmith Item 1: HP Crystal Shard
 Town - Blacksmith Item 2: XP Crystals x15
 Town - Blacksmith Item 3: XP Crystals x60
 Town - Blacksmith Item 4: Scarab
-Town - Mercant Item 1: XP Crystals x100
-Town - Mercant Item 2: HP Crystal Shard
-Town - Mercant Item 3: Small Key (Dungeon 3)
+Town - Merchant Item 1: XP Crystals x100
+Town - Merchant Item 2: HP Crystal Shard
+Town - Merchant Item 3: Small Key (Dungeon 3)
 Green - Closed Arena Item: Small Key (Dungeon 2)
 Green - Behind Closed Arena: Overcharge
 Green - Crossroad Arena Item: Spirit Dash
