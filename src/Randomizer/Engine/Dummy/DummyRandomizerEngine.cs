@@ -310,7 +310,7 @@ Green - Crossroad Arena Item: Spirit Dash
 Green - Bridge Shortcut: Progressive Cannon
 Green - Button Item: XP Crystals x25
 Town - Plaza: HP Crystal Shard
-Town - Scarab Collector Item 2: XP Crystals x5
+Town - Scarab Collector Item 2: Primordial Scarab Dialog
 Town - Scarab Collector Item 1: XP Crystals x70
 Town - Scarab Collector Item 3: XP Crystals x40
 Town - Scarab Collector Item 4: Scarab

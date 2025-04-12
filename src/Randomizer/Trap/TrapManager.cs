@@ -16,7 +16,8 @@ public class TrapManager
         if (item is TrapItem || (item is ReceivedItem && ((ReceivedItem)item).InnerItem is TrapItem))
         {
             _messageDispatcher.Dispatch(new TriggerTrapDialogMessage(), new List<IStamp>{
-                new MustBeInGameStamp()
+                new MustBeInGameStamp(),
+                new DialogIsNotOpenStamp()
             });
         }
     }
