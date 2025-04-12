@@ -226,7 +226,6 @@ public class RandomizerPickup : MonoBehaviour, IActivationChecker
         //     componentsInChildren[i].GetComponent<Renderer>().sortingLayerName = SortingLayer.op_Implicit(SRSortingLayers.UI);
         // }
 
-        // Player.Instance.SetActive(active: false, setFreezeUnfreezeGame: true);
         GetCollectCollider().enabled = false;
         if (Item != null)
         {
@@ -242,7 +241,6 @@ public class RandomizerPickup : MonoBehaviour, IActivationChecker
     {
         CameraManager.ForwardTiltToggled = true;
         FireEndedCollect();
-        // Player.Instance.SetActive(active: true, setFreezeUnfreezeGame: true);
         CheckActivation();
 
         // Make minishoot a happy (or sad) little lad.

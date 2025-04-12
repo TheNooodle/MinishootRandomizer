@@ -62,10 +62,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
         - One door leading to "Dungeon 3 - South corridor" has been removed. This means that this dungeon now has an extra key.
         - Removed the usage of the "cannot_surf" rule.
     - Abyss Church
-        - The Unchosen Statue now is opened by default (instead of being opened when the player defeats the boss of Dungeon 5).
+        - The Unchosen Statue is now opened by default (instead of being opened when the player defeats the boss of Dungeon 5).
 - Removed arbitrary logic rules for the fights against the boss of Dungeon 1 and the Busher boss in Forest (the one guarding the Spirit Tower).
     - Those fights now only checks for cannon levels.
 - "Dungeon 3 - North arena" now properly checks for the "Boostless Torch Races" setting.
+- Renamed all instances of "Mercant" to "Merchant".
 
 ## [0.3.2] - 2025-02-24
 
