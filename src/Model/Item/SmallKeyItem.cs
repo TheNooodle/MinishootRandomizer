@@ -15,7 +15,6 @@ public class SmallKeyItem : Item
         ReflectionHelper.InvokeStaticAction(typeof(PlayerState), "KeysChanged");
         int obtainedQuantity = GetObtainedQuantity();
         WorldState.Set($"ObtainedD{DungeonId}SmallKey{obtainedQuantity}", true);
-        SaveManager.SaveSlot();
     }
 
     public override string GetSpriteIdentifier()

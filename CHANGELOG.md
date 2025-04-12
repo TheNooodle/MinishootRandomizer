@@ -67,6 +67,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Those fights now only checks for cannon levels.
 - "Dungeon 3 - North arena" now properly checks for the "Boostless Torch Races" setting.
 - Renamed all instances of "Mercant" to "Merchant".
+- Temporarily removed file saving when receiving either a Small Key or a Boss Key.
+    - This change is made to alleviate issues where exiting the map screen can drastically drop the game framerate.
+    - This bug circumstances are still unclear, hence the temporary change.
 
 ## [0.3.2] - 2025-02-24
 
