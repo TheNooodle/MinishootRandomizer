@@ -1,4 +1,6 @@
 .vscode/
-bin
-lib
-obj
+MinishootRandomizer/bin
+MinishootRandomizer/lib
+MinishootRandomizer/obj
+MinishootRandomizer.Tests/bin
+MinishootRandomizer.Tests/obj
