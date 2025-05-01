@@ -4,8 +4,8 @@ namespace MinishootRandomizer;
 
 public interface IServiceContainer
 {
-    T Get<T>();
-    bool Has<T>();
+    T Get<T>() where T : class;
+    bool Has<T>() where T : class;
 }
 
 public interface IBuildable

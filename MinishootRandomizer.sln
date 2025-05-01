@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinishootRandomizer", "MinishootRandomizer\MinishootRandomizer.csproj", "{E83B04A9-F0DC-4725-B699-0AECF71CA191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinishootRandomizer.Tests", "MinishootRandomizer.Tests\MinishootRandomizer.Tests.csproj", "{F14A135C-E09B-4C39-9D3A-09A4C77486B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E83B04A9-F0DC-4725-B699-0AECF71CA191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E83B04A9-F0DC-4725-B699-0AECF71CA191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E83B04A9-F0DC-4725-B699-0AECF71CA191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F14A135C-E09B-4C39-9D3A-09A4C77486B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F14A135C-E09B-4C39-9D3A-09A4C77486B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F14A135C-E09B-4C39-9D3A-09A4C77486B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F14A135C-E09B-4C39-9D3A-09A4C77486B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,7 +19,13 @@ namespace MinishootRandomizer
 
         private void Awake()
         {
-            ServiceContainer = new ComponentModelContainer(Logger);
+            var serviceDefinitionProvider = new InlineServiceDefinitionProvider(Logger);
+            ServiceContainer = new MicrosoftServiceContainer(serviceDefinitionProvider);
+
+            if (ServiceContainer is IBuildable buildable)
+            {
+                buildable.Build();
+            }
             _logger = ServiceContainer.Get<ILogger>();
 
             // Plugin startup logic
