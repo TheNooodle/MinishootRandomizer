@@ -46,20 +46,31 @@ public class VersionNumber
     // - "~1.2" matches version numbers "1.2.0", "1.3.0", "1.4.0", etc.
     public bool Satisfy(string constraint)
     {
+        if (constraint.Length == 0)
+        {
+            throw new ArgumentException("Constraint cannot be empty");
+        }
+
         if (constraint.First() == '~')
         {
             string[] parts = constraint.Substring(1).Split('.');
-            if (parts.Length == 1)
+            try
             {
-                return _major >= int.Parse(parts[0]);
-            }
-            if (parts.Length == 2)
+                if (parts.Length == 1)
+                {
+                    return _major >= int.Parse(parts[0]);
+                }
+                if (parts.Length == 2)
+                {
+                    return _major == int.Parse(parts[0]) && _minor >= int.Parse(parts[1]);
+                }
+                if (parts.Length == 3)
+                {
+                    return _major == int.Parse(parts[0]) && _minor == int.Parse(parts[1]) && _patch >= int.Parse(parts[2]);
+                }
+            } catch (FormatException)
             {
-                return _major == int.Parse(parts[0]) && _minor >= int.Parse(parts[1]);
-            }
-            if (parts.Length == 3)
-            {
-                return _major == int.Parse(parts[0]) && _minor == int.Parse(parts[1]) && _patch >= int.Parse(parts[2]);
+                throw new ArgumentException("Invalid version constraint");
             }
 
             throw new ArgumentException("Invalid version constraint");
@@ -76,8 +87,9 @@ public class VersionNumber
                 }
                 else
                 {
-                    int value = int.Parse(parts[i]);
-                    checks.Add(() => value == new[] { _major, _minor, _patch }[i]);
+                    int constraintValue = int.Parse(parts[i]);
+                    int versionValue = new[] { _major, _minor, _patch }[i];
+                    checks.Add(() => constraintValue == versionValue);
                 }
             }
 
