@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>MinishootRandomizer</AssemblyName>
     <Description>eh eh minshot goes plok plok plok plok</Description>
-    <Version>0.4.0</Version>
+    <Version>0.4.1</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>

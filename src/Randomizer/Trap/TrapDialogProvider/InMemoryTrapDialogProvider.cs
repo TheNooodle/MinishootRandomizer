@@ -16,9 +16,10 @@ public class InMemoryTrapDialogProvider : ITrapDialogProvider
         "Episode III A Link to the Past Randomizer\nAfter mostly disregarding what happened in the first two games.\nLink awakens to his uncle leaving the house. He just runs out the door, into the rainy night.\nGanon has moved around all the items in Hyrule. This is your chance to be a hero.",
         "Against all the evil that Hell can conjure,\nall the wickedness that mankind can produce,\nwe will send unto them... only you.\nRip and tear, until it is done.",
         "I plan to give you a taste of my revenge, once all the seven Chaos Emeralds are collected.\n Once I initiate this program, it cannot be disabled.\n All of you ungrateful humans, who took everything away from me...\n will feel my loss, and despair!",
-        "We don't know why the Sunken Temple always welcomes its visitors at the south entrance, just that this is true.\nAs a child, I considered such unknowns sinister.\nNow, though, I understand they bear no ill will. The universe is, and we are.\nI am ready.",
+        "We don't know why the Sunken Temple always welcomes its visitors at the south entrance, \njust that this is true. As a child, I considered such unknowns sinister.\nNow, though, I understand they bear no ill will. The universe is, and we are.\nI am ready.",
         "Long ago, two races ruled over Earth: HUMANS and MONSTERS.\nOne day, war broke out between the two races.\nAfter a long battle, the humans were victorious.\nThey sealed the monsters underground with a magic spell.",
         "Oh, Navi the fairy...\nListen to my words, the words of the Deku Tree...\nDost thou sense it? The climate of evil descending upon this realm...\nMalevolent forces even now are mustering to attack our land of Hyrule...",
+        "There was a red prince, Who sat on a red throne.\n He had a red crown made of rubies, And a red castle made of stones.\nThe prince had a love, For all things red.\n It's the only true color! The prince often said."
     };
 
     private Random _random = new Random();

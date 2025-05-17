@@ -196,7 +196,8 @@ public class ComponentModelContainer : IServiceContainer, IBuildable
 
         _serviceContainer.AddService(typeof(TrapItemPresentationProvider), new TrapItemPresentationProvider(
             (CoreItemPresentationProvider)_serviceContainer.GetService(typeof(CoreItemPresentationProvider)),
-            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine))
+            (IRandomizerEngine)_serviceContainer.GetService(typeof(IRandomizerEngine)),
+            (IItemRepository)_serviceContainer.GetService(typeof(IItemRepository))
         ));
 
         _serviceContainer.AddService(typeof(IItemPresentationProvider), _serviceContainer.GetService(typeof(TrapItemPresentationProvider)));
