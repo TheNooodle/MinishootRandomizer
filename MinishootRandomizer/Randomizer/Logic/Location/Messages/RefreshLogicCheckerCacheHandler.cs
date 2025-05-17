@@ -11,6 +11,7 @@ public class RefreshLogicCheckerCacheHandler : IMessageHandler
             throw new ArgumentException("Message is not of type RefreshLogicCheckerCacheMessage");
         }
 
-        ((RefreshLogicCheckerCacheMessage)message).CachedLogicChecker.RefreshCache();
+        RefreshLogicCheckerCacheMessage refreshMessage = (RefreshLogicCheckerCacheMessage)message;
+        refreshMessage.CachedLogicChecker.RefreshCache(refreshMessage.LogicState);
     }
 }

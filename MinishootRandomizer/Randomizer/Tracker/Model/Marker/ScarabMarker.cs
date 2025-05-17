@@ -16,7 +16,7 @@ public class ScarabMarker : AbstractMarker
         _scarabLocations = scarabLocations;
     }
 
-    public override void ComputeVisibility(IRandomizerEngine engine, ILogicChecker logicChecker)
+    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker)
     {
         ScarabSanity scarabSanity = engine.GetSetting<ScarabSanity>();
         LogicAccessibility newAccessibility = LogicAccessibility.Inaccessible;

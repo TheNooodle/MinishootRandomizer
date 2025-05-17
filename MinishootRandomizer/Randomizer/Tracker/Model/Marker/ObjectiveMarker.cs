@@ -16,7 +16,7 @@ public class ObjectiveMarker : AbstractMarker
         _goal = goal;
     }
 
-    public override void ComputeVisibility(IRandomizerEngine engine, ILogicChecker logicChecker)
+    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker)
     {
         CompletionGoals completionGoals = engine.GetSetting<CompletionGoals>();
         if (engine.IsGoalCompleted(_goal) || (completionGoals.Goal != Goals.Both && completionGoals.Goal != _goal))

@@ -19,7 +19,7 @@ public class SpiritMarker : AbstractMarker
         _spiritIdentifier = spiritIdentifier;
     }
 
-    public override void ComputeVisibility(IRandomizerEngine engine, ILogicChecker logicChecker)
+    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker)
     {
         SpiritSanity spiritSanity = engine.GetSetting<SpiritSanity>();
         if (spiritSanity.Enabled)

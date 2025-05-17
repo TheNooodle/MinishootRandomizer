@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace MinishootRandomizer;
 
 public class LogicState
 {
     private Dictionary<string, int> _itemCount = new();
-    private List<Region> _reachableRegions = new();
+    private List<ISetting> _settings = new();
 
     public void AddItemCount(Item item, int count = 1)
     {
@@ -25,26 +24,37 @@ public class LogicState
         _itemCount[item.Identifier] = count;
     }
 
-    public bool HasItem(Item item, int count = 1)
+    public virtual bool HasItem(Item item, int count = 1)
     {
         return _itemCount.TryGetValue(item.Identifier, out int owned) && owned >= count;
     }
 
-    public void AddReachableRegion(Region region)
+    public void SetSetting(ISetting setting)
     {
-        if (!_reachableRegions.Contains(region))
+        ISetting existingSetting = _settings.Find(s => s.GetType() == setting.GetType());
+        if (existingSetting != null)
         {
-            _reachableRegions.Add(region);
+            _settings.Remove(existingSetting);
         }
+
+        _settings.Add(setting);
     }
 
-    public bool CanReach(Region region)
+    public virtual T GetSetting<T>() where T : ISetting
     {
-        return _reachableRegions.Contains(region);
+        foreach (ISetting setting in _settings)
+        {
+            if (setting is T typedSetting)
+            {
+                return typedSetting;
+            }
+        }
+
+        return default;
     }
 
-    public ReadOnlyCollection<Region> GetReachableRegions()
+    public virtual string GetCacheKey()
     {
-        return _reachableRegions.AsReadOnly();
+        return LogicTolerance.Strict.ToString();
     }
 }

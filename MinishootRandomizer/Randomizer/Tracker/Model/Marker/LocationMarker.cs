@@ -13,7 +13,7 @@ public class LocationMarker : AbstractMarker
         _locations = locations;
     }
 
-    public override void ComputeVisibility(IRandomizerEngine engine, ILogicChecker logicChecker)
+    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker)
     {
         List<LocationPool> locationPools = engine.GetLocationPools();
         LogicAccessibility newAccessibility = LogicAccessibility.Inaccessible;

@@ -19,7 +19,7 @@ public class NpcMarker : AbstractMarker
         _npcIdentifier = npcIdentifier;
     }
 
-    public override void ComputeVisibility(IRandomizerEngine engine, ILogicChecker logicChecker)
+    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker)
     {
         NpcSanity npcSanity = engine.GetSetting<NpcSanity>();
         if (npcSanity.Enabled)

@@ -2,66 +2,66 @@ using System.Collections.Generic;
 
 namespace MinishootRandomizer;
 
-public class CoreLogicChecker : ILogicChecker
+public class CoreLocationLogicChecker : ILocationLogicChecker
 {
-    private readonly ILogicStateProvider _logicStateProvider;
     private readonly ILogicParser _logicParser;
-    private readonly IRandomizerEngine _randomizerEngine;
+    private readonly IRegionLogicChecker _regionLogicChecker;
     private readonly IRegionRepository _regionRepository;
     private readonly ILocationRepository _locationRepository;
 
-    public CoreLogicChecker(ILogicStateProvider logicStateProvider, ILogicParser logicParser, IRandomizerEngine randomizerEngine, IRegionRepository regionRepository, ILocationRepository locationRepository)
-    {
-        _logicStateProvider = logicStateProvider;
+    public CoreLocationLogicChecker(
+        ILogicParser logicParser,
+        IRegionLogicChecker regionLogicChecker,
+        IRegionRepository regionRepository,
+        ILocationRepository locationRepository
+    ) {
         _logicParser = logicParser;
-        _randomizerEngine = randomizerEngine;
+        _regionLogicChecker = regionLogicChecker;
         _regionRepository = regionRepository;
         _locationRepository = locationRepository;
     }
 
-    public LogicAccessibility CheckLocationLogic(Location location)
+    public LogicAccessibility CheckLocationLogic(LogicState logicState, Location location)
     {
-        List<ISetting> settings = _randomizerEngine.GetSettings();
-        LogicState state = _logicStateProvider.GetLogicState();
         Region region = _regionRepository.GetRegionByLocation(location);
 
-        if (!state.CanReach(region))
+        if (!_regionLogicChecker.CanReachRegion(region, logicState))
         {
             // If the location is not reachable, we check if it's out of logic
-            LogicState outOfLogicState = _logicStateProvider.GetLogicState(LogicTolerance.Lenient);
+            LogicState outOfLogicState = new OutOfLogicStateDecorator(logicState);
 
             // If the location is reachable out of logic and the location is attainable, it's accessible out of logic.
-            return outOfLogicState.CanReach(region) && _logicParser.ParseLogic(location.LogicRule, outOfLogicState, settings).Result
+            return !_regionLogicChecker.CanReachRegion(region, outOfLogicState) && _logicParser.ParseLogic(location.LogicRule, outOfLogicState).Result
                 ? LogicAccessibility.OutOfLogic
                 : LogicAccessibility.Inaccessible
             ;
         }
 
-        LogicParsingResult parsingResult = _logicParser.ParseLogic(location.LogicRule, state, settings);
+        LogicParsingResult parsingResult = _logicParser.ParseLogic(location.LogicRule, logicState);
         if (parsingResult.Result)
         {
             return LogicAccessibility.InLogic;
         }
         else
         {
-            LogicState outOfLogicState = _logicStateProvider.GetLogicState(LogicTolerance.Lenient);
+            LogicState outOfLogicState = new OutOfLogicStateDecorator(logicState);
 
             // If the location is reachable out of logic and the location is attainable, it's accessible out of logic.
-            return _logicParser.ParseLogic(location.LogicRule, outOfLogicState, settings).Result
+            return _logicParser.ParseLogic(location.LogicRule, outOfLogicState).Result
                 ? LogicAccessibility.OutOfLogic
                 : LogicAccessibility.Inaccessible
             ;
         }
     }
 
-    public LocationAccessibilitySet CheckAllLocationsLogic()
+    public LocationAccessibilitySet CheckAllLocationsLogic(LogicState logicState)
     {
         List<Location> locations = _locationRepository.GetAll();
         LocationAccessibilitySet accessibilitySet = new LocationAccessibilitySet();
 
         foreach (Location location in locations)
         {
-            LogicAccessibility accessibility = CheckLocationLogic(location);
+            LogicAccessibility accessibility = CheckLocationLogic(logicState, location);
 
             if (accessibility == LogicAccessibility.InLogic)
             {

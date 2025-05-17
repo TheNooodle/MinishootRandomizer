@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace MinishootRandomizer;
 
 // Heads up, this interface must maintain function parity with the implementation in the AP World.
@@ -7,5 +5,5 @@ namespace MinishootRandomizer;
 // Also, in case of a standalone engine implementation, the perceived randomization of different objects must be consistent.
 public interface ILogicParser
 {
-    LogicParsingResult ParseLogic(string logicRule, LogicState state, List<ISetting> settings);
+    LogicParsingResult ParseLogic(string logicRule, LogicState state);
 }

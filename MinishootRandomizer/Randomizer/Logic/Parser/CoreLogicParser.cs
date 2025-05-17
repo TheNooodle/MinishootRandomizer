@@ -15,7 +15,7 @@ public class CoreLogicParser : ILogicParser
         _regionRepository = regionRepository;
     }
 
-    public LogicParsingResult ParseLogic(string logicRule, LogicState state, List<ISetting> settings)
+    public LogicParsingResult ParseLogic(string logicRule, LogicState state)
     {
         List<string> usedItems = new List<string>();
         bool result = false;
@@ -39,7 +39,7 @@ public class CoreLogicParser : ILogicParser
                 }
 
                 // We parse the rule.
-                LogicParsingResult parseResult = ParseRule(rule, state, arg, settings);
+                LogicParsingResult parseResult = ParseRule(rule, state, arg);
                 if (!parseResult.Result)
                 {
                     andResult = false;
@@ -62,7 +62,7 @@ public class CoreLogicParser : ILogicParser
         return new LogicParsingResult(result, usedItems);
     }
 
-    private LogicParsingResult ParseRule(string rule, LogicState state, int arg, List<ISetting> settings)
+    private LogicParsingResult ParseRule(string rule, LogicState state, int arg)
     {
         Item cannon = _itemRepository.Get(Item.ProgressiveCannon);
 
@@ -332,7 +332,7 @@ public class CoreLogicParser : ILogicParser
 
         if (rules.ContainsKey(rule))
         {
-            return rules[rule](new LogicParsingParameters(state, arg, settings));
+            return rules[rule](new LogicParsingParameters(state, arg));
         }
 
         throw new UnknownRuleException($"Unknown rule: {rule}");
@@ -350,7 +350,7 @@ public class CoreLogicParser : ILogicParser
 
     private bool CanFight(LogicParsingParameters parameters, int level = 1)
     {
-        IgnoreCannonLevelRequirements setting = (IgnoreCannonLevelRequirements)parameters.Settings.Find(s => s is IgnoreCannonLevelRequirements);
+        IgnoreCannonLevelRequirements setting = parameters.State.GetSetting<IgnoreCannonLevelRequirements>();
 
         if (!setting.Enabled)
         {
@@ -369,7 +369,7 @@ public class CoreLogicParser : ILogicParser
             return true;
         }
 
-        DashlessGaps setting = (DashlessGaps)parameters.Settings.Find(s => s is DashlessGaps);
+        DashlessGaps setting = parameters.State.GetSetting<DashlessGaps>();
         if ((gapSize == GapSize.Tight || gapSize == GapSize.VeryTight) && setting.Value != DashlessGapsValue.NeedsDash && parameters.State.HasItem(_itemRepository.Get(Item.Boost)))
         {
             return true;
@@ -385,7 +385,7 @@ public class CoreLogicParser : ILogicParser
 
     private bool CanDestroyWalls(LogicParsingParameters parameters)
     {
-        EnablePrimordialCrystalLogic setting = (EnablePrimordialCrystalLogic)parameters.Settings.Find(s => s is EnablePrimordialCrystalLogic);
+        EnablePrimordialCrystalLogic setting = parameters.State.GetSetting<EnablePrimordialCrystalLogic>();
         if (setting.Enabled)
         {
             return parameters.State.HasItem(_itemRepository.Get(Item.Supershot)) || parameters.State.HasItem(_itemRepository.Get(Item.PrimordialCrystal));
@@ -403,7 +403,7 @@ public class CoreLogicParser : ILogicParser
 
     private bool CanUseSpringboards(LogicParsingParameters parameters)
     {
-        BoostlessSpringboards setting = (BoostlessSpringboards)parameters.Settings.Find(s => s is BoostlessSpringboards);
+        BoostlessSpringboards setting = parameters.State.GetSetting<BoostlessSpringboards>();
 
         if (setting.Enabled)
         {
@@ -417,7 +417,7 @@ public class CoreLogicParser : ILogicParser
 
     private bool CanRaceSpirits(LogicParsingParameters parameters)
     {
-        BoostlessSpiritRaces setting = (BoostlessSpiritRaces)parameters.Settings.Find(s => s is BoostlessSpiritRaces);
+        BoostlessSpiritRaces setting = parameters.State.GetSetting<BoostlessSpiritRaces>();
 
         if (setting.Enabled)
         {
@@ -431,7 +431,7 @@ public class CoreLogicParser : ILogicParser
 
     private bool CanRaceTorches(LogicParsingParameters parameters)
     {
-        BoostlessTorchRaces setting = (BoostlessTorchRaces)parameters.Settings.Find(s => s is BoostlessTorchRaces);
+        BoostlessTorchRaces setting = parameters.State.GetSetting<BoostlessTorchRaces>();
 
         if (setting.Enabled)
         {
@@ -445,7 +445,7 @@ public class CoreLogicParser : ILogicParser
 
     private bool IsSettingEnabled<T>(LogicParsingParameters parameters) where T : BooleanSetting
     {
-        T setting = (T)parameters.Settings.Find(s => s is T);
+        T setting = parameters.State.GetSetting<T>();
         if (setting == null)
         {
             return false;

@@ -334,7 +334,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         
         AddSingleton<ILogicStateProvider>(sp => sp.Get<LocalLogicStateProvider>());
         
-        AddSingleton<CoreLogicChecker>(sp => new CoreLogicChecker(
+        AddSingleton<CoreLocationLogicChecker>(sp => new CoreLocationLogicChecker(
             sp.Get<ILogicStateProvider>(),
             sp.Get<ILogicParser>(),
             sp.Get<IRandomizerEngine>(),
@@ -342,15 +342,15 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             sp.Get<ILocationRepository>()
         ));
         
-        AddSingleton<CachedLogicChecker>(sp => new CachedLogicChecker(
-            sp.Get<CoreLogicChecker>(),
+        AddSingleton<CachedLocationLogicChecker>(sp => new CachedLocationLogicChecker(
+            sp.Get<CoreLocationLogicChecker>(),
             sp.Get<IMessageDispatcher>()
         ));
         
         AddPostBuildAction(sp => {
             var gameEvents = sp.Get<GameEventDispatcher>();
             var randomizerEngine = sp.Get<EventRandomizerEngine>();
-            var logicChecker = sp.Get<CachedLogicChecker>();
+            var logicChecker = sp.Get<CachedLocationLogicChecker>();
             
             gameEvents.ExitingGame += logicChecker.OnExitingGame;
             gameEvents.ItemCollected += logicChecker.OnItemCollected;
@@ -360,7 +360,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             randomizerEngine.GoalCompleted += logicChecker.OnGoalCompleted;
         });
         
-        AddSingleton<ILogicChecker>(sp => sp.Get<CachedLogicChecker>());
+        AddSingleton<ILocationLogicChecker>(sp => sp.Get<CachedLocationLogicChecker>());
     }
     
     private void ConfigureMessageHandlers()

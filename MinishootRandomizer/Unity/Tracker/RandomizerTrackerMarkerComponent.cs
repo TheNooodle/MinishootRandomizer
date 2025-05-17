@@ -8,7 +8,7 @@ namespace MinishootRandomizer;
 public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecker
 {
     private IRandomizerEngine _randomizerEngine;
-    private ILogicChecker _logicChecker;
+    private ILocationLogicChecker _logicChecker;
     private ISpriteProvider _spriteProvider;
 
     private List<AbstractMarker> _markers = new List<AbstractMarker>();
@@ -19,7 +19,7 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecke
     void Awake()
     {
         _randomizerEngine = Plugin.ServiceContainer.Get<IRandomizerEngine>();
-        _logicChecker = Plugin.ServiceContainer.Get<ILogicChecker>();
+        _logicChecker = Plugin.ServiceContainer.Get<ILocationLogicChecker>();
         _spriteProvider = Plugin.ServiceContainer.Get<ISpriteProvider>();
 
         _floatyAnimationComponent = gameObject.GetComponent<FloatyAnimationComponent>();
