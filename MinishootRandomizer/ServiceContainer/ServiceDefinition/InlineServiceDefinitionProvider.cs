@@ -269,7 +269,8 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         
         AddSingleton<TrapItemPresentationProvider>(sp => new TrapItemPresentationProvider(
             sp.Get<CoreItemPresentationProvider>(),
-            sp.Get<IRandomizerEngine>()
+            sp.Get<IRandomizerEngine>(),
+            sp.Get<IItemRepository>()
         ));
         
         AddSingleton<IItemPresentationProvider>(sp => sp.Get<TrapItemPresentationProvider>());

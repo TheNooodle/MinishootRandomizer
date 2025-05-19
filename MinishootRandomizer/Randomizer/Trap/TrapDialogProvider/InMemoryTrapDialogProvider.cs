@@ -19,6 +19,7 @@ public class InMemoryTrapDialogProvider : ITrapDialogProvider
         "We don't know why the Sunken Temple always welcomes its visitors at the south entrance, \njust that this is true. As a child, I considered such unknowns sinister.\nNow, though, I understand they bear no ill will. The universe is, and we are.\nI am ready.",
         "Long ago, two races ruled over Earth: HUMANS and MONSTERS.\nOne day, war broke out between the two races.\nAfter a long battle, the humans were victorious.\nThey sealed the monsters underground with a magic spell.",
         "Oh, Navi the fairy...\nListen to my words, the words of the Deku Tree...\nDost thou sense it? The climate of evil descending upon this realm...\nMalevolent forces even now are mustering to attack our land of Hyrule...",
+        "There was a red prince, Who sat on a red throne.\n He had a red crown made of rubies, And a red castle made of stones.\nThe prince had a love, For all things red.\n It's the only true color! The prince often said."
     };
 
     private Random _random = new Random();
