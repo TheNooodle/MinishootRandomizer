@@ -8,15 +8,32 @@ public class TrapItemPresentationProvider : IItemPresentationProvider
 {
     private readonly IItemPresentationProvider _innerProvider;
     private readonly IRandomizerEngine _randomizerEngine;
+    private readonly IItemRepository _itemRepository;
 
     private Random _random = new Random();
 
+    private static readonly string[] _majorFallbackItemNames = {
+        Item.ProgressiveCannon,
+        Item.PowerOfProtection,
+        Item.DarkKey,
+        Item.ScarabKey
+    };
+
+    private static readonly string[] _junkFallbackItemNames = {
+        Item.HpCrystalShard,
+        Item.EnergyCrystalShard,
+        Item.AncientTablet
+    };
+
     public TrapItemPresentationProvider(
         IItemPresentationProvider innerProvider,
-        IRandomizerEngine randomizerEngine
-    ) {
+        IRandomizerEngine randomizerEngine,
+        IItemRepository itemRepository
+    )
+    {
         _innerProvider = innerProvider;
         _randomizerEngine = randomizerEngine;
+        _itemRepository = itemRepository;
     }
 
     public ItemPresentation GetItemPresentation(Item item)
@@ -73,7 +90,19 @@ public class TrapItemPresentationProvider : IItemPresentationProvider
 
         if (elligibleLocations.Count == 0)
         {
-            throw new ItemNotFoundException("No elligible locations found");
+            // If there are no eligible locations, we return a random item from repository.
+            List<string> itemNames = new List<string>();
+            if (trapItemsAppearance != TrapItemsAppearanceValue.JunkItems)
+            {
+                itemNames.AddRange(_majorFallbackItemNames);
+            }
+            if (trapItemsAppearance != TrapItemsAppearanceValue.MajorItems)
+            {
+                itemNames.AddRange(_junkFallbackItemNames);
+            }
+            string randomItemName = itemNames[_random.Next(itemNames.Count)];
+
+            return _itemRepository.Get(randomItemName);
         }
 
         Location randomLocation = elligibleLocations[_random.Next(elligibleLocations.Count)];
