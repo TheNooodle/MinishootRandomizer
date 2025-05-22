@@ -16,4 +16,35 @@ public class LogicTestSuite
         _defaultItemCounts = defaultItemCounts;
         _testData = testData;
     }
+
+    public List<Tuple<LogicTestData, LogicState>> GetTestDataWithLogicState()
+    {
+        List<Tuple<LogicTestData, LogicState>> testDataWithLogicState = new List<Tuple<LogicTestData, LogicState>>();
+        foreach (LogicTestData testData in _testData)
+        {
+            LogicState logicState = new LogicState();
+            // We first merge the default settings with the overridden test data settings.
+            foreach (ISetting setting in _defaultSettings)
+            {
+                logicState.SetSetting(setting);
+            }
+            foreach (ISetting setting in testData.OverrideSettings)
+            {
+                logicState.SetSetting(setting);
+            }
+            // We then add the default item counts to the logic state.
+            foreach (var itemCount in _defaultItemCounts)
+            {
+                logicState.AddItemCount(itemCount.Key, itemCount.Value);
+            }
+            foreach (var itemCount in testData.AddItemCounts)
+            {
+                logicState.AddItemCount(itemCount.Key, itemCount.Value);
+            }
+
+            testDataWithLogicState.Add(new Tuple<LogicTestData, LogicState>(testData, logicState));
+        }
+
+        return testDataWithLogicState;
+    }
 }

@@ -1,36 +1,31 @@
-default_state:
-  settings:
-    npc_sanity: 'true'
-    scarab_sanity: 'true'
-    shard_sanity: 'true'
-    key_sanity: 'true'
-    boss_key_sanity: 'true'
-    add_trap_items: 'true'
-    trap_items_appearance: 'anything'
-    show_archipelago_item_category: 'true'
-    blocked_forest: 'true'
-    ignore_cannon_level_requirements: 'false'
-    boostless_springboards: 'false'
-    boostless_spirit_races: 'false'
-    boostless_torch_races: 'false'
-    enable_primordial_crystal_logic: 'false'
-    progressive_dash: 'true'
-    dashless_gaps: 'needs_dash'
-    completion_goals: 'dungeon_5'
-  items:
-    Progressive Cannon: 1
-tests_cases:
+default_settings:
+  npc_sanity: 'true'
+  scarab_sanity: 'true'
+  shard_sanity: 'true'
+  key_sanity: 'true'
+  boss_key_sanity: 'true'
+  blocked_forest: 'true'
+  ignore_cannon_level_requirements: 'false'
+  boostless_springboards: 'false'
+  boostless_spirit_races: 'false'
+  boostless_torch_races: 'false'
+  enable_primordial_crystal_logic: 'false'
+  progressive_dash: 'true'
+  dashless_gaps: 'NeedsDash'
+  completion_goals: 'Dungeon5'
+default_item_counts:
+  Super Crystals x5: 2
+test_cases:
   - name: "Test Dash"
-    override_settings: ~
     add_items:
       Progressive Dash: 1
     tests:
-      - locationAccessibility:
-          locationName: "Forest Grotto - After ramp"
-          expectedAccessibility: "InLogic"
-      - locationAccessibility:
-          locationName: "Green - Grove near button"
-          expectedAccessibility: "OutOfLogic"
+      - location_accessibility:
+          location_name: "Forest Grotto - After ramp"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Green - Grove near button"
+          expected_accessibility: "out_of_logic"
 
   - name: "Test Dash with Boostless ramps"
     override_settings:
@@ -38,9 +33,9 @@ tests_cases:
     add_items:
       Progressive Dash: 1
     tests:
-      - locationAccessibility:
-          locationName: "Forest Grotto - After ramp"
-          expectedAccessibility: "InLogic"
-      - locationAccessibility:
-          locationName: "Green - Grove near button"
-          expectedAccessibility: "InLogic"
+      - location_accessibility:
+          location_name: "Forest Grotto - After ramp"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Green - Grove near button"
+          expected_accessibility: "in_logic"
