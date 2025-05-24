@@ -13,15 +13,16 @@ public class LocationMarker : AbstractMarker
         _locations = locations;
     }
 
-    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker)
+    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker, ILogicStateProvider logicStateProvider)
     {
         List<LocationPool> locationPools = engine.GetLocationPools();
         LogicAccessibility newAccessibility = LogicAccessibility.Inaccessible;
+        LogicState logicState = logicStateProvider.GetLogicState();
         foreach (Location location in _locations)
         {
             bool isChecked = engine.IsLocationChecked(location);
             bool isInPool = locationPools.Contains(location.Pool);
-            LogicAccessibility accessibility = logicChecker.CheckLocationLogic(location);
+            LogicAccessibility accessibility = logicChecker.CheckLocationLogic(logicState, location);
             if (!isChecked && isInPool)
             {
                 if (accessibility == LogicAccessibility.InLogic)

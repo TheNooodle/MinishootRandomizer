@@ -48,10 +48,9 @@ namespace MinishootRandomizer
 
         private void LoadLocations()
         {
-            var assembly = Assembly.GetExecutingAssembly();
             _locations = new Dictionary<string, Location>();
 
-            using Stream stream = assembly.GetManifestResourceStream(_csvPath);
+            using Stream stream = StreamFactory.CreateStream(_csvPath);
             using StreamReader reader = new(stream);
             using CsvReader csv = new(reader, CultureInfo.InvariantCulture);
             csv.Read();

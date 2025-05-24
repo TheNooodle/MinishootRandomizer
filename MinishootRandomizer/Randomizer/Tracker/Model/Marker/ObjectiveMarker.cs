@@ -16,7 +16,7 @@ public class ObjectiveMarker : AbstractMarker
         _goal = goal;
     }
 
-    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker)
+    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker, ILogicStateProvider logicStateProvider)
     {
         CompletionGoals completionGoals = engine.GetSetting<CompletionGoals>();
         if (engine.IsGoalCompleted(_goal) || (completionGoals.Goal != Goals.Both && completionGoals.Goal != _goal))
@@ -24,7 +24,8 @@ public class ObjectiveMarker : AbstractMarker
             return;
         }
 
-        _logicAccessibility = logicChecker.CheckLocationLogic(_location);
+        LogicState logicState = logicStateProvider.GetLogicState();
+        _logicAccessibility = logicChecker.CheckLocationLogic(logicState, _location);
         _isChecked = engine.IsLocationChecked(_location);
     }
 

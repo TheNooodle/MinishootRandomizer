@@ -35,6 +35,10 @@ public class UnityObjectFinder : IObjectFinder
             }
             return gameObjects[0];
         }
+        if (selector is ByNull)
+        {
+            return null; // Return null for ByNull selector
+        }
 
         throw new InvalidSelectorException("Selector not supported: " + selector.GetType());
     }
@@ -52,6 +56,10 @@ public class UnityObjectFinder : IObjectFinder
         if (selector is ByComponent byComponent)
         {
             return HandleByComponent(byComponent);
+        }
+        if (selector is ByNull)
+        {
+            return new GameObject[0]; // Return empty array for ByNull selector
         }
 
         throw new InvalidSelectorException("Selector not supported: " + selector.GetType());

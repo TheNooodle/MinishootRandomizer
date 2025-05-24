@@ -19,7 +19,7 @@ public class NpcMarker : AbstractMarker
         _npcIdentifier = npcIdentifier;
     }
 
-    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker)
+    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker, ILogicStateProvider logicStateProvider)
     {
         NpcSanity npcSanity = engine.GetSetting<NpcSanity>();
         if (npcSanity.Enabled)
@@ -28,8 +28,9 @@ public class NpcMarker : AbstractMarker
             return;
         }
 
+        LogicState logicState = logicStateProvider.GetLogicState();
         _owned = WorldState.Get(_npcIdentifier);
-        _accessibility = logicChecker.CheckLocationLogic(_location);
+        _accessibility = logicChecker.CheckLocationLogic(logicState, _location);
     }
 
     public override MarkerSpriteInfo GetSpriteInfo()

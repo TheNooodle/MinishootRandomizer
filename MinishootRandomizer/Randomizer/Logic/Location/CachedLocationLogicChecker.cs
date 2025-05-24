@@ -16,10 +16,11 @@ public class CachedLocationLogicChecker : ILocationLogicChecker
     // isInitialized means that the cache has been initialized at least once.
     private bool _isInitialized = false;
 
-    public CachedLocationLogicChecker(ILocationLogicChecker innerChecker, IMessageDispatcher messageDispatcher)
+    public CachedLocationLogicChecker(ILocationLogicChecker innerChecker, IMessageDispatcher messageDispatcher, ILogicStateProvider logicStateProvider)
     {
         _innerChecker = innerChecker;
         _messageDispatcher = messageDispatcher;
+        _logicStateProvider = logicStateProvider;
     }
 
     public LocationAccessibilitySet CheckAllLocationsLogic(LogicState logicState)

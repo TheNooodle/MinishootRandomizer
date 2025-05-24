@@ -56,10 +56,9 @@ namespace MinishootRandomizer
 
         private void LoadZones()
         {
-            var assembly = Assembly.GetExecutingAssembly();
             _zones = new Dictionary<string, Zone>();
 
-            using Stream stream = assembly.GetManifestResourceStream(_csvPath);
+            using Stream stream = StreamFactory.CreateStream(_csvPath);
             using StreamReader reader = new(stream);
             using CsvReader csv = new(reader, CultureInfo.InvariantCulture);
             csv.Read();

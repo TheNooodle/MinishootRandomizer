@@ -9,6 +9,7 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecke
 {
     private IRandomizerEngine _randomizerEngine;
     private ILocationLogicChecker _logicChecker;
+    private ILogicStateProvider _logicStateProvider;
     private ISpriteProvider _spriteProvider;
 
     private List<AbstractMarker> _markers = new List<AbstractMarker>();
@@ -20,6 +21,7 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecke
     {
         _randomizerEngine = Plugin.ServiceContainer.Get<IRandomizerEngine>();
         _logicChecker = Plugin.ServiceContainer.Get<ILocationLogicChecker>();
+        _logicStateProvider = Plugin.ServiceContainer.Get<ILogicStateProvider>();
         _spriteProvider = Plugin.ServiceContainer.Get<ISpriteProvider>();
 
         _floatyAnimationComponent = gameObject.GetComponent<FloatyAnimationComponent>();
@@ -42,7 +44,7 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecke
 
         foreach (AbstractMarker marker in _markers)
         {
-            marker.ComputeVisibility(_randomizerEngine, _logicChecker);
+            marker.ComputeVisibility(_randomizerEngine, _logicChecker, _logicStateProvider);
             if (marker.MustShow())
             {
                 ChangeMarker(marker);

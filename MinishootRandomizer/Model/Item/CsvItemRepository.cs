@@ -46,10 +46,9 @@ public class CsvItemRepository : IItemRepository
 
     private void LoadItems()
     {
-        var assembly = Assembly.GetExecutingAssembly();
         _items = new Dictionary<string, Item>();
 
-        using Stream stream = assembly.GetManifestResourceStream(_csvPath);
+        using Stream stream = StreamFactory.CreateStream(_csvPath);
         using StreamReader reader = new(stream);
         using CsvReader csv = new(reader, CultureInfo.InvariantCulture);
         csv.Read();

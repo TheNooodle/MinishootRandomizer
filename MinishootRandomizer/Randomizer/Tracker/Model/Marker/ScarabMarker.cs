@@ -16,7 +16,7 @@ public class ScarabMarker : AbstractMarker
         _scarabLocations = scarabLocations;
     }
 
-    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker)
+    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker, ILogicStateProvider logicStateProvider)
     {
         ScarabSanity scarabSanity = engine.GetSetting<ScarabSanity>();
         LogicAccessibility newAccessibility = LogicAccessibility.Inaccessible;
@@ -26,18 +26,19 @@ public class ScarabMarker : AbstractMarker
             return;
         }
 
+        LogicState logicState = logicStateProvider.GetLogicState();
         foreach (KeyValuePair<string, Location> scarabLocation in _scarabLocations)
         {
             bool owned = WorldState.Get(scarabLocation.Key);
 
             if (!owned)
             {
-                if (logicChecker.CheckLocationLogic(scarabLocation.Value) == LogicAccessibility.InLogic)
+                if (logicChecker.CheckLocationLogic(logicState, scarabLocation.Value) == LogicAccessibility.InLogic)
                 {
                     newAccessibility = LogicAccessibility.InLogic;
                     break;
                 }
-                else if (logicChecker.CheckLocationLogic(scarabLocation.Value) == LogicAccessibility.OutOfLogic)
+                else if (logicChecker.CheckLocationLogic(logicState, scarabLocation.Value) == LogicAccessibility.OutOfLogic)
                 {
                     newAccessibility = LogicAccessibility.OutOfLogic;
                 }

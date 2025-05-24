@@ -19,7 +19,7 @@ public class SpiritMarker : AbstractMarker
         _spiritIdentifier = spiritIdentifier;
     }
 
-    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker)
+    public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker, ILogicStateProvider logicStateProvider)
     {
         SpiritSanity spiritSanity = engine.GetSetting<SpiritSanity>();
         if (spiritSanity.Enabled)
@@ -29,7 +29,8 @@ public class SpiritMarker : AbstractMarker
         }
 
         _isChecked = WorldState.Get(_spiritIdentifier);
-        _logicAccessibility = logicChecker.CheckLocationLogic(_location);
+        LogicState logicState = logicStateProvider.GetLogicState();
+        _logicAccessibility = logicChecker.CheckLocationLogic(logicState, _location);
     }
 
     public override int GetSortIndex()

@@ -1,0 +1,32 @@
+default_settings:
+  npc_sanity: 'true'
+  scarab_sanity: 'true'
+  shard_sanity: 'true'
+  key_sanity: 'true'
+  boss_key_sanity: 'true'
+  blocked_forest: 'true'
+  ignore_cannon_level_requirements: 'false'
+  boostless_springboards: 'false'
+  boostless_spirit_races: 'false'
+  boostless_torch_races: 'false'
+  enable_primordial_crystal_logic: 'false'
+  progressive_dash: 'true'
+  dashless_gaps: 'NeedsDash'
+  completion_goals: 'Dungeon5'
+default_item_counts:
+  Progressive Cannon: 1
+test_cases:
+  - name: "Basic Sphere 0"
+    tests:
+      - location_accessibility:
+          location_name: "Forest - Secret within Secret"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Town - Plaza"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Swamp - South West Island Hidden in trees Item"
+          expected_accessibility: "out_of_logic"
+      - location_accessibility:
+          location_name: "Swamp - Hidden Before Big Enemy"
+          expected_accessibility: "inaccessible"    

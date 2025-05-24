@@ -13,7 +13,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
     private readonly List<ServiceDefinition> _definitions = new();
     private readonly List<PostBuildAction> _postBuildActions = new();
     private readonly ManualLogSource _pluginLogger;
-    
+
     public InlineServiceDefinitionProvider(ManualLogSource pluginLogger)
     {
         _pluginLogger = pluginLogger;
@@ -44,7 +44,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         ConfigureUIServices();
         ConfigurePatchers();
     }
-    
+
     private void ConfigureLogging()
     {
         AddSingleton<BepInExLogger>(sp => new BepInExLogger(sp.Get<ManualLogSource>()));
@@ -311,19 +311,19 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         AddSingleton<ILogicParser>(sp => sp.Get<CoreLogicParser>());
         
         AddSingleton<LocalLogicStateProvider>(sp => new LocalLogicStateProvider(
-            sp.Get<ILogicParser>(),
-            sp.Get<IRegionRepository>(),
-            sp.Get<ITransitionRepository>(),
             sp.Get<IItemRepository>(),
-            sp.Get<IRandomizerEngine>(),
-            new StandardCachePool<LogicState>(new DictionaryCacheStorage<LogicState>(), sp.Get<ILogger>()),
-            sp.Get<ILogger>()
+            sp.Get<IRandomizerEngine>()
+        ));
+
+        AddSingleton<CachedLogicStateProvider>(sp => new CachedLogicStateProvider(
+            sp.Get<LocalLogicStateProvider>(),
+            new StandardCachePool<LogicState>(new DictionaryCacheStorage<LogicState>(), sp.Get<ILogger>())
         ));
         
         AddPostBuildAction(sp => {
             var gameEvents = sp.Get<GameEventDispatcher>();
             var randomizerEngine = sp.Get<EventRandomizerEngine>();
-            var logicStateProvider = sp.Get<LocalLogicStateProvider>();
+            var logicStateProvider = sp.Get<CachedLogicStateProvider>();
             
             gameEvents.ExitingGame += logicStateProvider.OnExitingGame;
             gameEvents.ItemCollected += logicStateProvider.OnItemCollected;
@@ -332,20 +332,47 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             gameEvents.EnteringGameLocation += logicStateProvider.OnEnteringGameLocation;
             randomizerEngine.GoalCompleted += logicStateProvider.OnGoalCompleted;
         });
-        
-        AddSingleton<ILogicStateProvider>(sp => sp.Get<LocalLogicStateProvider>());
+
+        AddSingleton<ILogicStateProvider>(sp => sp.Get<CachedLogicStateProvider>());
+
+        AddSingleton<CoreRegionLogicChecker>(sp => new CoreRegionLogicChecker(
+            sp.Get<IRegionRepository>(),
+            sp.Get<ITransitionRepository>(),
+            sp.Get<ILogicParser>(),
+            sp.Get<ILogger>()
+        ));
+
+        AddSingleton<CachedRegionLogicChecker>(sp => new CachedRegionLogicChecker(
+            sp.Get<CoreRegionLogicChecker>(),
+            new StandardCachePool<List<Region>>(new DictionaryCacheStorage<List<Region>>(), sp.Get<ILogger>())
+        ));
+
+        AddPostBuildAction(sp => {
+            var gameEvents = sp.Get<GameEventDispatcher>();
+            var randomizerEngine = sp.Get<EventRandomizerEngine>();
+            var regionLogicChecker = sp.Get<CachedRegionLogicChecker>();
+            
+            gameEvents.ExitingGame += regionLogicChecker.OnExitingGame;
+            gameEvents.ItemCollected += regionLogicChecker.OnItemCollected;
+            gameEvents.NpcFreed += regionLogicChecker.OnNpcFreed;
+            gameEvents.PlayerCurrencyChanged += regionLogicChecker.OnPlayerCurrencyChanged;
+            gameEvents.EnteringGameLocation += regionLogicChecker.OnEnteringGameLocation;
+            randomizerEngine.GoalCompleted += regionLogicChecker.OnGoalCompleted;
+        });
+
+        AddSingleton<IRegionLogicChecker>(sp => sp.Get<CachedRegionLogicChecker>());
         
         AddSingleton<CoreLocationLogicChecker>(sp => new CoreLocationLogicChecker(
-            sp.Get<ILogicStateProvider>(),
             sp.Get<ILogicParser>(),
-            sp.Get<IRandomizerEngine>(),
+            sp.Get<IRegionLogicChecker>(),
             sp.Get<IRegionRepository>(),
             sp.Get<ILocationRepository>()
         ));
         
         AddSingleton<CachedLocationLogicChecker>(sp => new CachedLocationLogicChecker(
             sp.Get<CoreLocationLogicChecker>(),
-            sp.Get<IMessageDispatcher>()
+            sp.Get<IMessageDispatcher>(),
+            sp.Get<ILogicStateProvider>()
         ));
         
         AddPostBuildAction(sp => {

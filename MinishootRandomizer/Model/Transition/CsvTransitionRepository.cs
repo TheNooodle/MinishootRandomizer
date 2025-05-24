@@ -55,10 +55,9 @@ public class CsvTransitionRepository : ITransitionRepository
 
     private void LoadTransitions()
     {
-        var assembly = Assembly.GetExecutingAssembly();
         _transitions = new Dictionary<string, Transition>();
 
-        using Stream stream = assembly.GetManifestResourceStream(_csvPath);
+        using Stream stream = StreamFactory.CreateStream(_csvPath);
         using StreamReader reader = new(stream);
         using CsvReader csv = new(reader, CultureInfo.InvariantCulture);
         csv.Read();

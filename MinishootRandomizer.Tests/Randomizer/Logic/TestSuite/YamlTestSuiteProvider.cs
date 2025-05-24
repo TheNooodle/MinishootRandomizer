@@ -2,7 +2,7 @@ using YamlDotNet.RepresentationModel;
 
 namespace MinishootRandomizer.Tests;
 
-public class YamlTestSuiteProvider
+public class YamlTestSuiteProvider : ITestSuiteProvider
 {
     private readonly string _yamlFilePath;
     private readonly IItemRepository _itemRepository;
@@ -46,9 +46,17 @@ public class YamlTestSuiteProvider
         yaml.Load(input);
 
         var rootNode = (YamlMappingNode)yaml.Documents[0].RootNode;
-        List<ISetting> defaultSettings = ParseDefaultSettings((YamlMappingNode)rootNode.Children["default_settings"]);
-        Dictionary<Item, int> defaultItemCounts = ParseDefaultItemCounts((YamlMappingNode)rootNode.Children["default_item_counts"]);
-        List<LogicTestData> testData = ParseTestData((YamlSequenceNode)rootNode.Children["test_cases"]);
+        List<ISetting> defaultSettings = rootNode.Children.ContainsKey("default_settings")
+            ? ParseDefaultSettings((YamlMappingNode)rootNode.Children["default_settings"])
+            : new List<ISetting>();
+
+        Dictionary<Item, int> defaultItemCounts = rootNode.Children.ContainsKey("default_item_counts")
+            ? ParseDefaultItemCounts((YamlMappingNode)rootNode.Children["default_item_counts"])
+            : new Dictionary<Item, int>();
+
+        List<LogicTestData> testData = rootNode.Children.ContainsKey("test_cases")
+            ? ParseTestData((YamlSequenceNode)rootNode.Children["test_cases"])
+            : new List<LogicTestData>();
 
         return new LogicTestSuite(
             defaultSettings,
