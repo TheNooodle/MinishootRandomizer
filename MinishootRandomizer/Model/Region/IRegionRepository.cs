@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+
 namespace MinishootRandomizer
 {
     public interface IRegionRepository
     {
+        List<Region> GetAll();
         Region Get(string identifier);
         Region GetRegionByLocation(Location location);
     }

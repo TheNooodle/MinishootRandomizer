@@ -5,6 +5,7 @@ namespace MinishootRandomizer.Tests;
 public class LogicTests
 {
     private readonly ITestSuiteProvider _testSuiteProvider;
+    private readonly IRegionLogicChecker _regionLogicChecker;
     private readonly ILocationLogicChecker _locationLogicChecker;
 
     public LogicTests()
@@ -40,7 +41,8 @@ public class LogicTests
         _testSuiteProvider = new YamlTestSuiteProvider(
             "../../../Randomizer/Logic/logic_tests.yaml",
             itemRepository,
-            locationRepository
+            locationRepository,
+            regionRepository
         );
 
         // Initialize logic checker
@@ -48,14 +50,14 @@ public class LogicTests
             itemRepository,
             regionRepository
         );
-        IRegionLogicChecker regionLogicChecker = new CoreRegionLogicChecker(
+        _regionLogicChecker = new CoreRegionLogicChecker(
             regionRepository,
             transitionRepository,
             logicParser
         );
         _locationLogicChecker = new CoreLocationLogicChecker(
             logicParser,
-            regionLogicChecker,
+            _regionLogicChecker,
             regionRepository,
             locationRepository
         );
@@ -77,7 +79,20 @@ public class LogicTests
                     var location = locationAssertion.Location;
                     var expectedAccessibility = locationAssertion.ExpectedAccessibility;
                     var actualAccessibility = _locationLogicChecker.CheckLocationLogic(logicState, location);
-                    Assert.Equal(expectedAccessibility, actualAccessibility);
+                    Assert.True(
+                        expectedAccessibility == actualAccessibility,
+                        $"Location '{location.Identifier}' for test '{testData.Name}' failed accessibility check : Expected {expectedAccessibility}, but got {actualAccessibility}."
+                    );
+                }
+                else if (assertion is RegionAccessibilityAssertion regionAssertion)
+                {
+                    var region = regionAssertion.Region;
+                    var expectedAccessibility = regionAssertion.ExpectedAccessibility;
+                    var actualAccessibility = _regionLogicChecker.GetRegionAccessibility(region, logicState);
+                    Assert.True(
+                        expectedAccessibility == actualAccessibility,
+                        $"Region '{region.Name}' for test '{testData.Name}' failed accessibility check : Expected {expectedAccessibility}, but got {actualAccessibility}."
+                    );
                 }
                 else
                 {

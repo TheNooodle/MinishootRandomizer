@@ -9,6 +9,6 @@ namespace MinishootRandomizer;
 /// </summary>
 public interface IRegionLogicChecker
 {
-    List<Region> GetReachableRegions(LogicState state);
-    bool CanReachRegion(Region region, LogicState state);
+    LogicAccessibility GetRegionAccessibility(Region region, LogicState state);
+    Dictionary<Region, LogicAccessibility> GetRegionsAccessibility(LogicState state);
 }

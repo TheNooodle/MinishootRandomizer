@@ -7,6 +7,7 @@ public class YamlTestSuiteProvider : ITestSuiteProvider
     private readonly string _yamlFilePath;
     private readonly IItemRepository _itemRepository;
     private readonly ILocationRepository _locationRepository;
+    private readonly IRegionRepository _regionRepository;
 
     private static readonly Dictionary<string, Type> SettingTypeMap = new()
     {
@@ -32,11 +33,12 @@ public class YamlTestSuiteProvider : ITestSuiteProvider
         { typeof(CompletionGoals), typeof(Goals) },
     };
 
-    public YamlTestSuiteProvider(string yamlFilePath, IItemRepository itemRepository, ILocationRepository locationRepository)
+    public YamlTestSuiteProvider(string yamlFilePath, IItemRepository itemRepository, ILocationRepository locationRepository, IRegionRepository regionRepository)
     {
         _yamlFilePath = yamlFilePath;
         _itemRepository = itemRepository;
         _locationRepository = locationRepository;
+        _regionRepository = regionRepository;
     }
 
     public LogicTestSuite GetLogicTestSuite()
@@ -170,21 +172,23 @@ public class YamlTestSuiteProvider : ITestSuiteProvider
                         string locationName = assertionNode["location_name"].ToString();
                         Location location = _locationRepository.Get(locationName);
                         string expectedAccessibilityStr = assertionNode["expected_accessibility"].ToString();
-                        LogicAccessibility expectedAccessibility;
-                        switch (expectedAccessibilityStr)
-                        {
-                            case "out_of_logic":
-                                expectedAccessibility = LogicAccessibility.OutOfLogic;
-                                break;
-                            case "in_logic":
-                                expectedAccessibility = LogicAccessibility.InLogic;
-                                break;
-                            default:
-                                expectedAccessibility = LogicAccessibility.Inaccessible;
-                                break;
-                        }
+                        LogicAccessibility expectedAccessibility = ParseLogicAccessibility(expectedAccessibilityStr);
 
                         assertions.Add(new LocationAccessibilityAssertion(location, expectedAccessibility));
+                    }
+                    else if (assertionType == "region_accessibility")
+                    {
+                        YamlMappingNode assertionNode = (YamlMappingNode)testMappingNode["region_accessibility"];
+                        string regionName = assertionNode["region_name"].ToString();
+                        Region region = _regionRepository.Get(regionName);
+                        string expectedAccessibilityStr = assertionNode["expected_accessibility"].ToString();
+                        LogicAccessibility expectedAccessibility = ParseLogicAccessibility(expectedAccessibilityStr);
+
+                        assertions.Add(new RegionAccessibilityAssertion(region, expectedAccessibility));
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException($"Assertion type {assertionType} is not recognized.");
                     }
                 }
             }
@@ -195,5 +199,15 @@ public class YamlTestSuiteProvider : ITestSuiteProvider
         }
 
         return testDataList;
+    }
+
+    private LogicAccessibility ParseLogicAccessibility(string accessibilityStr)
+    {
+        return accessibilityStr switch
+        {
+            "out_of_logic" => LogicAccessibility.OutOfLogic,
+            "in_logic" => LogicAccessibility.InLogic,
+            _ => LogicAccessibility.Inaccessible,
+        };
     }
 }

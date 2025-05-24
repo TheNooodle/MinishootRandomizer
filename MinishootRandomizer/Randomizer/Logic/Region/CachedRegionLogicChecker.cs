@@ -5,27 +5,29 @@ namespace MinishootRandomizer;
 public class CachedRegionLogicChecker : IRegionLogicChecker
 {
     private readonly IRegionLogicChecker _innerLogicChecker;
-    private readonly ICachePool<List<Region>> _cachePool;
+    private readonly ICachePool<Dictionary<Region, LogicAccessibility>> _cachePool;
 
-    public CachedRegionLogicChecker(IRegionLogicChecker innerLogicChecker, ICachePool<List<Region>> cachePool)
+    public CachedRegionLogicChecker(IRegionLogicChecker innerLogicChecker, ICachePool<Dictionary<Region, LogicAccessibility>> cachePool)
     {
         _innerLogicChecker = innerLogicChecker;
         _cachePool = cachePool;
     }
 
-    public bool CanReachRegion(Region region, LogicState state)
+    public LogicAccessibility GetRegionAccessibility(Region region, LogicState state)
     {
-        List<Region> regions = GetReachableRegions(state);
+        Dictionary<Region, LogicAccessibility> regions = GetRegionsAccessibility(state);
 
-        return regions.Contains(region);
+        return regions.TryGetValue(region, out LogicAccessibility accessibility)
+            ? accessibility
+            : LogicAccessibility.OutOfLogic;
     }
 
-    public List<Region> GetReachableRegions(LogicState state)
+    public Dictionary<Region, LogicAccessibility> GetRegionsAccessibility(LogicState state)
     {
         return _cachePool.Get("Regions", () =>
         {
-            List<Region> regions = _innerLogicChecker.GetReachableRegions(state);
-            return new CacheItem<List<Region>>(regions);
+            Dictionary<Region, LogicAccessibility> regions = _innerLogicChecker.GetRegionsAccessibility(state);
+            return new CacheItem<Dictionary<Region, LogicAccessibility>>(regions);
         });
     }
 

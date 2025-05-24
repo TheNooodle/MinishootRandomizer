@@ -19,6 +19,25 @@ public class InMemoryRegionRepository : IRegionRepository
         _innerRepository = innerRepository;
     }
 
+    public List<Region> GetAll()
+    {
+        List<Region> regions = _innerRepository.GetAll();
+        foreach (string regionName in _newLocationsToRegionsMap.Keys)
+        {
+            if (!regions.Exists(r => r.Name == regionName))
+            {
+                Region newRegion = new(regionName);
+                foreach (string locationName in _newLocationsToRegionsMap[regionName])
+                {
+                    newRegion.AddLocationName(locationName);
+                }
+                regions.Add(newRegion);
+            }
+        }
+
+        return regions;
+    }
+
     public Region Get(string identifier)
     {
         Region region = _innerRepository.Get(identifier);

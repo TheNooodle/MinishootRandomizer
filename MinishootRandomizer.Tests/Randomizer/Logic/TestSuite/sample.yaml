@@ -26,6 +26,9 @@ test_cases:
       - location_accessibility:
           location_name: "Green - Grove near button"
           expected_accessibility: "out_of_logic"
+      - region_accessibility:
+          region_name: "Family House Cave - After Jumps"
+          expected_accessibility: "out_of_logic"
 
   - name: "Test Dash with Boostless ramps"
     override_settings:
@@ -38,4 +41,7 @@ test_cases:
           expected_accessibility: "in_logic"
       - location_accessibility:
           location_name: "Green - Grove near button"
+          expected_accessibility: "in_logic"
+      - region_accessibility:
+          region_name: "Family House Cave - After Jumps"
           expected_accessibility: "in_logic"

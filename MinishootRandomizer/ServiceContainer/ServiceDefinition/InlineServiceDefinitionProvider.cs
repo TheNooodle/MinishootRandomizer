@@ -344,7 +344,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
 
         AddSingleton<CachedRegionLogicChecker>(sp => new CachedRegionLogicChecker(
             sp.Get<CoreRegionLogicChecker>(),
-            new StandardCachePool<List<Region>>(new DictionaryCacheStorage<List<Region>>(), sp.Get<ILogger>())
+            new StandardCachePool<Dictionary<Region, LogicAccessibility>>(new DictionaryCacheStorage<Dictionary<Region, LogicAccessibility>>(), sp.Get<ILogger>())
         ));
 
         AddPostBuildAction(sp => {

@@ -25,8 +25,41 @@ test_cases:
           location_name: "Town - Plaza"
           expected_accessibility: "in_logic"
       - location_accessibility:
-          location_name: "Swamp - South West Island Hidden in trees Item"
-          expected_accessibility: "out_of_logic"
-      - location_accessibility:
           location_name: "Swamp - Hidden Before Big Enemy"
-          expected_accessibility: "inaccessible"    
+          expected_accessibility: "inaccessible"
+  - name: "No Primordial Crystal, Logic Disabled"
+    override_settings:
+      enable_primordial_crystal_logic: 'false'
+    add_items:
+      Surf: 1
+    tests:
+      - region_accessibility:
+          region_name: "Desert Grotto - East Drop"
+          expected_accessibility: "inaccessible"
+  - name: "Primordial Crystal, Logic Disabled"
+    override_settings:
+      enable_primordial_crystal_logic: 'false'
+    add_items:
+      Surf: 1
+      Primordial Crystal: 1
+    tests:
+      - region_accessibility:
+          region_name: "Desert Grotto - East Drop"
+          expected_accessibility: "out_of_logic"
+  - name: "Primordial Crystal, Logic Enabled"
+    override_settings:
+      enable_primordial_crystal_logic: 'true'
+    add_items:
+      Surf: 1
+      Primordial Crystal: 1
+    tests:
+      - region_accessibility:
+          region_name: "Desert Grotto - East Drop"
+          expected_accessibility: "in_logic"
+  - name: "Primordial Scarab Cave, without key & Supershot"
+    add_items:
+      Surf: 1
+    tests:
+      - location_accessibility:
+          location_name: "Primordial Cave - Meet the Primordial Scarab"
+          expected_accessibility: "inaccessible"

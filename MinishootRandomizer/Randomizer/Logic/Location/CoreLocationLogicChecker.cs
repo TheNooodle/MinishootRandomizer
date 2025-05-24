@@ -24,33 +24,30 @@ public class CoreLocationLogicChecker : ILocationLogicChecker
     public LogicAccessibility CheckLocationLogic(LogicState logicState, Location location)
     {
         Region region = _regionRepository.GetRegionByLocation(location);
+        LogicAccessibility regionAccessibility = _regionLogicChecker.GetRegionAccessibility(region, logicState);
 
-        if (!_regionLogicChecker.CanReachRegion(region, logicState))
+        if (regionAccessibility == LogicAccessibility.Inaccessible)
         {
-            // If the location is not reachable, we check if it's out of logic
-            LogicState outOfLogicState = new OutOfLogicStateDecorator(logicState);
-
-            // If the location is reachable out of logic and the location is attainable, it's accessible out of logic.
-            return !_regionLogicChecker.CanReachRegion(region, outOfLogicState) && _logicParser.ParseLogic(location.LogicRule, outOfLogicState).Result
-                ? LogicAccessibility.OutOfLogic
-                : LogicAccessibility.Inaccessible
-            ;
-        }
-
-        LogicParsingResult parsingResult = _logicParser.ParseLogic(location.LogicRule, logicState);
-        if (parsingResult.Result)
-        {
-            return LogicAccessibility.InLogic;
+            // If the region is inaccessible, the location is also inaccessible.
+            return LogicAccessibility.Inaccessible;
         }
         else
         {
-            LogicState outOfLogicState = new OutOfLogicStateDecorator(logicState);
+            LogicParsingResult parsingResult = _logicParser.ParseLogic(location.LogicRule, logicState);
+            if (parsingResult.Result)
+            {
+                // If the location is reachable in logic from within the region, then it's accessibility is the same as the region's accessibility.
+                return regionAccessibility;
+            }
+            else
+            {
+                // If the location is not reachable in logic, we check if it's reachable out of logic.
+                LogicState outOfLogicState = new OutOfLogicStateDecorator(logicState);
+                LogicParsingResult outOfLogicParsingResult = _logicParser.ParseLogic(location.LogicRule, outOfLogicState);
 
-            // If the location is reachable out of logic and the location is attainable, it's accessible out of logic.
-            return _logicParser.ParseLogic(location.LogicRule, outOfLogicState).Result
-                ? LogicAccessibility.OutOfLogic
-                : LogicAccessibility.Inaccessible
-            ;
+                // If the location is reachable out of logic, then it's accessible out of logic.
+                return outOfLogicParsingResult.Result ? LogicAccessibility.OutOfLogic : LogicAccessibility.Inaccessible;
+            }
         }
     }
 

@@ -18,6 +18,16 @@ namespace MinishootRandomizer
             _csvPath = csvPath;
         }
 
+        public List<Region> GetAll()
+        {
+            if (_regions == null)
+            {
+                LoadRegions();
+            }
+
+            return _regions.Values.ToList();
+        }
+
         public Region Get(string identifier)
         {
             if (_regions == null)
