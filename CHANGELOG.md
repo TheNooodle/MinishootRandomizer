@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.4.1] - 2025-05-17
 
+### Changed
+
+- Changed the way logic is calculated for the ingame tracker.
+
 ### Fixed
 
 - Fixed the game being unresponsive when no elligible locations has been found for trap item appearance.
