@@ -14,6 +14,7 @@ public class NotificationHUDViewComponent : MonoBehaviour
     private float _totalHeight = 100f;
 
     private FadingAnimationHUDComponent _fadingAnimation;
+    private AdjustImageComponent _imageAdjuster;
     private Image _image;
     private TextMeshProUGUI _text;
     private RectTransform _parentRectTransform;
@@ -25,11 +26,12 @@ public class NotificationHUDViewComponent : MonoBehaviour
     {
         _itemPresentationProvider = Plugin.ServiceContainer.Get<IItemPresentationProvider>();
         _fadingAnimation = GetComponent<FadingAnimationHUDComponent>();
-        _image = GetComponentInChildren<Image>();
+        _imageAdjuster = GetComponentInChildren<AdjustImageComponent>();
+        _image = _imageAdjuster.GetComponent<Image>();
         _text = GetComponentInChildren<TextMeshProUGUI>();
         _parentRectTransform = transform.parent.GetComponent<RectTransform>();
         _currentRectTransform = GetComponent<RectTransform>();
-        _imageRectTransform = _image.GetComponent<RectTransform>();
+        _imageRectTransform = _imageAdjuster.GetComponent<RectTransform>();
         _textRectTransform = _text.GetComponent<RectTransform>();
     }
 
@@ -51,19 +53,9 @@ public class NotificationHUDViewComponent : MonoBehaviour
         }
 
         // For the image, we also have to adjust the image size.
-        Vector2 maxSize = new Vector2(_currentRectTransform.rect.width * _imageWidthRatio, _currentRectTransform.rect.height);
-        Vector2 spriteSize = new Vector2(_image.sprite.rect.width, _image.sprite.rect.height);
-        Vector2 adjustedSize = spriteSize;
-
-        if (spriteSize.x > maxSize.x || spriteSize.y > maxSize.y)
-        {
-            float widthRatio = maxSize.x / spriteSize.x;
-            float heightRatio = maxSize.y / spriteSize.y;
-            float minRatio = Mathf.Min(widthRatio, heightRatio);
-            adjustedSize = spriteSize * minRatio;
-        }
-
-        _imageRectTransform.sizeDelta = adjustedSize;
+        _imageAdjuster.MaxWidth = _currentRectTransform.rect.width * _imageWidthRatio;
+        _imageAdjuster.MaxHeight = _currentRectTransform.rect.height;
+        _imageAdjuster.AdjustImageSize();
     }
 
     public void NotifyItemCollection(Item item)

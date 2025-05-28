@@ -8,10 +8,15 @@ namespace MinishootRandomizer;
 public class CoreNotificationObjectFactory : INotificationObjectFactory
 {
     private readonly IObjectFinder _objectFinder;
+    private readonly ITextGameObjectFactory _textGameObjectFactory;
 
-    public CoreNotificationObjectFactory(IObjectFinder objectFinder)
+    public CoreNotificationObjectFactory(
+        IObjectFinder objectFinder,
+        ITextGameObjectFactory textGameObjectFactory
+    )
     {
         _objectFinder = objectFinder;
+        _textGameObjectFactory = textGameObjectFactory;
     }
 
     public GameObject CreateNotificationView()
@@ -58,52 +63,21 @@ public class CoreNotificationObjectFactory : INotificationObjectFactory
         spriteRectTransform.pivot = new Vector2(0.5f, 0.5f);
         spriteObject.AddComponent<CanvasRenderer>();
         spriteObject.AddComponent<Image>();
+        spriteObject.AddComponent<AdjustImageComponent>();
 
         return spriteObject;
     }
 
     private GameObject BuildNotificationText(GameObject notificationViewObject)
     {
-        GameObject textObject = new GameObject("Text");
+        GameObject textObject = _textGameObjectFactory.CreateTextGameObject(""); // Text will be set on item collection.
         textObject.transform.SetParent(notificationViewObject.transform, false);
-        RectTransform textRectTransform = textObject.AddComponent<RectTransform>();
+        RectTransform textRectTransform = textObject.GetComponent<RectTransform>();
         textRectTransform.anchorMin = new Vector2(0.0f, 0.0f);
         textRectTransform.anchorMax = new Vector2(0.0f, 0.0f);
-        textObject.AddComponent<CanvasRenderer>();
-        TextMeshProUGUI text = textObject.AddComponent<TextMeshProUGUI>();
+        TextMeshProUGUI text = textObject.GetComponent<TextMeshProUGUI>();
         text.verticalAlignment = VerticalAlignmentOptions.Middle;
-        text.font = GetFont();
-        text.fontMaterial = GetFontMaterial();
-        text.UpdateFontAsset();
 
         return textObject;
-    }
-
-    private TMP_FontAsset GetFont()
-    {
-        TMP_FontAsset[] fonts = Resources.FindObjectsOfTypeAll<TMP_FontAsset>();
-        foreach (TMP_FontAsset font in fonts)
-        {
-            if (font.name == "Bombard")
-            {
-                return font;
-            }
-        }
-
-        throw new Exception("Font not found!");
-    }
-
-    private Material GetFontMaterial()
-    {
-        Material[] materials = Resources.FindObjectsOfTypeAll<Material>();
-        foreach (Material material in materials)
-        {
-            if (material.name == "BOMBARD - OutlineLite")
-            {
-                return material;
-            }
-        }
-
-        throw new Exception("Material not found!");
     }
 }

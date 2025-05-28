@@ -33,6 +33,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         ConfigureGameEvents();
         ConfigureMessaging();
         ConfigureObjectFinding();
+        ConfigureObjectCreation();
         ConfigureFactories();
         ConfigureRepositories();
         ConfigureCloning();
@@ -96,15 +97,21 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         
         AddSingleton<IObjectFinder>(sp => sp.Get<UnityObjectFinder>());
     }
+
+    private void ConfigureObjectCreation()
+    {
+        AddSingleton<ResourcesTextGameObjectFactory>();
+        AddSingleton<ITextGameObjectFactory>(sp => sp.Get<ResourcesTextGameObjectFactory>());
+    }
     
     private void ConfigureFactories()
     {
         AddSingleton<ILocationFactory, DictionaryLocationFactory>();
-        
+
         AddSingleton<IZoneFactory>(sp => new DictionaryZoneFactory(
             sp.Get<ILogger>()
         ));
-        
+
         AddSingleton<IItemFactory>(sp => new DictionaryItemFactory(
             sp.Get<ILogger>()
         ));
@@ -451,9 +458,18 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             sp.Get<ILogger>()
         ));
         
-        AddSingleton<INotificationObjectFactory>(sp => new CoreNotificationObjectFactory(
-            sp.Get<IObjectFinder>()
+        AddSingleton<CoreNotificationObjectFactory>(sp => new CoreNotificationObjectFactory(
+            sp.Get<IObjectFinder>(),
+            sp.Get<ITextGameObjectFactory>()
         ));
+        AddSingleton<INotificationObjectFactory>(sp => sp.Get<CoreNotificationObjectFactory>());
+
+        AddSingleton<CoreKeyCounterObjectFactory>(sp => new CoreKeyCounterObjectFactory(
+            sp.Get<IObjectFinder>(),
+            sp.Get<ITextGameObjectFactory>(),
+            sp.Get<ISpriteProvider>()
+        ));
+        AddSingleton<IKeyCounterObjectFactory>(sp => sp.Get<CoreKeyCounterObjectFactory>());
         
         AddSingleton<NotificationManager>(sp => new NotificationManager(
             sp.Get<IObjectFinder>(),
@@ -549,6 +565,12 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         ConfigurePatcher<NotificationPatcher>(sp => new NotificationPatcher(
             sp.Get<IRandomizerEngine>(),
             sp.Get<INotificationObjectFactory>(),
+            sp.Get<ILogger>()
+        ));
+
+        ConfigurePatcher<KeyCounterPatcher>(sp => new KeyCounterPatcher(
+            sp.Get<IRandomizerEngine>(),
+            sp.Get<IKeyCounterObjectFactory>(),
             sp.Get<ILogger>()
         ));
         

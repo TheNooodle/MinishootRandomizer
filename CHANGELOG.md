@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- Added a key counter widget while on the map.
+    - This widget show informations about key counts in the first three dungeons.
+    - It displays the total number keys, available keys and used keys, all in one comprehensive view.
+
 ### Changed
 
+- Updated dependency to Archipelago.MultiClient.Net
+    - This get rid of connection errors to Archipelago servers version 0.6.2+
 - Changed the way logic is calculated for the ingame tracker.
 
 ## [0.4.1] - 2025-05-17
