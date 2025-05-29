@@ -52,12 +52,21 @@ public class GiveDebugItemsAction : IPatchAction
         PlayerState.SetCurrency(Currency.Scarab, 18);
         ReflectionHelper.InvokeStaticAction(typeof(ScarabPickup), "Collected");
 
-        PlayerState.DungeonKeys[1] = 4;
-        WorldState.Set($"ObtainedD1SmallKey4", true);
+        PlayerState.DungeonKeys[1] = 3;
+        WorldState.Set($"ObtainedD1SmallKey0", true);
+        WorldState.Set($"ObtainedD1SmallKey1", true);
+        WorldState.Set($"ObtainedD1SmallKey2", true);
         PlayerState.DungeonKeys[2] = 4;
-        WorldState.Set($"ObtainedD2SmallKey4", true);
+        WorldState.Set($"ObtainedD2SmallKey0", true);
+        WorldState.Set($"ObtainedD2SmallKey1", true);
+        WorldState.Set($"ObtainedD2SmallKey2", true);
+        WorldState.Set($"ObtainedD2SmallKey3", true);
         PlayerState.DungeonKeys[3] = 5;
-        WorldState.Set($"ObtainedD3SmallKey5", true);
+        WorldState.Set($"ObtainedD3SmallKey0", true);
+        WorldState.Set($"ObtainedD3SmallKey1", true);
+        WorldState.Set($"ObtainedD3SmallKey2", true);
+        WorldState.Set($"ObtainedD3SmallKey3", true);
+        WorldState.Set($"ObtainedD3SmallKey4", true);
         PlayerState.DungeonBossKeys[1] = 1;
         WorldState.Set($"ObtainedD1BossKey", true);
         PlayerState.DungeonBossKeys[2] = 1;

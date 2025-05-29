@@ -467,7 +467,8 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         AddSingleton<CoreKeyCounterObjectFactory>(sp => new CoreKeyCounterObjectFactory(
             sp.Get<IObjectFinder>(),
             sp.Get<ITextGameObjectFactory>(),
-            sp.Get<ISpriteProvider>()
+            sp.Get<ISpriteProvider>(),
+            sp.Get<IItemRepository>()
         ));
         AddSingleton<IKeyCounterObjectFactory>(sp => sp.Get<CoreKeyCounterObjectFactory>());
         

@@ -2,7 +2,7 @@ namespace MinishootRandomizer;
 
 public enum KeyStatus
 {
-    NotObtained,
+    Missing,
     Available,
     Used
 }

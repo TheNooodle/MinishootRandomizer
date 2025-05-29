@@ -11,6 +11,7 @@ public class CoreKeyCounterObjectFactory : IKeyCounterObjectFactory
     private readonly IObjectFinder _objectFinder;
     private readonly ITextGameObjectFactory _textGameObjectFactory;
     private readonly ISpriteProvider _spriteProvider;
+    private readonly IItemRepository _itemRepository;
 
     private readonly ICachePool<SpriteData> _smallKeySpriteCache;
     private readonly ICachePool<SpriteData> _bossKeySpriteCache;
@@ -25,12 +26,14 @@ public class CoreKeyCounterObjectFactory : IKeyCounterObjectFactory
     public CoreKeyCounterObjectFactory(
         IObjectFinder objectFinder,
         ITextGameObjectFactory textGameObjectFactory,
-        ISpriteProvider spriteProvider
+        ISpriteProvider spriteProvider,
+        IItemRepository itemRepository
     )
     {
         _objectFinder = objectFinder;
         _textGameObjectFactory = textGameObjectFactory;
         _spriteProvider = spriteProvider;
+        _itemRepository = itemRepository;
 
         _smallKeySpriteCache = new StandardCachePool<SpriteData>(
             new SingleCacheStorage<SpriteData>()
@@ -42,7 +45,6 @@ public class CoreKeyCounterObjectFactory : IKeyCounterObjectFactory
 
     public GameObject CreateKeyCounterGameObject()
     {
-        // TODO: temp
         GameObject parent = _objectFinder.FindObject(new ByComponent(typeof(Map)));
         if (parent == null)
         {
@@ -79,13 +81,19 @@ public class CoreKeyCounterObjectFactory : IKeyCounterObjectFactory
     private GameObject CreateKeyCounterGameObject(GameObject parent, int dungeonId, int smallKeyCount)
     {
         GameObject groupObject = BuildGroupObject(parent, dungeonId);
+        KeyCounterComponent keyCounterComponent = groupObject.AddComponent<KeyCounterComponent>();
+        keyCounterComponent.DungeonId = dungeonId;
+        keyCounterComponent.SmallKeyItem = (SmallKeyItem)_itemRepository.Get("Small Key (Dungeon " + dungeonId + ")");
+        keyCounterComponent.BossKeyItem = (BossKeyItem)_itemRepository.Get("Boss Key (Dungeon " + dungeonId + ")");
         BuildLabelObject(groupObject, dungeonId);
         GameObject smallKeyGroupObject = BuildSmallKeyGroupObject(groupObject);
         for (int i = 0; i < smallKeyCount; i++)
         {
-            BuildSmallKeySpriteObject(smallKeyGroupObject, i);
+            GameObject smallKeySpriteObject = BuildSmallKeySpriteObject(smallKeyGroupObject, i);
+            keyCounterComponent.AddSmallKeySprite(smallKeySpriteObject.GetComponent<KeyCounterSpriteComponent>());
         }
-        BuildBossKeySpriteObject(groupObject);
+        GameObject bossKeySpriteObject = BuildBossKeySpriteObject(groupObject);
+        keyCounterComponent.SetBossKeySprite(bossKeySpriteObject.GetComponent<KeyCounterSpriteComponent>());
 
         return groupObject;
     }
@@ -157,6 +165,22 @@ public class CoreKeyCounterObjectFactory : IKeyCounterObjectFactory
         AdjustImageComponent imageAdjuster = spriteObject.AddComponent<AdjustImageComponent>();
         imageAdjuster.AdjustOnUpdate = false;
 
+        GameObject tickObject = new GameObject("Tick");
+        tickObject.transform.SetParent(spriteObject.transform, false);
+        RectTransform tickRectTransform = tickObject.AddComponent<RectTransform>();
+        tickRectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        tickRectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        tickRectTransform.pivot = new Vector2(0.5f, 0.5f);
+        tickRectTransform.sizeDelta = new Vector2(40.0f, 30.0f);
+        tickRectTransform.anchoredPosition = new Vector2(0.0f, 0.0f);
+        tickRectTransform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f); // We counter the rotation of the parent sprite.
+        tickObject.AddComponent<CanvasRenderer>();
+        Image tickImage = tickObject.AddComponent<Image>();
+        SpriteData tickSpriteData = _spriteProvider.GetSprite("Tick");
+        tickImage.sprite = tickSpriteData.Sprite;
+
+        spriteObject.AddComponent<KeyCounterSpriteComponent>();
+
         return spriteObject;
     }
 
@@ -178,6 +202,21 @@ public class CoreKeyCounterObjectFactory : IKeyCounterObjectFactory
         spriteImage.sprite = spriteData.Sprite;
         AdjustImageComponent imageAdjuster = spriteObject.AddComponent<AdjustImageComponent>();
         imageAdjuster.AdjustOnUpdate = false;
+
+        GameObject tickObject = new GameObject("Tick");
+        tickObject.transform.SetParent(spriteObject.transform, false);
+        RectTransform tickRectTransform = tickObject.AddComponent<RectTransform>();
+        tickRectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        tickRectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        tickRectTransform.pivot = new Vector2(0.5f, 0.5f);
+        tickRectTransform.sizeDelta = new Vector2(40.0f, 30.0f);
+        tickRectTransform.anchoredPosition = new Vector2(0.0f, 0.0f);
+        tickObject.AddComponent<CanvasRenderer>();
+        Image tickImage = tickObject.AddComponent<Image>();
+        SpriteData tickSpriteData = _spriteProvider.GetSprite("Tick");
+        tickImage.sprite = tickSpriteData.Sprite;
+
+        spriteObject.AddComponent<KeyCounterSpriteComponent>();
 
         return spriteObject;
     }

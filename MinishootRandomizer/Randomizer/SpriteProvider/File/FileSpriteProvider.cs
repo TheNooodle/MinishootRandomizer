@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using UnityEngine;
 
 namespace MinishootRandomizer;
@@ -29,6 +28,7 @@ public class FileSpriteProvider : ISpriteProvider
         { "SpiritMarker", new SpriteFileData("spirit_marker.png", 148, 172)},
         { "SpiritMarkerSimple", new SpriteFileData("spirit_marker_simple.png", 148, 172)},
         { "SuperCrystal", new SpriteFileData("super_crystal.png", 92, 92, 1f, -20f) },
+        { "Tick", new SpriteFileData("tick.png", 84, 76) },
     };
 
     public FileSpriteProvider(ISpriteProvider innerProvider, string rootPath)
