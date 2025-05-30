@@ -5,19 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [0.4.2] - 2025-05-30
 
 ### Added
 
 - Added a key counter widget while on the map.
     - This widget show informations about key counts in the first three dungeons.
     - It displays the total number keys, available keys and used keys, all in one comprehensive view.
+- Connection credentials to Archipelago will now be remembered through gameplay sessions.
+    - Whenever you hit "Connect" on the Randomizer Menu, the randomizer will save your credentials for future uses.
+- Added a documentation section in `docs/`.
+- Added installation instructions for MacOS.
 
 ### Changed
 
-- Updated dependency to Archipelago.MultiClient.Net
+- Updated dependency to Archipelago.MultiClient.Net.
     - This get rid of connection errors to Archipelago servers version 0.6.2+
 - Changed the way logic is calculated for the ingame tracker.
+- Changed the overall structure of the codebase.
 
 ## [0.4.1] - 2025-05-17
 
