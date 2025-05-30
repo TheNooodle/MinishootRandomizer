@@ -23,6 +23,9 @@ public class ImguiContextComponent : MonoBehaviour
     void Awake()
     {
         _archipelagoClient = Plugin.ServiceContainer.Get<IArchipelagoClient>();
+        // Load saved values from PlayerPrefs
+        _serverUri = PlayerPrefs.GetString("ArchipelagoServerUri", _serverUri);
+        _slotName = PlayerPrefs.GetString("ArchipelagoSlotName", _slotName);
     }
 
     void OnGUI()
@@ -45,9 +48,18 @@ public class ImguiContextComponent : MonoBehaviour
         {
             try
             {
+                string newServerUri = _serverUri.Trim();
+                string newSlotName = _slotName.Trim();
+
+                // Save the server URI and slot name to PlayerPrefs
+                PlayerPrefs.SetString("ArchipelagoServerUri", newServerUri);
+                PlayerPrefs.SetString("ArchipelagoSlotName", newSlotName);
+                PlayerPrefs.Save();
+
+                // Connect to the Archipelago server
                 ArchipelagoOptions options = new ArchipelagoOptions(
-                    _serverUri.Trim(),
-                    _slotName.Trim(),
+                    newServerUri,
+                    newSlotName,
                     _password.Trim(),
                     false
                 );
