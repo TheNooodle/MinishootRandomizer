@@ -162,8 +162,6 @@ public class CoreKeyCounterObjectFactory : IKeyCounterObjectFactory
         spriteObject.AddComponent<CanvasRenderer>();
         Image spriteImage = spriteObject.AddComponent<Image>();
         spriteImage.sprite = spriteData.Sprite;
-        AdjustImageComponent imageAdjuster = spriteObject.AddComponent<AdjustImageComponent>();
-        imageAdjuster.AdjustOnUpdate = false;
 
         GameObject tickObject = new GameObject("Tick");
         tickObject.transform.SetParent(spriteObject.transform, false);
@@ -200,8 +198,6 @@ public class CoreKeyCounterObjectFactory : IKeyCounterObjectFactory
         spriteObject.AddComponent<CanvasRenderer>();
         Image spriteImage = spriteObject.AddComponent<Image>();
         spriteImage.sprite = spriteData.Sprite;
-        AdjustImageComponent imageAdjuster = spriteObject.AddComponent<AdjustImageComponent>();
-        imageAdjuster.AdjustOnUpdate = false;
 
         GameObject tickObject = new GameObject("Tick");
         tickObject.transform.SetParent(spriteObject.transform, false);

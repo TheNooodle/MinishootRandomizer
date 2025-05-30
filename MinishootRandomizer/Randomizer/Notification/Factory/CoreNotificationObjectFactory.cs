@@ -63,7 +63,6 @@ public class CoreNotificationObjectFactory : INotificationObjectFactory
         spriteRectTransform.pivot = new Vector2(0.5f, 0.5f);
         spriteObject.AddComponent<CanvasRenderer>();
         spriteObject.AddComponent<Image>();
-        spriteObject.AddComponent<AdjustImageComponent>();
 
         return spriteObject;
     }
