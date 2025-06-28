@@ -678,8 +678,7 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                     "Sewers - Drop",
                     "Sewers - Near Family House Cave",
                     "Sewers - North pot room",
-                    "Sewers - South pot room",
-                    "Sunken City - Inside the walls"
+                    "Sewers - South pot room"
                 },
                 coordinates: new List<Tuple<float, float>> {
                     new Tuple<float, float>(-4.81f, 2.88f),
