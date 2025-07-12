@@ -257,6 +257,12 @@ namespace MinishootRandomizer
             return new NullAction();
         }
 
+        public IPatchAction VisitSpirit(SpiritLocation location, Item item)
+        {
+            // @TODO: Implement SpiritLocation handling
+            return new NullAction();
+        }
+
         public IPatchAction VisitGoal(GoalLocation location, Item item)
         {
             // do nothing

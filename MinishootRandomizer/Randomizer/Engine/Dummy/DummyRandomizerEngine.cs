@@ -14,7 +14,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(NpcSanity), new NpcSanity(false) },
         { typeof(ScarabSanity), new ScarabSanity(false) },
         { typeof(ShardSanity), new ShardSanity(true) },
-        { typeof(SpiritSanity), new SpiritSanity(false) },
+        { typeof(SpiritSanity), new SpiritSanity(true) },
         { typeof(KeySanity), new KeySanity(true) },
         { typeof(BossKeySanity), new BossKeySanity(true) },
         { typeof(TrapItemsAppearance), new TrapItemsAppearance(TrapItemsAppearanceValue.MajorItems) },
@@ -290,6 +290,7 @@ Forest Grotto - After ramp: Progressive Cannon
 Forest Shop 1: XP Crystals x25
 Forest Shop 2: HP Crystal Shard
 Forest Shop 3: XP Crystals x15
+Green Grotto - Race Reward: XP Crystals x50
 Green - Grove under ruins: XP Crystals x20
 Green - Grove near button: Scarab
 Green - River near Forest Entrance: XP Crystals x25

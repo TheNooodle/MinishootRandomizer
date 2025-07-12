@@ -319,16 +319,18 @@ namespace MinishootRandomizer
             )},
         };
 
-        private static Dictionary<string, ISelector> _raceLocationToSelector = new()
+        // Those indices are used to determine the names of the different game objects
+        // example : "Abyss Race - Reward" is "NpcTiny3", as well as "StartPoint3" and "FinishLine3".
+        private static Dictionary<string, int> _spiritLocationToIndex = new()
         {
-            {"Abyss Race - Reward", new ByName("NpcTiny3")},
-            {"Beach Race - Reward", new ByName("NpcTiny7")},
-            {"Scarab Temple - Race Reward", new ByName("NpcTiny1")},
-            {"Desert Race - Reward", new ByName("NpcTiny5")},
-            {"Forest Shop Race - Reward", new ByName("NpcTiny2")},
-            {"Green Grotto - Race Reward", new ByName("NpcTiny0")},
-            {"Sunken City Race - Reward", new ByName("NpcTiny6")},
-            {"Swamp Race - Reward", new ByName("NpcTiny4")},
+            {"Abyss Race - Reward", 3},
+            {"Beach Race - Reward", 7},
+            {"Scarab Temple - Race Reward", 1},
+            {"Desert Race - Reward", 5},
+            {"Forest Shop Race - Reward", 2},
+            {"Green Grotto - Race Reward", 0},
+            {"Sunken City Race - Reward", 6},
+            {"Swamp Race - Reward", 4},
         };
 
         public Location CreateLocation(string name, string logicRule, LocationPool pool)
@@ -410,12 +412,13 @@ namespace MinishootRandomizer
             {
                 return new DungeonRewardLocation(name, logicRule, pool);
             }
-            if (_raceLocationToSelector.ContainsKey(name))
+            if (_spiritLocationToIndex.ContainsKey(name))
             {
-                return new RaceLocation(
+                return new SpiritLocation(
                     name,
                     logicRule,
-                    pool
+                    pool,
+                    _spiritLocationToIndex[name]
                 );
             }
 
