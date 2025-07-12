@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using HarmonyLib;
 using UnityEngine;
 
 namespace MinishootRandomizer
@@ -34,10 +35,19 @@ namespace MinishootRandomizer
 
         private void Start()
         {
+            ApplyHarmonyPatches();
             CreateSceneCrawler();
             CreateManager();
             CreateMessageWorker();
             CreateImgui();
+        }
+
+        private void ApplyHarmonyPatches()
+        {
+            _logger.LogInfo("Applying Harmony patches...");
+            Harmony harmony = new Harmony(PluginInfo.PLUGIN_GUID);
+            harmony.PatchAll();
+            _logger.LogInfo("Harmony patches applied.");
         }
 
         private void CreateImgui()

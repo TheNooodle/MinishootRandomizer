@@ -22,12 +22,12 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
     
     public IEnumerable<ServiceDefinition> GetServiceDefinitions() => _definitions;
     public IEnumerable<PostBuildAction> GetPostBuildActions() => _postBuildActions;
-    
+
     private void ConfigureServices()
     {
         // Register core logger first
         AddSingleton<ManualLogSource>(_pluginLogger);
-        
+
         // Configure service groups
         ConfigureLogging();
         ConfigureGameEvents();
@@ -44,6 +44,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         ConfigureMessageHandlers();
         ConfigureUIServices();
         ConfigurePatchers();
+        ConfigureSpiritLogic();
     }
 
     private void ConfigureLogging()
@@ -620,6 +621,21 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
                 gameEvents.ItemCollected += (GameEventDispatcher.ItemCollectedHandler)Delegate.CreateDelegate(
                     typeof(GameEventDispatcher.ItemCollectedHandler), patcher, "OnItemCollected");
             }
+        });
+    }
+
+    private void ConfigureSpiritLogic()
+    {
+        AddSingleton<RaceListener>(sp => new RaceListener(
+            sp.Get<IRandomizerEngine>(),
+            sp.Get<ILogger>()
+        ));
+
+        AddPostBuildAction(sp =>
+        {
+            var gameEvents = sp.Get<GameEventDispatcher>();
+            var raceListener = sp.Get<RaceListener>();
+            gameEvents.RaceWon += raceListener.OnRaceWon;
         });
     }
     

@@ -45,6 +45,9 @@ public class GameEventDispatcher
     public delegate void ItemCollectedHandler(Item item);
     public event ItemCollectedHandler ItemCollected;
 
+    public delegate void RaceWonHandler(int raceIndex);
+    public event RaceWonHandler RaceWon;
+
     public GameEventDispatcher(ILogger logger)
     {
         _logger = logger ?? new NullLogger();
@@ -102,5 +105,11 @@ public class GameEventDispatcher
     {
         _logger.LogDebug($"Dispatching ItemCollected event with item: {item}");
         ItemCollected?.Invoke(item);
+    }
+
+    public void DispatchRaceWon(int raceIndex)
+    {
+        _logger.LogDebug($"Dispatching RaceWon event with index: {raceIndex}");
+        RaceWon?.Invoke(raceIndex);
     }
 }
