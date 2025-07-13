@@ -628,7 +628,8 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
     {
         AddSingleton<RaceListener>(sp => new RaceListener(
             sp.Get<IRandomizerEngine>(),
-            sp.Get<ILogger>()
+            sp.Get<ILocationRepository>(),
+            sp.Get<GameEventDispatcher>()
         ));
 
         AddPostBuildAction(sp =>

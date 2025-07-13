@@ -3,12 +3,14 @@ namespace MinishootRandomizer;
 public class RaceListener
 {
     private readonly IRandomizerEngine _randomizerEngine;
-    private readonly ILogger _logger;
+    private readonly ILocationRepository _locationRepository;
+    private readonly GameEventDispatcher _gameEventDispatcher;
 
-    public RaceListener(IRandomizerEngine randomizerEngine, ILogger logger)
+    public RaceListener(IRandomizerEngine randomizerEngine, ILocationRepository locationRepository, GameEventDispatcher gameEventDispatcher)
     {
         _randomizerEngine = randomizerEngine;
-        _logger = logger ?? new NullLogger();
+        _locationRepository = locationRepository;
+        _gameEventDispatcher = gameEventDispatcher;
     }
 
     public void OnRaceWon(int raceIndex)
@@ -21,7 +23,11 @@ public class RaceListener
             return;
         }
 
-        // @TODO: Implement SpiritSanity behavior
-        _logger.LogWarning($"Race {raceIndex} won, but SpiritSanity is not implemented yet.");
+        // If SpiritSanity is enabled, we give the corresponding item.
+        string locationName = SpiritLocation.IndexToNameMap[raceIndex];
+        Location location = _locationRepository.Get(locationName);
+        Item item = _randomizerEngine.CheckLocation(location);
+        item.Collect();
+        _gameEventDispatcher.DispatchItemCollected(item);
     }
 }

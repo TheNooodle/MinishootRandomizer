@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace MinishootRandomizer
@@ -319,20 +320,6 @@ namespace MinishootRandomizer
             )},
         };
 
-        // Those indices are used to determine the names of the different game objects
-        // example : "Abyss Race - Reward" is "NpcTiny3", as well as "StartPoint3" and "FinishLine3".
-        private static Dictionary<string, int> _spiritLocationToIndex = new()
-        {
-            {"Abyss Race - Reward", 3},
-            {"Beach Race - Reward", 7},
-            {"Scarab Temple - Race Reward", 1},
-            {"Desert Race - Reward", 5},
-            {"Forest Shop Race - Reward", 2},
-            {"Green Grotto - Race Reward", 0},
-            {"Sunken City Race - Reward", 6},
-            {"Swamp Race - Reward", 4},
-        };
-
         public Location CreateLocation(string name, string logicRule, LocationPool pool)
         {
             if (_pickupLocationToGameObjectName.ContainsKey(name))
@@ -412,13 +399,13 @@ namespace MinishootRandomizer
             {
                 return new DungeonRewardLocation(name, logicRule, pool);
             }
-            if (_spiritLocationToIndex.ContainsKey(name))
+            if (SpiritLocation.IndexToNameMap.ContainsValue(name))
             {
                 return new SpiritLocation(
                     name,
                     logicRule,
                     pool,
-                    _spiritLocationToIndex[name]
+                    SpiritLocation.IndexToNameMap.FirstOrDefault(x => x.Value == name).Key
                 );
             }
 

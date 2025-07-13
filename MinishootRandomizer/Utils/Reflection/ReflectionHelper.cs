@@ -76,6 +76,26 @@ public static class ReflectionHelper
         }
     }
 
+    public static void InvokePrivateMethod(object instance, string methodName, params object[] parameters)
+    {
+        Type type = instance.GetType();
+        MethodInfo method = type.GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
+
+        if (method == null)
+        {
+            throw new ReflectionException($"Method '{methodName}' not found on type '{type.FullName}'.");
+        }
+
+        try
+        {
+            method.Invoke(instance, parameters);
+        }
+        catch (Exception e)
+        {
+            throw new ReflectionException($"Error invoking method '{methodName}' on type '{type.FullName}': {e.Message}");
+        }
+    }
+
     private static Delegate GetEventDelegate(Type type, string actionName)
     {
         EventInfo eventInfo = type.GetEvent(actionName, BindingFlags.Static | BindingFlags.Public);

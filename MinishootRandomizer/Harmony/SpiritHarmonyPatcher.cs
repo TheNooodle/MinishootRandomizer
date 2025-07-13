@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
 using HarmonyLib;
 
 namespace MinishootRandomizer;
@@ -13,43 +11,33 @@ public class SpiritHarmonyPatcher
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            IServiceContainer serviceContainer = Plugin.ServiceContainer;
-            ILogger logger = serviceContainer.Has<ILogger>() ? serviceContainer.Get<ILogger>() : new NullLogger();
+            CodeInstructionList codeInstructionList = new CodeInstructionList(instructions);
+            codeInstructionList.RemoveMethodCall(typeof(WorldState).GetMethod("Set"), 3);
 
-            var codes = new List<CodeInstruction>(instructions);
-            bool foundCorrespondingIf = false;
-            int rangeStart = -1;
-            int rangeEnd = -1;
+            return codeInstructionList.GetInstructions();
+        }
+    }
 
-            for (int i = 0; i < codes.Count; i++)
+    [HarmonyPatch(typeof(NpcTiny))]
+    [HarmonyPatch("OnGameStateLoaded", MethodType.Normal)]
+    public static class NpcTiny_OnGameStateLoaded_Patch
+    {
+        public static bool Prefix(NpcTiny __instance)
+        {
+            string name = __instance.gameObject.name;
+            if (name.Length <= 0 || !char.IsDigit(name[name.Length - 1]))
             {
-                logger.LogWarning($"Processing instruction {i}: {codes[i]}");
-                if (!foundCorrespondingIf && codes[i].opcode == OpCodes.Brfalse)
-                {
-                    logger.LogWarning($"Found corresponding if at instruction {i}: {codes[i]}");
-                    foundCorrespondingIf = true;
-                    rangeStart = i + 1; // Start after the if condition
-                }
-                if (foundCorrespondingIf && codes[i].opcode == OpCodes.Ldc_I4_1)
-                {
-                    logger.LogWarning($"Found Ldc_I4_1 at instruction {i}, rangeStart: {rangeStart}");
-                    rangeEnd = i + 1; // End at the instruction after Ldc_I4_1
-                    break;
-                }
+                ILogger logger = Plugin.ServiceContainer.Get<ILogger>();
+                logger.LogWarning($"NpcTiny.OnGameStateLoaded called on an NPC with an invalid name: {name}. Expected a name ending with a digit.");
+                return true;
             }
 
-            // We can now safely remove the range of instructions
-            if (rangeStart != -1 && rangeEnd != -1)
-            {
-                logger.LogWarning($"Removing instructions from {rangeStart} to {rangeEnd}");
-                codes.RemoveRange(rangeStart, rangeEnd - rangeStart + 1);
-            }
-            else
-            {
-                logger.LogWarning("No valid range found to remove.");
-            }
+            // We replace the original logic with our own to handle a separate flag.
+            int index = name[name.Length - 1] - '0';
+            __instance.gameObject.SetActive(!WorldState.Get("WonNpcTiny" + index));
+            ReflectionHelper.InvokePrivateMethod(__instance, "Restore");
 
-            return codes.AsEnumerable();
+            return false; // Skip original method execution
         }
     }
 
@@ -57,6 +45,14 @@ public class SpiritHarmonyPatcher
     [HarmonyPatch("EndRaceWon", MethodType.Normal)]
     public static class NpcTiny_EndRaceWon_Patch
     {
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            CodeInstructionList codeInstructionList = new CodeInstructionList(instructions);
+            codeInstructionList.RemoveMethodCall(typeof(TextMessage).GetMethod("Pop"), 7);
+
+            return codeInstructionList.GetInstructions();
+        }
+
         public static void Postfix(NpcTiny __instance)
         {
             IServiceContainer serviceContainer = Plugin.ServiceContainer;
@@ -70,6 +66,10 @@ public class SpiritHarmonyPatcher
             if (name.Length > 0 && char.IsDigit(name[name.Length - 1]))
             {
                 int index = name[name.Length - 1] - '0';
+
+                // In all cases, we setup an additional flag to persist race completion.
+                WorldState.Set("WonNpcTiny" + index, true);
+
                 eventDispatcher.DispatchRaceWon(index);
             }
             else
