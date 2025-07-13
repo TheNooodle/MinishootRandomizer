@@ -16,7 +16,7 @@ namespace MinishootRandomizer
         public static bool UseDummyEngine = true;
 
         public static VersionNumber RandomizerVersion = new VersionNumber(PluginInfo.PLUGIN_VERSION);
-        public static string ArchipelagoVersionConstraint = "~0.4.0";
+        public static string ArchipelagoVersionConstraint = "~0.5.0";
 
         private void Awake()
         {

@@ -186,7 +186,7 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(NpcSanity), new NpcSanity(GetBooleanSettingValue("npc_sanity")) },
             { typeof(ScarabSanity), new ScarabSanity(GetBooleanSettingValue("scarab_sanity")) },
             { typeof(ShardSanity), new ShardSanity(GetBooleanSettingValue("shard_sanity")) },
-            { typeof(SpiritSanity), new SpiritSanity(false) },
+            { typeof(SpiritSanity), new SpiritSanity(GetBooleanSettingValue("spirit_sanity")) },
             { typeof(KeySanity), new KeySanity(GetBooleanSettingValue("key_sanity")) },
             { typeof(BossKeySanity), new BossKeySanity(GetBooleanSettingValue("boss_key_sanity")) },
             { typeof(TrapItemsAppearance), new TrapItemsAppearance(GetEnumSettingValue("trap_items_appearance", TrapItemsAppearanceValue.Anything)) },
