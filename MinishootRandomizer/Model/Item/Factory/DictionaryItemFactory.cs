@@ -121,7 +121,7 @@ public class DictionaryItemFactory : IItemFactory
         else if (identifier == Item.Spirit)
         {
             return new SpiritItem(identifier, category);
-        
+
         }
         else if (identifier.Contains("XP Crystals x"))
         {
@@ -188,9 +188,13 @@ public class DictionaryItemFactory : IItemFactory
         {
             return new ProgressiveDashItem(identifier, category);
         }
-        else if(identifier == Item.PrimordialScarabDialog)
+        else if (identifier == Item.PrimordialScarabDialog)
         {
             return new TrapItem(identifier, category);
+        }
+        else if (identifier == Item.Spirit)
+        {
+            return new SpiritItem(identifier, category);
         }
         else
         {

@@ -53,10 +53,17 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         AddSingleton<CappedLogger>(sp => new CappedLogger(sp.Get<BepInExLogger>()));
         AddSingleton<ILogger>(sp => sp.Get<CappedLogger>());
     }
-    
+
     private void ConfigureGameEvents()
     {
         AddSingleton<GameEventDispatcher>(sp => new GameEventDispatcher(sp.Get<ILogger>()));
+        AddSingleton<EmoteListener>(sp => new EmoteListener());
+
+        AddPostBuildAction(sp => {
+            var gameEvents = sp.Get<GameEventDispatcher>();
+            var emoteListener = sp.Get<EmoteListener>();
+            gameEvents.ItemCollected += emoteListener.OnItemCollected;
+        });
     }
     
     private void ConfigureMessaging()

@@ -231,7 +231,6 @@ public class RandomizerNpcTradingInteraction : MiniBehaviour
             }
             Fx.PickupBuy();
 
-            Player.Emote.Play(Emotes.Ok);
             Hide();
         }
         else

@@ -8,7 +8,13 @@ public class SpiritItem : Item
 
     public override void Collect()
     {
-        throw new System.NotImplementedException();
+        for (int i = 0; i < 8; i++)
+        {
+            if (!WorldState.Get("NpcTiny" + i))
+            {
+                WorldState.Set("NpcTiny" + i, true);
+            }
+        }
     }
 
     public override int GetOwnedQuantity()
@@ -23,5 +29,10 @@ public class SpiritItem : Item
         }
 
         return count;
+    }
+
+    public override string GetSpriteIdentifier()
+    {
+        return "Spirit";
     }
 }

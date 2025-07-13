@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- A new setting called "Spirit Sanity" has been added.
+    - When enabled, the races against spirits are now locations that will award items.
+    - Also add 8 Spirit items in the pool to collect.
+
 ### Fixed
 
 - Fixed location "Sunken City - Inside the walls" being shown on the tracker as inside the sewers in addition to being in Sunken City.

@@ -242,20 +242,6 @@ public class RandomizerPickup : MonoBehaviour, IActivationChecker
         CameraManager.ForwardTiltToggled = true;
         FireEndedCollect();
         CheckActivation();
-
-        // Make minishoot a happy (or sad) little lad.
-        switch (Item.Category)
-        {
-            case ItemCategory.Progression:
-                Player.Emote.Play(Emotes.Happy, 0.8f);
-                break;
-            case ItemCategory.Trap:
-                Player.Emote.Play(Emotes.Shameful, 0.8f);
-                break;
-            default:
-                Player.Emote.Play(Emotes.Ok, 0.8f);
-                break;
-        }
     }
 
     protected void FireEndedCollect()

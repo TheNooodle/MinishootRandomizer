@@ -24,7 +24,7 @@ public class FileSpriteProvider : ISpriteProvider
         { "ScarabMarkerSimple", new SpriteFileData("scarab_marker_simple.png", 132, 156)},
         { "SkullMarker", new SpriteFileData("skull_marker.png", 160, 188) },
         { "SkullMarkerSimple", new SpriteFileData("skull_marker_simple.png", 160, 188) },
-        { "Spirit", new SpriteFileData("spirit.png", 51, 73)},
+        { "Spirit", new SpriteFileData("spirit.png", 52, 76)},
         { "SpiritMarker", new SpriteFileData("spirit_marker.png", 148, 172)},
         { "SpiritMarkerSimple", new SpriteFileData("spirit_marker_simple.png", 148, 172)},
         { "SuperCrystal", new SpriteFileData("super_crystal.png", 92, 92, 1f, -20f) },

@@ -288,7 +288,7 @@ Forest - Hidden east tunnel: Energy Crystal Shard
 Forest - Pot: Small Key (Dungeon 1)
 Forest - Secret pond behind bushes: Ancient Tablet
 Forest - Secret pond bush: XP Crystals x5
-Forest - Secret within Secret: XP Crystals x20
+Forest - Secret within Secret: Spirit
 Forest - Tunnel below big tree enemy: XP Crystals x10
 Forest Grotto - After ramp: Progressive Cannon
 Forest Shop 1: XP Crystals x25
@@ -338,7 +338,7 @@ Sewers - Near Family House Cave: HP Crystal Shard
 Sewers - North pot room: XP Crystals x50
 Sewers - South pot room: Boss Key (Dungeon 3)
 Spirit Tower - Item: Dark Key
-Starting Grotto - Entrance: Primordial Scarab Dialog
+Starting Grotto - Entrance: Spirit
 Starting Grotto - North Corridor: Progressive Dash
 Starting Grotto - Secret Wall: XP Crystals x5
 Starting Grotto - West Item: Progressive Dash
