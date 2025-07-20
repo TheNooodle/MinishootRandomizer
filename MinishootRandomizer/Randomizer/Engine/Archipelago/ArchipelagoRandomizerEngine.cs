@@ -17,7 +17,6 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
     private List<LocationPool> _locationPools = new();
     private List<Location> _locations = new();
     private List<Location> _checkedLocations = new();
-    private Dictionary<long, ArchipelagoItem> _archipelagoItems = new();
 
     public ArchipelagoRandomizerEngine(
         IArchipelagoClient client,
@@ -81,17 +80,11 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
         }
         else
         {
-            if (!_archipelagoItems.TryGetValue(itemData.ItemId, out ArchipelagoItem archipelagoItem))
-            {
-                archipelagoItem = new ArchipelagoItem(
-                    itemData.ItemName,
-                    MapArchipelagoItemCategory(itemData.Category),
-                    itemData.SlotName
-                );
-                _archipelagoItems.Add(itemData.ItemId, archipelagoItem);
-            }
-
-            return archipelagoItem;
+            return new ArchipelagoItem(
+                itemData.ItemName,
+                MapArchipelagoItemCategory(itemData.Category),
+                itemData.SlotName
+            );
         }
     }
 
@@ -384,6 +377,5 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
         _locationPools.Clear();
         _locations.Clear();
         _checkedLocations.Clear();
-        _archipelagoItems.Clear();
     }
 }

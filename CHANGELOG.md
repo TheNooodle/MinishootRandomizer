@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed location "Sunken City - Inside the walls" being shown on the tracker as inside the sewers in addition to being in Sunken City.
+- Fixed some Archipelago items displaying the wrong owner when multiple slots in the room are playing the same game.
 
 ## [0.4.2] - 2025-05-30
 
