@@ -48,6 +48,9 @@ public class GameEventDispatcher
     public delegate void RaceWonHandler(int raceIndex);
     public event RaceWonHandler RaceWon;
 
+    public delegate void OnPlayerDeathHandler(string source);
+    public event OnPlayerDeathHandler OnPlayerDeath;
+
     public GameEventDispatcher(ILogger logger)
     {
         _logger = logger ?? new NullLogger();
@@ -111,5 +114,11 @@ public class GameEventDispatcher
     {
         _logger.LogDebug($"Dispatching RaceWon event with index: {raceIndex}");
         RaceWon?.Invoke(raceIndex);
+    }
+
+    public void DispatchOnPlayerDeath(string source)
+    {
+        _logger.LogDebug("Dispatching OnPlayerDeath event");
+        OnPlayerDeath?.Invoke(source);
     }
 }

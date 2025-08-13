@@ -8,7 +8,7 @@ public class ShowItemNotificationHandler : IMessageHandler
     {
         if (!(message is ShowItemNotificationMessage))
         {
-            throw new ArgumentException("Message is not of type SendGoalMessage");
+            throw new ArgumentException("Message is not of type ShowItemNotificationMessage");
         }
 
         ShowItemNotificationMessage notificationMessage = (ShowItemNotificationMessage)message;

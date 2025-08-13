@@ -1,10 +1,10 @@
 namespace MinishootRandomizer;
 
-public class CanNotifyItem : IStamp
+public class IsNotificationComponentBusy : IStamp
 {
     private readonly NotificationHUDViewComponent _notificationHUDViewComponent;
 
-    public CanNotifyItem(NotificationHUDViewComponent notificationHUDViewComponent)
+    public IsNotificationComponentBusy(NotificationHUDViewComponent notificationHUDViewComponent)
     {
         _notificationHUDViewComponent = notificationHUDViewComponent;
     }

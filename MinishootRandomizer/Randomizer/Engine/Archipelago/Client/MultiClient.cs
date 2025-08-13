@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.Models;
@@ -17,6 +18,7 @@ public class MultiClient : IArchipelagoClient
     private readonly ILogger _logger = new NullLogger();
 
     private IArchipelagoSession _session;
+    private DeathLinkService _deathLinkService = null;
     private ArchipelagoOptions _options;
     private LoginSuccessful _loginResult = null;
 
@@ -29,6 +31,9 @@ public class MultiClient : IArchipelagoClient
 
     public delegate void ItemReceivedHandler(ArchipelagoItemData itemData);
     public event ItemReceivedHandler ItemReceived;
+
+    public delegate void OnDeathLinkReceivedHandler(string source);
+    public event OnDeathLinkReceivedHandler OnDeathLinkReceived;
 
     public MultiClient(IItemCounter itemCounter, ILogger logger = null)
     {
@@ -45,12 +50,24 @@ public class MultiClient : IArchipelagoClient
         try
         {
             _logger.LogInfo($"Connecting to {_options.Uri} as {_options.SlotName}");
-            _session = ArchipelagoSessionFactory.CreateSession(_options.Uri);
+            _session = ArchipelagoSessionFactory.CreateSession(_options.Uri); 
             List<string> flags = new List<string>();
             if (_options.IsDeathLink)
             {
                 flags.Add("DeathLink");
+                _deathLinkService = DeathLinkProvider.CreateDeathLinkService((ArchipelagoSession)_session);
+                _deathLinkService.OnDeathLinkReceived += OnReceiveDeathLink;
             }
+            else
+            {
+                if (_deathLinkService != null)
+                {
+                    // Unsubscribe from the event if it was previously subscribed
+                    _deathLinkService.OnDeathLinkReceived -= OnReceiveDeathLink;
+                }
+                _deathLinkService = null;
+            }
+
             result = _session.TryConnectAndLogin(
                 "Minishoot Adventures",
                 _options.SlotName,
@@ -64,6 +81,7 @@ public class MultiClient : IArchipelagoClient
         }
         catch (Exception e)
         {
+            _logger.LogError($"Failed to connect to Archipelago: {e.Message}");
             throw new ArchipelagoLoginException("Failed to connect to Archipelago.", e);
         }
 
@@ -80,6 +98,7 @@ public class MultiClient : IArchipelagoClient
                 errorMessage += $"\n    {error}";
             }
 
+            _logger.LogError(errorMessage);
             throw new ArchipelagoLoginException(errorMessage, null);
         }
 
@@ -134,6 +153,12 @@ public class MultiClient : IArchipelagoClient
 
         _session = null;
         _loginResult = null;
+        if (_deathLinkService != null)
+        {
+            // Unsubscribe from the event if it was previously subscribed
+            _deathLinkService.OnDeathLinkReceived -= OnReceiveDeathLink;
+        }
+        _deathLinkService = null;
     }
 
     private List<string> GetLocationNames(ICollection<long> locationIds)
@@ -336,5 +361,22 @@ public class MultiClient : IArchipelagoClient
     public bool IsConnected()
     {
         return _loginResult != null;
+    }
+
+    public void OnReceiveDeathLink(DeathLink deathLink)
+    {
+        _logger.LogInfo($"DeathLink received from {deathLink.Source}");
+        OnDeathLinkReceived?.Invoke(deathLink.Source);
+    }
+
+    public void SendDeathLink()
+    {
+        if (_deathLinkService == null)
+        {
+            _logger.LogInfo("DeathLinkService is not enabled, cannot send DeathLink.");
+            return;
+        }
+
+        _deathLinkService.SendDeathLink(new DeathLink(_options.SlotName));
     }
 }

@@ -15,4 +15,5 @@ public interface IArchipelagoClient
     void CheckLocations(List<string> locationNames);
     object GetDataStorageValue(string key);
     void SendCompletion();
+    void SendDeathLink();
 }

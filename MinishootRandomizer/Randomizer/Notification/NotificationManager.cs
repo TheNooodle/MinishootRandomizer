@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MinishootRandomizer;
 
-public class NotificationManager
+public class NotificationManager : INotificationManager
 {
     private readonly IObjectFinder _objectFinder;
     private readonly IMessageDispatcher _messageDispatcher;
@@ -30,7 +30,20 @@ public class NotificationManager
             new ShowItemNotificationMessage(notificationComponent, item),
             new List<IStamp> {
                 new MustBeInGameStamp(),
-                new CanNotifyItem(notificationComponent)
+                new IsNotificationComponentBusy(notificationComponent)
+            }
+        );
+    }
+
+    public void OnDeathLinkReceived(string source)
+    {
+        NotificationHUDViewComponent notificationComponent = GetNotificationComponent();
+
+        _messageDispatcher.Dispatch(
+            new ShowDeathLinkNotificationMessage(notificationComponent, source),
+            new List<IStamp> {
+                new MustBeInGameStamp(),
+                new IsNotificationComponentBusy(notificationComponent)
             }
         );
     }
@@ -43,15 +56,15 @@ public class NotificationManager
     private NotificationHUDViewComponent GetNotificationComponent()
     {
         if (_notificationHUDViewComponent == null)
-        {
-            GameObject notificationHUDViewObject = _objectFinder.FindObject(new ByComponent(typeof(NotificationHUDViewComponent)));
-            if (notificationHUDViewObject == null)
             {
-                throw new Exception("NotificationHUDViewComponent not found!");
-            }
+                GameObject notificationHUDViewObject = _objectFinder.FindObject(new ByComponent(typeof(NotificationHUDViewComponent)));
+                if (notificationHUDViewObject == null)
+                {
+                    throw new Exception("NotificationHUDViewComponent not found!");
+                }
 
-            _notificationHUDViewComponent = notificationHUDViewObject.GetComponent<NotificationHUDViewComponent>();
-        }
+                _notificationHUDViewComponent = notificationHUDViewObject.GetComponent<NotificationHUDViewComponent>();
+                    }
 
         return _notificationHUDViewComponent;
     }

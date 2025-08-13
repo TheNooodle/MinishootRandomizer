@@ -26,6 +26,7 @@ public class ImguiContextComponent : MonoBehaviour
         // Load saved values from PlayerPrefs
         _serverUri = PlayerPrefs.GetString("ArchipelagoServerUri", _serverUri);
         _slotName = PlayerPrefs.GetString("ArchipelagoSlotName", _slotName);
+        _activateDeathlink = PlayerPrefs.GetInt("ArchipelagoDeathLink", _activateDeathlink ? 1 : 0) == 1;
     }
 
     void OnGUI()
@@ -41,8 +42,7 @@ public class ImguiContextComponent : MonoBehaviour
         _serverUri = AddTextLine("Server URI: ", _serverUri);
         _slotName = AddTextLine("Slot name: ", _slotName);
         _password = AddPasswordLine("Password: ", _password);
-        // @TODO: Implement deathlink
-        // _activateDeathlink = AddToggle("Activate Deathlink", _activateDeathlink);
+        _activateDeathlink = AddToggle("Activate Deathlink", _activateDeathlink);
 
         if (AddButton("Connect"))
         {
@@ -54,6 +54,7 @@ public class ImguiContextComponent : MonoBehaviour
                 // Save the server URI and slot name to PlayerPrefs
                 PlayerPrefs.SetString("ArchipelagoServerUri", newServerUri);
                 PlayerPrefs.SetString("ArchipelagoSlotName", newSlotName);
+                PlayerPrefs.SetInt("ArchipelagoDeathLink", _activateDeathlink ? 1 : 0);
                 PlayerPrefs.Save();
 
                 // Connect to the Archipelago server
@@ -61,7 +62,7 @@ public class ImguiContextComponent : MonoBehaviour
                     newServerUri,
                     newSlotName,
                     _password.Trim(),
-                    false
+                    _activateDeathlink
                 );
                 _archipelagoClient.Connect(options);
                 if (_archipelagoClient.IsConnected())

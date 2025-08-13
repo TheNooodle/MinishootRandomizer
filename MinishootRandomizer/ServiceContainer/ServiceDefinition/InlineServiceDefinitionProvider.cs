@@ -45,6 +45,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         ConfigureUIServices();
         ConfigurePatchers();
         ConfigureSpiritLogic();
+        ConfigureDeathLink();
     }
 
     private void ConfigureLogging()
@@ -233,10 +234,11 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         
         AddSingleton<IItemCounter, PlayerStateItemCounter>();
         
-        AddSingleton<IArchipelagoClient>(sp => new MultiClient(
+        AddSingleton<MultiClient>(sp => new MultiClient(
             sp.Get<IItemCounter>(),
             sp.Get<ILogger>()
         ));
+        AddSingleton<IArchipelagoClient>(sp => sp.Get<MultiClient>());
         
         AddSingleton<ArchipelagoRandomizerEngine>(sp => new ArchipelagoRandomizerEngine(
             sp.Get<IArchipelagoClient>(),
@@ -422,10 +424,20 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         AddSingleton<TriggerTrapDialogHandler>(sp => new TriggerTrapDialogHandler(
             new InMemoryTrapDialogProvider()
         ));
+        AddSingleton<KillPlayerMessageHandler>(sp => new KillPlayerMessageHandler(
+            sp.Get<IObjectFinder>(),
+            sp.Get<INotificationManager>(),
+            sp.Get<ILogger>()
+        ));
+        AddSingleton<SendDeathLinkMessageHandler>(sp => new SendDeathLinkMessageHandler(
+            sp.Get<IArchipelagoClient>()
+        ));
+        AddSingleton<ShowDeathLinkNotificationHandler>(sp => new ShowDeathLinkNotificationHandler());
         
         AddPostBuildAction(sp => {
             var consumer = sp.Get<IMessageConsumer>() as CoreMessageConsumer;
-            if (consumer != null) {
+            if (consumer != null)
+            {
                 consumer.AddHandler<RefreshLogicCheckerCacheMessage>(
                     sp.Get<RefreshLogicCheckerCacheHandler>());
                 consumer.AddHandler<SendCheckedLocationsMessage>(
@@ -438,6 +450,12 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
                     sp.Get<ShowItemNotificationHandler>());
                 consumer.AddHandler<TriggerTrapDialogMessage>(
                     sp.Get<TriggerTrapDialogHandler>());
+                consumer.AddHandler<KillPlayerMessage>(
+                    sp.Get<KillPlayerMessageHandler>());
+                consumer.AddHandler<SendDeathLinkMessage>(
+                    sp.Get<SendDeathLinkMessageHandler>());
+                consumer.AddHandler<ShowDeathLinkNotificationMessage>(
+                    sp.Get<ShowDeathLinkNotificationHandler>());
             }
         });
     }
@@ -484,6 +502,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             sp.Get<IObjectFinder>(),
             sp.Get<IMessageDispatcher>()
         ));
+        AddSingleton<INotificationManager>(sp => sp.Get<NotificationManager>());
         
         AddPostBuildAction(sp => {
             var gameEvents = sp.Get<GameEventDispatcher>();
@@ -644,6 +663,25 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             var gameEvents = sp.Get<GameEventDispatcher>();
             var raceListener = sp.Get<RaceListener>();
             gameEvents.RaceWon += raceListener.OnRaceWon;
+        });
+    }
+
+    private void ConfigureDeathLink()
+    {
+        AddSingleton<DeathLinkManager>(sp => new DeathLinkManager(
+            sp.Get<IMessageDispatcher>(),
+            sp.Get<IObjectFinder>(),
+            sp.Get<ILogger>()
+        ));
+
+        AddPostBuildAction(sp =>
+        {
+            var gameEvents = sp.Get<GameEventDispatcher>();
+            var deathLinkManager = sp.Get<DeathLinkManager>();
+            var archipelagoClient = sp.Get<MultiClient>();
+
+            gameEvents.OnPlayerDeath += (source) => deathLinkManager.OnPlayerDeath(source);
+            archipelagoClient.OnDeathLinkReceived += (playerName) => deathLinkManager.OnDeathLink(playerName);
         });
     }
     

@@ -7,8 +7,8 @@ namespace MinishootRandomizer;
 public class NotificationHUDViewComponent : MonoBehaviour
 {
     private IItemPresentationProvider _itemPresentationProvider;
+    private ISpriteProvider _spriteProvider;
 
-    private Item _item = null;
     private float _totalWidthRatio = 0.25f;
     private float _imageWidthRatio = 0.2f;
     private float _totalHeight = 100f;
@@ -24,6 +24,7 @@ public class NotificationHUDViewComponent : MonoBehaviour
     void Awake()
     {
         _itemPresentationProvider = Plugin.ServiceContainer.Get<IItemPresentationProvider>();
+        _spriteProvider = Plugin.ServiceContainer.Get<ISpriteProvider>();
         _fadingAnimation = GetComponent<FadingAnimationHUDComponent>();
         _image = GetComponentInChildren<Image>();
         _text = GetComponentInChildren<TextMeshProUGUI>();
@@ -45,7 +46,7 @@ public class NotificationHUDViewComponent : MonoBehaviour
         // For the text, we have to adjust the text size.
         _textRectTransform.sizeDelta = new Vector2(_currentRectTransform.rect.width - _imageRectTransform.rect.width, _currentRectTransform.rect.height);
 
-        if (_item == null)
+        if (_image.sprite == null)
         {
             return;
         }
@@ -68,7 +69,6 @@ public class NotificationHUDViewComponent : MonoBehaviour
 
     public void NotifyItemCollection(Item item)
     {
-        _item = item;
         ItemPresentation itemPresentation = _itemPresentationProvider.GetItemPresentation(item);
         if (itemPresentation is TrapItemPresentation trapItemPresentation)
         {
@@ -76,6 +76,16 @@ public class NotificationHUDViewComponent : MonoBehaviour
         }
         _text.SetText(itemPresentation.Name);
         _image.sprite = itemPresentation.SpriteData.Sprite;
+
+        AdjustSize();
+        _fadingAnimation.BeginFadeIn();
+    }
+
+    public void NotifyDeathLink(string playerName)
+    {
+        _text.SetText($"Killed by {playerName}");
+        SpriteData spriteData = _spriteProvider.GetSprite("LaughingCat");
+        _image.sprite = spriteData.Sprite;
 
         AdjustSize();
         _fadingAnimation.BeginFadeIn();

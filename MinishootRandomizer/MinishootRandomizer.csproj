@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Archipelago.MultiClient.Net" Version="6.6.0" />
+    <PackageReference Include="Archipelago.MultiClient.Net" Version="6.6.1" />
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.*" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
@@ -31,6 +31,7 @@
     <EmbeddedResource Include="Resources/images/archipelago_arrow_up.png" />
     <EmbeddedResource Include="Resources/images/archipelago_grayscale.png" />
     <EmbeddedResource Include="Resources/images/archipelago.png" />
+    <EmbeddedResource Include="Resources/images/laughing_cat.png" />
     <EmbeddedResource Include="Resources/images/location_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/location_marker.png" />
     <EmbeddedResource Include="Resources/images/npc_marker_simple.png" />
