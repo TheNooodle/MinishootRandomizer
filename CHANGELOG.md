@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A new setting called "Spirit Sanity" has been added.
     - When enabled, the races against spirits are now locations that will award items.
     - Also add 8 Spirit items in the pool to collect.
+- DeathLink support has been added.
+    - You can enable via the connection menu to Archipelago.
+    - When the player die, sends a message to all other slots supporting DeathLink.
+    - When receiving a DeathLink, it will forcefully kill the player.
+    - You can opt-in and opt-out of DeathLink whenever you like, it is not tied to the generated seed.
 
 ### Fixed
 
