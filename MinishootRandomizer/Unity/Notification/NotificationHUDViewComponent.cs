@@ -84,7 +84,10 @@ public class NotificationHUDViewComponent : MonoBehaviour
     public void NotifyDeathLink(string playerName)
     {
         _text.SetText($"Killed by {playerName}");
-        SpriteData spriteData = _spriteProvider.GetSprite("LaughingCat");
+        int randomNumber = Random.Range(0, 100);
+        // We do a little trolling.
+        string spriteIdentifier = randomNumber < 5 ? "LaughingCat" : "DeadPlayer";
+        SpriteData spriteData = _spriteProvider.GetSprite(spriteIdentifier);
         _image.sprite = spriteData.Sprite;
 
         AdjustSize();
