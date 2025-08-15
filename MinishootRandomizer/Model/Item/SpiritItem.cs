@@ -13,6 +13,7 @@ public class SpiritItem : Item
             if (!WorldState.Get("NpcTiny" + i))
             {
                 WorldState.Set("NpcTiny" + i, true);
+                return;
             }
         }
     }
