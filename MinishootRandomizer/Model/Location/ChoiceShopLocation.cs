@@ -1,17 +1,11 @@
-using UnityEngine;
-
 namespace MinishootRandomizer
 {
-    public class ChoiceShopLocation: Location
+    public class ChoiceShopLocation: ShopLocation
     {
         private readonly string _npcName;
-        private readonly int _defaultPrice;
-        private readonly Currency _defaultCurrency;
         private readonly ISelector _selector;
 
         public string NpcName => _npcName;
-        public int DefaultPrice => _defaultPrice;
-        public Currency DefaultCurrency => _defaultCurrency;
         public ISelector Selector => _selector;
 
         public ChoiceShopLocation(
@@ -22,11 +16,9 @@ namespace MinishootRandomizer
             int defaultPrice,
             Currency defaultCurrency,
             ISelector selector
-        ): base(identifier, logicRule, pool)
+        ): base(identifier, logicRule, pool, defaultPrice, defaultCurrency)
         {
             _npcName = npcName;
-            _defaultPrice = defaultPrice;
-            _defaultCurrency = defaultCurrency;
             _selector = selector;
         }
 

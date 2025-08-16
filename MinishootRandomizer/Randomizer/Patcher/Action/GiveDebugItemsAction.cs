@@ -33,6 +33,8 @@ public class GiveDebugItemsAction : IPatchAction
 
         WorldState.Set(NpcIds.Bard.Str(), true);
         WorldState.Set(NpcIds.ScarabCollector.Str(), true);
+        WorldState.Set(NpcIds.Blacksmith.Str(), true);
+        WorldState.Set(NpcIds.MercantHub.Str(), true);
         ReflectionHelper.InvokeStaticAction(typeof(CrystalNpc), "Freed");
 
         PlayerState.SetUniqueKey(KeyUse.Darker, true);

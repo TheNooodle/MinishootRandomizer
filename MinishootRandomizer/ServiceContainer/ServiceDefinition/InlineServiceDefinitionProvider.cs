@@ -302,6 +302,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             sp.Get<IGameObjectFactory>(),
             sp.Get<IObjectFinder>(),
             sp.Get<PickupManager>(),
+            sp.Get<IRandomizerEngine>(),
             sp.Get<ILogger>()
         ));
         
@@ -656,6 +657,10 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             sp.Get<IRandomizerEngine>(),
             sp.Get<ILocationRepository>(),
             sp.Get<GameEventDispatcher>()
+        ));
+
+        AddSingleton<TowerHandler>(sp => new TowerHandler(
+            sp.Get<IRandomizerEngine>()
         ));
 
         AddPostBuildAction(sp =>

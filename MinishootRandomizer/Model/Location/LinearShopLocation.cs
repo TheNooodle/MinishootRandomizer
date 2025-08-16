@@ -1,16 +1,10 @@
-using UnityEngine;
-
 namespace MinishootRandomizer
 {
-    public class LinearShopLocation: Location
+    public class LinearShopLocation: ShopLocation
     {
         private readonly string _npcName;
-        private readonly int _defaultPrice;
-        private readonly Currency _defaultCurrency;
 
         public string NpcName => _npcName;
-        public int DefaultPrice => _defaultPrice;
-        public Currency DefaultCurrency => _defaultCurrency;
 
         public LinearShopLocation(
             string identifier,
@@ -19,11 +13,9 @@ namespace MinishootRandomizer
             string npcName,
             int defaultPrice,
             Currency defaultCurrency
-        ): base(identifier, logicRule, pool)
+        ): base(identifier, logicRule, pool, defaultPrice, defaultCurrency)
         {
             _npcName = npcName;
-            _defaultPrice = defaultPrice;
-            _defaultCurrency = defaultCurrency;
         }
 
         public override IPatchAction Accept(ILocationVisitor visitor, Item item)

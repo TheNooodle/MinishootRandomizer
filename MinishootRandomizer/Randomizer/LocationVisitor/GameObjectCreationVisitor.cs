@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace MinishootRandomizer
@@ -8,13 +7,13 @@ namespace MinishootRandomizer
     {
         private List<ShopReplacementData> _shopReplacementData = new List<ShopReplacementData>
         {
-            new ShopReplacementData("Blacksmith", new List<string> { 
+            new ShopReplacementData("Blacksmith", new List<string> {
                 "Town - Blacksmith Item 1",
                 "Town - Blacksmith Item 2",
                 "Town - Blacksmith Item 3",
                 "Town - Blacksmith Item 4",
             }),
-            new ShopReplacementData("ScarabCollector", new List<string> { 
+            new ShopReplacementData("ScarabCollector", new List<string> {
                 "Town - Scarab Collector Item 1",
                 "Town - Scarab Collector Item 2",
                 "Town - Scarab Collector Item 3",
@@ -47,13 +46,21 @@ namespace MinishootRandomizer
         private readonly IGameObjectFactory _factory;
         private readonly IObjectFinder _objectFinder;
         private readonly PickupManager _pickupManager;
+        private readonly IRandomizerEngine _randomizerEngine;
         private readonly ILogger _logger;
 
-        public GameObjectCreationVisitor(IGameObjectFactory factory, IObjectFinder objectFinder, PickupManager pickupManager, ILogger logger = null)
+        public GameObjectCreationVisitor(
+            IGameObjectFactory factory,
+            IObjectFinder objectFinder,
+            PickupManager pickupManager,
+            IRandomizerEngine randomizerEngine,
+            ILogger logger = null
+        )
         {
             _factory = factory;
             _objectFinder = objectFinder;
             _pickupManager = pickupManager;
+            _randomizerEngine = randomizerEngine;
             _logger = logger ?? new NullLogger();
         }
 
@@ -62,22 +69,26 @@ namespace MinishootRandomizer
             _logger.LogDebug($"GameObjectCreationVisitor is visiting PickupLocation {location.Identifier}");
             GameObject replacementGameObject = _factory.CreateGameObjectForItem(item);
             GameObject originalGameObject;
-            try {
+            try
+            {
                 originalGameObject = _objectFinder.FindObject(location.Selector);
-            } catch (ObjectNotFoundException) {
+            }
+            catch (ObjectNotFoundException)
+            {
                 throw new GameObjectCreationException($"Could not find {location.Selector} for location {location.Identifier}");
             }
 
             RandomizerPickup randomizerPickup = replacementGameObject.GetComponent<RandomizerPickup>();
-            if (randomizerPickup == null) {
+            if (randomizerPickup == null)
+            {
                 throw new GameObjectCreationException($"GameObject does not have RandomizerPickup component for location {location.Identifier}");
             }
-            
-            
+
+
             replacementGameObject.name = "Randomized " + item.Identifier + " at " + location.Identifier;
             replacementGameObject.transform.position = originalGameObject.transform.position;
             randomizerPickup.SetLocation(location);
-            
+
             ReplacePickupAction replaceAction = new ReplacePickupAction(_pickupManager, originalGameObject, randomizerPickup);
             _logger.LogDebug($"GameObjectCreationVisitor has replaced {location.Selector} with {item.Identifier}");
 
@@ -88,9 +99,10 @@ namespace MinishootRandomizer
         {
             _logger.LogDebug($"GameObjectCreationVisitor is visiting ShardLocation {location.Identifier}");
             GameObject gameObject = _factory.CreateGameObjectForItem(item);
-            
+
             RandomizerPickup randomizerPickup = gameObject.GetComponent<RandomizerPickup>();
-            if (randomizerPickup == null) {
+            if (randomizerPickup == null)
+            {
                 throw new GameObjectCreationException($"GameObject does not have RandomizerPickup component for location {location.Identifier}");
             }
 
@@ -110,20 +122,24 @@ namespace MinishootRandomizer
             _logger.LogDebug($"GameObjectCreationVisitor is visiting PickupLocation {location.Identifier}");
             GameObject replacementGameObject = _factory.CreateGameObjectForItem(item);
             GameObject originalGameObject;
-            try {
+            try
+            {
                 originalGameObject = _objectFinder.FindObject(location.Selector);
-            } catch (ObjectNotFoundException) {
+            }
+            catch (ObjectNotFoundException)
+            {
                 throw new GameObjectCreationException($"Could not find GameObject {location.Selector} for location {location.Identifier}");
             }
 
             RandomizerPickup randomizerPickup = replacementGameObject.GetComponent<RandomizerPickup>();
-            if (randomizerPickup == null) {
+            if (randomizerPickup == null)
+            {
                 throw new GameObjectCreationException($"GameObject does not have RandomizerPickup component for location {location.Identifier}");
             }
 
             replacementGameObject.transform.position = originalGameObject.transform.position;
             replacementGameObject.name = "Randomized " + item.Identifier + " at " + location.Identifier;
-            
+
             randomizerPickup.SetLocation(location);
             _logger.LogDebug($"GameObjectCreationVisitor has replaced {location.Selector} with {item.Identifier}");
             ReplacePickupAction replaceAction = new ReplacePickupAction(_pickupManager, originalGameObject, randomizerPickup);
@@ -148,7 +164,8 @@ namespace MinishootRandomizer
                 throw new GameObjectCreationException($"No RandomizerNpcTradingInteraction found for {shopReplacement.NpcName}");
             }
 
-            RandomizedShopSlot shopSlot = new RandomizedShopSlot(location, item, location.DefaultPrice, location.DefaultCurrency);
+            int price = ComputePrice(location);
+            RandomizedShopSlot shopSlot = new RandomizedShopSlot(location, item, price, location.DefaultCurrency);
             interaction.AddShopSlot(shopSlot, shopReplacement.LocationNames.IndexOf(location.Identifier));
 
             return new NullAction();
@@ -159,9 +176,12 @@ namespace MinishootRandomizer
             _logger.LogDebug($"GameObjectCreationVisitor is visiting ChoiceShopLocation {location.Identifier}");
 
             GameObject originalGameObject;
-            try {
+            try
+            {
                 originalGameObject = _objectFinder.FindObject(location.Selector);
-            } catch (ObjectNotFoundException) {
+            }
+            catch (ObjectNotFoundException)
+            {
                 throw new GameObjectCreationException($"Could not find GameObject {location.Selector} for location {location.Identifier}");
             }
 
@@ -184,15 +204,17 @@ namespace MinishootRandomizer
             RandomizerNpcTradingInteraction interaction = npcObject.GetComponent<RandomizerNpcTradingInteraction>();
 
             // Next, we need to create a RandomizedShopSlot for this location and item
-            RandomizedShopSlot shopSlot = new RandomizedShopSlot(location, item, location.DefaultPrice, location.DefaultCurrency);
+            int price = ComputePrice(location);
+            RandomizedShopSlot shopSlot = new RandomizedShopSlot(location, item, price, location.DefaultCurrency);
 
             // Then, we need to create the item pickup GameObject and assign the RandomizedShopSlot to it
             GameObject replacementGameObject = _factory.CreateGameObjectForItem(item);
             RandomizerPickup randomizerPickup = replacementGameObject.GetComponent<RandomizerPickup>();
-            if (randomizerPickup == null) {
+            if (randomizerPickup == null)
+            {
                 throw new GameObjectCreationException($"GameObject does not have RandomizerPickup component for location {location.Identifier}");
             }
-            
+
             replacementGameObject.transform.position = originalGameObject.transform.position;
             replacementGameObject.name = "Randomized " + item.Identifier + " at " + location.Identifier;
 
@@ -212,21 +234,23 @@ namespace MinishootRandomizer
             GameObject pickupGameObject = _factory.CreateGameObjectForItem(item);
 
             GameObject destroyableObject = _objectFinder.FindObject(location.DestroyableSelector);
-            if (destroyableObject == null) {
+            if (destroyableObject == null)
+            {
                 throw new GameObjectCreationException($"Could not find GameObject {location.DestroyableSelector} for location {location.Identifier}");
             }
 
             AddComponentAction<EventDestroyableComponent> addComponentAction = new AddComponentAction<EventDestroyableComponent>(destroyableObject);
 
             RandomizerPickup randomizerPickup = pickupGameObject.GetComponent<RandomizerPickup>();
-            if (randomizerPickup == null) {
+            if (randomizerPickup == null)
+            {
                 throw new GameObjectCreationException($"GameObject does not have RandomizerPickup component for location {location.Identifier}");
             }
 
             pickupGameObject.transform.position = destroyableObject.transform.position;
             pickupGameObject.transform.position += location.Offset;
             pickupGameObject.name = "Randomized " + item.Identifier + " at " + location.Identifier;
-            
+
             randomizerPickup.SetLocation(location);
             addComponentAction.OnComponentAdded += randomizerPickup.AssignDestroyable;
             _logger.LogDebug($"GameObjectCreationVisitor has replaced {location.DestroyableSelector} with {item.Identifier}");
@@ -234,9 +258,11 @@ namespace MinishootRandomizer
             CreatePickupAction createAction = new CreatePickupAction(_pickupManager, randomizerPickup);
 
             IPatchAction removeOriginalItemAction = new NullAction();
-            if (location.ItemSelector != null) {
+            if (location.ItemSelector != null)
+            {
                 GameObject itemGameObject = _objectFinder.FindObject(location.ItemSelector);
-                if (itemGameObject == null) {
+                if (itemGameObject == null)
+                {
                     throw new GameObjectCreationException($"Could not find GameObject {location.ItemSelector} for location {location.Identifier}");
                 }
                 pickupGameObject.transform.position = itemGameObject.transform.position;
@@ -259,7 +285,7 @@ namespace MinishootRandomizer
 
         public IPatchAction VisitSpirit(SpiritLocation location, Item item)
         {
-            // @TODO: Implement SpiritLocation handling
+            // Spirit Locations do not create GameObjects, as those locations are handled by the RaceListener.
             return new NullAction();
         }
 
@@ -267,6 +293,30 @@ namespace MinishootRandomizer
         {
             // do nothing
             return new NullAction();
+        }
+
+        private int ComputePrice(ShopLocation location)
+        {
+            if (location.DefaultCurrency == Currency.SuperCrystal)
+            {
+                // For Super Crystal, we use the ShopCostModifier percentage to compute the price.
+                ShopCostModifier modifier = _randomizerEngine.GetSetting<ShopCostModifier>();
+                float floatingPrice = modifier.Value * location.DefaultPrice / 100;
+
+                return Mathf.RoundToInt(floatingPrice);
+                
+            }
+            else if (location.DefaultCurrency == Currency.Scarab)
+            {
+                // For Scarab, we just return the ScarabItemsCost value.
+                ScarabItemsCost scarabItemsCost = _randomizerEngine.GetSetting<ScarabItemsCost>();
+                return scarabItemsCost.Value;
+            }
+            else
+            {
+                // Default case, return the original price
+                return location.DefaultPrice;
+            }
         }
     }
 
