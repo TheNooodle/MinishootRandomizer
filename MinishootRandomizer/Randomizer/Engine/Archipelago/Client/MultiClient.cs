@@ -240,13 +240,20 @@ public class MultiClient : IArchipelagoClient
 
     private ArchipelagoItemCategory MapItemFlagsToCategory(ItemFlags flags)
     {
-        return flags switch
+        if (flags.HasFlag(ItemFlags.Trap))
         {
-            ItemFlags.Advancement => ArchipelagoItemCategory.Progression,
-            ItemFlags.NeverExclude => ArchipelagoItemCategory.Useful,
-            ItemFlags.Trap => ArchipelagoItemCategory.Trap,
-            ItemFlags.None or _ => ArchipelagoItemCategory.Filler,
-        };
+            return ArchipelagoItemCategory.Trap;
+        }
+        if (flags.HasFlag(ItemFlags.Advancement))
+        {
+            return ArchipelagoItemCategory.Progression;
+        }
+        if (flags.HasFlag(ItemFlags.NeverExclude))
+        {
+            return ArchipelagoItemCategory.Useful;
+        }
+
+        return ArchipelagoItemCategory.Filler;
     }
 
     public ArchipelagoItemData GetItemData(string locationName)

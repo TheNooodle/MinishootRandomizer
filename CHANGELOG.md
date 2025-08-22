@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A new setting called "Spirit Sanity" has been added.
     - When enabled, the races against spirits are now locations that will award items.
     - Also add 8 Spirit items in the pool to collect.
+- A new setting called "Shop Cost Modifier" has been added.
+    - This is a percentage that will affect the super crystal cost of items.
+- A new setting called "Scarab Items Cost" has been added.
+    - This setting set the value of each items available for sale at the Scarab Collector.
+- A new setting called "Spirit Tower Requirement" has been added.
+    - This setting sets the required number of spirits to enter the Spirit Tower.
 - DeathLink support has been added.
     - You can enable via the connection menu to Archipelago.
     - When the player die, sends a message to all other slots supporting DeathLink.
@@ -22,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed location "Sunken City - Inside the walls" being shown on the tracker as inside the sewers in addition to being in Sunken City.
 - Fixed some Archipelago items displaying the wrong owner when multiple slots in the room are playing the same game.
+- Fixed Archipelago items with multiple categories being always displayed as "Filler" when the "Show Archipelago Item Category" setting is enabled.
 
 ## [0.4.2] - 2025-05-30
 
