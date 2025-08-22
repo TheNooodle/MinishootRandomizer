@@ -12,7 +12,7 @@ public class SpiritHarmonyPatcher
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             CodeInstructionList codeInstructionList = new CodeInstructionList(instructions);
-            codeInstructionList.RemoveMethodCall(typeof(WorldState).GetMethod("Set"), 3);
+            codeInstructionList.RemoveMethodCall(typeof(WorldState).GetMethod("Set"), paddingBefore: 3);
 
             return codeInstructionList.GetInstructions();
         }
@@ -48,7 +48,7 @@ public class SpiritHarmonyPatcher
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             CodeInstructionList codeInstructionList = new CodeInstructionList(instructions);
-            codeInstructionList.RemoveMethodCall(typeof(TextMessage).GetMethod("Pop"), 7);
+            codeInstructionList.RemoveMethodCall(typeof(TextMessage).GetMethod("Pop"), paddingBefore: 7);
 
             return codeInstructionList.GetInstructions();
         }

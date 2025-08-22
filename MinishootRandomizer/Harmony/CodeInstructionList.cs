@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
 
 namespace MinishootRandomizer;
@@ -30,8 +31,9 @@ public class CodeInstructionList
     /// <param name="count">Maximum number of method call occurrences to remove. Default is 1.</param>
     /// <param name="offset">Number of method call occurrences to skip before removing. Default is 0.</param>
     /// <exception cref="InvalidOperationException">Thrown when no calls to the specified method are found or when the range to remove is invalid.</exception>
-    public void RemoveMethodCall(MethodInfo method, int paddingBefore = 0, int paddingAfter = 0, int count = 1, int offset = 0)
+    public List<int> RemoveMethodCall(MethodInfo method, int offset = 0, int count = 1, int paddingBefore = 0, int paddingAfter = 0)
     {
+        List<int> effectiveIndices = new List<int>();
         int callsFound = 0;
         List<Tuple<int, int>> rangesToRemove = new List<Tuple<int, int>>();
         for (int i = 0; i < _instructions.Count; i++)
@@ -61,7 +63,10 @@ public class CodeInstructionList
                 throw new InvalidOperationException($"Invalid range to remove: {start} to {end}.");
             }
             _instructions.RemoveRange(start, end - start + 1);
+            effectiveIndices.Add(start);
         }
+
+        return effectiveIndices;
     }
 
     /// <summary>
@@ -73,8 +78,9 @@ public class CodeInstructionList
     /// <param name="count">Maximum number of field load occurrences to remove. Default is 1.</param>
     /// <param name="offset">Number of field load occurrences to skip before removing. Default is 0.</param>
     /// <exception cref="InvalidOperationException">Thrown when no loads of the specified field are found or when the range to
-    public void RemoveFieldLoading(FieldInfo field, int paddingBefore = 0, int paddingAfter = 0, int count = 1, int offset = 0)
+    public List<int> RemoveFieldLoading(FieldInfo field, int offset = 0, int count = 1, int paddingBefore = 0, int paddingAfter = 0)
     {
+        List<int> effectiveIndices = new List<int>();
         int loadsFound = 0;
         List<Tuple<int, int>> rangesToRemove = new List<Tuple<int, int>>();
         for (int i = 0; i < _instructions.Count; i++)
@@ -104,7 +110,57 @@ public class CodeInstructionList
                 throw new InvalidOperationException($"Invalid range to remove: {start} to {end}.");
             }
             _instructions.RemoveRange(start, end - start + 1);
+            effectiveIndices.Add(start);
         }
+
+        return effectiveIndices;
+    }
+
+    public List<int> RemoveOpCode(OpCode opCode, int offset = 0, int count = 1, int paddingBefore = 0, int paddingAfter = 0)
+    {
+        List<int> effectiveIndices = new List<int>();
+        int opsFound = 0;
+        List<Tuple<int, int>> rangesToRemove = new List<Tuple<int, int>>();
+        for (int i = 0; i < _instructions.Count; i++)
+        {
+            CodeInstruction instruction = _instructions[i];
+            if (instruction.opcode == opCode)
+            {
+                opsFound++;
+                if (opsFound > offset && rangesToRemove.Count < count)
+                {
+                    rangesToRemove.Add(new Tuple<int, int>(i - paddingBefore, i + paddingAfter));
+                }
+            }
+        }
+
+        if (rangesToRemove.Count == 0)
+        {
+            throw new InvalidOperationException($"No occurrences of OpCode {opCode} found in the instruction list.");
+        }
+
+        foreach (Tuple<int, int> range in rangesToRemove)
+        {
+            int start = range.Item1;
+            int end = range.Item2;
+            if (start < 0 || end >= _instructions.Count || start > end)
+            {
+                throw new InvalidOperationException($"Invalid range to remove: {start} to {end}.");
+            }
+            _instructions.RemoveRange(start, end - start + 1);
+            effectiveIndices.Add(start);
+        }
+
+        return effectiveIndices;
+    }
+
+    public void InsertInstructions(int index, IEnumerable<CodeInstruction> newInstructions)
+    {
+        if (index < 0 || index > _instructions.Count)
+        {
+            throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
+        }
+        _instructions.InsertRange(index, newInstructions);
     }
 
     /// <summary>

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
 
 namespace MinishootRandomizer;
@@ -13,39 +14,83 @@ public class SpiritTowerHarmonyPatcher
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            // @todo : remove the field loads and replace them with a call to Plugin.ServiceContainer.Get<TowerHandler>().GetSpiritCount()
-            List<CodeInstruction> instructionsList = new List<CodeInstruction>(instructions);
-            FieldInfo field = typeof(SpiritTowerUnlocker).GetField("spiritSlots");
-            int loadsFound = 0;
-            List<Tuple<int, int>> rangesToRemove = new List<Tuple<int, int>>();
-            for (int i = 0; i < instructionsList.Count; i++)
+            CodeInstructionList codeInstructionList = new CodeInstructionList(instructions);
+            // Remove the field loading for spiritSlots inside the for loop, and replace it with a call to TowerHandler.GetSpiritCount().
+            List<int> effectiveIndices = codeInstructionList.RemoveFieldLoading(
+                typeof(SpiritTowerUnlocker).GetField(
+                    "spiritSlots", 
+                    BindingFlags.NonPublic | BindingFlags.Instance
+                ), 
+                paddingBefore: 1,
+                paddingAfter: 2,
+                offset: 2
+            );
+            codeInstructionList.InsertInstructions(effectiveIndices[0], new List<CodeInstruction>
             {
-                CodeInstruction instruction = instructionsList[i];
-                if (instruction.LoadsField(field))
-                {
-                    loadsFound++;
-                    if (loadsFound > offset && rangesToRemove.Count < count)
-                    {
-                        rangesToRemove.Add(new Tuple<int, int>(i - paddingBefore, i + paddingAfter));
-                    }
-                }
+                new CodeInstruction(OpCodes.Call,
+                    AccessTools.Method(typeof(Plugin),
+                                      "get_ServiceContainer")),
+                new CodeInstruction(OpCodes.Callvirt,
+                    AccessTools.Method(typeof(IServiceContainer),
+                                      "Get",
+                                      new Type[0],
+                                      new[] { typeof(TowerHandler) })),
+                new CodeInstruction(OpCodes.Callvirt,
+                    AccessTools.Method(typeof(TowerHandler), "GetSpiritCount"))
+            });
+
+            return codeInstructionList.GetInstructions();
+        }
+    }
+
+    [HarmonyPatch(typeof(SpiritTowerUnlocker))]
+    [HarmonyPatch("SetActiveAll", MethodType.Normal)]
+    public static class SpiritTowerUnlocker_SetActiveAll_Patch
+    {
+        public static void Postfix(SpiritTowerUnlocker __instance)
+        {
+            IServiceContainer serviceContainer = Plugin.ServiceContainer;
+            if (!serviceContainer.Has<TowerHandler>())
+            {
+                return;
             }
 
-            if (rangesToRemove.Count == 0)
+            // We want to disable the spirit slots that are not used, based on the desired spirit count.
+            TowerHandler towerHandler = serviceContainer.Get<TowerHandler>();
+            int spiritCount = towerHandler.GetSpiritCount();
+            SpiritLockSlot[] spiritSlots = ReflectionHelper.GetPrivateFieldValue<SpiritLockSlot[]>(__instance, "spiritSlots");
+            for (int i = spiritCount; i < spiritSlots.Length; i++)
             {
-                throw new InvalidOperationException($"No loads of field {field.Name} found in the instruction list.");
+                spiritSlots[i].gameObject.SetActive(false);
             }
+        }
+    }
 
-            foreach (Tuple<int, int> range in rangesToRemove)
+    [HarmonyPatch(typeof(SpiritTowerUnlocker))]
+    [HarmonyPatch("CheckUnlock", MethodType.Normal)]
+    public static class SpiritTowerUnlocker_CheckUnlock_Patch
+    {
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            CodeInstructionList codeInstructionList = new CodeInstructionList(instructions);
+            // Remove the hardcoded "8" value, and replace it with a call to TowerHandler.GetSpiritCount().
+            // Only remove the first occurrence, as the second one is used for emotes.
+            List<int> effectiveIndices = codeInstructionList.RemoveOpCode(OpCodes.Ldc_I4_8);
+            codeInstructionList.InsertInstructions(effectiveIndices[0], new List<CodeInstruction>
             {
-                int start = range.Item1;
-                int end = range.Item2;
-                if (start < 0 || end >= _instructions.Count || start > end)
-                {
-                    throw new InvalidOperationException($"Invalid range to remove: {start} to {end}.");
-                }
-                _instructions.RemoveRange(start, end - start + 1);
-            }
+                new CodeInstruction(OpCodes.Call,
+                    AccessTools.Method(typeof(Plugin),
+                                      "get_ServiceContainer")),
+                new CodeInstruction(OpCodes.Callvirt,
+                    AccessTools.Method(typeof(IServiceContainer),
+                                      "Get",
+                                      new Type[0],
+                                      new[] { typeof(TowerHandler) })),
+                new CodeInstruction(OpCodes.Callvirt,
+                    AccessTools.Method(typeof(TowerHandler), "GetSpiritCount"))
+            });
+
+            return codeInstructionList.GetInstructions();
         }
     }
 }
