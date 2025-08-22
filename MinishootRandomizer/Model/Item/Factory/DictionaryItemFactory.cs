@@ -196,6 +196,10 @@ public class DictionaryItemFactory : IItemFactory
         {
             return new SpiritItem(identifier, category);
         }
+        else if (identifier == Item.GoldenCrystalHeart)
+        {
+            return new GoldenCrystalHeartItem(identifier, category);
+        }
         else
         {
             _logger.LogError($"Invalid item identifier: {identifier}");

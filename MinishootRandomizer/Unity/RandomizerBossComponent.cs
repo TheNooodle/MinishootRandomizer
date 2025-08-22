@@ -24,6 +24,7 @@ public class RandomizerBossComponent : MonoBehaviour
 
     private void HandleCompleteGoal()
     {
+        // @TODO: refactor to use the GameEventDispatcher and the GoalListener, instead of replacing the component.
         _randomizerEngine.CompleteGoal(CorrespondingGoal);
     }
 }

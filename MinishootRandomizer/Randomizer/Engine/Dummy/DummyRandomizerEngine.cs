@@ -5,9 +5,10 @@ namespace MinishootRandomizer;
 
 public class DummyRandomizerEngine : IRandomizerEngine
 {
-    private IItemRepository _itemRepository;
-    private ILocationRepository _locationRepository;
-    private IProgressionStorage _progressionStorage;
+    private readonly IItemRepository _itemRepository;
+    private readonly ILocationRepository _locationRepository;
+    private readonly IProgressionStorage _progressionStorage;
+    private readonly ILogger _logger = new NullLogger();
 
     private Dictionary<Type, ISetting> _settings = new()
     {
@@ -21,7 +22,6 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(ShopCostModifier), new ShopCostModifier(50) },
         { typeof(ScarabItemsCost), new ScarabItemsCost(2) },
         { typeof(SpiritTowerRequirement), new SpiritTowerRequirement(5) },
-        { typeof(AbyssUnchosenStatueRequirement), new AbyssUnchosenStatueRequirement(3) },
         { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(false) },
         { typeof(BlockedForest), new BlockedForest(true) },
         { typeof(IgnoreCannonLevelRequirements), new IgnoreCannonLevelRequirements(false) },
@@ -30,17 +30,20 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(true) },
         { typeof(EnablePrimordialCrystalLogic), new EnablePrimordialCrystalLogic(false) },
         { typeof(DashlessGaps), new DashlessGaps(DashlessGapsValue.NeedsDash) },
-        { typeof(CompletionGoals), new CompletionGoals(Goals.Both) },
+        { typeof(CompletionGoals), new CompletionGoals(Goals.SpiritTower) },
     };
 
     public DummyRandomizerEngine(
         IItemRepository itemRepository,
         ILocationRepository locationRepository,
-        IProgressionStorage progressionStorage
-    ) {
+        IProgressionStorage progressionStorage,
+        ILogger logger = null
+    )
+    {
         _itemRepository = itemRepository;
         _locationRepository = locationRepository;
         _progressionStorage = progressionStorage;
+        _logger = logger ?? new NullLogger();
     }
 
     public List<Location> GetRandomizedLocations()
@@ -152,7 +155,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
     public void CompleteGoal(Goals goal)
     {
-        // no op
+        _logger.LogInfo($"Completing goal {goal}");
     }
 
     public bool IsGoalCompleted(Goals goal)
@@ -172,12 +175,12 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
     public void Initialize()
     {
-        // no op
+        _logger.LogInfo("Initializing DummyRandomizerEngine");
     }
 
     public void Dispose()
     {
-        // no op
+        _logger.LogInfo("Disposing DummyRandomizerEngine");
     }
 
     private Dictionary<string, string> _dummySpoilerLog = null;
@@ -344,7 +347,7 @@ Sewers - South pot room: Boss Key (Dungeon 3)
 Spirit Tower - Item: Dark Key
 Starting Grotto - Entrance: Spirit
 Starting Grotto - North Corridor: Progressive Dash
-Starting Grotto - Secret Wall: XP Crystals x5
+Starting Grotto - Secret Wall: Golden Crystal Heart
 Starting Grotto - West Item: Progressive Dash
 Sunken City - Below West bridge: XP Crystals x15
 Sunken City - Inside the walls: Scarab Collector

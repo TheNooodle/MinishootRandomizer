@@ -19,7 +19,7 @@ public class ObjectiveMarker : AbstractMarker
     public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker, ILogicStateProvider logicStateProvider)
     {
         CompletionGoals completionGoals = engine.GetSetting<CompletionGoals>();
-        if (engine.IsGoalCompleted(_goal) || (completionGoals.Goal != Goals.Both && completionGoals.Goal != _goal))
+        if (engine.IsGoalCompleted(_goal) || (completionGoals.Goal != Goals.Dungeon5AndSnow && completionGoals.Goal != _goal))
         {
             return;
         }

@@ -92,6 +92,7 @@ Dungeon 3 - South corridor,Boss Key (Dungeon 3),Dungeon Big Key,Dungeon 3 - East
 Dungeon 3 - South of torches,Small Key (Dungeon 3),Dungeon Small Key,Dungeon 3 - West,can_surf
 Dungeon 3 - South west of torches,XP Crystals x15,XP Crystals,Dungeon 3 - West,can_surf
 Dungeon 4 - Dungeon reward,Dungeon 4 Reward,Dungeon Reward,Dungeon 4,can_cross_gaps and can_destroy_rocks or can_surf and can_destroy_rocks
+Dungeon 5 - Beat the boss,,Goal,Dungeon 5 - Boss,true
 Dungeon 5 - Central Item,Dark Key,Default,Dungeon 5 - West wing,can_clear_both_d5_arenas
 Family House Cave - Before shortcut,XP Crystals x20,XP Crystals,Family House Cave - Main,true
 Family House Cave - Hidden Tunnel,HP Crystal Shard,Default,Family House Cave - Main,true
@@ -158,6 +159,7 @@ Sewers - Drop,HP Crystal Shard,Default,Sewers - West drop (right),can_surf
 Sewers - Near Family House Cave,HP Crystal Shard,Default,Sewers - East,can_surf
 Sewers - North pot room,Scarab,Scarab,Sewers - West,can_surf and can_fight_lvl4 and can_destroy_pots
 Sewers - South pot room,Scarab,Scarab,Sewers - West,can_surf and can_destroy_pots or can_cross_gaps and can_destroy_pots
+Snow - Beat the Unchosen,,Goal,Snow,true
 Spirit Tower - Item,Spirit Dash,Default,Spirit Tower,true
 Starting Grotto - Entrance,XP Crystals x60,XP Crystals,Starting Grotto - Entrance,true
 Starting Grotto - North Corridor,XP Crystals x15,XP Crystals,Starting Grotto - Corridor,true

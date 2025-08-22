@@ -320,6 +320,12 @@ namespace MinishootRandomizer
             )},
         };
 
+        private static Dictionary<string, Goals> _locationToGoal = new()
+        {
+            {"Dungeon 5 - Beat the boss", Goals.Dungeon5},
+            {"Snow - Beat the Unchosen", Goals.Snow },
+        };
+
         public Location CreateLocation(string name, string logicRule, LocationPool pool)
         {
             if (_pickupLocationToGameObjectName.ContainsKey(name))
@@ -406,6 +412,15 @@ namespace MinishootRandomizer
                     logicRule,
                     pool,
                     SpiritLocation.IndexToNameMap.FirstOrDefault(x => x.Value == name).Key
+                );
+            }
+            if (_locationToGoal.ContainsKey(name))
+            {
+                return new GoalLocation(
+                    name,
+                    logicRule,
+                    pool,
+                    _locationToGoal[name]
                 );
             }
 

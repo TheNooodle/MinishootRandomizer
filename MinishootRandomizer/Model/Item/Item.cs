@@ -24,14 +24,14 @@ abstract public class Item
     public const string Compass = "Compass";
     public const string CrystalBullet = "Crystal Bullet";
     public const string D1BossKey = "Boss Key (Dungeon 1)";
-    public const string D1SmallKey = "Small Key (Dungeon 1)";
     public const string D1Reward = "Dungeon 1 Reward";
+    public const string D1SmallKey = "Small Key (Dungeon 1)";
     public const string D2BossKey = "Boss Key (Dungeon 2)";
-    public const string D2SmallKey = "Small Key (Dungeon 2)";
     public const string D2Reward = "Dungeon 2 Reward";
+    public const string D2SmallKey = "Small Key (Dungeon 2)";
     public const string D3BossKey = "Boss Key (Dungeon 3)";
-    public const string D3SmallKey = "Small Key (Dungeon 3)";
     public const string D3Reward = "Dungeon 3 Reward";
+    public const string D3SmallKey = "Small Key (Dungeon 3)";
     public const string D4Reward = "Dungeon 4 Reward";
     public const string DarkHeart = "Dark Heart";
     public const string DarkKey = "Dark Key";
@@ -44,6 +44,7 @@ abstract public class Item
     public const string FamilyChild = "Family Child";
     public const string FamilyParent1 = "Family Parent 1";
     public const string FamilyParent2 = "Family Parent 2";
+    public const string GoldenCrystalHeart = "Golden Crystal Heart";
     public const string GreenMap = "Green Map";
     public const string Healer = "Healer";
     public const string HpCrystalShard = "HP Crystal Shard";

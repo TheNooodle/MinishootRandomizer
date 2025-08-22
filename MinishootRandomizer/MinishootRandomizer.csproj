@@ -32,6 +32,7 @@
     <EmbeddedResource Include="Resources/images/archipelago_grayscale.png" />
     <EmbeddedResource Include="Resources/images/archipelago.png" />
     <EmbeddedResource Include="Resources/images/dead_player.png" />
+    <EmbeddedResource Include="Resources/images/golden_crystal_shard.png" />
     <EmbeddedResource Include="Resources/images/laughing_cat.png" />
     <EmbeddedResource Include="Resources/images/location_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/location_marker.png" />

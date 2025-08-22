@@ -15,6 +15,7 @@ public class FileSpriteProvider : ISpriteProvider
         { "ArchipelagoArrowUp", new SpriteFileData("archipelago_arrow_up.png", 128, 128, 0.7f) },
         { "ArchipelagoGrayscale", new SpriteFileData("archipelago_grayscale.png", 128, 128, 0.7f) },
         { "DeadPlayer", new SpriteFileData("dead_player.png", 100, 76)},
+        { "GoldenCrystalShard", new SpriteFileData("golden_crystal_shard.png", 84, 72)},
         { "LaughingCat", new SpriteFileData("laughing_cat.png", 100, 96)},
         { "LocationMarker", new SpriteFileData("location_marker.png", 116, 180)},
         { "LocationMarkerSimple", new SpriteFileData("location_marker_simple.png", 116, 180)},

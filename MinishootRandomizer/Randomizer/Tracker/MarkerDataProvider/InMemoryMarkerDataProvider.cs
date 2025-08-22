@@ -706,11 +706,18 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
                     "Snow - Beat the Unchosen", Goals.Snow
                 )
             ),
-            new MarkerData(new List<string> {
+            new MarkerData(
+                markerName: "Spirit Tower",
+                locationNames: new List<string> {
                 "Spirit Tower - Item",
-            }, new List<Tuple<float, float>> {
-                new Tuple<float, float>(0.29f, -4.48f),
-            }),
+                },
+                coordinates: new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.29f, -4.48f),
+                },
+                objectiveMarkerData: new ObjectiveMarkerData(
+                    "Spirit Tower - Item", Goals.SpiritTower
+                )
+            ),
             new MarkerData(new List<string> {
                 "Sunken City - Below West bridge",
             }, new List<Tuple<float, float>> {

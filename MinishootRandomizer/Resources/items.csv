@@ -29,6 +29,7 @@ Explorer,Filler,NPC,1,
 Family Child,Progression,NPC,1,Familly3
 Family Parent 1,Progression,NPC,1,Familly1
 Family Parent 2,Progression,NPC,1,Familly2
+Golden Crystal Heart,Progression,,0,
 Green Map,Filler,Default,1,
 Healer,Helpful,NPC,1,Healer
 HP Crystal Shard,Helpful,Default,28,

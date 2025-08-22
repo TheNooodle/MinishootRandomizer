@@ -59,11 +59,17 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
     {
         AddSingleton<GameEventDispatcher>(sp => new GameEventDispatcher(sp.Get<ILogger>()));
         AddSingleton<EmoteListener>(sp => new EmoteListener());
+        AddSingleton<GoalListener>(sp => new GoalListener(
+            sp.Get<IRandomizerEngine>()
+        ));
 
-        AddPostBuildAction(sp => {
+        AddPostBuildAction(sp =>
+        {
             var gameEvents = sp.Get<GameEventDispatcher>();
             var emoteListener = sp.Get<EmoteListener>();
+            var goalListener = sp.Get<GoalListener>();
             gameEvents.ItemCollected += emoteListener.OnItemCollected;
+            gameEvents.ItemCollected += goalListener.OnItemCollected;
         });
     }
     
@@ -134,11 +140,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             sp.Get<ILogger>()
         ));
         
-        AddSingleton<InMemoryLocationRepository>(sp => new InMemoryLocationRepository(
-            sp.Get<CsvLocationRepository>()
-        ));
-        
-        AddSingleton<ILocationRepository>(sp => sp.Get<InMemoryLocationRepository>());
+        AddSingleton<ILocationRepository>(sp => sp.Get<CsvLocationRepository>());
         
         AddSingleton<IItemRepository>(sp => new CsvItemRepository(
             sp.Get<IItemFactory>(),
@@ -154,11 +156,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             "MinishootRandomizer.Resources.regions.csv"
         ));
         
-        AddSingleton<InMemoryRegionRepository>(sp => new InMemoryRegionRepository(
-            sp.Get<CsvRegionRepository>()
-        ));
-        
-        AddSingleton<IRegionRepository>(sp => sp.Get<InMemoryRegionRepository>());
+        AddSingleton<IRegionRepository>(sp => sp.Get<CsvRegionRepository>());
         
         AddSingleton<ITransitionRepository>(sp => new CsvTransitionRepository(
             "MinishootRandomizer.Resources.transitions.csv",
@@ -263,7 +261,8 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         AddSingleton<DummyRandomizerEngine>(sp => new DummyRandomizerEngine(
             sp.Get<IItemRepository>(),
             sp.Get<ILocationRepository>(),
-            sp.Get<IProgressionStorage>()
+            sp.Get<IProgressionStorage>(),
+            sp.Get<ILogger>()
         ));
         
         AddSingleton<ContextualRandomizerEngine>(sp => new ContextualRandomizerEngine(

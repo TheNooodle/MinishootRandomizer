@@ -4,5 +4,6 @@ public enum Goals
 {
     Dungeon5,
     Snow,
-    Both
+    Dungeon5AndSnow,
+    SpiritTower
 }
