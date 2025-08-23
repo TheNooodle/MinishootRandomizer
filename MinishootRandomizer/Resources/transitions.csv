@@ -94,8 +94,8 @@ Dungeon 3 - Entrance > Middle,Dungeon 3 - Entrance,Dungeon 3 - Middle,can_surf o
 Dungeon 3 - Entrance > West,Dungeon 3 - Entrance,Dungeon 3 - West,can_surf or can_cross_gaps and can_destroy_pots and can_fight_lvl4
 Dungeon 3 - West > North West,Dungeon 3 - West,Dungeon 3 - North West,can_surf or have_d3_keys(4) and can_light_torches and can_use_springboards
 Dungeon 4 > Sunken City Dungeon Exterior,Dungeon 4,Sunken City - Dungeon Exterior,true
-Dungeon 5 - Central wing > Dungeon 5 Boss,Dungeon 5 - Central wing,Dungeon 5 - Boss,can_cross_gaps and can_use_springboards and can_surf and can_destroy_walls and can_light_torches
-Dungeon 5 - Central wing > Junkyard North (shortcut),Dungeon 5 - Central wing,Junkyard - North,can_cross_gaps and can_use_springboards and can_surf and can_destroy_walls and can_light_torches
+Dungeon 5 - Central wing > Dungeon 5 Boss,Dungeon 5 - Central wing,Dungeon 5 - Boss,can_cross_gaps and can_use_springboards and can_surf and can_destroy_walls and can_light_torches and can_fight_lvl5
+Dungeon 5 - Central wing > Junkyard North (shortcut),Dungeon 5 - Central wing,Junkyard - North,can_cross_gaps and can_use_springboards and can_surf and can_destroy_walls and can_light_torches and can_fight_lvl5
 Dungeon 5 - East wing > Junkyard North,Dungeon 5 - East wing,Junkyard - North,true
 Dungeon 5 - West wing > Junkyard West,Dungeon 5 - West wing,Junkyard - West,true
 Family House Cave - After Jumps > Desert,Family House Cave - After Jumps,Desert,true

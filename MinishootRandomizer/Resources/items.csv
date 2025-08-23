@@ -29,7 +29,7 @@ Explorer,Filler,NPC,1,
 Family Child,Progression,NPC,1,Familly3
 Family Parent 1,Progression,NPC,1,Familly1
 Family Parent 2,Progression,NPC,1,Familly2
-Golden Crystal Heart,Progression,,0,
+Golden Crystal Heart,Progression,Goal,0,
 Green Map,Filler,Default,1,
 Healer,Helpful,NPC,1,Healer
 HP Crystal Shard,Helpful,Default,28,
@@ -44,9 +44,9 @@ Power of protection,Progression,Default,1,CavePowerBombLevel0
 Power of spirits,Helpful,Default,1,Temple3PowerAllyLevel0
 Power of time,Helpful,Default,1,Temple2PowerSlowLevel0
 Primordial Crystal,Progression,Default,1,PickupModulePrimordialCrystal
-Primordial Scarab Dialog,Trap,,0,
+Primordial Scarab Dialog,Trap,Default,0,
 Progressive Cannon,Progression,Default,5,
-Progressive Dash,Progression,,0,
+Progressive Dash,Progression,Default,0,
 Restoration Enhancer,Helpful,Default,1,
 Scarab,Token,Scarab,18,
 Scarab Collector,Progression,NPC,1,
@@ -57,10 +57,10 @@ Small Key (Dungeon 3),Progression,Dungeon Small Key,5,Dungeon3CrystalKey0
 Spirit,Token,Spirit,8,
 Spirit Dash,Progression,Default,1,PickupModuleSpiritDash
 Sunken City Map,Filler,Default,1,MapPickupSunkenCity
-Super Crystals x2,Filler,,0,
-Super Crystals x5,Filler,,0,
-Super Crystals x10,Filler,,0,
-Super Crystals x15,Filler,,0,
+Super Crystals x2,Filler,Default,0,
+Super Crystals x5,Filler,Default,0,
+Super Crystals x10,Filler,Default,0,
+Super Crystals x15,Filler,Default,0,
 Supershot,Progression,Default,1,SkillSupershot
 Surf,Progression,Default,1,
 Swamp Map,Filler,Default,1,MapPickupSwamp

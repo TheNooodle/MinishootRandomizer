@@ -267,7 +267,7 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.Bard}
             )},
             { "have_all_spirits", p => new LogicParsingResult(
-                p.State.HasItem(spirit, 8),
+                HaveAllSpirits(p),
                 new List<string>() {Item.Spirit}
             )},
             { "can_open_dungeon_5", p => new LogicParsingResult(
@@ -452,5 +452,16 @@ public class CoreLogicParser : ILogicParser
         }
 
         return setting.Enabled;
+    }
+
+    private bool HaveAllSpirits(LogicParsingParameters parameters)
+    {
+        SpiritTowerRequirement setting = parameters.State.GetSetting<SpiritTowerRequirement>();
+        if (setting == null)
+        {
+            return parameters.State.HasItem(_itemRepository.Get(Item.Spirit), 8);
+        }
+
+        return parameters.State.HasItem(_itemRepository.Get(Item.Spirit), setting.Value);
     }
 }

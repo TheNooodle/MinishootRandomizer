@@ -65,11 +65,13 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
 
         AddPostBuildAction(sp =>
         {
+            var randomizerEngine = sp.Get<EventRandomizerEngine>();
             var gameEvents = sp.Get<GameEventDispatcher>();
             var emoteListener = sp.Get<EmoteListener>();
             var goalListener = sp.Get<GoalListener>();
             gameEvents.ItemCollected += emoteListener.OnItemCollected;
             gameEvents.ItemCollected += goalListener.OnItemCollected;
+            randomizerEngine.GoalCompleted += goalListener.OnGoalCompleted;
         });
     }
     

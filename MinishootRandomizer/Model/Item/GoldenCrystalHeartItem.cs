@@ -7,7 +7,7 @@ public class GoldenCrystalHeartItem : Item
 
     public override void Collect()
     {
-        // no-op, effect is handled by the GoalListener.
+        // No-op
     }
 
     public override string GetSpriteIdentifier()

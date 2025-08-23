@@ -13,13 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - When enabled, the races against spirits are now locations that will award items.
     - Also add 8 Spirit items in the pool to collect.
 - A new setting called "Shop Cost Modifier" has been added.
-    - This is a percentage that will affect the super crystal cost of items.
+    - This is a percentage that will affect the super crystal cost of items in shops.
 - A new setting called "Scarab Items Cost" has been added.
     - This setting set the value of each items available for sale at the Scarab Collector.
 - A new setting called "Spirit Tower Requirement" has been added.
     - This setting sets the required number of spirits to enter the Spirit Tower.
-- DeathLink support has been added.
-    - You can enable via the connection menu to Archipelago.
+- A new value for the "Completion Goal" setting has been added.
+    - When set to "Spirit Tower", the player must fetch the item inside the Spirit Tower.
+    - The "Spirit Tower Requirement" setting still allow to customize the number of spirits required to beat the game.
+- DeathLink support has been added via Archipelago.
+    - You can enable DeathLink via the connection menu to Archipelago.
     - When the player die, sends a message to all other slots supporting DeathLink.
     - When receiving a DeathLink, it will forcefully kill the player.
     - You can opt-in and opt-out of DeathLink whenever you like, it is not tied to the generated seed.
@@ -28,7 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed location "Sunken City - Inside the walls" being shown on the tracker as inside the sewers in addition to being in Sunken City.
 - Fixed some Archipelago items displaying the wrong owner when multiple slots in the room are playing the same game.
-- Fixed Archipelago items with multiple categories being always displayed as "Filler" when the "Show Archipelago Item Category" setting is enabled.
+- Fixed Archipelago items with multiple categories being always displayed as filler items when the "Show Archipelago Item Category" setting is enabled.
+- Fixed "Dungeon 5 - Beat the boss" not having a cannon level requirement (it now requires all 5 cannon levels when "Ignore Cannon Level Requirements" is set to `false`).
 
 ## [0.4.2] - 2025-05-30
 

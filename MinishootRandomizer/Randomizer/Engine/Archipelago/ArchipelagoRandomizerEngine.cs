@@ -184,6 +184,9 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(BossKeySanity), new BossKeySanity(GetBooleanSettingValue("boss_key_sanity")) },
             { typeof(TrapItemsAppearance), new TrapItemsAppearance(GetEnumSettingValue("trap_items_appearance", TrapItemsAppearanceValue.Anything)) },
             { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(GetBooleanSettingValue("show_archipelago_item_category")) },
+            { typeof(ShopCostModifier), new ShopCostModifier(GetNumericSettingValue("shop_cost_modifier", 100)) },
+            { typeof(ScarabItemsCost), new ScarabItemsCost(GetNumericSettingValue("scarab_items_cost", 3)) },
+            { typeof(SpiritTowerRequirement), new SpiritTowerRequirement(GetNumericSettingValue("spirit_tower_requirement", 8)) },
             { typeof(BlockedForest), new BlockedForest(GetBooleanSettingValue("blocked_forest")) },
             { typeof(IgnoreCannonLevelRequirements), new IgnoreCannonLevelRequirements(GetBooleanSettingValue("ignore_cannon_level_requirements")) },
             { typeof(BoostlessSpringboards), new BoostlessSpringboards(GetBooleanSettingValue("boostless_springboards")) },
@@ -236,6 +239,22 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             return defaultValue;
         }
             
+    }
+
+    private int GetNumericSettingValue(string dataStorageKey, int defaultValue)
+    {
+        try
+        {
+            object value = _client.GetDataStorageValue(dataStorageKey);
+
+            return (int)(long)value;
+        }
+        catch (ArchipelagoLogicException e)
+        {
+            _logger.LogWarning(e.Message);
+
+            return defaultValue;
+        }
     }
 
     private void InitializeLocations()
@@ -320,10 +339,25 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
     public void CompleteGoal(Goals goal)
     {
         CompletionGoals completionGoals = GetSetting<CompletionGoals>();
-        bool sendCompletion = 
-            (completionGoals.Goal == Goals.Snow || _progressionStorage.IsGoalCompleted(Goals.Dungeon5)) &&
-            (completionGoals.Goal == Goals.Dungeon5 || _progressionStorage.IsGoalCompleted(Goals.Snow));
-
+        bool sendCompletion;
+        switch (completionGoals.Goal)
+        {
+            case Goals.Dungeon5:
+                sendCompletion = goal == Goals.Dungeon5 && !_progressionStorage.IsGoalCompleted(Goals.Dungeon5);
+                break;
+            case Goals.Snow:
+                sendCompletion = goal == Goals.Snow && !_progressionStorage.IsGoalCompleted(Goals.Snow);
+                break;
+            case Goals.Dungeon5AndSnow:
+                sendCompletion = (goal == Goals.Dungeon5 && !_progressionStorage.IsGoalCompleted(Goals.Dungeon5) && _progressionStorage.IsGoalCompleted(Goals.Snow)) ||
+                                 (goal == Goals.Snow && !_progressionStorage.IsGoalCompleted(Goals.Snow) && _progressionStorage.IsGoalCompleted(Goals.Dungeon5));
+                break;
+            case Goals.SpiritTower:
+                sendCompletion = goal == Goals.SpiritTower && !_progressionStorage.IsGoalCompleted(Goals.SpiritTower);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
         SendGoalMessage message = new(goal, sendCompletion);
         _messageDispatcher.Dispatch(message);
     }
