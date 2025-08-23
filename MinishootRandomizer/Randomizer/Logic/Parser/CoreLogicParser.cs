@@ -214,8 +214,28 @@ public class CoreLogicParser : ILogicParser
                 CanDestroyWalls(p),
                 new List<string>() {Item.Supershot, Item.PrimordialCrystal}
             )},
-            { "can_obtain_scarabs", p => new LogicParsingResult(
-                p.State.HasItem(scarab, p.Arg),
+            { "can_buy_from_scarab_collector_1", p => new LogicParsingResult(
+                CanBuyFromScarabCollector(p, 1),
+                new List<string>() {Item.Scarab}
+            )},
+            { "can_buy_from_scarab_collector_2", p => new LogicParsingResult(
+                CanBuyFromScarabCollector(p, 2),
+                new List<string>() {Item.Scarab}
+            )},
+            { "can_buy_from_scarab_collector_3", p => new LogicParsingResult(
+                CanBuyFromScarabCollector(p, 3),
+                new List<string>() {Item.Scarab}
+            )},
+            { "can_buy_from_scarab_collector_4", p => new LogicParsingResult(
+                CanBuyFromScarabCollector(p, 4),
+                new List<string>() {Item.Scarab}
+            )},
+            { "can_buy_from_scarab_collector_5", p => new LogicParsingResult(
+                CanBuyFromScarabCollector(p, 5),
+                new List<string>() {Item.Scarab}
+            )},
+            { "can_buy_from_scarab_collector_6", p => new LogicParsingResult(
+                CanBuyFromScarabCollector(p, 6),
                 new List<string>() {Item.Scarab}
             )},
             { "can_free_scarab_collector", p => new LogicParsingResult(
@@ -463,5 +483,16 @@ public class CoreLogicParser : ILogicParser
         }
 
         return parameters.State.HasItem(_itemRepository.Get(Item.Spirit), setting.Value);
+    }
+
+    private bool CanBuyFromScarabCollector(LogicParsingParameters parameters, int index1)
+    {
+        ScarabItemsCost setting = parameters.State.GetSetting<ScarabItemsCost>();
+        if (setting == null)
+        {
+            return parameters.State.HasItem(_itemRepository.Get(Item.Scarab), index1 * 3);
+        }
+
+        return parameters.State.HasItem(_itemRepository.Get(Item.Scarab), index1 * setting.Value);
     }
 }

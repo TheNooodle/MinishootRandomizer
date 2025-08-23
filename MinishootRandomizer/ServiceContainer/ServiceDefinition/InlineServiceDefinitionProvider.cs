@@ -661,7 +661,8 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         ));
 
         AddSingleton<TowerHandler>(sp => new TowerHandler(
-            sp.Get<IRandomizerEngine>()
+            sp.Get<IRandomizerEngine>(),
+            sp.Get<IItemRepository>()
         ));
 
         AddPostBuildAction(sp =>

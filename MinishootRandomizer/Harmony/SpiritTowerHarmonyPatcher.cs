@@ -15,7 +15,7 @@ public class SpiritTowerHarmonyPatcher
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             CodeInstructionList codeInstructionList = new CodeInstructionList(instructions);
-            // Remove the field loading for spiritSlots inside the for loop, and replace it with a call to TowerHandler.GetSpiritCount().
+            // Remove the field loading for spiritSlots inside the for loop, and replace it with a call to TowerHandler.GetRequiredSpiritCount().
             List<int> effectiveIndices = codeInstructionList.RemoveFieldLoading(
                 typeof(SpiritTowerUnlocker).GetField(
                     "spiritSlots", 
@@ -36,7 +36,29 @@ public class SpiritTowerHarmonyPatcher
                                       new Type[0],
                                       new[] { typeof(TowerHandler) })),
                 new CodeInstruction(OpCodes.Callvirt,
-                    AccessTools.Method(typeof(TowerHandler), "GetSpiritCount"))
+                    AccessTools.Method(typeof(TowerHandler), "GetRequiredSpiritCount"))
+            });
+
+            // Remove the call to WorldState.Get for checking if the spirit is obtained, and replace it with a call to TowerHandler.HaveSpirit().
+            effectiveIndices = codeInstructionList.RemoveMethodCall(
+                typeof(WorldState).GetMethod("Get"),
+                paddingBefore: 4
+            );
+            codeInstructionList.InsertInstructions(effectiveIndices[0], new List<CodeInstruction>
+            {
+                new CodeInstruction(OpCodes.Call,
+                    AccessTools.Method(typeof(Plugin),
+                                      "get_ServiceContainer")),
+                new CodeInstruction(OpCodes.Callvirt,
+                    AccessTools.Method(typeof(IServiceContainer),
+                                      "Get",
+                                      new Type[0],
+                                      new[] { typeof(TowerHandler) })),
+                new CodeInstruction(OpCodes.Ldloc_0),
+                new CodeInstruction(OpCodes.Callvirt,
+                    AccessTools.Method(typeof(TowerHandler),
+                                      "HaveSpirit",
+                                      new Type[1]{ typeof(int) }))
             });
 
             return codeInstructionList.GetInstructions();
@@ -57,7 +79,7 @@ public class SpiritTowerHarmonyPatcher
 
             // We want to disable the spirit slots that are not used, based on the desired spirit count.
             TowerHandler towerHandler = serviceContainer.Get<TowerHandler>();
-            int spiritCount = towerHandler.GetSpiritCount();
+            int spiritCount = towerHandler.GetRequiredSpiritCount();
             SpiritLockSlot[] spiritSlots = ReflectionHelper.GetPrivateFieldValue<SpiritLockSlot[]>(__instance, "spiritSlots");
             for (int i = spiritCount; i < spiritSlots.Length; i++)
             {
@@ -73,7 +95,7 @@ public class SpiritTowerHarmonyPatcher
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             CodeInstructionList codeInstructionList = new CodeInstructionList(instructions);
-            // Remove the hardcoded "8" value, and replace it with a call to TowerHandler.GetSpiritCount().
+            // Remove the hardcoded "8" value, and replace it with a call to TowerHandler.GetRequiredSpiritCount().
             // Only remove the first occurrence, as the second one is used for emotes.
             List<int> effectiveIndices = codeInstructionList.RemoveOpCode(OpCodes.Ldc_I4_8);
             codeInstructionList.InsertInstructions(effectiveIndices[0], new List<CodeInstruction>
@@ -87,7 +109,7 @@ public class SpiritTowerHarmonyPatcher
                                       new Type[0],
                                       new[] { typeof(TowerHandler) })),
                 new CodeInstruction(OpCodes.Callvirt,
-                    AccessTools.Method(typeof(TowerHandler), "GetSpiritCount"))
+                    AccessTools.Method(typeof(TowerHandler), "GetRequiredSpiritCount"))
             });
 
             return codeInstructionList.GetInstructions();

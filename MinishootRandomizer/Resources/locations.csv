@@ -203,12 +203,12 @@ Town - Merchant Item 1,Ancient Astrolabe,Default,Green - Town,can_free_mercant a
 Town - Merchant Item 2,Compass,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(2)
 Town - Merchant Item 3,Village Star,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(18)
 Town - Plaza,Blacksmith,NPC,Green - Town,true
-Town - Scarab Collector Item 1,Idol of protection,Default,Green - Town,can_free_scarab_collector and can_obtain_scarabs(3)
-Town - Scarab Collector Item 2,HP Crystal Shard,Default,Green - Town,can_free_scarab_collector and can_obtain_scarabs(6)
-Town - Scarab Collector Item 3,Idol of time,Default,Green - Town,can_free_scarab_collector and can_obtain_scarabs(9)
-Town - Scarab Collector Item 4,HP Crystal Shard,Default,Green - Town,can_free_scarab_collector and can_obtain_scarabs(12)
-Town - Scarab Collector Item 5,Idol of spirits,Default,Green - Town,can_free_scarab_collector and can_obtain_scarabs(15)
-Town - Scarab Collector Item 6,Enchanted Powers,Default,Green - Town,can_free_scarab_collector and can_obtain_scarabs(18)
+Town - Scarab Collector Item 1,Idol of protection,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_1
+Town - Scarab Collector Item 2,HP Crystal Shard,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_2
+Town - Scarab Collector Item 3,Idol of time,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_3
+Town - Scarab Collector Item 4,HP Crystal Shard,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_4
+Town - Scarab Collector Item 5,Idol of spirits,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_5
+Town - Scarab Collector Item 6,Enchanted Powers,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_6
 Town Pillars - Hidden below bridge,XP Crystals x20,XP Crystals,Green - Town Pillars,can_surf
 Town Pillars - Hidden Pond,Energy Crystal Shard,Default,Green - Town Pillars,can_cross_gaps or can_surf
 Town Pillars Grotto - Reward,HP Crystal Shard,Default,Town Pillars Grotto,can_fight
