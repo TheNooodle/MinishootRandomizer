@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [0.5.0] - 2025-08-24
 
 ### Added
 
@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed some Archipelago items displaying the wrong owner when multiple slots in the room are playing the same game.
 - Fixed Archipelago items with multiple categories being always displayed as filler items when the "Show Archipelago Item Category" setting is enabled.
 - Fixed "Dungeon 5 - Beat the boss" not having a cannon level requirement (it now requires all 5 cannon levels when "Ignore Cannon Level Requirements" is set to `false`).
+- Fixed another trap dialog clipping out of the screen.
 
 ## [0.4.2] - 2025-05-30
 
