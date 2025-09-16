@@ -71,7 +71,6 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             var goalListener = sp.Get<GoalListener>();
             gameEvents.ItemCollected += emoteListener.OnItemCollected;
             gameEvents.ItemCollected += goalListener.OnItemCollected;
-            randomizerEngine.GoalCompleted += goalListener.OnGoalCompleted;
         });
     }
     

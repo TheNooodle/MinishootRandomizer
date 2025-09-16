@@ -19,16 +19,8 @@ public class GoalListener
         CompletionGoals completionGoals = _randomizerEngine.GetSetting<CompletionGoals>();
         if (item.Identifier == Item.GoldenCrystalHeart && completionGoals.Goal == Goals.SpiritTower)
         {
-            _randomizerEngine.CompleteGoal(Goals.SpiritTower);
-        }
-    }
-
-    public void OnGoalCompleted(Goals goal)
-    {
-        if (goal == Goals.SpiritTower)
-        {
-            // Mark the Golden Crystal Heart as collected in the WorldState
             WorldState.Set(Item.GoldenCrystalHeart, true);
+            _randomizerEngine.CompleteGoal(Goals.SpiritTower);
         }
     }
 }

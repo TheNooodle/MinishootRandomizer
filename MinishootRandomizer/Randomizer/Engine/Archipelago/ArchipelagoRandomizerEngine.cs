@@ -338,22 +338,21 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
 
     public void CompleteGoal(Goals goal)
     {
-        CompletionGoals completionGoals = GetSetting<CompletionGoals>();
+        CompletionGoals completionGoalSetting = GetSetting<CompletionGoals>();
         bool sendCompletion;
-        switch (completionGoals.Goal)
+        switch (completionGoalSetting.Goal)
         {
             case Goals.Dungeon5:
-                sendCompletion = goal == Goals.Dungeon5 && !_progressionStorage.IsGoalCompleted(Goals.Dungeon5);
+                sendCompletion = goal == Goals.Dungeon5 && _progressionStorage.IsGoalCompleted(Goals.Dungeon5);
                 break;
             case Goals.Snow:
-                sendCompletion = goal == Goals.Snow && !_progressionStorage.IsGoalCompleted(Goals.Snow);
+                sendCompletion = goal == Goals.Snow && _progressionStorage.IsGoalCompleted(Goals.Snow);
                 break;
             case Goals.Dungeon5AndSnow:
-                sendCompletion = (goal == Goals.Dungeon5 && !_progressionStorage.IsGoalCompleted(Goals.Dungeon5) && _progressionStorage.IsGoalCompleted(Goals.Snow)) ||
-                                 (goal == Goals.Snow && !_progressionStorage.IsGoalCompleted(Goals.Snow) && _progressionStorage.IsGoalCompleted(Goals.Dungeon5));
+                sendCompletion = (goal == Goals.Dungeon5 || goal == Goals.Snow) && _progressionStorage.IsGoalCompleted(Goals.Dungeon5) && _progressionStorage.IsGoalCompleted(Goals.Snow);
                 break;
             case Goals.SpiritTower:
-                sendCompletion = goal == Goals.SpiritTower && !_progressionStorage.IsGoalCompleted(Goals.SpiritTower);
+                sendCompletion = goal == Goals.SpiritTower && _progressionStorage.IsGoalCompleted(Goals.SpiritTower);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
