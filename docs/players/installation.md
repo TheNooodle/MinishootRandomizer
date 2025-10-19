@@ -54,3 +54,59 @@ chmod +x /Users/<UserName>/Library/Application\ Support/Steam/steamapps/common/M
 
 * You can now launch the game from Steam ! The loading screen will blink a few times, but after it loads you will see the randomizer menu in the top left.
 
+## Linux
+
+This is tested on Arch and aims at the [Steam version](https://store.steampowered.com/app/1634860/Minishoot_Adventures/) of the game.
+
+* Download the `win_x64` version of [BepInEx 5](https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.4).
+* Extract the content of the .zip in the games root folder where you find `Minishoot.exe`.
+    
+    - `BepInEx` folder 
+    - `changelog.txt`
+    - `doorstep_config.ini`
+    - `winhttp.dll`
+
+* Make sure that you have [protontricks](https://github.com/Matoking/protontricks?tab=readme-ov-file#installation) downloaded.
+    
+    - Pick the right community package for your distro, if available.
+    - If not, pick the [flathub](https://flathub.org/en/apps/com.github.Matoking.protontricks) version.
+
+* Open `protontricks`.
+    - If you installed it via a community package, open a terminal and type:
+
+       ```
+       protontricks --gui
+       ```
+
+* A window should open that asks for a Steam app.
+    
+    - Pick `Minishoot' Adventures` and press ok.
+    - Now it asks for a **wineprefix**, pick `Select the default wineprefix`.
+    - Another window opens and asks **What would you like to do with this wineprefix?**, select `Run winecfg`.
+
+* Now the **Wine configuration** window opens.
+
+    - Select the **Libraries** tab
+    - In the **New override for library** dropbox, search for `winhttp` and click the `Add` button right next to it.
+    - It now appears in the **Existing overrides** dropbox.
+    - Now press **Apply** and close the window.
+
+* `BepInEx` needs to create all necessary folder and files, launch the game and wait till you are in the main menu and close it.
+    
+    - Now you should see more folders and files in the `BepInEx` directory.
+        - `cache`
+        - `config`
+        - `core`
+        - `patchers`
+        - `plugins`
+        - `LogOutput.log`
+        
+    - Navigate to the `config` folder and open the `BepInEx.cfg`.
+        - Change the value of `HideManagerGameObject` to `true`.
+        - Save the changes and close the file.
+
+* Download the [MinishootRandomizer](https://github.com/TheNooodle/MinishootRandomizer/releases).
+
+    - Extract the .zip into the `plugins` folder of `BepInEx`.
+
+* Now you can open the game trough Steam and if everything works, a window in the top left corner should appear and you can connect to your AP room. 
