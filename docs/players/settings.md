@@ -41,6 +41,14 @@
     * When this setting is off, timed torch races will logically require the boost.
     * When this setting is on, the logic will assume that you can complete those races without it.
     * Note that this setting may require you to farm some XP to level up your speed.
+* Enable Primordial Crystal Logic
+    * When this setting is on, the Primordial Crystal will be considered in logic to blow up rocks and walls.
+    * When this setting is off, the logic will assume that you imperatively need Supershot to do that.
+* Primordial Crystal Activation Threshold
+    * Set the Primordial Crystal activation threshold.
+    * If your current HP percentage is greater than or equal to this value and you have the Primordial Crystal, it will activate.
+    * This allows for more flexibility in the use of the Primordial Crystal, especially in combination with the "Enable Primordial Crystal Logic" option.
+    * This option does not affect logic. The value must be between 10 and 100.
 * Completion Goal
     * Determines the goal of the seed.
     * "Dungeon 5" means you have to beat the normal ending. You will need all 4 skills, all 4 dungeon rewards, and the Dark Key (the item you get in the vanilla game when beating both dark spirits in the Junkyard)

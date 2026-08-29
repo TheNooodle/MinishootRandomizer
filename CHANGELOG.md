@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- A new setting called "Surf Sanity" has been added.
+    - When enabled, each water type requires its own Surf item to be navigable.
+    - When disabled, the normal Surf item unlocks navigation on all water types.
+    - Will replace filler items
+    - Logic has been adjusted to accomodate this new setting.
+- A new setting called "Primordial Crystal Activation Threshold" has been added.
+    - Set the Primordial Crystal activation threshold.
+    - If your current HP percentage is greater than or equal to this value and you have the Primordial Crystal, it will activate.
+    - This allows for more flexibility in the use of the Primordial Crystal, especially in combination with the "Enable Primordial Crystal Logic" option.
+    - This option does not affect logic. The value must be between 10 and 100.
+
+### Changed
+
+- Fixed "Dungeon 3 - Behind North West doors" logic : now properly check for a way to use springboards
+    - Necessary to unlock the door to said location.
+- When the goal is set to "Spirit Tower", the Golden Crystal Heart will now replace a filler item, instead of an Ancient Tablet.
+
 ## [0.5.2] - 2025-09-16
 
 ### Fixed
