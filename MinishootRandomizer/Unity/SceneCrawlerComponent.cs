@@ -74,6 +74,11 @@ public class SceneCrawlerComponent : MonoBehaviour
         new CrawlableScene("Dungeon3", new List<CloningData>()
         {
             new CloningData(Item.Surf, new ByName("SkillHover", typeof(SkillPickup))),
+            new CloningData(Item.SurfNormal, new ByName("SkillHover", typeof(SkillPickup))),
+            new CloningData(Item.SurfBlue, new ByName("SkillHover", typeof(SkillPickup))),
+            new CloningData(Item.SurfSoiled, new ByName("SkillHover", typeof(SkillPickup))),
+            new CloningData(Item.SurfDungeon, new ByName("SkillHover", typeof(SkillPickup))),
+            new CloningData(Item.SurfGold, new ByName("SkillHover", typeof(SkillPickup))),
         }),
         new CrawlableScene("Dungeon5", new List<CloningData>()
         {

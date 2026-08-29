@@ -12,7 +12,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
     private Dictionary<Type, ISetting> _settings = new()
     {
-        { typeof(NpcSanity), new NpcSanity(false) },
+        { typeof(NpcSanity), new NpcSanity(true) },
         { typeof(ScarabSanity), new ScarabSanity(false) },
         { typeof(ShardSanity), new ShardSanity(true) },
         { typeof(SpiritSanity), new SpiritSanity(true) },
@@ -29,6 +29,8 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(true) },
         { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(true) },
         { typeof(EnablePrimordialCrystalLogic), new EnablePrimordialCrystalLogic(false) },
+        { typeof(PrimordialCrystalActivationThreshold), new PrimordialCrystalActivationThreshold(50) },
+        { typeof(SurfSanity), new SurfSanity(true) },
         { typeof(DashlessGaps), new DashlessGaps(DashlessGapsValue.NeedsDash) },
         { typeof(CompletionGoals), new CompletionGoals(Goals.SpiritTower) },
     };
@@ -386,7 +388,7 @@ Town - Blacksmith Item 4: Scarab
 Town - Merchant Item 1: XP Crystals x100
 Town - Merchant Item 2: HP Crystal Shard
 Town - Merchant Item 3: Small Key (Dungeon 3)
-Town - Plaza: HP Crystal Shard
+Town - Plaza: Blue Surf
 Town - Scarab Collector Item 1: XP Crystals x70
 Town - Scarab Collector Item 2: Primordial Scarab Dialog
 Town - Scarab Collector Item 3: XP Crystals x40

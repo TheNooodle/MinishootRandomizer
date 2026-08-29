@@ -23,6 +23,15 @@ public class DictionaryItemFactory : IItemFactory
         {Item.Surf, new SkillItemData(Skill.Hover)},
     };
 
+    private static Dictionary<string, SurfItemData> _surfItemData = new()
+    {
+        {Item.SurfNormal, new SurfItemData(WaterType.Normal)},
+        {Item.SurfBlue, new SurfItemData(WaterType.Blue)},
+        {Item.SurfSoiled, new SurfItemData(WaterType.Soiled)},
+        {Item.SurfDungeon, new SurfItemData(WaterType.Dungeon)},
+        {Item.SurfGold, new SurfItemData(WaterType.Gold)},
+    };
+
     private static Dictionary<string, ModuleItemData> _moduleItemData = new()
     {
         {Item.AdvancedEnergy, new ModuleItemData(Modules.BoostCost)},
@@ -93,6 +102,10 @@ public class DictionaryItemFactory : IItemFactory
         else if (_skillItemData.ContainsKey(identifier))
         {
             return new SkillItem(identifier, category, _skillItemData[identifier].Skill);
+        }
+        else if (_surfItemData.ContainsKey(identifier))
+        {
+            return new SurfItem(identifier, category, _surfItemData[identifier].WaterType);
         }
         else if (_moduleItemData.ContainsKey(identifier))
         {

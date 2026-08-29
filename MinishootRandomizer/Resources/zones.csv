@@ -1,7 +1,7 @@
 ﻿Name,Regions,Locations,Outgoing transitions,Ingoing transitions,Is Dungeon,Game Location Name
 Abyss Church,Abyss - Church,Abyss Church - Unchosen statue,,,,Cave
 Abyss Church backroom,Abyss - Church backroom,Abyss - Backroom item,,,,Cave
-Abyss Connector,"Abyss South Connector,Abyss North Connector",Abyss North Connector - Under ruins,,,,Cave
+Abyss Connector,"Abyss South Connector,Abyss North Connector,Abyss South Connector Drop",Abyss North Connector - Under ruins,,,,Cave
 Abyss Race,Abyss Race,Abyss Race - Reward,,,,CaveExtra
 Abyss Ruined shop,Ruined shop,Abyss Ruined shop - Item,,,,Cave
 Abyss Tower,Abyss Tower,Abyss Tower - Top of tower,,,checked,Tower

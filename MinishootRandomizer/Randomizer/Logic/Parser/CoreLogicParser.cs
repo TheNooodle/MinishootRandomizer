@@ -166,8 +166,24 @@ public class CoreLogicParser : ILogicParser
                 CanCrossGaps(p, GapSize.VeryTight),
                 new List<string>() {Item.Dash}
             )},
-            { "can_surf", p => new LogicParsingResult(
+            { "can_surf_normal", p => new LogicParsingResult(
                 CanSurf(p, WaterType.Normal),
+                new List<string>() {Item.Surf}
+            )},
+            { "can_surf_blue", p => new LogicParsingResult(
+                CanSurf(p, WaterType.Blue),
+                new List<string>() {Item.Surf}
+            )},
+            { "can_surf_soiled", p => new LogicParsingResult(
+                CanSurf(p, WaterType.Soiled),
+                new List<string>() {Item.Surf}
+            )},
+            { "can_surf_dungeon", p => new LogicParsingResult(
+                CanSurf(p, WaterType.Dungeon),
+                new List<string>() {Item.Surf}
+            )},
+            { "can_surf_gold", p => new LogicParsingResult(
+                CanSurf(p, WaterType.Gold),
                 new List<string>() {Item.Surf}
             )},
             { "can_boost", p => new LogicParsingResult(
@@ -279,7 +295,7 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.DarkHeart}
             )},
             { "can_open_north_city_bridge", p => new LogicParsingResult(
-                CanDash(p) && CanFight(p, 4) && CanSurf(p, WaterType.Gold) && CanDestroyWalls(p),
+                CanDash(p) && CanFight(p, 4) && CanSurf(p, WaterType.Gold) && CanSurf(p, WaterType.Soiled) && CanDestroyWalls(p),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_free_bard", p => new LogicParsingResult(
@@ -299,11 +315,11 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.ScarabKey}
             )},
             { "can_light_city_torches", p => new LogicParsingResult(
-                p.State.HasItem(supershot) && CanSurf(p, WaterType.Gold) && CanFight(p, 4) && CanUseSpringboards(p),
+                p.State.HasItem(supershot) && CanSurf(p, WaterType.Gold) && CanSurf(p, WaterType.Soiled) && CanFight(p, 4) && CanUseSpringboards(p),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_open_sunken_temple", p => new LogicParsingResult(
-                CanSurf(p, WaterType.Gold) && CanFight(p, 4) && CanDash(p) && CanDestroyWalls(p),
+                CanSurf(p, WaterType.Gold) && CanSurf(p, WaterType.Soiled) && CanFight(p, 4) && CanDash(p) && CanDestroyWalls(p),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_light_desert_grotto_torches", p => new LogicParsingResult(
@@ -418,7 +434,26 @@ public class CoreLogicParser : ILogicParser
 
     private bool CanSurf(LogicParsingParameters parameters, WaterType waterType)
     {
+        SurfSanity setting = parameters.State.GetSetting<SurfSanity>();
+        if (setting != null && setting.Enabled)
+        {
+            return parameters.State.HasItem(_itemRepository.Get(GetSurfItem(waterType)));
+        }
+
         return parameters.State.HasItem(_itemRepository.Get(Item.Surf));
+    }
+
+    private string GetSurfItem(WaterType waterType)
+    {
+        return waterType switch
+        {
+            WaterType.Normal => Item.SurfNormal,
+            WaterType.Blue => Item.SurfBlue,
+            WaterType.Soiled => Item.SurfSoiled,
+            WaterType.Dungeon => Item.SurfDungeon,
+            WaterType.Gold => Item.SurfGold,
+            _ => throw new ArgumentOutOfRangeException(nameof(waterType), waterType, null),
+        };
     }
 
     private bool CanUseSpringboards(LogicParsingParameters parameters)

@@ -1,5 +1,5 @@
 ﻿Name,Locations,Outgoing Transitions,Ingoing Transitions
-Abyss - Ambush Island,Abyss - Ambush Island,"Abyss - Ambush Island > Dugeon Exterior,Abyss - Ambush Island > Abyss South Connector",Abyss - Dungeon Exterior > Ambush Island
+Abyss - Ambush Island,Abyss - Ambush Island,"Abyss - Ambush Island > Dugeon Exterior,Abyss - Ambush Island > Abyss South Connector Drop",Abyss - Dungeon Exterior > Ambush Island
 Abyss - Church,Abyss Church - Unchosen statue,"Abyss - Church > Village,Abyss - Church > Church backroom,Abyss - Church > North Connector","Abyss - Village > Church,Abyss - Church backroom > Church,Abyss - North Connector > Church"
 Abyss - Church backroom,Abyss - Backroom item,Abyss - Church backroom > Church,Abyss - Church > Church backroom
 Abyss - Dungeon Exterior,"Abyss - Near dungeon entrance,Abyss - South of spinning enemy","Abyss - Dungeon Exterior > Green Crystal Grove,Abyss - Dungeon Exterior > Ambush Island,Abyss - Dungeon Exterior > Ruined shop,Abyss - Dungeon Exterior > Jumping Loop,Abyss - Dungeon Exterior > Desert Island","Green - Crystal Grove > Abyss Dungeon Exterior,Abyss - Ambush Island > Dugeon Exterior,Ruined shop > Abyss Dungeon Exterior,Abyss - Middle Platform > Dungeon Exterior,Abyss - Jumping Loop > Dungeon Exterior,Abyss - Within Crystal Grove > Dungeon Exterior,Dungeon 2 - Entrance > Exterior,Desert - Island > Abyss Dungeon Exterior"
@@ -11,7 +11,8 @@ Abyss - Village Shack,"Abyss Shack - Hidden corridor,Abyss Shack - Hidden room,A
 Abyss - Within Crystal Grove,Abyss - Within Crystal Grove,"Abyss - Within Crystal Grove > Dungeon Exterior,Abyss - Within Crystal Grove > Dungeon 2 Entrance,Abyss - Within Crystal Grove > Abyss North Connector",Abyss - North Connector > Abyss Within Crystal Grove
 Abyss North Connector,Abyss North Connector - Under ruins,"Abyss - North Connector > Church,Abyss - North Connector > South Connector,Abyss - North Connector > Abyss Within Crystal Grove","Abyss - Church > North Connector,Abyss South Connector > North Connector,Abyss - Within Crystal Grove > Abyss North Connector"
 Abyss Race,Abyss Race - Reward,Abyss Race > Jumping Loop,Abyss - Jumping Loop > Abyss Race
-Abyss South Connector,,"Abyss South Connector > Abyss Middle Platform,Abyss South Connector > North Connector","Abyss - Ambush Island > Abyss South Connector,Abyss - Middle Platform > South Connector,Abyss - North Connector > South Connector"
+Abyss South Connector,,"Abyss South Connector > Abyss Middle Platform,Abyss South Connector > North Connector","Abyss - Middle Platform > South Connector,Abyss - North Connector > South Connector,Abyss South Connector Drop > South Connector"
+Abyss South Connector Drop,,Abyss South Connector Drop > South Connector,Abyss - Ambush Island > Abyss South Connector Drop
 Abyss Tower,Abyss Tower - Top of tower,Abyss Tower > Tower Exterior,Abyss - Tower Exterior > Abyss Tower
 Beach - Coast,"Beach - Coast South hidden alcove,Beach - Coast Hidden by plants","Beach - Coast > Beach Coast Grotto,Beach - Coast > Town,Beach - Coast > Swamp Entrance,Beach - Coast > Dungeon 3 Island,Beach - Coast > Forest North","Beach Coast Grotto > Coast,Beach - Swamp Entrance > Coast,Beach - Dungeon 3 Island > Coast,Forest - North > Beach Coast"
 Beach - Coconut Island,Beach - Coconut pile,"Beach - Coconut Island > Swamp Entrance,Beach - Coconut Island > Beach Race","Beach - Swamp Entrance > Coconut Island,Beach Race > Coconut Island"
@@ -108,10 +109,10 @@ Scarab Temple - Race,Scarab Temple - Race Reward,Scarab Temple - Race > After Ra
 Scarab Temple - Statue,,Scarab Temple - Statue > Green Town,"Scarab Temple - Back > Statue,Green - Town > Scarab Temple Statue"
 Scarab Temple - Top Left Torch,,Scarab Temple - Top Left Torch > Top Right Torch,Scarab Temple - Top Right Torch > Top Left Torch
 Scarab Temple - Top Right Torch,Scarab Temple - East side,"Scarab Temple - Top Right Torch > Swamp South West Island Shack,Scarab Temple - Top Right Torch > Top Left Torch","Swamp - South West Island Shack > Scarab Temple Top Right Torch,Scarab Temple - Top Left Torch > Top Right Torch"
-Sewers - After jump,,"Sewers - After jump > Central tunnel,Sewers - After jump > Sunken City East torch","Sewers - Central tunnel > After jump,Sewers - After jump > Central tunnel,Sunken City - East torch > Sewers After jump"
+Sewers - After jump,,"Sewers - After jump > Central tunnel,Sewers - After jump > Sunken City East torch","Sewers - Central tunnel > After jump,Sunken City - East torch > Sewers After jump"
 Sewers - After pillars,,Sewers - After pillars > Sunken City South West building,"Sewers - West > After pillars,Sunken City - South West building > Sewers After pillars"
 Sewers - Central room,"Sewers - Central room corner,Sewers - Central room boss reward",Sewers - Central room > East,Sewers - East drop (right) > Central room
-Sewers - Central tunnel,,"Sewers - Central tunnel > West,Sewers - Central tunnel > After jump",Sewers - East drop (left) > Central tunnel
+Sewers - Central tunnel,,"Sewers - Central tunnel > West,Sewers - Central tunnel > After jump","Sewers - East drop (left) > Central tunnel,Sewers - After jump > Central tunnel"
 Sewers - Desert Entrance,,"Sewers - Desert Entrance > Desert,Sewers - Desert Entrance > West","Desert > Sewers Desert Entrance,Sewers - West > Desert Entrance"
 Sewers - East,Sewers - Near Family House Cave,Sewers - East > Sunken City West torch,"Sewers - Central room > East,Sunken City - West torch > Sewers East"
 Sewers - East drop (left),,Sewers - East drop (left) > Central tunnel,Sunken City - City > Sewers East drop (left)

@@ -193,6 +193,8 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(BoostlessSpiritRaces), new BoostlessSpiritRaces(GetBooleanSettingValue("boostless_spirit_races")) },
             { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(GetBooleanSettingValue("boostless_torch_races")) },
             { typeof(EnablePrimordialCrystalLogic), new EnablePrimordialCrystalLogic(GetBooleanSettingValue("enable_primordial_crystal_logic")) },
+            { typeof(PrimordialCrystalActivationThreshold), new PrimordialCrystalActivationThreshold(GetNumericSettingValue("primordial_crystal_activation_threshold", 100)) },
+            { typeof(SurfSanity), new SurfSanity(GetBooleanSettingValue("surf_sanity")) },
             { typeof(DashlessGaps), new DashlessGaps(GetEnumSettingValue("dashless_gaps", DashlessGapsValue.NeedsDash)) },
             { typeof(CompletionGoals), new CompletionGoals(GetEnumSettingValue("completion_goals", Goals.Dungeon5)) },
         };

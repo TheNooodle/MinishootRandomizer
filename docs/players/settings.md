@@ -6,6 +6,9 @@
     * Randomizes all 18 scarabs locations, hidden by their respectives destroyable objects. Scarabs will be available as normal pickup items.
 * ShardSanity
     * Randomizes the XP shards "groups" (not individual crystals). You will be able to receive XP via items.
+* SurfSanity
+    * When enabled, each water type requires its own Surf item to be navigable.
+    * When disabled, the normal Surf item unlocks navigation on all water types.
 * Key Sanity
     * When enabled, all small keys of dungeons will be randomized outside of their respective dungeons.
     * When disabled, the keys will still be randomized within their dungeons.

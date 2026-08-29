@@ -10,6 +10,7 @@ default_settings:
   boostless_spirit_races: 'false'
   boostless_torch_races: 'false'
   enable_primordial_crystal_logic: 'false'
+  surf_sanity: 'false'
   progressive_dash: 'true'
   dashless_gaps: 'NeedsDash'
   completion_goals: 'Dungeon5'
@@ -62,4 +63,54 @@ test_cases:
     tests:
       - location_accessibility:
           location_name: "Primordial Cave - Meet the Primordial Scarab"
+          expected_accessibility: "inaccessible"
+  - name: "Dungeon 3, with Surf Sanity, with both clean and void surf"
+    override_settings:
+      surf_sanity: 'true'
+    add_items:
+      Clean Surf: 1
+      Void Surf: 1
+    tests:
+      - location_accessibility:
+          location_name: "Dungeon 3 - Central Item"
+          expected_accessibility: "in_logic"
+  - name: "Dungeon 3, with Surf Sanity, without any surfs, using the turle"
+    override_settings:
+      surf_sanity: 'true'
+    add_items:
+      Progressive Cannon: 3
+      Boost: 1
+      Dash: 1
+      Supershot: 1
+    tests:
+      - region_accessibility:
+          region_name: "Dungeon 3 - Entrance"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Dungeon 3 - Central Item"
+          expected_accessibility: "inaccessible"
+  - name: "Dungeon 3, with Surf Sanity, without clean surf, using the turle"
+    override_settings:
+      surf_sanity: 'true'
+    add_items:
+      Progressive Cannon: 3
+      Boost: 1
+      Dash: 1
+      Supershot: 1
+      Void Surf: 1
+    tests:
+      - region_accessibility:
+          region_name: "Dungeon 3 - Entrance"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Dungeon 3 - Central Item"
+          expected_accessibility: "in_logic"
+  - name: "Dungeon 3, with Surf Sanity, with clean surf and without void surf"
+    override_settings:
+      surf_sanity: 'true'
+    add_items:
+      Clean Surf: 1
+    tests:
+      - location_accessibility:
+          location_name: "Dungeon 3 - Central Item"
           expected_accessibility: "inaccessible"

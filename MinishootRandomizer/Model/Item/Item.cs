@@ -71,6 +71,11 @@ abstract public class Item
     public const string SunkenCityMap = "Sunken City Map";
     public const string Supershot = "Supershot";
     public const string Surf = "Surf";
+    public const string SurfNormal = "Clean Surf";
+    public const string SurfBlue = "Blue Surf";
+    public const string SurfSoiled = "Dirty Surf";
+    public const string SurfDungeon = "Void Surf";
+    public const string SurfGold = "Golden Surf";
     public const string SwampMap = "Swamp Map";
     public const string VengefulTalisman = "Vengeful Talisman";
     public const string VillageStar = "Village Star";
