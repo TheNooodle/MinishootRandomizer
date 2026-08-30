@@ -31,6 +31,10 @@
     <EmbeddedResource Include="Resources/images/archipelago_arrow_up.png" />
     <EmbeddedResource Include="Resources/images/archipelago_grayscale.png" />
     <EmbeddedResource Include="Resources/images/archipelago.png" />
+    <EmbeddedResource Include="Resources/images/blob_enemy.png" />
+    <EmbeddedResource Include="Resources/images/blue_crystal.png" />
+    <EmbeddedResource Include="Resources/images/city_building_top.png" />
+    <EmbeddedResource Include="Resources/images/dark_crystal.png" />
     <EmbeddedResource Include="Resources/images/dead_player.png" />
     <EmbeddedResource Include="Resources/images/golden_crystal_shard.png" />
     <EmbeddedResource Include="Resources/images/laughing_cat.png" />
@@ -38,6 +42,7 @@
     <EmbeddedResource Include="Resources/images/location_marker.png" />
     <EmbeddedResource Include="Resources/images/npc_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/npc_marker.png" />
+    <EmbeddedResource Include="Resources/images/palm_tree.png" />
     <EmbeddedResource Include="Resources/images/prim_scarab_dialog.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker.png" />

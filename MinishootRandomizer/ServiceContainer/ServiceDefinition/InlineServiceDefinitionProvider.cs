@@ -523,6 +523,13 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             
             gameEvents.ItemCollected += trapManager.OnItemCollected;
         });
+
+        AddSingleton<CoreItemViewFactory>(sp => new CoreItemViewFactory(
+            sp.Get<IObjectFinder>(),
+            sp.Get<IItemRepository>(),
+            sp.Get<ISpriteProvider>()
+        ));
+        AddSingleton<IItemViewFactory>(sp => sp.Get<CoreItemViewFactory>());
     }
     
     private void ConfigurePatchers()
@@ -620,6 +627,12 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         ConfigurePatcher<DoorUnlockPatcher>(sp => new DoorUnlockPatcher(
             sp.Get<IRandomizerEngine>(),
             sp.Get<IObjectFinder>(),
+            sp.Get<ILogger>()
+        ));
+
+        ConfigurePatcher<ItemViewsPatcher>(sp => new ItemViewsPatcher(
+            sp.Get<IRandomizerEngine>(),
+            sp.Get<IItemViewFactory>(),
             sp.Get<ILogger>()
         ));
     }
