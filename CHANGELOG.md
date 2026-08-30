@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - When disabled, the normal Surf item unlocks navigation on all water types.
     - Will replace filler items
     - Logic has been adjusted to accomodate this new setting.
+    - Each surf items will be visible in the inventory.
 - A new setting called "Primordial Crystal Activation Threshold" has been added.
     - Set the Primordial Crystal activation threshold.
     - If your current HP percentage is greater than or equal to this value and you have the Primordial Crystal, it will activate.
