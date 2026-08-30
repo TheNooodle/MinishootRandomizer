@@ -31,6 +31,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(EnablePrimordialCrystalLogic), new EnablePrimordialCrystalLogic(false) },
         { typeof(PrimordialCrystalActivationThreshold), new PrimordialCrystalActivationThreshold(50) },
         { typeof(SurfSanity), new SurfSanity(true) },
+        { typeof(SplitSupershot), new SplitSupershot(true) },
         { typeof(DashlessGaps), new DashlessGaps(DashlessGapsValue.NeedsDash) },
         { typeof(CompletionGoals), new CompletionGoals(Goals.SpiritTower) },
     };
@@ -347,9 +348,9 @@ Sewers - Near Family House Cave: HP Crystal Shard
 Sewers - North pot room: XP Crystals x50
 Sewers - South pot room: Boss Key (Dungeon 3)
 Spirit Tower - Item: Dark Key
-Starting Grotto - Entrance: Spirit
+Starting Grotto - Entrance: Blastshot
 Starting Grotto - North Corridor: Progressive Dash
-Starting Grotto - Secret Wall: Golden Crystal Heart
+Starting Grotto - Secret Wall: Flameshot
 Starting Grotto - West Item: Progressive Dash
 Sunken City - Below West bridge: XP Crystals x15
 Sunken City - Inside the walls: Scarab Collector

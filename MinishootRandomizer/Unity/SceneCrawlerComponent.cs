@@ -70,6 +70,8 @@ public class SceneCrawlerComponent : MonoBehaviour
         new CrawlableScene("Dungeon2", new List<CloningData>()
         {
             new CloningData(Item.Supershot, new ByName("SkillSupershot", typeof(SkillPickup))),
+            new CloningData(Item.Blastshot, new ByName("SkillSupershot", typeof(SkillPickup))),
+            new CloningData(Item.Flameshot, new ByName("SkillSupershot", typeof(SkillPickup))),
         }),
         new CrawlableScene("Dungeon3", new List<CloningData>()
         {

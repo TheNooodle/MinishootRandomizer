@@ -69,6 +69,8 @@ public class CoreLogicParser : ILogicParser
         Item boost = _itemRepository.Get(Item.Boost);
         Item dash = _itemRepository.Get(Item.Dash);
         Item supershot = _itemRepository.Get(Item.Supershot);
+        Item blastshot = _itemRepository.Get(Item.Blastshot);
+        Item flameshot = _itemRepository.Get(Item.Flameshot);
         Item surf = _itemRepository.Get(Item.Surf);
         Item primordialCrystal = _itemRepository.Get(Item.PrimordialCrystal);
         Item spiritDash = _itemRepository.Get(Item.SpiritDash);
@@ -131,8 +133,8 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.Merchant}
             )},
             { "can_obtain_super_crystals", p => new LogicParsingResult(
-                p.State.HasItem(cannon) && CanDash(p) && p.State.HasItem(supershot) && CanSurf(p, WaterType.Normal),
-                new List<string>() {Item.ProgressiveCannon, Item.Dash, Item.Supershot, Item.Surf}
+                p.State.HasItem(cannon) && CanDash(p) && CanUseSupershot(p, blastshot, flameshot) && CanSurf(p, WaterType.Normal),
+                new List<string>() {Item.ProgressiveCannon, Item.Dash, Item.Supershot, Item.Blastshot, Item.Flameshot, Item.Surf}
             )},
             { "can_fight", p => new LogicParsingResult(
                 p.State.HasItem(cannon),
@@ -259,8 +261,8 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.ScarabCollector}
             )},
             { "can_light_torches", p => new LogicParsingResult(
-                p.State.HasItem(supershot),
-                new List<string>() {Item.Supershot}
+                CanLightTorches(p),
+                new List<string>() {Item.Supershot, Item.Flameshot}
             )},
             { "can_destroy_plants", p => new LogicParsingResult(
                 p.State.HasItem(cannon),
@@ -283,7 +285,7 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.D3BossKey}
             )},
             { "can_light_all_scarab_temple_torches", p => new LogicParsingResult(
-                CanSurf(p, WaterType.Normal) && p.State.HasItem(supershot) && CanFight(p, 4),
+                CanSurf(p, WaterType.Normal) && CanLightTorches(p) && CanDestroyWalls(p) && CanFight(p, 4),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_dodge_purple_bullets", p => new LogicParsingResult(
@@ -315,7 +317,7 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.ScarabKey}
             )},
             { "can_light_city_torches", p => new LogicParsingResult(
-                p.State.HasItem(supershot) && CanSurf(p, WaterType.Gold) && CanSurf(p, WaterType.Soiled) && CanFight(p, 4) && CanUseSpringboards(p),
+                CanLightTorches(p) && CanDestroyWalls(p) && CanSurf(p, WaterType.Gold) && CanSurf(p, WaterType.Soiled) && CanFight(p, 4) && CanUseSpringboards(p),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_open_sunken_temple", p => new LogicParsingResult(
@@ -323,7 +325,7 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_light_desert_grotto_torches", p => new LogicParsingResult(
-                p.State.HasItem(supershot) && (CanSurf(p, WaterType.Normal) || CanCrossGaps(p, GapSize.Normal)) && CanFight(p, 3),
+                CanLightTorches(p) && CanDestroyWalls(p) && (CanSurf(p, WaterType.Normal) || CanCrossGaps(p, GapSize.Normal)) && CanFight(p, 3),
                 new List<string>() {LogicParsingResult.AnyItemName}
             )},
             { "can_clear_both_d5_arenas", p => new LogicParsingResult(
@@ -345,8 +347,8 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.ProgressiveCannon, Item.PowerOfProtection}
             )},
             { "can_destroy_trees", p => new LogicParsingResult(
-                p.State.HasItem(supershot),
-                new List<string>() {Item.Supershot}
+                CanDestroyTrees(p),
+                new List<string>() {Item.Supershot, Item.Blastshot}
             )},
             { "can_use_springboards", p => new LogicParsingResult(
                 CanUseSpringboards(p),
@@ -422,14 +424,47 @@ public class CoreLogicParser : ILogicParser
     private bool CanDestroyWalls(LogicParsingParameters parameters)
     {
         EnablePrimordialCrystalLogic setting = parameters.State.GetSetting<EnablePrimordialCrystalLogic>();
+        Item supershot = _itemRepository.Get(Item.Supershot);
+        Item blastshot = _itemRepository.Get(Item.Blastshot);
+        bool canDestroyWithShot = IsSplitSupershotEnabled(parameters)
+            ? parameters.State.HasItem(blastshot)
+            : parameters.State.HasItem(supershot);
+
         if (setting.Enabled)
         {
-            return parameters.State.HasItem(_itemRepository.Get(Item.Supershot)) || parameters.State.HasItem(_itemRepository.Get(Item.PrimordialCrystal));
+            return canDestroyWithShot || parameters.State.HasItem(_itemRepository.Get(Item.PrimordialCrystal));
         }
         else
         {
-            return parameters.State.HasItem(_itemRepository.Get(Item.Supershot));
+            return canDestroyWithShot;
         }
+    }
+
+    private bool CanLightTorches(LogicParsingParameters parameters)
+    {
+        string itemIdentifier = IsSplitSupershotEnabled(parameters) ? Item.Flameshot : Item.Supershot;
+        return parameters.State.HasItem(_itemRepository.Get(itemIdentifier));
+    }
+
+    private bool CanDestroyTrees(LogicParsingParameters parameters)
+    {
+        string itemIdentifier = IsSplitSupershotEnabled(parameters) ? Item.Blastshot : Item.Supershot;
+        return parameters.State.HasItem(_itemRepository.Get(itemIdentifier));
+    }
+
+    private bool CanUseSupershot(LogicParsingParameters parameters, Item blastshot, Item flameshot)
+    {
+        if (IsSplitSupershotEnabled(parameters))
+        {
+            return parameters.State.HasItem(blastshot) && parameters.State.HasItem(flameshot);
+        }
+
+        return parameters.State.HasItem(_itemRepository.Get(Item.Supershot));
+    }
+
+    private bool IsSplitSupershotEnabled(LogicParsingParameters parameters)
+    {
+        return parameters.State.GetSetting<SplitSupershot>()?.Enabled ?? false;
     }
 
     private bool CanSurf(LogicParsingParameters parameters, WaterType waterType)

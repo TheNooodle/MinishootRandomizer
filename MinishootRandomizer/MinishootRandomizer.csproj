@@ -43,6 +43,7 @@
     <EmbeddedResource Include="Resources/images/npc_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/npc_marker.png" />
     <EmbeddedResource Include="Resources/images/palm_tree.png" />
+    <EmbeddedResource Include="Resources/images/rock.png" />
     <EmbeddedResource Include="Resources/images/prim_scarab_dialog.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker.png" />
@@ -54,6 +55,7 @@
     <EmbeddedResource Include="Resources/images/spirit.png" />
     <EmbeddedResource Include="Resources/images/super_crystal.png" />
     <EmbeddedResource Include="Resources/images/tick.png" />
+    <EmbeddedResource Include="Resources/images/torch_lit.png" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">

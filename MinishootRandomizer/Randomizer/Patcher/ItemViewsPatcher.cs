@@ -21,6 +21,12 @@ public class ItemViewsPatcher
         new ItemView("CityBuildingTop", Item.SurfGold, new Vector2(52, -27), new Vector2(30, 30), new ByName("SkillViewHover"))
     };
 
+    private static readonly List<ItemView> _splitSupershotItemViews = new()
+    {
+        new ItemView("Rock", Item.Blastshot, new Vector2(-52, 0), new Vector2(30, 30), new ByName("SkillViewSupershot")),
+        new ItemView("TorchLit", Item.Flameshot, new Vector2(52, 0), new Vector2(30, 30), new ByName("SkillViewSupershot"))
+    };
+
     public ItemViewsPatcher(IRandomizerEngine randomizerEngine, IItemViewFactory itemViewFactory, ILogger logger)
     {
         _randomizerEngine = randomizerEngine;
@@ -59,6 +65,21 @@ public class ItemViewsPatcher
         if (surfSanity.Enabled)
         {
             foreach (ItemView itemView in _surfSanityItemViews)
+            {
+                IPatchAction patchAction = new LoggableAction(
+                    new CreateItemViewAction(itemView, _itemViewFactory),
+                    _logger
+                );
+                patchAction.Patch();
+                _patchActions.Add(patchAction);
+            }
+        }
+
+        // Split Supershot icons
+        SplitSupershot splitSupershot = _randomizerEngine.GetSetting<SplitSupershot>();
+        if (splitSupershot.Enabled)
+        {
+            foreach (ItemView itemView in _splitSupershotItemViews)
             {
                 IPatchAction patchAction = new LoggableAction(
                     new CreateItemViewAction(itemView, _itemViewFactory),

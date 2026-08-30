@@ -23,6 +23,12 @@ public class DictionaryItemFactory : IItemFactory
         {Item.Surf, new SkillItemData(Skill.Hover)},
     };
 
+    private static Dictionary<string, SplitshotType> _splitshotTypes = new()
+    {
+        {Item.Blastshot, SplitshotType.Blast},
+        {Item.Flameshot, SplitshotType.Flame},
+    };
+
     private static Dictionary<string, SurfItemData> _surfItemData = new()
     {
         {Item.SurfNormal, new SurfItemData(WaterType.Normal)},
@@ -98,6 +104,10 @@ public class DictionaryItemFactory : IItemFactory
         if (_pickupItemData.ContainsKey(identifier))
         {
             return new PickupItem(identifier, category, _pickupItemData[identifier].Stats);
+        }
+        else if (_splitshotTypes.ContainsKey(identifier))
+        {
+            return new SplitshotItem(identifier, category, _splitshotTypes[identifier]);
         }
         else if (_skillItemData.ContainsKey(identifier))
         {

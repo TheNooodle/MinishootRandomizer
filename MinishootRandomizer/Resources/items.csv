@@ -6,6 +6,7 @@ Ancient Astrolabe,Filler,Default,1,
 Ancient Tablet,Filler,Default,5,LorePickup1
 Bard,Progression,NPC,1,Filler if true ending is not needed
 Beach Map,Filler,Default,1,MapPickupBeach
+Blastshot,Progression,Default,0,SkillSupershot
 Blacksmith,Progression,NPC,1,
 Blue Forest Map,Filler,Default,1,MapPickupForest
 Blue Surf,Progression,Default,0,
@@ -29,6 +30,7 @@ Enchanted Heart,Helpful,Default,1,PickupModuleHeartCrystal
 Enchanted Powers,Helpful,Default,1,PickupModuleFreePower
 Energy Crystal Shard,Helpful,Default,8,
 Explorer,Filler,NPC,1,
+Flameshot,Progression,Default,0,SkillSupershot
 Family Child,Progression,NPC,1,Familly3
 Family Parent 1,Progression,NPC,1,Familly1
 Family Parent 2,Progression,NPC,1,Familly2

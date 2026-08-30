@@ -26,6 +26,7 @@ public class FileSpriteProvider : ISpriteProvider
         { "NpcMarker", new SpriteFileData("npc_marker.png", 148, 172)},
         { "NpcMarkerSimple", new SpriteFileData("npc_marker_simple.png", 148, 172)},
         { "PalmTree", new SpriteFileData("palm_tree.png", 100, 100) },
+        { "Rock", new SpriteFileData("rock.png", 100, 100) },
         { "PrimordialScarabDialog", new SpriteFileData("prim_scarab_dialog.png", 140, 116)},
         { "Scarab", new SpriteFileData("scarab.png", 108, 108)},
         { "ScarabMarker", new SpriteFileData("scarab_marker.png", 132, 156)},
@@ -37,6 +38,7 @@ public class FileSpriteProvider : ISpriteProvider
         { "SpiritMarkerSimple", new SpriteFileData("spirit_marker_simple.png", 148, 172)},
         { "SuperCrystal", new SpriteFileData("super_crystal.png", 92, 92, 1f, -20f) },
         { "Tick", new SpriteFileData("tick.png", 84, 76) },
+        { "TorchLit", new SpriteFileData("torch_lit.png", 100, 100) },
     };
 
     public FileSpriteProvider(ISpriteProvider innerProvider, string rootPath)

@@ -114,3 +114,49 @@ test_cases:
       - location_accessibility:
           location_name: "Dungeon 3 - Central Item"
           expected_accessibility: "inaccessible"
+  - name: "Splitshot enabled, without blastshot"
+    override_settings:
+      split_shot: 'true'
+    add_items:
+      Flameshot: 1
+    tests:
+      - location_accessibility:
+          location_name: "Zelda 1 Grotto - Behind the closed doors"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Forest - Secret pond behind bushes"
+          expected_accessibility: "inaccessible"
+      - region_accessibility:
+          region_name: "Scarab Temple - Back"
+          expected_accessibility: "inaccessible"
+  - name: "Splitshot enabled, without flameshot"
+    override_settings:
+      split_shot: 'true'
+    add_items:
+      Blastshot: 1
+    tests:
+      - location_accessibility:
+          location_name: "Zelda 1 Grotto - Behind the closed doors"
+          expected_accessibility: "inaccessible"
+      - location_accessibility:
+          location_name: "Forest - Secret pond behind bushes"
+          expected_accessibility: "in_logic"
+      - region_accessibility:
+          region_name: "Scarab Temple - Back"
+          expected_accessibility: "inaccessible"
+  - name: "Splitshot enabled, with both blastshot and flameshot"
+    override_settings:
+      split_shot: 'true'
+    add_items:
+      Blastshot: 1
+      Flameshot: 1
+    tests:
+      - location_accessibility:
+          location_name: "Zelda 1 Grotto - Behind the closed doors"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Forest - Secret pond behind bushes"
+          expected_accessibility: "in_logic"
+      - region_accessibility:
+          region_name: "Scarab Temple - Back"
+          expected_accessibility: "in_logic"

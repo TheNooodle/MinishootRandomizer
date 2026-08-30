@@ -28,7 +28,7 @@ public class GiveDebugItemsAction : IPatchAction
 
         PlayerState.SetSkill(Skill.Boost, true);
         PlayerState.SetSkill(Skill.Dash, true);
-        PlayerState.SetSkill(Skill.Supershot, true);
+        // PlayerState.SetSkill(Skill.Supershot, true);
         PlayerState.SetSkill(Skill.Hover, true);
         WorldState.Set($"{WaterType.Normal}HoverUnlocked", true);
         WorldState.Set($"{WaterType.Blue}HoverUnlocked", true);

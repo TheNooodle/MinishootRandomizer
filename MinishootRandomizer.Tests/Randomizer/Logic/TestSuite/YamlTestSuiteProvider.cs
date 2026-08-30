@@ -23,6 +23,7 @@ public class YamlTestSuiteProvider : ITestSuiteProvider
         { "boostless_torch_races", typeof(BoostlessTorchRaces) },
         { "enable_primordial_crystal_logic", typeof(EnablePrimordialCrystalLogic) },
         { "surf_sanity", typeof(SurfSanity) },
+        { "split_shot", typeof(SplitSupershot) },
         { "progressive_dash", typeof(ProgressiveDash) },
         { "dashless_gaps", typeof(DashlessGaps) },
         { "completion_goals", typeof(CompletionGoals) },

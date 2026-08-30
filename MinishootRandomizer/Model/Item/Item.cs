@@ -18,6 +18,7 @@ abstract public class Item
     public const string AncientTablet = "Ancient Tablet";
     public const string Bard = "Bard";
     public const string BeachMap = "Beach Map";
+    public const string Blastshot = "Blastshot";
     public const string Blacksmith = "Blacksmith";
     public const string BlueForestMap = "Blue Forest Map";
     public const string Boost = "Boost";
@@ -41,6 +42,7 @@ abstract public class Item
     public const string EnchantedPowers = "Enchanted Powers";
     public const string EnergyCrystalShard = "Energy Crystal Shard";
     public const string Explorer = "Explorer";
+    public const string Flameshot = "Flameshot";
     public const string FamilyChild = "Family Child";
     public const string FamilyParent1 = "Family Parent 1";
     public const string FamilyParent2 = "Family Parent 2";
