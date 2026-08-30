@@ -15,6 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Will replace filler items
     - Logic has been adjusted to accomodate this new setting.
     - Each surf items will be visible in the inventory.
+- A new setting called "Split Supershot" has been added.
+    - When enabled, the Supershot is broken down into 2 distinct items.
+    - Blastshot allows you to break rocks and walls.
+    - Flameshot allows you to light torches.
+    - Having one these two items will unlock Supershot for combat usage.
+    - When enabled, Supershot and one filler item will be replaced.
+    - Logic has been adjusted to accomodate this new setting.
+    - Both of these items will be visible in the inventory.
 - A new setting called "Primordial Crystal Activation Threshold" has been added.
     - Set the Primordial Crystal activation threshold.
     - If your current HP percentage is greater than or equal to this value and you have the Primordial Crystal, it will activate.

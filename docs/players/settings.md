@@ -9,6 +9,11 @@
 * SurfSanity
     * When enabled, each water type requires its own Surf item to be navigable.
     * When disabled, the normal Surf item unlocks navigation on all water types.
+* SplitSuperShot
+    * When enabled, the Supershot is broken down into 2 distinct items.
+    * Blastshot allows you to break rocks and walls.
+    * Flameshot allows you to light torches.
+    * Having one these two items will unlock Supershot for combat usage.
 * Key Sanity
     * When enabled, all small keys of dungeons will be randomized outside of their respective dungeons.
     * When disabled, the keys will still be randomized within their dungeons.
