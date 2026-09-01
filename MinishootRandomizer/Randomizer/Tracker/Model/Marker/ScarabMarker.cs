@@ -18,9 +18,9 @@ public class ScarabMarker : AbstractMarker
 
     public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker, ILogicStateProvider logicStateProvider)
     {
-        ScarabSanity scarabSanity = engine.GetSetting<ScarabSanity>();
+        ShuffleScarabs shuffleScarabs = engine.GetSetting<ShuffleScarabs>();
         LogicAccessibility newAccessibility = LogicAccessibility.Inaccessible;
-        if (scarabSanity.Enabled)
+        if (shuffleScarabs.Enabled)
         {
             _accessibility = LogicAccessibility.Inaccessible;
             return;

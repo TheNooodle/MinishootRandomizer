@@ -1,12 +1,12 @@
 # Available settings
 
-* NPC Sanity
+* Shuffle NPCs
     * Randomizes all trapped NPCs, which means NPCs are now items, and their previous locations (especially the towers) are now locations to check.
-* Scarab Sanity
+* Shuffle Scarabs
     * Randomizes all 18 scarabs locations, hidden by their respectives destroyable objects. Scarabs will be available as normal pickup items.
-* ShardSanity
+* Shuffle XP Shards
     * Randomizes the XP shards "groups" (not individual crystals). You will be able to receive XP via items.
-* SurfSanity
+* Split Surf
     * When enabled, each water type requires its own Surf item to be navigable.
     * When disabled, the normal Surf item unlocks navigation on all water types.
 * SplitSuperShot
@@ -14,10 +14,10 @@
     * Blastshot allows you to break rocks and walls.
     * Flameshot allows you to light torches.
     * Having one these two items will unlock Supershot for combat usage.
-* Key Sanity
+* Shuffle Small Keys
     * When enabled, all small keys of dungeons will be randomized outside of their respective dungeons.
     * When disabled, the keys will still be randomized within their dungeons.
-* Boss Key Sanity
+* Shuffle Boss Keys
     * Same thing as above, but with boss keys.
 * Show Archipelago item category
     * When enabled, Archipelago items sprites will indicate if its an important item (with an arrow pointing up), an helpful one (with the default icon), or not important (with a black and white sprite).

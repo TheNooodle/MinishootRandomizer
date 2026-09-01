@@ -21,8 +21,8 @@ public class NpcMarker : AbstractMarker
 
     public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker, ILogicStateProvider logicStateProvider)
     {
-        NpcSanity npcSanity = engine.GetSetting<NpcSanity>();
-        if (npcSanity.Enabled)
+        ShuffleNpcs shuffleNpcs = engine.GetSetting<ShuffleNpcs>();
+        if (shuffleNpcs.Enabled)
         {
             _owned = true;
             return;

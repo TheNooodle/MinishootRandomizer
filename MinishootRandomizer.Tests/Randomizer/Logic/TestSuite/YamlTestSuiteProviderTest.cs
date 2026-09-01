@@ -33,9 +33,9 @@ public class YamlTestSuiteProviderTest
         // Assert
         Assert.NotNull(logicTestSuite);
         Assert.Equal(14, logicTestSuite.DefaultSettings.Count);
-        var npcSanitySetting = logicTestSuite.DefaultSettings[0];
-        Assert.IsType<NpcSanity>(npcSanitySetting);
-        Assert.True(((NpcSanity)npcSanitySetting).Enabled);
+        var shuffleNpcsSetting = logicTestSuite.DefaultSettings[0];
+        Assert.IsType<ShuffleNpcs>(shuffleNpcsSetting);
+        Assert.True(((ShuffleNpcs)shuffleNpcsSetting).Enabled);
 
         Assert.Single(logicTestSuite.DefaultItemCounts);
         var superCrystalItem = logicTestSuite.DefaultItemCounts.Keys.First();

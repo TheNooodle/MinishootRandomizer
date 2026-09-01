@@ -469,7 +469,7 @@ public class CoreLogicParser : ILogicParser
 
     private bool CanSurf(LogicParsingParameters parameters, WaterType waterType)
     {
-        SurfSanity setting = parameters.State.GetSetting<SurfSanity>();
+        SplitSurf setting = parameters.State.GetSetting<SplitSurf>();
         if (setting != null && setting.Enabled)
         {
             return parameters.State.HasItem(_itemRepository.Get(GetSurfItem(waterType)));

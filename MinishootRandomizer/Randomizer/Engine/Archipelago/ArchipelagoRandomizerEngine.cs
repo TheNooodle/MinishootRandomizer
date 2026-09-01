@@ -176,12 +176,12 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
     {
         _settings = new()
         {
-            { typeof(NpcSanity), new NpcSanity(GetBooleanSettingValue("npc_sanity")) },
-            { typeof(ScarabSanity), new ScarabSanity(GetBooleanSettingValue("scarab_sanity")) },
-            { typeof(ShardSanity), new ShardSanity(GetBooleanSettingValue("shard_sanity")) },
-            { typeof(SpiritSanity), new SpiritSanity(GetBooleanSettingValue("spirit_sanity")) },
-            { typeof(KeySanity), new KeySanity(GetBooleanSettingValue("key_sanity")) },
-            { typeof(BossKeySanity), new BossKeySanity(GetBooleanSettingValue("boss_key_sanity")) },
+            { typeof(ShuffleNpcs), new ShuffleNpcs(GetBooleanSettingValue("shuffle_npcs")) },
+            { typeof(ShuffleScarabs), new ShuffleScarabs(GetBooleanSettingValue("shuffle_scarabs")) },
+            { typeof(ShuffleXpShards), new ShuffleXpShards(GetBooleanSettingValue("shuffle_xp_shards")) },
+            { typeof(ShuffleSpirits), new ShuffleSpirits(GetBooleanSettingValue("shuffle_spirits")) },
+            { typeof(ShuffleSmallKeys), new ShuffleSmallKeys(GetBooleanSettingValue("shuffle_small_keys")) },
+            { typeof(ShuffleBossKeys), new ShuffleBossKeys(GetBooleanSettingValue("shuffle_boss_keys")) },
             { typeof(TrapItemsAppearance), new TrapItemsAppearance(GetEnumSettingValue("trap_items_appearance", TrapItemsAppearanceValue.Anything)) },
             { typeof(ShowArchipelagoItemCategory), new ShowArchipelagoItemCategory(GetBooleanSettingValue("show_archipelago_item_category")) },
             { typeof(ShopCostModifier), new ShopCostModifier(GetNumericSettingValue("shop_cost_modifier", 100)) },
@@ -194,7 +194,7 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(GetBooleanSettingValue("boostless_torch_races")) },
             { typeof(EnablePrimordialCrystalLogic), new EnablePrimordialCrystalLogic(GetBooleanSettingValue("enable_primordial_crystal_logic")) },
             { typeof(PrimordialCrystalActivationThreshold), new PrimordialCrystalActivationThreshold(GetNumericSettingValue("primordial_crystal_activation_threshold", 100)) },
-            { typeof(SurfSanity), new SurfSanity(GetBooleanSettingValue("surf_sanity")) },
+            { typeof(SplitSurf), new SplitSurf(GetBooleanSettingValue("split_surf")) },
             { typeof(SplitSupershot), new SplitSupershot(GetBooleanSettingValue("split_supershot")) },
             { typeof(DashlessGaps), new DashlessGaps(GetEnumSettingValue("dashless_gaps", DashlessGapsValue.NeedsDash)) },
             { typeof(CompletionGoals), new CompletionGoals(GetEnumSettingValue("completion_goals", Goals.Dungeon5)) },
@@ -316,19 +316,19 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             LocationPool.Goal
         };
 
-        if (GetSetting<NpcSanity>().Enabled)
+        if (GetSetting<ShuffleNpcs>().Enabled)
         {
             _locationPools.Add(LocationPool.Npc);
         }
-        if (GetSetting<ScarabSanity>().Enabled)
+        if (GetSetting<ShuffleScarabs>().Enabled)
         {
             _locationPools.Add(LocationPool.Scarab);
         }
-        if (GetSetting<ShardSanity>().Enabled)
+        if (GetSetting<ShuffleXpShards>().Enabled)
         {
             _locationPools.Add(LocationPool.XpCrystals);
         }
-        if (GetSetting<SpiritSanity>().Enabled)
+        if (GetSetting<ShuffleSpirits>().Enabled)
         {
             _locationPools.Add(LocationPool.Spirit);
         }

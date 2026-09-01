@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- A new setting called "Surf Sanity" has been added.
+- A new setting called "Split Surf" has been added.
     - When enabled, each water type requires its own Surf item to be navigable.
     - When disabled, the normal Surf item unlocks navigation on all water types.
-    - Will replace filler items
+    - Will replace Surf and 4 filler items.
     - Logic has been adjusted to accomodate this new setting.
     - Each surf items will be visible in the inventory.
 - A new setting called "Split Supershot" has been added.
@@ -31,6 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **IMPORTANT** Some settings and location names have been renamed. See [docs/dev/history/0-6-0-renames.md](docs/dev/history/0-6-0-renames.md) for the full list.
+    - This means that you must change your YAML settings file for Archipelago. Refer to the file above for the replacements.
 - Fixed "Dungeon 3 - Behind North West doors" logic : now properly check for a way to use springboards
     - Necessary to unlock the door to said location.
 - When the goal is set to "Spirit Tower", the Golden Crystal Heart will now replace a filler item, instead of an Ancient Tablet.

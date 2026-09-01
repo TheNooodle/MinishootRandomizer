@@ -15,15 +15,15 @@ public class RaceListener
 
     public void OnRaceWon(int raceIndex)
     {
-        // If SpiritSanity is not enabled, we must re-establish the vanilla behavior
-        SpiritSanity spiritSanity = _randomizerEngine.GetSetting<SpiritSanity>();
-        if (!spiritSanity.Enabled)
+        // If ShuffleSpirits is not enabled, we must re-establish the vanilla behavior
+        ShuffleSpirits shuffleSpirits = _randomizerEngine.GetSetting<ShuffleSpirits>();
+        if (!shuffleSpirits.Enabled)
         {
             WorldState.Set("NpcTiny" + raceIndex, true);
             return;
         }
 
-        // If SpiritSanity is enabled, we give the corresponding item.
+        // If ShuffleSpirits is enabled, we give the corresponding item.
         string locationName = SpiritLocation.IndexToNameMap[raceIndex];
         Location location = _locationRepository.Get(locationName);
         Item item = _randomizerEngine.CheckLocation(location);

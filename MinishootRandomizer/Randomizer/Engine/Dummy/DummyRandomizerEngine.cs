@@ -12,12 +12,12 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
     private Dictionary<Type, ISetting> _settings = new()
     {
-        { typeof(NpcSanity), new NpcSanity(true) },
-        { typeof(ScarabSanity), new ScarabSanity(false) },
-        { typeof(ShardSanity), new ShardSanity(true) },
-        { typeof(SpiritSanity), new SpiritSanity(true) },
-        { typeof(KeySanity), new KeySanity(true) },
-        { typeof(BossKeySanity), new BossKeySanity(true) },
+        { typeof(ShuffleNpcs), new ShuffleNpcs(true) },
+        { typeof(ShuffleScarabs), new ShuffleScarabs(false) },
+        { typeof(ShuffleXpShards), new ShuffleXpShards(true) },
+        { typeof(ShuffleSpirits), new ShuffleSpirits(true) },
+        { typeof(ShuffleSmallKeys), new ShuffleSmallKeys(true) },
+        { typeof(ShuffleBossKeys), new ShuffleBossKeys(true) },
         { typeof(TrapItemsAppearance), new TrapItemsAppearance(TrapItemsAppearanceValue.MajorItems) },
         { typeof(ShopCostModifier), new ShopCostModifier(50) },
         { typeof(ScarabItemsCost), new ScarabItemsCost(2) },
@@ -30,7 +30,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(BoostlessTorchRaces), new BoostlessTorchRaces(true) },
         { typeof(EnablePrimordialCrystalLogic), new EnablePrimordialCrystalLogic(false) },
         { typeof(PrimordialCrystalActivationThreshold), new PrimordialCrystalActivationThreshold(50) },
-        { typeof(SurfSanity), new SurfSanity(true) },
+        { typeof(SplitSurf), new SplitSurf(true) },
         { typeof(SplitSupershot), new SplitSupershot(true) },
         { typeof(DashlessGaps), new DashlessGaps(DashlessGapsValue.NeedsDash) },
         { typeof(CompletionGoals), new CompletionGoals(Goals.SpiritTower) },
@@ -120,19 +120,19 @@ public class DummyRandomizerEngine : IRandomizerEngine
             LocationPool.Goal
         };
 
-        if (GetSetting<NpcSanity>().Enabled)
+        if (GetSetting<ShuffleNpcs>().Enabled)
         {
             pools.Add(LocationPool.Npc);
         }
-        if (GetSetting<ScarabSanity>().Enabled)
+        if (GetSetting<ShuffleScarabs>().Enabled)
         {
             pools.Add(LocationPool.Scarab);
         }
-        if (GetSetting<ShardSanity>().Enabled)
+        if (GetSetting<ShuffleXpShards>().Enabled)
         {
             pools.Add(LocationPool.XpCrystals);
         }
-        if (GetSetting<SpiritSanity>().Enabled)
+        if (GetSetting<ShuffleSpirits>().Enabled)
         {
             pools.Add(LocationPool.Spirit);
         }

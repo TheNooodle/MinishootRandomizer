@@ -2,7 +2,7 @@ using HarmonyLib;
 
 namespace MinishootRandomizer;
 
-public class SurfSanityHarmonyPatcher
+public class SplitSurfHarmonyPatcher
 {
     [HarmonyPatch(typeof(PlayerControl))]
     [HarmonyPatch("MiniUpdate", MethodType.Normal)]
@@ -11,7 +11,7 @@ public class SurfSanityHarmonyPatcher
         public static void Postfix(PlayerControl __instance)
         {
             IRandomizerEngine randomizerEngine = Plugin.ServiceContainer.Get<IRandomizerEngine>();
-            if (!randomizerEngine.IsRandomized() || !randomizerEngine.GetSetting<SurfSanity>().Enabled)
+            if (!randomizerEngine.IsRandomized() || !randomizerEngine.GetSetting<SplitSurf>().Enabled)
             {
                 return;
             }

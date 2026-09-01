@@ -12,7 +12,7 @@ public class ItemViewsPatcher
     bool _isPatched = false;
     private List<IPatchAction> _patchActions = new();
 
-    private static readonly List<ItemView> _surfSanityItemViews = new()
+    private static readonly List<ItemView> _splitSurfItemViews = new()
     {
         new ItemView("PalmTree", Item.SurfNormal, new Vector2(-52, -27), new Vector2(30, 30), new ByName("SkillViewHover")),
         new ItemView("BlueCrystal", Item.SurfBlue, new Vector2(-52, 29), new Vector2(30, 30), new ByName("SkillViewHover")),
@@ -60,11 +60,11 @@ public class ItemViewsPatcher
 
     private void Patch()
     {
-        // Surf Sanity icons
-        SurfSanity surfSanity = _randomizerEngine.GetSetting<SurfSanity>();
-        if (surfSanity.Enabled)
+        // Split Surf icons
+        SplitSurf splitSurf = _randomizerEngine.GetSetting<SplitSurf>();
+        if (splitSurf.Enabled)
         {
-            foreach (ItemView itemView in _surfSanityItemViews)
+            foreach (ItemView itemView in _splitSurfItemViews)
             {
                 IPatchAction patchAction = new LoggableAction(
                     new CreateItemViewAction(itemView, _itemViewFactory),
