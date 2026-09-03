@@ -4,7 +4,7 @@ public enum LocationPool
 {
     Default,
     XpCrystals,
-    Npc,
+    TownNpc,
     Scarab,
     Spirit,
     DungeonSmallKey,

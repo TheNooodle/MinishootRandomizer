@@ -76,7 +76,7 @@ namespace MinishootRandomizer
             {
                 "Default" => LocationPool.Default,
                 "XP Crystals" => LocationPool.XpCrystals,
-                "NPC" => LocationPool.Npc,
+                "Town NPC" => LocationPool.TownNpc,
                 "Scarab" => LocationPool.Scarab,
                 "Spirit" => LocationPool.Spirit,
                 "Dungeon Small Key" => LocationPool.DungeonSmallKey,

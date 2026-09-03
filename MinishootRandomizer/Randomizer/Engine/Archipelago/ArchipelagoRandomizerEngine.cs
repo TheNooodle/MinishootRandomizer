@@ -318,7 +318,7 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
 
         if (GetSetting<ShuffleNpcs>().Enabled)
         {
-            _locationPools.Add(LocationPool.Npc);
+            _locationPools.Add(LocationPool.TownNpc);
         }
         if (GetSetting<ShuffleScarabs>().Enabled)
         {

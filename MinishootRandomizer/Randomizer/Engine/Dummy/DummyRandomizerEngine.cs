@@ -122,7 +122,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
         if (GetSetting<ShuffleNpcs>().Enabled)
         {
-            pools.Add(LocationPool.Npc);
+            pools.Add(LocationPool.TownNpc);
         }
         if (GetSetting<ShuffleScarabs>().Enabled)
         {
@@ -301,9 +301,9 @@ Forest - Secret pond bush: XP Crystals x5
 Forest - Secret within Secret: Spirit
 Forest - Tunnel below big tree enemy: XP Crystals x10
 Forest Grotto - After ramp: Progressive Cannon
-Forest Shop 1: XP Crystals x25
-Forest Shop 2: HP Crystal Shard
-Forest Shop 3: XP Crystals x15
+Forest Shop Item for sale 1: XP Crystals x25
+Forest Shop Item for sale 2: HP Crystal Shard
+Forest Shop Item for sale 3: XP Crystals x15
 Forest Shop Race - Reward: HP Crystal Shard
 Green - Behind Closed Arena: Overcharge
 Green - Bridge Shortcut: Progressive Cannon
@@ -322,9 +322,9 @@ Green Grotto - Before race: HP Crystal Shard
 Green Grotto - Corner: XP Crystals x60
 Green Grotto - Drop: Scarab
 Green Grotto - Race Reward: XP Crystals x55
-Jar Shop 1: Lucky Heart
-Jar Shop 2: Primordial Scarab Dialog
-Jar Shop 3: Energy Crystal Shard
+Jar Shop Item for sale 1: Lucky Heart
+Jar Shop Item for sale 2: Primordial Scarab Dialog
+Jar Shop Item for sale 3: Energy Crystal Shard
 Junkyard - East pond: XP Crystals x20
 Junkyard - Inside Sunken City: XP Crystals x75
 Junkyard - South East: XP Crystals x10
@@ -377,25 +377,25 @@ Swamp - South West Island Hidden in trees Item: XP Crystals x20
 Swamp - Under rocks: XP Crystals x15
 Swamp Jumps Grotto - Drop: Vengeful Talisman
 Swamp Race - Reward: Scarab
-Swamp Shop 1: XP Crystals x65
-Swamp Shop 2: Scarab
-Swamp Shop 3: XP Crystals x10
+Swamp Shop Item for sale 1: XP Crystals x65
+Swamp Shop Item for sale 2: Scarab
+Swamp Shop Item for sale 3: XP Crystals x10
 Swamp Shop Extra: XP Crystals x5
 Swamp Tower - Top of tower: XP Crystals x45
-Town - Blacksmith Item 1: HP Crystal Shard
-Town - Blacksmith Item 2: XP Crystals x15
-Town - Blacksmith Item 3: XP Crystals x60
-Town - Blacksmith Item 4: Scarab
-Town - Merchant Item 1: XP Crystals x100
-Town - Merchant Item 2: HP Crystal Shard
-Town - Merchant Item 3: Small Key (Dungeon 3)
+Town - Blacksmith Item for sale 1: HP Crystal Shard
+Town - Blacksmith Item for sale 2: XP Crystals x15
+Town - Blacksmith Item for sale 3: XP Crystals x60
+Town - Blacksmith Item for sale 4: Scarab
+Town - Merchant Item for sale 1: XP Crystals x100
+Town - Merchant Item for sale 2: HP Crystal Shard
+Town - Merchant Item for sale 3: Small Key (Dungeon 3)
 Town - Plaza: Blue Surf
-Town - Scarab Collector Item 1: XP Crystals x70
-Town - Scarab Collector Item 2: Primordial Scarab Dialog
-Town - Scarab Collector Item 3: XP Crystals x40
-Town - Scarab Collector Item 4: Scarab
-Town - Scarab Collector Item 5: XP Crystals x20
-Town - Scarab Collector Item 6: Restoration Enhancer
+Town - Scarab Collector Item for sale 1: XP Crystals x70
+Town - Scarab Collector Item for sale 2: Primordial Scarab Dialog
+Town - Scarab Collector Item for sale 3: XP Crystals x40
+Town - Scarab Collector Item for sale 4: Scarab
+Town - Scarab Collector Item for sale 5: XP Crystals x20
+Town - Scarab Collector Item for sale 6: Restoration Enhancer
 Town Pillars - Hidden below bridge: Scarab
 Town Pillars - Hidden Pond: Small Key (Dungeon 1)
 Town Pillars Grotto - Reward: XP Crystals x20

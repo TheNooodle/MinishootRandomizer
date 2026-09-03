@@ -1,13 +1,13 @@
 ﻿Name,Category,Item pool,Count,Notes
 Abyss Map,Filler,Default,1,MapPickupAbyss
-Academician,Filler,NPC,1,Academician
+Academician,Filler,Town NPC,1,Academician
 Advanced Energy,Helpful,Default,1,PickupModuleBoostCost
 Ancient Astrolabe,Filler,Default,1,
 Ancient Tablet,Filler,Default,5,LorePickup1
-Bard,Progression,NPC,1,Filler if true ending is not needed
+Bard,Progression,Town NPC,1,Filler if true ending is not needed
 Beach Map,Filler,Default,1,MapPickupBeach
-Blastshot,Progression,Default,0,SkillSupershot
-Blacksmith,Progression,NPC,1,
+Blacksmith,Progression,Town NPC,1,
+Blastshot,Progression,Default,0,
 Blue Forest Map,Filler,Default,1,MapPickupForest
 Blue Surf,Progression,Default,0,
 Boost,Progression,Default,1,
@@ -29,22 +29,22 @@ Dungeon 4 Reward,Progression,Dungeon Reward,1,
 Enchanted Heart,Helpful,Default,1,PickupModuleHeartCrystal
 Enchanted Powers,Helpful,Default,1,PickupModuleFreePower
 Energy Crystal Shard,Helpful,Default,8,
-Explorer,Filler,NPC,1,
-Flameshot,Progression,Default,0,SkillSupershot
-Family Child,Progression,NPC,1,Familly3
-Family Parent 1,Progression,NPC,1,Familly1
-Family Parent 2,Progression,NPC,1,Familly2
+Explorer,Filler,Town NPC,1,
+Family Child,Progression,Town NPC,1,Familly3
+Family Parent 1,Progression,Town NPC,1,Familly1
+Family Parent 2,Progression,Town NPC,1,Familly2
+Flameshot,Progression,Default,0,
 Golden Crystal Heart,Progression,Goal,0,
 Golden Surf,Progression,Default,0,
 Green Map,Filler,Default,1,
-Healer,Helpful,NPC,1,Healer
+Healer,Helpful,Town NPC,1,Healer
 HP Crystal Shard,Helpful,Default,28,
 Idol of protection,Helpful,Default,1,PickupModuleIdolBomb!!! Sprite
 Idol of spirits,Helpful,Default,1,PickupModuleIdolAlly
 Idol of time,Helpful,Default,1,PickupModuleIdolSlow
 Junkyard Map,Filler,Default,1,MapPickupJunkyard
 Lucky Heart,Helpful,Default,1,PickupModuleHpDrop
-Merchant,Progression,NPC,1,
+Merchant,Progression,Town NPC,1,
 Overcharge,Helpful,Default,1,PickupModuleOvercharge
 Power of protection,Progression,Default,1,CavePowerBombLevel0
 Power of spirits,Helpful,Default,1,Temple3PowerAllyLevel0
@@ -55,7 +55,7 @@ Progressive Cannon,Progression,Default,5,
 Progressive Dash,Progression,Default,0,
 Restoration Enhancer,Helpful,Default,1,
 Scarab,Token,Scarab,18,
-Scarab Collector,Progression,NPC,1,
+Scarab Collector,Progression,Town NPC,1,
 Scarab Key,Progression,Default,1,PickupKeyScarab
 Small Key (Dungeon 1),Progression,Dungeon Small Key,4,
 Small Key (Dungeon 2),Progression,Dungeon Small Key,4,Dungeon2CrystalKey0

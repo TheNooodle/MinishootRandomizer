@@ -169,32 +169,32 @@ namespace MinishootRandomizer
 
         private static Dictionary<string, LinearShopLocationReplacementData> _linearShopLocationToReplacementData = new()
         {
-            {"Town - Blacksmith Item 1", new LinearShopLocationReplacementData("Blacksmith", 5, Currency.SuperCrystal)},
-            {"Town - Blacksmith Item 2", new LinearShopLocationReplacementData("Blacksmith", 22, Currency.SuperCrystal)},
-            {"Town - Blacksmith Item 3", new LinearShopLocationReplacementData("Blacksmith", 65, Currency.SuperCrystal)},
-            {"Town - Blacksmith Item 4", new LinearShopLocationReplacementData("Blacksmith", 120, Currency.SuperCrystal)},
-            {"Town - Scarab Collector Item 1", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
-            {"Town - Scarab Collector Item 2", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
-            {"Town - Scarab Collector Item 3", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
-            {"Town - Scarab Collector Item 4", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
-            {"Town - Scarab Collector Item 5", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
-            {"Town - Scarab Collector Item 6", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
+            {"Town - Blacksmith Item for sale 1", new LinearShopLocationReplacementData("Blacksmith", 5, Currency.SuperCrystal)},
+            {"Town - Blacksmith Item for sale 2", new LinearShopLocationReplacementData("Blacksmith", 22, Currency.SuperCrystal)},
+            {"Town - Blacksmith Item for sale 3", new LinearShopLocationReplacementData("Blacksmith", 65, Currency.SuperCrystal)},
+            {"Town - Blacksmith Item for sale 4", new LinearShopLocationReplacementData("Blacksmith", 120, Currency.SuperCrystal)},
+            {"Town - Scarab Collector Item for sale 1", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
+            {"Town - Scarab Collector Item for sale 2", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
+            {"Town - Scarab Collector Item for sale 3", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
+            {"Town - Scarab Collector Item for sale 4", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
+            {"Town - Scarab Collector Item for sale 5", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
+            {"Town - Scarab Collector Item for sale 6", new LinearShopLocationReplacementData("ScarabCollector", 3, Currency.Scarab)},
         };
 
         private static Dictionary<string, ChoiceShopLocationReplacementData> _choiceShopLocationToReplacementData = new()
         {
-            {"Forest Shop 1", new ChoiceShopLocationReplacementData("MercantBusher", 7, Currency.SuperCrystal, "CaveEnergy0")},
-            {"Forest Shop 2", new ChoiceShopLocationReplacementData("MercantBusher", 12, Currency.SuperCrystal, "PickupModuleXpGain")},
-            {"Forest Shop 3", new ChoiceShopLocationReplacementData("MercantBusher", 4, Currency.SuperCrystal, "LorePickup1")},
-            {"Jar Shop 1", new ChoiceShopLocationReplacementData("MercantJar", 5, Currency.SuperCrystal, "CaveHp5")},
-            {"Jar Shop 2", new ChoiceShopLocationReplacementData("MercantJar", 10, Currency.SuperCrystal, "PickupModuleBoostCost")},
-            {"Jar Shop 3", new ChoiceShopLocationReplacementData("MercantJar", 5, Currency.SuperCrystal, "MapPickupForest")},
-            {"Swamp Shop 1", new ChoiceShopLocationReplacementData("MercantFrogger", 5, Currency.SuperCrystal, "MapPickupSwamp")},
-            {"Swamp Shop 2", new ChoiceShopLocationReplacementData("MercantFrogger", 15, Currency.SuperCrystal, "PickupModuleHpDrop")},
-            {"Swamp Shop 3", new ChoiceShopLocationReplacementData("MercantFrogger", 14, Currency.SuperCrystal, "LorePickup3")},
-            {"Town - Merchant Item 1", new ChoiceShopLocationReplacementData("MercantHub", 65, Currency.SuperCrystal, "PickupModuleCompass")},
-            {"Town - Merchant Item 2", new ChoiceShopLocationReplacementData("MercantHub", 2, Currency.SuperCrystal, "PickupModuleCollectableScan")},
-            {"Town - Merchant Item 3", new ChoiceShopLocationReplacementData("MercantHub", 18, Currency.SuperCrystal, "PickupModuleTeleport")},
+            {"Forest Shop Item for sale 1", new ChoiceShopLocationReplacementData("MercantBusher", 7, Currency.SuperCrystal, "CaveEnergy0")},
+            {"Forest Shop Item for sale 2", new ChoiceShopLocationReplacementData("MercantBusher", 12, Currency.SuperCrystal, "PickupModuleXpGain")},
+            {"Forest Shop Item for sale 3", new ChoiceShopLocationReplacementData("MercantBusher", 4, Currency.SuperCrystal, "LorePickup1")},
+            {"Jar Shop Item for sale 1", new ChoiceShopLocationReplacementData("MercantJar", 5, Currency.SuperCrystal, "CaveHp5")},
+            {"Jar Shop Item for sale 2", new ChoiceShopLocationReplacementData("MercantJar", 10, Currency.SuperCrystal, "PickupModuleBoostCost")},
+            {"Jar Shop Item for sale 3", new ChoiceShopLocationReplacementData("MercantJar", 5, Currency.SuperCrystal, "MapPickupForest")},
+            {"Swamp Shop Item for sale 1", new ChoiceShopLocationReplacementData("MercantFrogger", 5, Currency.SuperCrystal, "MapPickupSwamp")},
+            {"Swamp Shop Item for sale 2", new ChoiceShopLocationReplacementData("MercantFrogger", 15, Currency.SuperCrystal, "PickupModuleHpDrop")},
+            {"Swamp Shop Item for sale 3", new ChoiceShopLocationReplacementData("MercantFrogger", 14, Currency.SuperCrystal, "LorePickup3")},
+            {"Town - Merchant Item for sale 1", new ChoiceShopLocationReplacementData("MercantHub", 65, Currency.SuperCrystal, "PickupModuleCompass")},
+            {"Town - Merchant Item for sale 2", new ChoiceShopLocationReplacementData("MercantHub", 2, Currency.SuperCrystal, "PickupModuleCollectableScan")},
+            {"Town - Merchant Item for sale 3", new ChoiceShopLocationReplacementData("MercantHub", 18, Currency.SuperCrystal, "PickupModuleTeleport")},
         };
 
         private static Dictionary<string, DestroyableReplacementData> _destroyableLocationToSelector = new()

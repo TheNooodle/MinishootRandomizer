@@ -13,7 +13,7 @@ Abyss Ruined shop - Item,Abyss Map,Default,Ruined shop,true
 Abyss Shack - Hidden corridor,XP Crystals x10,XP Crystals,Abyss - Village Shack,can_destroy_crystals
 Abyss Shack - Hidden room,HP Crystal Shard,Default,Abyss - Village Shack,can_destroy_crystals
 Abyss Shack - Under pot,Scarab,Scarab,Abyss - Village Shack,can_destroy_pots
-Abyss Tower - Top of tower,Family Parent 2,NPC,Abyss Tower,can_fight_lvl4
+Abyss Tower - Top of tower,Family Parent 2,Town NPC,Abyss Tower,can_fight_lvl4
 Beach - Coast Hidden by plants,XP Crystals x15,XP Crystals,Beach - Coast,true
 Beach - Coast North hidden alcove,XP Crystals x20,XP Crystals,Beach - Swamp Entrance,true
 Beach - Coast South hidden alcove,XP Crystals x30,XP Crystals,Beach - Coast,true
@@ -33,11 +33,11 @@ Crystal Grove Temple - East tunnels,XP Crystals x20,XP Crystals,Crystal Grove Te
 Crystal Grove Temple - North east hidden room,XP Crystals x85,XP Crystals,Crystal Grove Temple - East wing,true
 Crystal Grove Temple - South West Hidden pond,HP Crystal Shard,Default,Crystal Grove Temple - West wing,can_cross_gaps or can_surf_normal
 Crystal Grove Temple - West pot,Scarab,Scarab,Crystal Grove Temple - West wing,can_cross_gaps and can_fight_lvl2 or can_surf_normal and can_fight_lvl2
-Crystal Grove Tower - Top of tower,Scarab Collector,NPC,Crystal Grove Tower,can_fight_lvl3
+Crystal Grove Tower - Top of tower,Scarab Collector,Town NPC,Crystal Grove Tower,can_fight_lvl3
 Desert - North east platforms,Energy Crystal Shard,Default,Desert,can_cross_gaps or can_surf_normal
 Desert - On the river,XP Crystals x15,XP Crystals,Desert,can_cross_gaps or can_surf_normal
 Desert - Under ruins,Desert Map,Default,Desert,can_destroy_ruins
-Desert Grotto - Both torches lighted,Family Parent 1,NPC,Desert Grotto - Main,can_light_desert_grotto_torches
+Desert Grotto - Both torches lighted,Family Parent 1,Town NPC,Desert Grotto - Main,can_light_desert_grotto_torches
 Desert Race - Reward,Spirit,Spirit,Desert Race,can_use_springboards and can_race_spirits
 Desert Temple - Boss reward,Power of time,Default,Desert Temple,can_cross_gaps and can_fight_lvl3 and can_light_torches and can_destroy_crystals
 Desert Temple - North East pot,Scarab,Scarab,Desert Temple,can_light_torches and can_cross_gaps and can_fight_lvl3 and can_destroy_crystals
@@ -103,7 +103,7 @@ Family House Cave - Sewers,XP Crystals x35,XP Crystals,Family House Cave - Main,
 Forest - Boss Reward,Vengeful Talisman,Default,Forest - South,can_fight_lvl3
 Forest - Bush behind tree,XP Crystals x5,XP Crystals,Forest - West,can_destroy_bushes
 Forest - Enemy tree near Beach,HP Crystal Shard,Default,Forest - North,can_cross_gaps and can_fight_lvl3 or can_surf_normal and can_fight_lvl3
-Forest - Far South East,Bard,NPC,Forest - South,true
+Forest - Far South East,Bard,Town NPC,Forest - South,true
 Forest - Faraway island extra,XP Crystals x30,XP Crystals,Forest - South,can_surf_blue
 Forest - Faraway island item,Ancient Tablet,Default,Forest - South,can_surf_blue
 Forest - Hidden east tunnel,HP Crystal Shard,Default,Forest - South,true
@@ -112,10 +112,10 @@ Forest - Secret pond behind bushes,HP Crystal Shard,Default,Forest - Secret Path
 Forest - Secret pond bush,Scarab,Scarab,Forest - Secret Path,can_destroy_bushes
 Forest - Secret within Secret,Energy Crystal Shard,Default,Forest - Secret Path,true
 Forest - Tunnel below big tree enemy,XP Crystals x45,XP Crystals,Forest - South,can_fight_lvl3
-Forest Grotto - After ramp,Explorer,NPC,Forest Grotto - West,true
-Forest Shop 1,Energy Crystal Shard,Default,Forest Shop,can_obtain_super_crystals(7)
-Forest Shop 2,Restoration Enhancer,Default,Forest Shop,can_obtain_super_crystals(12)
-Forest Shop 3,Ancient Tablet,Default,Forest Shop,can_obtain_super_crystals(4)
+Forest Grotto - After ramp,Explorer,Town NPC,Forest Grotto - West,true
+Forest Shop Item for sale 1,Energy Crystal Shard,Default,Forest Shop,can_obtain_super_crystals(7)
+Forest Shop Item for sale 2,Restoration Enhancer,Default,Forest Shop,can_obtain_super_crystals(12)
+Forest Shop Item for sale 3,Ancient Tablet,Default,Forest Shop,can_obtain_super_crystals(4)
 Forest Shop Race - Reward,Spirit,Spirit,Forest Shop Race,can_use_springboards and can_race_spirits
 Green - Behind Closed Arena,XP Crystals x50,XP Crystals,Green - Town,can_surf_normal
 Green - Bridge Shortcut,XP Crystals x10,XP Crystals,Green - Town,can_fight
@@ -129,14 +129,14 @@ Green - Hidden before Island Arena,HP Crystal Shard,Default,Green - Town,can_fig
 Green - Island Arena Item,Boost,Default,Green - Island Arena,can_fight
 Green - Outside Dungeon 1 Cave,HP Crystal Shard,Default,Green - Outside Dungeon 1 Cave,true
 Green - River near Forest Entrance,Energy Crystal Shard,Default,Green - Crystal Grove,can_surf_normal
-Green - Shortcut to Town Pillars,Merchant,NPC,Green - Crystal Grove,true
+Green - Shortcut to Town Pillars,Merchant,Town NPC,Green - Crystal Grove,true
 Green Grotto - Before race,XP Crystals x25,XP Crystals,Green Grotto,can_fight
 Green Grotto - Corner,XP Crystals x15,XP Crystals,Green Grotto,true
 Green Grotto - Drop,Crystal Bullet,Default,Green Grotto - Drop,true
 Green Grotto - Race Reward,Spirit,Spirit,Green Grotto,can_race_spirits
-Jar Shop 1,HP Crystal Shard,Default,Jar Shop,can_obtain_super_crystals(5)
-Jar Shop 2,Advanced Energy,Default,Jar Shop,can_obtain_super_crystals(10)
-Jar Shop 3,Blue Forest Map,Default,Jar Shop,can_obtain_super_crystals(5)
+Jar Shop Item for sale 1,HP Crystal Shard,Default,Jar Shop,can_obtain_super_crystals(5)
+Jar Shop Item for sale 2,Advanced Energy,Default,Jar Shop,can_obtain_super_crystals(10)
+Jar Shop Item for sale 3,Blue Forest Map,Default,Jar Shop,can_obtain_super_crystals(5)
 Junkyard - East pond,XP Crystals x65,XP Crystals,Junkyard - North,can_cross_gaps or can_surf_soiled
 Junkyard - Inside Sunken City,XP Crystals x65,XP Crystals,Junkyard - South,can_cross_gaps and can_surf_soiled
 Junkyard - South East,XP Crystals x25,XP Crystals,Junkyard - South,true
@@ -146,7 +146,7 @@ Primordial Cave - Meet the Primordial Scarab,Primordial Crystal,Default,Primordi
 Scarab Temple - After race 1,XP Crystals x65,XP Crystals,Scarab Temple - After Race,true
 Scarab Temple - After race 2,XP Crystals x100,XP Crystals,Scarab Temple - After Race,true
 Scarab Temple - After race 3,XP Crystals x70,XP Crystals,Scarab Temple - After Race,true
-Scarab Temple - Backroom,Academician,NPC,Scarab Temple - Back,can_fight_lvl3 and can_cross_gaps
+Scarab Temple - Backroom,Academician,Town NPC,Scarab Temple - Back,can_fight_lvl3 and can_cross_gaps
 Scarab Temple - Bottom Left Torch Item,XP Crystals x60,XP Crystals,Scarab Temple - Bottom Left Torch,true
 Scarab Temple - Central Item,Scarab Key,Default,Scarab Temple - Bottom Right Torch,can_light_all_scarab_temple_torches
 Scarab Temple - East side,XP Crystals x75,XP Crystals,Scarab Temple - Top Right Torch,can_destroy_walls
@@ -190,26 +190,26 @@ Swamp - South West Island Hidden in trees Item,Energy Crystal Shard,Default,Swam
 Swamp - Under rocks,HP Crystal Shard,Default,Swamp - Turtle's domain,can_cross_gaps and can_destroy_rocks and can_destroy_walls or can_surf_normal and can_destroy_rocks
 Swamp Jumps Grotto - Drop,HP Crystal Shard,Default,Swamp Jumps Grotto Drop,true
 Swamp Race - Reward,Spirit,Spirit,Swamp Race,can_race_spirits
-Swamp Shop 1,Swamp Map,Default,Swamp Shop,can_obtain_super_crystals(5)
-Swamp Shop 2,Lucky Heart,Default,Swamp Shop,can_obtain_super_crystals(15)
-Swamp Shop 3,Ancient Tablet,Default,Swamp Shop,can_obtain_super_crystals(14)
 Swamp Shop Extra,XP Crystals x35,XP Crystals,Swamp Shop,true
-Swamp Tower - Top of tower,Family Child,NPC,Swamp Tower,can_fight_lvl2 and can_surf_normal or can_fight_lvl2 and can_cross_gaps and can_use_springboards
-Town - Blacksmith Item 1,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(5)
-Town - Blacksmith Item 2,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(27)
-Town - Blacksmith Item 3,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(92)
-Town - Blacksmith Item 4,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(212)
-Town - Merchant Item 1,Ancient Astrolabe,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(65)
-Town - Merchant Item 2,Compass,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(2)
-Town - Merchant Item 3,Village Star,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(18)
-Town - Plaza,Blacksmith,NPC,Green - Town,true
-Town - Scarab Collector Item 1,Idol of protection,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_1
-Town - Scarab Collector Item 2,HP Crystal Shard,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_2
-Town - Scarab Collector Item 3,Idol of time,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_3
-Town - Scarab Collector Item 4,HP Crystal Shard,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_4
-Town - Scarab Collector Item 5,Idol of spirits,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_5
-Town - Scarab Collector Item 6,Enchanted Powers,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_6
+Swamp Shop Item for sale 1,Swamp Map,Default,Swamp Shop,can_obtain_super_crystals(5)
+Swamp Shop Item for sale 2,Lucky Heart,Default,Swamp Shop,can_obtain_super_crystals(15)
+Swamp Shop Item for sale 3,Ancient Tablet,Default,Swamp Shop,can_obtain_super_crystals(14)
+Swamp Tower - Top of tower,Family Child,Town NPC,Swamp Tower,can_fight_lvl2 and can_surf_normal or can_fight_lvl2 and can_cross_gaps and can_use_springboards
+Town - Blacksmith Item for sale 1,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(5)
+Town - Blacksmith Item for sale 2,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(27)
+Town - Blacksmith Item for sale 3,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(92)
+Town - Blacksmith Item for sale 4,Progressive Cannon,Default,Green - Town,can_free_blacksmith and can_obtain_super_crystals(212)
+Town - Merchant Item for sale 1,Ancient Astrolabe,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(65)
+Town - Merchant Item for sale 2,Compass,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(2)
+Town - Merchant Item for sale 3,Village Star,Default,Green - Town,can_free_mercant and can_obtain_super_crystals(18)
+Town - Plaza,Blacksmith,Town NPC,Green - Town,true
+Town - Scarab Collector Item for sale 1,Idol of protection,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_1
+Town - Scarab Collector Item for sale 2,HP Crystal Shard,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_2
+Town - Scarab Collector Item for sale 3,Idol of time,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_3
+Town - Scarab Collector Item for sale 4,HP Crystal Shard,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_4
+Town - Scarab Collector Item for sale 5,Idol of spirits,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_5
+Town - Scarab Collector Item for sale 6,Enchanted Powers,Default,Green - Town,can_free_scarab_collector and can_buy_from_scarab_collector_6
 Town Pillars - Hidden below bridge,XP Crystals x20,XP Crystals,Green - Town Pillars,can_surf_normal
 Town Pillars - Hidden Pond,Energy Crystal Shard,Default,Green - Town Pillars,can_cross_gaps or can_surf_normal
 Town Pillars Grotto - Reward,HP Crystal Shard,Default,Town Pillars Grotto,can_fight
-Zelda 1 Grotto - Behind the closed doors,Healer,NPC,Zelda 1 Grotto,can_fight and can_light_torches
+Zelda 1 Grotto - Behind the closed doors,Healer,Town NPC,Zelda 1 Grotto,can_fight and can_light_torches
