@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - When enabled, each water type requires its own Surf item to be navigable.
     - When disabled, the normal Surf item unlocks navigation on all water types.
     - Will replace Surf and 4 filler items.
+    - Water types are: Normal, Blue, Soiled, Dungeon and Gold.
     - Logic has been adjusted to accomodate this new setting.
     - Each surf items will be visible in the inventory.
 - A new setting called "Split Supershot" has been added.
