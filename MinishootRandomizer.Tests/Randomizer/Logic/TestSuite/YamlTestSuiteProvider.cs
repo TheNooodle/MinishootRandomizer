@@ -25,6 +25,8 @@ public class YamlTestSuiteProvider : ITestSuiteProvider
         { "split_surf", typeof(SplitSurf) },
         { "split_shot", typeof(SplitSupershot) },
         { "progressive_dash", typeof(ProgressiveDash) },
+        { "progressive_boost", typeof(ProgressiveBoost) },
+        { "progressive_powers", typeof(ProgressivePowers) },
         { "dashless_gaps", typeof(DashlessGaps) },
         { "completion_goals", typeof(CompletionGoals) },
     };

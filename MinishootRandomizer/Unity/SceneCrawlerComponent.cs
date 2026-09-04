@@ -39,6 +39,7 @@ public class SceneCrawlerComponent : MonoBehaviour
             new CloningData(Item.AncientAstrolabe, new ByName("PickupModuleCollectableScan", typeof(ModulePickup))),
             new CloningData(Item.BeachMap, new ByName("MapPickupBeach", typeof(MapPickup))),
             new CloningData(Item.Boost, new ByName("SkillBoost", typeof(SkillPickup))),
+            new CloningData(Item.ProgressiveBoost, new ByName("SkillBoost", typeof(SkillPickup))),
             new CloningData(Item.Compass, new ByName("PickupModuleCompass", typeof(ModulePickup))),
             new CloningData(Item.DesertMap, new ByName("MapPickupDesert", typeof(MapPickup))),
             new CloningData(Item.EnergyCrystalShard, new ByName("OverworldEnergy0", typeof(StatsPickup))),
@@ -89,14 +90,17 @@ public class SceneCrawlerComponent : MonoBehaviour
         new CrawlableScene("Temple1", new List<CloningData>()
         {
             new CloningData(Item.PowerOfProtection, new ByName("CavePowerBombLevel0", typeof(StatsPickup))),
+            new CloningData(Item.ProgressivePowerOfProtection, new ByName("CavePowerBombLevel0", typeof(StatsPickup))),
         }),
         new CrawlableScene("Temple2", new List<CloningData>()
         {
             new CloningData(Item.PowerOfTime, new ByName("Temple2PowerSlowLevel0", typeof(StatsPickup))),
+            new CloningData(Item.ProgressivePowerOfTime, new ByName("Temple2PowerSlowLevel0", typeof(StatsPickup))),
         }),
         new CrawlableScene("Temple3", new List<CloningData>()
         {
             new CloningData(Item.PowerOfSpirits, new ByName("Temple3PowerAllyLevel0", typeof(StatsPickup))),
+            new CloningData(Item.ProgressivePowerOfSpirits, new ByName("Temple3PowerAllyLevel0", typeof(StatsPickup))),
         }),
         new CrawlableScene("Tower", new List<CloningData>()
         {

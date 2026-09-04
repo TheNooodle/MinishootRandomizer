@@ -32,6 +32,9 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(PrimordialCrystalActivationThreshold), new PrimordialCrystalActivationThreshold(50) },
         { typeof(SplitSurf), new SplitSurf(true) },
         { typeof(SplitSupershot), new SplitSupershot(true) },
+        { typeof(ProgressiveDash), new ProgressiveDash(true) },
+        { typeof(ProgressiveBoost), new ProgressiveBoost(true) },
+        { typeof(ProgressivePowers), new ProgressivePowers(true) },
         { typeof(DashlessGaps), new DashlessGaps(DashlessGapsValue.NeedsDash) },
         { typeof(CompletionGoals), new CompletionGoals(Goals.SpiritTower) },
     };

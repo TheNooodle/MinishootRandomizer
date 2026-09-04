@@ -62,8 +62,12 @@ abstract public class Item
     public const string PowerOfTime = "Power of time";
     public const string PrimordialCrystal = "Primordial Crystal";
     public const string PrimordialScarabDialog = "Primordial Scarab Dialog";
+    public const string ProgressiveBoost = "Progressive Boost";
     public const string ProgressiveCannon = "Progressive Cannon";
     public const string ProgressiveDash = "Progressive Dash";
+    public const string ProgressivePowerOfProtection = "Progressive Power of protection";
+    public const string ProgressivePowerOfSpirits = "Progressive Power of spirits";
+    public const string ProgressivePowerOfTime = "Progressive Power of time";
     public const string RestorationEnhancer = "Restoration Enhancer";
     public const string Scarab = "Scarab";
     public const string ScarabCollector = "Scarab Collector";

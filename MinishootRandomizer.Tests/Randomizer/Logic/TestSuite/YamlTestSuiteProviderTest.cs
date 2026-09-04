@@ -13,7 +13,7 @@ public class YamlTestSuiteProviderTest
         itemRepositoryStub.Setup(repo => repo.Get("Super Crystals x5"))
             .Returns((string id) => new SuperCrystalsItem(id, ItemCategory.Filler, 5));
         itemRepositoryStub.Setup(repo => repo.Get("Progressive Dash"))
-            .Returns((string id) => new ProgressiveDashItem(id, ItemCategory.Progression));
+            .Returns((string id) => new ProgressiveSkillItem(id, ItemCategory.Progression, Skill.Dash, Modules.SpiritDash));
         var locationRepositoryStub = new Mock<ILocationRepository>();
         locationRepositoryStub.Setup(repo => repo.Get(It.IsAny<string>()))
             .Returns((string id) => new PickupLocation(id, "true", LocationPool.Default, new Mock<ISelector>().Object));
@@ -32,7 +32,7 @@ public class YamlTestSuiteProviderTest
 
         // Assert
         Assert.NotNull(logicTestSuite);
-        Assert.Equal(14, logicTestSuite.DefaultSettings.Count);
+        Assert.Equal(15, logicTestSuite.DefaultSettings.Count);
         var shuffleNpcsSetting = logicTestSuite.DefaultSettings[0];
         Assert.IsType<ShuffleNpcs>(shuffleNpcsSetting);
         Assert.True(((ShuffleNpcs)shuffleNpcsSetting).Enabled);
@@ -69,7 +69,7 @@ public class YamlTestSuiteProviderTest
         Assert.False(testDataWithLogicState[1].Item2.GetSetting<BoostlessSpiritRaces>().Enabled);
         Assert.True(testDataWithLogicState[1].Item2.GetSetting<BoostlessSpringboards>().Enabled);
         Assert.True(testDataWithLogicState[1].Item2.HasItem(superCrystalItem, 2));
-        Assert.True(testDataWithLogicState[1].Item2.HasItem(new ProgressiveDashItem("Progressive Dash", ItemCategory.Progression), 1));
+        Assert.True(testDataWithLogicState[1].Item2.HasItem(new ProgressiveSkillItem("Progressive Dash", ItemCategory.Progression, Skill.Dash, Modules.SpiritDash), 1));
         Assert.Equal(3, testDataWithLogicState[1].Item1.Assertions.Count);
         Assert.IsType<LocationAccessibilityAssertion>(testDataWithLogicState[1].Item1.Assertions[0]);
         var locationAssertion3 = (LocationAccessibilityAssertion)testDataWithLogicState[1].Item1.Assertions[0];

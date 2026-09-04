@@ -196,6 +196,9 @@ public class ArchipelagoRandomizerEngine : IRandomizerEngine
             { typeof(PrimordialCrystalActivationThreshold), new PrimordialCrystalActivationThreshold(GetNumericSettingValue("primordial_crystal_activation_threshold", 100)) },
             { typeof(SplitSurf), new SplitSurf(GetBooleanSettingValue("split_surf")) },
             { typeof(SplitSupershot), new SplitSupershot(GetBooleanSettingValue("split_supershot")) },
+            { typeof(ProgressiveDash), new ProgressiveDash(GetBooleanSettingValue("progressive_dash")) },
+            { typeof(ProgressiveBoost), new ProgressiveBoost(GetBooleanSettingValue("progressive_boost")) },
+            { typeof(ProgressivePowers), new ProgressivePowers(GetBooleanSettingValue("progressive_powers")) },
             { typeof(DashlessGaps), new DashlessGaps(GetEnumSettingValue("dashless_gaps", DashlessGapsValue.NeedsDash)) },
             { typeof(CompletionGoals), new CompletionGoals(GetEnumSettingValue("completion_goals", Goals.Dungeon5)) },
         };

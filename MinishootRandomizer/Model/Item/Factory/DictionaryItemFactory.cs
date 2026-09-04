@@ -23,6 +23,19 @@ public class DictionaryItemFactory : IItemFactory
         {Item.Surf, new SkillItemData(Skill.Hover)},
     };
 
+    private static Dictionary<string, ProgressiveSkillItemData> _progressiveSkillItemData = new()
+    {
+        {Item.ProgressiveDash, new ProgressiveSkillItemData(Skill.Dash, Modules.SpiritDash)},
+        {Item.ProgressiveBoost, new ProgressiveSkillItemData(Skill.Boost, Modules.BoostCost)},
+    };
+
+    private static Dictionary<string, ProgressivePowerItemData> _progressivePowerItemData = new()
+    {
+        {Item.ProgressivePowerOfProtection, new ProgressivePowerItemData(Stats.PowerBombLevel, Modules.IdolBomb)},
+        {Item.ProgressivePowerOfSpirits, new ProgressivePowerItemData(Stats.PowerAllyLevel, Modules.IdolAlly)},
+        {Item.ProgressivePowerOfTime, new ProgressivePowerItemData(Stats.PowerSlowLevel, Modules.IdolSlow)},
+    };
+
     private static Dictionary<string, SplitshotType> _splitshotTypes = new()
     {
         {Item.Blastshot, SplitshotType.Blast},
@@ -207,9 +220,15 @@ public class DictionaryItemFactory : IItemFactory
 
             return new DungeonRewardItem(identifier, category, int.Parse(match.Value));
         }
-        else if (identifier == Item.ProgressiveDash)
+        else if (_progressiveSkillItemData.ContainsKey(identifier))
         {
-            return new ProgressiveDashItem(identifier, category);
+            ProgressiveSkillItemData data = _progressiveSkillItemData[identifier];
+            return new ProgressiveSkillItem(identifier, category, data.Skill, data.Module);
+        }
+        else if (_progressivePowerItemData.ContainsKey(identifier))
+        {
+            ProgressivePowerItemData data = _progressivePowerItemData[identifier];
+            return new ProgressivePowerItem(identifier, category, data.Stats, data.Module);
         }
         else if (identifier == Item.PrimordialScarabDialog)
         {
@@ -289,5 +308,29 @@ public class KeyItemData
     public KeyItemData(KeyUse keyId)
     {
         KeyId = keyId;
+    }
+}
+
+public class ProgressiveSkillItemData
+{
+    public Skill Skill { get; set; }
+    public Modules Module { get; set; }
+
+    public ProgressiveSkillItemData(Skill skill, Modules module)
+    {
+        Skill = skill;
+        Module = module;
+    }
+}
+
+public class ProgressivePowerItemData
+{
+    public Stats Stats { get; set; }
+    public Modules Module { get; set; }
+
+    public ProgressivePowerItemData(Stats stats, Modules module)
+    {
+        Stats = stats;
+        Module = module;
     }
 }

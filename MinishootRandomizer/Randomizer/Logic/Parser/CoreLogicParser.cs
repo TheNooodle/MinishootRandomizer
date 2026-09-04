@@ -66,16 +66,12 @@ public class CoreLogicParser : ILogicParser
     {
         Item cannon = _itemRepository.Get(Item.ProgressiveCannon);
 
-        Item boost = _itemRepository.Get(Item.Boost);
-        Item dash = _itemRepository.Get(Item.Dash);
         Item supershot = _itemRepository.Get(Item.Supershot);
         Item blastshot = _itemRepository.Get(Item.Blastshot);
         Item flameshot = _itemRepository.Get(Item.Flameshot);
         Item surf = _itemRepository.Get(Item.Surf);
         Item primordialCrystal = _itemRepository.Get(Item.PrimordialCrystal);
         Item spiritDash = _itemRepository.Get(Item.SpiritDash);
-
-        Item powerOfProtection = _itemRepository.Get(Item.PowerOfProtection);
 
         Item blacksmith = _itemRepository.Get(Item.Blacksmith);
         Item mercant = _itemRepository.Get(Item.Merchant);
@@ -133,8 +129,8 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.Merchant}
             )},
             { "can_obtain_super_crystals", p => new LogicParsingResult(
-                p.State.HasItem(cannon) && CanDash(p) && CanUseSupershot(p, blastshot, flameshot) && CanSurf(p, WaterType.Normal),
-                new List<string>() {Item.ProgressiveCannon, Item.Dash, Item.Supershot, Item.Blastshot, Item.Flameshot, Item.Surf}
+                CanObtainSuperCrystals(p),
+                new List<string>() {Item.ProgressiveCannon, Item.Dash, Item.ProgressiveDash, Item.Supershot, Item.Blastshot, Item.Flameshot, Item.Surf}
             )},
             { "can_fight", p => new LogicParsingResult(
                 p.State.HasItem(cannon),
@@ -158,15 +154,15 @@ public class CoreLogicParser : ILogicParser
             )},
             { "can_cross_gaps", p => new LogicParsingResult(
                 CanCrossGaps(p, GapSize.Normal),
-                new List<string>() {Item.Dash}
+                new List<string>() {Item.Dash, Item.ProgressiveDash}
             )},
             { "can_cross_tight_gaps", p => new LogicParsingResult(
                 CanCrossGaps(p, GapSize.Tight),
-                new List<string>() {Item.Dash}
+                new List<string>() {Item.Dash, Item.ProgressiveDash}
             )},
             { "can_cross_very_tight_gaps", p => new LogicParsingResult(
                 CanCrossGaps(p, GapSize.VeryTight),
-                new List<string>() {Item.Dash}
+                new List<string>() {Item.Dash, Item.ProgressiveDash}
             )},
             { "can_surf_normal", p => new LogicParsingResult(
                 CanSurf(p, WaterType.Normal),
@@ -189,8 +185,8 @@ public class CoreLogicParser : ILogicParser
                 new List<string>() {Item.Surf}
             )},
             { "can_boost", p => new LogicParsingResult(
-                p.State.HasItem(boost),
-                new List<string>() {Item.Boost}
+                CanBoost(p),
+                new List<string>() {Item.Boost, Item.ProgressiveBoost}
             )},
             { "can_destroy_bushes", p => new LogicParsingResult(
                 p.State.HasItem(cannon),
@@ -290,7 +286,7 @@ public class CoreLogicParser : ILogicParser
             )},
             { "can_dodge_purple_bullets", p => new LogicParsingResult(
                 CanDash(p) && CanSpiritDash(p),
-                new List<string>() {Item.Dash, Item.SpiritDash}
+                new List<string>() {Item.Dash, Item.ProgressiveDash, Item.SpiritDash}
             )},
             { "can_unlock_final_boss_door", p => new LogicParsingResult(
                 p.State.HasItem(darkHeart),
@@ -343,8 +339,8 @@ public class CoreLogicParser : ILogicParser
                 !IsSettingEnabled<BlockedForest>(p)
             )},
             { "can_blast_crystals", p => new LogicParsingResult(
-                p.State.HasItem(cannon) && p.State.HasItem(powerOfProtection),
-                new List<string>() {Item.ProgressiveCannon, Item.PowerOfProtection}
+                p.State.HasItem(cannon) && CanUsePowerOfProtection(p),
+                new List<string>() {Item.ProgressiveCannon, Item.PowerOfProtection, Item.ProgressivePowerOfProtection}
             )},
             { "can_destroy_trees", p => new LogicParsingResult(
                 CanDestroyTrees(p),
@@ -352,19 +348,19 @@ public class CoreLogicParser : ILogicParser
             )},
             { "can_use_springboards", p => new LogicParsingResult(
                 CanUseSpringboards(p),
-                new List<string>() {Item.Boost, Item.Dash}
+                new List<string>() {Item.Boost, Item.ProgressiveBoost, Item.Dash, Item.ProgressiveDash}
             )},
             { "can_race_spirits", p => new LogicParsingResult(
                 CanRaceSpirits(p),
-                new List<string>() {Item.Boost, Item.Dash}
+                new List<string>() {Item.Boost, Item.ProgressiveBoost, Item.Dash, Item.ProgressiveDash}
             )},
             { "can_race_torches", p => new LogicParsingResult(
                 CanRaceTorches(p),
-                new List<string>() {Item.Boost}
+                new List<string>() {Item.Boost, Item.ProgressiveBoost}
             )},
             { "can_open_swamp_tower", p => new LogicParsingResult(
                 CanSurf(p, WaterType.Normal) || CanUseSpringboards(p),
-                new List<string>() {Item.Boost}
+                new List<string>() {Item.Boost, Item.ProgressiveBoost}
             )},
         };
 
@@ -376,9 +372,38 @@ public class CoreLogicParser : ILogicParser
         throw new UnknownRuleException($"Unknown rule: {rule}");
     }
 
+    private bool CanObtainSuperCrystals(LogicParsingParameters parameters)
+    {
+        // @TODO: Temporarly set to being able to clear Dungeon 5, as the logic for this is not yet implemented.
+        return
+            CanUseSpringboards(parameters) &&
+            CanFight(parameters, 5) &&
+            CanDash(parameters) &&
+            CanDestroyWalls(parameters) &&
+            CanLightTorches(parameters) &&
+            CanSurf(parameters, WaterType.Normal) &&
+            CanSurf(parameters, WaterType.Gold) &&
+            CanSurf(parameters, WaterType.Soiled) &&
+            CanSurf(parameters, WaterType.Dungeon)
+        ;
+    }
+
     private bool CanDash(LogicParsingParameters parameters)
     {
-        return parameters.State.HasItem(_itemRepository.Get(Item.Dash));
+        string itemIdentifier = IsSettingEnabled<ProgressiveDash>(parameters) ? Item.ProgressiveDash : Item.Dash;
+        return parameters.State.HasItem(_itemRepository.Get(itemIdentifier));
+    }
+
+    private bool CanBoost(LogicParsingParameters parameters)
+    {
+        string itemIdentifier = IsSettingEnabled<ProgressiveBoost>(parameters) ? Item.ProgressiveBoost : Item.Boost;
+        return parameters.State.HasItem(_itemRepository.Get(itemIdentifier));
+    }
+
+    private bool CanUsePowerOfProtection(LogicParsingParameters parameters)
+    {
+        string itemIdentifier = IsSettingEnabled<ProgressivePowers>(parameters) ? Item.ProgressivePowerOfProtection : Item.PowerOfProtection;
+        return parameters.State.HasItem(_itemRepository.Get(itemIdentifier));
     }
 
     private bool CanSpiritDash(LogicParsingParameters parameters)
@@ -408,7 +433,7 @@ public class CoreLogicParser : ILogicParser
         }
 
         DashlessGaps setting = parameters.State.GetSetting<DashlessGaps>();
-        if ((gapSize == GapSize.Tight || gapSize == GapSize.VeryTight) && setting.Value != DashlessGapsValue.NeedsDash && parameters.State.HasItem(_itemRepository.Get(Item.Boost)))
+        if ((gapSize == GapSize.Tight || gapSize == GapSize.VeryTight) && setting.Value != DashlessGapsValue.NeedsDash && CanBoost(parameters))
         {
             return true;
         }
@@ -497,11 +522,11 @@ public class CoreLogicParser : ILogicParser
 
         if (setting.Enabled)
         {
-            return parameters.State.HasItem(_itemRepository.Get(Item.Boost)) || CanDash(parameters);
+            return CanBoost(parameters) || CanDash(parameters);
         }
         else
         {
-            return parameters.State.HasItem(_itemRepository.Get(Item.Boost));
+            return CanBoost(parameters);
         }
     }
 
@@ -511,11 +536,11 @@ public class CoreLogicParser : ILogicParser
 
         if (setting.Enabled)
         {
-            return parameters.State.HasItem(_itemRepository.Get(Item.Boost)) || CanDash(parameters);
+            return CanBoost(parameters) || CanDash(parameters);
         }
         else
         {
-            return parameters.State.HasItem(_itemRepository.Get(Item.Boost));
+            return CanBoost(parameters);
         }
     }
 
@@ -529,7 +554,7 @@ public class CoreLogicParser : ILogicParser
         }
         else
         {
-            return parameters.State.HasItem(_itemRepository.Get(Item.Boost));
+            return CanBoost(parameters);
         }
     }
 
