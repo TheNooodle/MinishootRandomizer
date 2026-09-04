@@ -28,6 +28,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - If your current HP percentage is greater than or equal to this value and you have the Primordial Crystal, it will activate.
     - This allows for more flexibility in the use of the Primordial Crystal, especially in combination with the "Enable Primordial Crystal Logic" option.
     - This option does not affect logic. The value must be between 10 and 100.
+- A new setting called "Progressive Boost" has been added.
+    - When enabled, the game will fuse the Boost and the Advanced Energy module into two cumulative progressive upgrades.
+    - The first upgrade will always allow you to boost, and the second will reduce the energy cost of boosting.
+    - Note that both instances of Progressive Boost are marked as "Progression", although the second upgrade does not unlock any location.
+- A new setting called "Progressive Powers" has been added.
+    - When enabled, the game will fuse all powers and the corresponding idols into two cumulative progressive upgrades.
+    - The first upgrade will always allow you to use the corresponding power, and the second will grant you the idol's effect.
+    - Note that both instances of Progressive Power of protection are marked as "Progression", although the second upgrade does not unlock any location.
+- The APWorld now has a manifest.
 
 ### Changed
 
@@ -35,6 +44,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - This means that you must change your YAML settings file for Archipelago. Refer to the file above for the replacements.
 - Fixed "Dungeon 3 - Behind North West doors" logic : now properly check for a way to use springboards
     - Necessary to unlock the door to said location.
+- All shop locations requiring Super Crystals are now locked behind the same conditions as clearing Dungeon 5.
+    - As of now, there is no guarantee to have a sufficient amount of Super Crystals to buy the items you need.
+    - This is temporary, as work on this very subject will begin soon-ish.
 - When the goal is set to "Spirit Tower", the Golden Crystal Heart will now replace a filler item, instead of an Ancient Tablet.
 
 ## [0.5.2] - 2025-09-16
