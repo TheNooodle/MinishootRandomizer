@@ -49,6 +49,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - This is temporary, as work on this very subject will begin soon-ish.
 - When the goal is set to "Spirit Tower", the Golden Crystal Heart will now replace a filler item, instead of an Ancient Tablet.
 
+### Known issues
+
+- The APWorld does not have a `docs/` folder and might fail some tests on GitHub Actions.
+- Rarely, when hovering between a piece of land and a piece of water, Minishoot can fall.
+
 ## [0.5.2] - 2025-09-16
 
 ### Fixed
