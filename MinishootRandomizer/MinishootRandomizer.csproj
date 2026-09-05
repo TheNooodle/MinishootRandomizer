@@ -40,6 +40,7 @@
     <EmbeddedResource Include="Resources/images/laughing_cat.png" />
     <EmbeddedResource Include="Resources/images/location_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/location_marker.png" />
+    <EmbeddedResource Include="Resources/images/maps/starting_grotto.png" />
     <EmbeddedResource Include="Resources/images/npc_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/npc_marker.png" />
     <EmbeddedResource Include="Resources/images/palm_tree.png" />

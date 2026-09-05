@@ -978,10 +978,10 @@ public class InMemoryTrackerMapProvider : ITrackerMapProvider
             identifier: "StartingGrotto",
             name: "Starting Grotto",
             spriteData: new MapSpriteData(
-                spriteName: "StartingGrottoMap",
-                width: 0, // @TODO:
-                height: 0, // @TODO:
-                scale: 1.0f, // @TODO:
+                spriteName: "MapsStartingGrotto",
+                width: 1080,
+                height: 716,
+                scale: 1.0f,
                 center: new Vector3(0, 0, 0)
             ),
             markers: new List<MarkerData>()
