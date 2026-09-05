@@ -7,17 +7,15 @@ public class TrackerPatcher
 {
     private readonly IRandomizerEngine _randomizerEngine;
     private readonly IObjectFinder _objectFinder;
-    private readonly IMarkerFactory _markerFactory;
     private readonly ILogger _logger = new NullLogger();
 
     private IPatchAction _patchAction = null;
     private List<RandomizerTrackerMarkerComponent> _markers = new List<RandomizerTrackerMarkerComponent>();
 
-    public TrackerPatcher(IRandomizerEngine randomizerEngine, IObjectFinder objectFinder, IMarkerFactory markerFactory, ILogger logger = null)
+    public TrackerPatcher(IRandomizerEngine randomizerEngine, IObjectFinder objectFinder, ILogger logger = null)
     {
         _randomizerEngine = randomizerEngine;
         _objectFinder = objectFinder;
-        _markerFactory = markerFactory;
         _logger = logger ?? new NullLogger();
     }
 
@@ -32,14 +30,6 @@ public class TrackerPatcher
         {
             _patchAction = CreatePatchAction();
             _patchAction.Patch();
-        }
-    }
-
-    public void OnItemCollected(Item item)
-    {
-        foreach (RandomizerTrackerMarkerComponent marker in _markers)
-        {
-            marker.CheckActivation();
         }
     }
 
@@ -64,17 +54,16 @@ public class TrackerPatcher
             compositeAction.Add(new RemoveGameObjectAction(marker));
         }
 
-        // Add the new markers
-        List<GameObject> newMarkers = _markerFactory.CreateMarkerObjects();
-        foreach (GameObject newMarker in newMarkers)
+        // Create the tracker component
+        GameObject mapObject = _objectFinder.FindObject(new ByComponent(typeof(Map)));
+        if (mapObject == null)
         {
-            RandomizerTrackerMarkerComponent randomizerLocationMarker = newMarker.GetComponent<RandomizerTrackerMarkerComponent>();
-            if (randomizerLocationMarker == null)
-            {
-                throw new InvalidActionException($"Replacement GameObject {newMarker.name} does not have a RandomizerLocationMarker component");
-            }
-            _markers.Add(randomizerLocationMarker);
-            compositeAction.Add(new CreateGameObjectAction(newMarker));
+            _logger.LogError("Could not find Map object");
+        }
+        else
+        {
+            AddComponentAction<RandomizerMapComponent> addMapComponentAction = new AddComponentAction<RandomizerMapComponent>(mapObject);
+            compositeAction.Add(addMapComponentAction);
         }
 
         return new LoggableAction(compositeAction, _logger);

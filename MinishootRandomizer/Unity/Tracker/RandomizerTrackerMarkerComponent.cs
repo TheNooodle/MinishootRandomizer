@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace MinishootRandomizer;
 
 [RequireComponent(typeof(FloatyAnimationComponent))]
-public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecker
+public class RandomizerTrackerMarkerComponent : MonoBehaviour
 {
     private IRandomizerEngine _randomizerEngine;
     private ILocationLogicChecker _logicChecker;
@@ -15,6 +15,7 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecke
     private List<AbstractMarker> _markers = new List<AbstractMarker>();
     private AbstractMarker _currentMarker = null;
     private GameObject _spriteObject = null;
+    private TrackerMap _map = null;
     private FloatyAnimationComponent _floatyAnimationComponent = null;
 
     void Awake()
@@ -38,10 +39,23 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecke
         _spriteObject = spriteObject;
     }
 
+    public void SetMap(TrackerMap map)
+    {
+        _map = map;
+    }
+
     void Update()
     {
+        // If the game is not randomized, we don't show any marker.
+        if (!_randomizerEngine.IsRandomized())
+        {
+            HideMarker();
+            return;
+        }
+
         bool mustShow = false;
 
+        // We compute the visibility of each underlying marker, and we show the first one that must be shown.
         foreach (AbstractMarker marker in _markers)
         {
             marker.ComputeVisibility(_randomizerEngine, _logicChecker, _logicStateProvider);
@@ -99,13 +113,5 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour, IActivationChecke
         {
             _spriteObject.SetActive(true);
         }
-    }
-
-    public bool CheckActivation()
-    {
-        // Location markers must always be activated because :
-        // - Their visibility is controlled by an ancestor object
-        // - The actual logic of the marker is controlled by the Update method, which controls the visibility of the child sprite object.
-        return true;
     }
 }

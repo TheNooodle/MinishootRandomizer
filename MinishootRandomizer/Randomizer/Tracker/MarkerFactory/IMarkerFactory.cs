@@ -5,5 +5,5 @@ namespace MinishootRandomizer;
 
 public interface IMarkerFactory
 {
-    List<GameObject> CreateMarkerObjects();
+    List<GameObject> CreateMarkerObjects(TrackerMap map);
 }
