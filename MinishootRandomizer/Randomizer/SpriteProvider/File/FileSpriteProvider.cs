@@ -23,6 +23,7 @@ public class FileSpriteProvider : ISpriteProvider
         { "LaughingCat", new SpriteFileData("laughing_cat.png", 100, 96)},
         { "LocationMarker", new SpriteFileData("location_marker.png", 116, 180)},
         { "LocationMarkerSimple", new SpriteFileData("location_marker_simple.png", 116, 180)},
+        { "MapsDungeon1", new SpriteFileData("maps/d1.png", 1080, 768)},
         { "MapsStartingGrotto", new SpriteFileData("maps/starting_grotto.png", 1080, 716)},
         { "NpcMarker", new SpriteFileData("npc_marker.png", 148, 172)},
         { "NpcMarkerSimple", new SpriteFileData("npc_marker_simple.png", 148, 172)},

@@ -4,6 +4,13 @@ namespace MinishootRandomizer;
 
 public class WorldStateProgressionStorage : IProgressionStorage
 {
+    private IItemCounter _itemCounter;
+
+    public WorldStateProgressionStorage(IItemCounter itemCounter)
+    {
+        _itemCounter = itemCounter;
+    }
+
     public bool IsLocationChecked(Location location)
     {
         return WorldState.Get(location.Identifier);
@@ -12,6 +19,10 @@ public class WorldStateProgressionStorage : IProgressionStorage
     public void SetLocationChecked(Location location, bool isChecked = true)
     {
         WorldState.Set(location.Identifier, isChecked);
+        if (isChecked)
+        {
+            _itemCounter.Increment();
+        }
     }
 
     public bool IsGoalCompleted(Goals goal)
@@ -23,5 +34,10 @@ public class WorldStateProgressionStorage : IProgressionStorage
             Goals.SpiritTower => WorldState.Get(Item.GoldenCrystalHeart),
             _ => throw new NotImplementedException($"Goal {goal} is not supported by WorldStateProgressionStorage!")
         };
+    }
+
+    public int GetLocationCheckedCount()
+    {
+        return _itemCounter.GetCount();
     }
 }
