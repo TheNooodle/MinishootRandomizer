@@ -25,8 +25,8 @@ public class XpCrystalRemovalPatcher
             return;
         }
 
-        ShardSanity shardSanity = _randomizerEngine.GetSetting<ShardSanity>();
-        if (!shardSanity.Enabled)
+        ShuffleXpShards shuffleXpShards = _randomizerEngine.GetSetting<ShuffleXpShards>();
+        if (!shuffleXpShards.Enabled)
         {
             return;
         }

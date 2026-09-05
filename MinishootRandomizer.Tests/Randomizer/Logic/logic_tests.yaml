@@ -1,16 +1,18 @@
 default_settings:
-  npc_sanity: 'true'
-  scarab_sanity: 'true'
-  shard_sanity: 'true'
-  key_sanity: 'true'
-  boss_key_sanity: 'true'
+  shuffle_npcs: 'true'
+  shuffle_scarabs: 'true'
+  shuffle_xp_shards: 'true'
+  shuffle_small_keys: 'true'
+  shuffle_boss_keys: 'true'
   blocked_forest: 'true'
   ignore_cannon_level_requirements: 'false'
   boostless_springboards: 'false'
   boostless_spirit_races: 'false'
   boostless_torch_races: 'false'
   enable_primordial_crystal_logic: 'false'
-  progressive_dash: 'true'
+  split_surf: 'false'
+  progressive_dash: 'false'
+  progressive_boost: 'false'
   dashless_gaps: 'NeedsDash'
   completion_goals: 'Dungeon5'
 default_item_counts:
@@ -63,3 +65,119 @@ test_cases:
       - location_accessibility:
           location_name: "Primordial Cave - Meet the Primordial Scarab"
           expected_accessibility: "inaccessible"
+  - name: "Dungeon 3, with Split Surf, with both clean and void surf"
+    override_settings:
+      split_surf: 'true'
+    add_items:
+      Clean Surf: 1
+      Void Surf: 1
+    tests:
+      - location_accessibility:
+          location_name: "Dungeon 3 - Central Item"
+          expected_accessibility: "in_logic"
+  - name: "Dungeon 3, with Split Surf, without any surfs, using the turle"
+    override_settings:
+      split_surf: 'true'
+    add_items:
+      Progressive Cannon: 3
+      Boost: 1
+      Dash: 1
+      Supershot: 1
+    tests:
+      - region_accessibility:
+          region_name: "Dungeon 3 - Entrance"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Dungeon 3 - Central Item"
+          expected_accessibility: "inaccessible"
+  - name: "Dungeon 3, with Split Surf, without clean surf, using the turle"
+    override_settings:
+      split_surf: 'true'
+    add_items:
+      Progressive Cannon: 3
+      Boost: 1
+      Dash: 1
+      Supershot: 1
+      Void Surf: 1
+    tests:
+      - region_accessibility:
+          region_name: "Dungeon 3 - Entrance"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Dungeon 3 - Central Item"
+          expected_accessibility: "in_logic"
+  - name: "Dungeon 3, with Split Surf, with clean surf and without void surf"
+    override_settings:
+      split_surf: 'true'
+    add_items:
+      Clean Surf: 1
+    tests:
+      - location_accessibility:
+          location_name: "Dungeon 3 - Central Item"
+          expected_accessibility: "inaccessible"
+  - name: "Splitshot enabled, without blastshot"
+    override_settings:
+      split_shot: 'true'
+    add_items:
+      Flameshot: 1
+    tests:
+      - location_accessibility:
+          location_name: "Zelda 1 Grotto - Behind the closed doors"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Forest - Secret pond behind bushes"
+          expected_accessibility: "inaccessible"
+      - region_accessibility:
+          region_name: "Scarab Temple - Back"
+          expected_accessibility: "inaccessible"
+  - name: "Splitshot enabled, without flameshot"
+    override_settings:
+      split_shot: 'true'
+    add_items:
+      Blastshot: 1
+    tests:
+      - location_accessibility:
+          location_name: "Zelda 1 Grotto - Behind the closed doors"
+          expected_accessibility: "inaccessible"
+      - location_accessibility:
+          location_name: "Forest - Secret pond behind bushes"
+          expected_accessibility: "in_logic"
+      - region_accessibility:
+          region_name: "Scarab Temple - Back"
+          expected_accessibility: "inaccessible"
+  - name: "Splitshot enabled, with both blastshot and flameshot"
+    override_settings:
+      split_shot: 'true'
+    add_items:
+      Blastshot: 1
+      Flameshot: 1
+    tests:
+      - location_accessibility:
+          location_name: "Zelda 1 Grotto - Behind the closed doors"
+          expected_accessibility: "in_logic"
+      - location_accessibility:
+          location_name: "Forest - Secret pond behind bushes"
+          expected_accessibility: "in_logic"
+      - region_accessibility:
+          region_name: "Scarab Temple - Back"
+          expected_accessibility: "in_logic"
+  - name: "Crying house with progressive powers and dash"
+    override_settings:
+      progressive_powers: 'true'
+      progressive_dash: 'true'
+    add_items:
+      Progressive Dash: 1
+      Progressive Power of protection: 1
+    tests:
+      - location_accessibility:
+          location_name: "Cemetery - Crying house"
+          expected_accessibility: "in_logic"
+  - name: "North forest with progressive boost"
+    override_settings:
+      progressive_boost: 'true'
+    add_items:
+      Progressive Boost: 1
+    tests:
+      - location_accessibility:
+          location_name: "Forest Grotto - After ramp"
+          expected_accessibility: "in_logic"

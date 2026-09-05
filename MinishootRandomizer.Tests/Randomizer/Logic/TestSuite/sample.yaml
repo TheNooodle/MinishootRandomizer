@@ -1,9 +1,9 @@
 default_settings:
-  npc_sanity: 'true'
-  scarab_sanity: 'true'
-  shard_sanity: 'true'
-  key_sanity: 'true'
-  boss_key_sanity: 'true'
+  shuffle_npcs: 'true'
+  shuffle_scarabs: 'true'
+  shuffle_xp_shards: 'true'
+  shuffle_small_keys: 'true'
+  shuffle_boss_keys: 'true'
   blocked_forest: 'true'
   ignore_cannon_level_requirements: 'false'
   boostless_springboards: 'false'
@@ -11,6 +11,7 @@ default_settings:
   boostless_torch_races: 'false'
   enable_primordial_crystal_logic: 'false'
   progressive_dash: 'true'
+  progressive_boost: 'false'
   dashless_gaps: 'NeedsDash'
   completion_goals: 'Dungeon5'
 default_item_counts:

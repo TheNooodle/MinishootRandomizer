@@ -18,6 +18,7 @@ abstract public class Item
     public const string AncientTablet = "Ancient Tablet";
     public const string Bard = "Bard";
     public const string BeachMap = "Beach Map";
+    public const string Blastshot = "Blastshot";
     public const string Blacksmith = "Blacksmith";
     public const string BlueForestMap = "Blue Forest Map";
     public const string Boost = "Boost";
@@ -41,6 +42,7 @@ abstract public class Item
     public const string EnchantedPowers = "Enchanted Powers";
     public const string EnergyCrystalShard = "Energy Crystal Shard";
     public const string Explorer = "Explorer";
+    public const string Flameshot = "Flameshot";
     public const string FamilyChild = "Family Child";
     public const string FamilyParent1 = "Family Parent 1";
     public const string FamilyParent2 = "Family Parent 2";
@@ -60,8 +62,12 @@ abstract public class Item
     public const string PowerOfTime = "Power of time";
     public const string PrimordialCrystal = "Primordial Crystal";
     public const string PrimordialScarabDialog = "Primordial Scarab Dialog";
+    public const string ProgressiveBoost = "Progressive Boost";
     public const string ProgressiveCannon = "Progressive Cannon";
     public const string ProgressiveDash = "Progressive Dash";
+    public const string ProgressivePowerOfProtection = "Progressive Power of protection";
+    public const string ProgressivePowerOfSpirits = "Progressive Power of spirits";
+    public const string ProgressivePowerOfTime = "Progressive Power of time";
     public const string RestorationEnhancer = "Restoration Enhancer";
     public const string Scarab = "Scarab";
     public const string ScarabCollector = "Scarab Collector";
@@ -71,6 +77,11 @@ abstract public class Item
     public const string SunkenCityMap = "Sunken City Map";
     public const string Supershot = "Supershot";
     public const string Surf = "Surf";
+    public const string SurfNormal = "Clean Surf";
+    public const string SurfBlue = "Blue Surf";
+    public const string SurfSoiled = "Dirty Surf";
+    public const string SurfDungeon = "Void Surf";
+    public const string SurfGold = "Golden Surf";
     public const string SwampMap = "Swamp Map";
     public const string VengefulTalisman = "Vengeful Talisman";
     public const string VillageStar = "Village Star";

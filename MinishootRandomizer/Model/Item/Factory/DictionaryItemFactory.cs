@@ -23,6 +23,34 @@ public class DictionaryItemFactory : IItemFactory
         {Item.Surf, new SkillItemData(Skill.Hover)},
     };
 
+    private static Dictionary<string, ProgressiveSkillItemData> _progressiveSkillItemData = new()
+    {
+        {Item.ProgressiveDash, new ProgressiveSkillItemData(Skill.Dash, Modules.SpiritDash)},
+        {Item.ProgressiveBoost, new ProgressiveSkillItemData(Skill.Boost, Modules.BoostCost)},
+    };
+
+    private static Dictionary<string, ProgressivePowerItemData> _progressivePowerItemData = new()
+    {
+        {Item.ProgressivePowerOfProtection, new ProgressivePowerItemData(Stats.PowerBombLevel, Modules.IdolBomb)},
+        {Item.ProgressivePowerOfSpirits, new ProgressivePowerItemData(Stats.PowerAllyLevel, Modules.IdolAlly)},
+        {Item.ProgressivePowerOfTime, new ProgressivePowerItemData(Stats.PowerSlowLevel, Modules.IdolSlow)},
+    };
+
+    private static Dictionary<string, SplitshotType> _splitshotTypes = new()
+    {
+        {Item.Blastshot, SplitshotType.Blast},
+        {Item.Flameshot, SplitshotType.Flame},
+    };
+
+    private static Dictionary<string, SurfItemData> _surfItemData = new()
+    {
+        {Item.SurfNormal, new SurfItemData(WaterType.Normal)},
+        {Item.SurfBlue, new SurfItemData(WaterType.Blue)},
+        {Item.SurfSoiled, new SurfItemData(WaterType.Soiled)},
+        {Item.SurfDungeon, new SurfItemData(WaterType.Dungeon)},
+        {Item.SurfGold, new SurfItemData(WaterType.Gold)},
+    };
+
     private static Dictionary<string, ModuleItemData> _moduleItemData = new()
     {
         {Item.AdvancedEnergy, new ModuleItemData(Modules.BoostCost)},
@@ -90,9 +118,17 @@ public class DictionaryItemFactory : IItemFactory
         {
             return new PickupItem(identifier, category, _pickupItemData[identifier].Stats);
         }
+        else if (_splitshotTypes.ContainsKey(identifier))
+        {
+            return new SplitshotItem(identifier, category, _splitshotTypes[identifier]);
+        }
         else if (_skillItemData.ContainsKey(identifier))
         {
             return new SkillItem(identifier, category, _skillItemData[identifier].Skill);
+        }
+        else if (_surfItemData.ContainsKey(identifier))
+        {
+            return new SurfItem(identifier, category, _surfItemData[identifier].WaterType);
         }
         else if (_moduleItemData.ContainsKey(identifier))
         {
@@ -184,9 +220,15 @@ public class DictionaryItemFactory : IItemFactory
 
             return new DungeonRewardItem(identifier, category, int.Parse(match.Value));
         }
-        else if (identifier == Item.ProgressiveDash)
+        else if (_progressiveSkillItemData.ContainsKey(identifier))
         {
-            return new ProgressiveDashItem(identifier, category);
+            ProgressiveSkillItemData data = _progressiveSkillItemData[identifier];
+            return new ProgressiveSkillItem(identifier, category, data.Skill, data.Module);
+        }
+        else if (_progressivePowerItemData.ContainsKey(identifier))
+        {
+            ProgressivePowerItemData data = _progressivePowerItemData[identifier];
+            return new ProgressivePowerItem(identifier, category, data.Stats, data.Module);
         }
         else if (identifier == Item.PrimordialScarabDialog)
         {
@@ -266,5 +308,29 @@ public class KeyItemData
     public KeyItemData(KeyUse keyId)
     {
         KeyId = keyId;
+    }
+}
+
+public class ProgressiveSkillItemData
+{
+    public Skill Skill { get; set; }
+    public Modules Module { get; set; }
+
+    public ProgressiveSkillItemData(Skill skill, Modules module)
+    {
+        Skill = skill;
+        Module = module;
+    }
+}
+
+public class ProgressivePowerItemData
+{
+    public Stats Stats { get; set; }
+    public Modules Module { get; set; }
+
+    public ProgressivePowerItemData(Stats stats, Modules module)
+    {
+        Stats = stats;
+        Module = module;
     }
 }

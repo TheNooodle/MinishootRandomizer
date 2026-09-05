@@ -28,8 +28,13 @@ public class GiveDebugItemsAction : IPatchAction
 
         PlayerState.SetSkill(Skill.Boost, true);
         PlayerState.SetSkill(Skill.Dash, true);
-        PlayerState.SetSkill(Skill.Supershot, true);
+        // PlayerState.SetSkill(Skill.Supershot, true);
         PlayerState.SetSkill(Skill.Hover, true);
+        WorldState.Set($"{WaterType.Normal}HoverUnlocked", true);
+        WorldState.Set($"{WaterType.Blue}HoverUnlocked", true);
+        WorldState.Set($"{WaterType.Soiled}HoverUnlocked", true);
+        WorldState.Set($"{WaterType.Dungeon}HoverUnlocked", true);
+        WorldState.Set($"{WaterType.Gold}HoverUnlocked", true);
 
         WorldState.Set(NpcIds.Bard.Str(), true);
         WorldState.Set(NpcIds.ScarabCollector.Str(), true);

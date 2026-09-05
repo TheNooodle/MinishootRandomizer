@@ -11,18 +11,22 @@ public class YamlTestSuiteProvider : ITestSuiteProvider
 
     private static readonly Dictionary<string, Type> SettingTypeMap = new()
     {
-        { "npc_sanity", typeof(NpcSanity) },
-        { "scarab_sanity", typeof(ScarabSanity) },
-        { "shard_sanity", typeof(ShardSanity) },
-        { "key_sanity", typeof(KeySanity) },
-        { "boss_key_sanity", typeof(BossKeySanity) },
+        { "shuffle_npcs", typeof(ShuffleNpcs) },
+        { "shuffle_scarabs", typeof(ShuffleScarabs) },
+        { "shuffle_xp_shards", typeof(ShuffleXpShards) },
+        { "shuffle_small_keys", typeof(ShuffleSmallKeys) },
+        { "shuffle_boss_keys", typeof(ShuffleBossKeys) },
         { "blocked_forest", typeof(BlockedForest) },
         { "ignore_cannon_level_requirements", typeof(IgnoreCannonLevelRequirements) },
         { "boostless_springboards", typeof(BoostlessSpringboards) },
         { "boostless_spirit_races", typeof(BoostlessSpiritRaces) },
         { "boostless_torch_races", typeof(BoostlessTorchRaces) },
         { "enable_primordial_crystal_logic", typeof(EnablePrimordialCrystalLogic) },
+        { "split_surf", typeof(SplitSurf) },
+        { "split_shot", typeof(SplitSupershot) },
         { "progressive_dash", typeof(ProgressiveDash) },
+        { "progressive_boost", typeof(ProgressiveBoost) },
+        { "progressive_powers", typeof(ProgressivePowers) },
         { "dashless_gaps", typeof(DashlessGaps) },
         { "completion_goals", typeof(CompletionGoals) },
     };

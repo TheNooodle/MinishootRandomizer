@@ -25,8 +25,8 @@ public class ScarabRemovalPatcher
             return;
         }
 
-        ScarabSanity scarabSanity = _randomizerEngine.GetSetting<ScarabSanity>();
-        if (!scarabSanity.Enabled)
+        ShuffleScarabs shuffleScarabs = _randomizerEngine.GetSetting<ShuffleScarabs>();
+        if (!shuffleScarabs.Enabled)
         {
             return;
         }

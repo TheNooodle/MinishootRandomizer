@@ -4,13 +4,13 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>MinishootRandomizer</AssemblyName>
     <Description>eh eh minshot goes plok plok plok plok</Description>
-    <Version>0.5.2</Version>
+    <Version>0.6.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Archipelago.MultiClient.Net" Version="6.6.1" />
+    <PackageReference Include="Archipelago.MultiClient.Net" Version="6.7.1" />
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.*" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
@@ -31,6 +31,10 @@
     <EmbeddedResource Include="Resources/images/archipelago_arrow_up.png" />
     <EmbeddedResource Include="Resources/images/archipelago_grayscale.png" />
     <EmbeddedResource Include="Resources/images/archipelago.png" />
+    <EmbeddedResource Include="Resources/images/blob_enemy.png" />
+    <EmbeddedResource Include="Resources/images/blue_crystal.png" />
+    <EmbeddedResource Include="Resources/images/city_building_top.png" />
+    <EmbeddedResource Include="Resources/images/dark_crystal.png" />
     <EmbeddedResource Include="Resources/images/dead_player.png" />
     <EmbeddedResource Include="Resources/images/golden_crystal_shard.png" />
     <EmbeddedResource Include="Resources/images/laughing_cat.png" />
@@ -38,6 +42,8 @@
     <EmbeddedResource Include="Resources/images/location_marker.png" />
     <EmbeddedResource Include="Resources/images/npc_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/npc_marker.png" />
+    <EmbeddedResource Include="Resources/images/palm_tree.png" />
+    <EmbeddedResource Include="Resources/images/rock.png" />
     <EmbeddedResource Include="Resources/images/prim_scarab_dialog.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/scarab_marker.png" />
@@ -49,6 +55,7 @@
     <EmbeddedResource Include="Resources/images/spirit.png" />
     <EmbeddedResource Include="Resources/images/super_crystal.png" />
     <EmbeddedResource Include="Resources/images/tick.png" />
+    <EmbeddedResource Include="Resources/images/torch_lit.png" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">

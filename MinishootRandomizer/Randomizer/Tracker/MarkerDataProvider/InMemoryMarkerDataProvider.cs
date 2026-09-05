@@ -500,9 +500,9 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             new MarkerData(
                 markerName: "Forest Shop",
                 locationNames: new List<string> {
-                    "Forest Shop 1",
-                    "Forest Shop 2",
-                    "Forest Shop 3",
+                    "Forest Shop Item for sale 1",
+                    "Forest Shop Item for sale 2",
+                    "Forest Shop Item for sale 3",
                     "Forest Shop Race - Reward"
                 },
                 coordinates: new List<Tuple<float, float>> {
@@ -603,9 +603,9 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             new MarkerData(
                 markerName: "Jar Shop",
                 locationNames: new List<string> {
-                    "Jar Shop 1",
-                    "Jar Shop 2",
-                    "Jar Shop 3",
+                    "Jar Shop Item for sale 1",
+                    "Jar Shop Item for sale 2",
+                    "Jar Shop Item for sale 3",
                 },
                 coordinates: new List<Tuple<float, float>> {
                     new Tuple<float, float>(-1.54f, 0.40f),
@@ -864,9 +864,9 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             new MarkerData(
                 markerName: "Swamp Shop",
                 locationNames: new List<string> {
-                    "Swamp Shop 1",
-                    "Swamp Shop 2",
-                    "Swamp Shop 3",
+                    "Swamp Shop Item for sale 1",
+                    "Swamp Shop Item for sale 2",
+                    "Swamp Shop Item for sale 3",
                     "Swamp Shop Extra",
                 },
                 coordinates: new List<Tuple<float, float>> {
@@ -888,20 +888,20 @@ public class InMemoryMarkerDataProvider : IMarkerDataProvider
             new MarkerData(
                 markerName: "Town",
                 locationNames: new List<string> {
-                    "Town - Blacksmith Item 1",
-                    "Town - Blacksmith Item 2",
-                    "Town - Blacksmith Item 3",
-                    "Town - Blacksmith Item 4",
-                    "Town - Merchant Item 1",
-                    "Town - Merchant Item 2",
-                    "Town - Merchant Item 3",
+                    "Town - Blacksmith Item for sale 1",
+                    "Town - Blacksmith Item for sale 2",
+                    "Town - Blacksmith Item for sale 3",
+                    "Town - Blacksmith Item for sale 4",
+                    "Town - Merchant Item for sale 1",
+                    "Town - Merchant Item for sale 2",
+                    "Town - Merchant Item for sale 3",
                     "Town - Plaza",
-                    "Town - Scarab Collector Item 1",
-                    "Town - Scarab Collector Item 2",
-                    "Town - Scarab Collector Item 3",
-                    "Town - Scarab Collector Item 4",
-                    "Town - Scarab Collector Item 5",
-                    "Town - Scarab Collector Item 6",
+                    "Town - Scarab Collector Item for sale 1",
+                    "Town - Scarab Collector Item for sale 2",
+                    "Town - Scarab Collector Item for sale 3",
+                    "Town - Scarab Collector Item for sale 4",
+                    "Town - Scarab Collector Item for sale 5",
+                    "Town - Scarab Collector Item for sale 6",
                     "Starting Grotto - Entrance",
                     "Starting Grotto - North Corridor",
                     "Starting Grotto - Secret Wall",

@@ -28,4 +28,10 @@
     <ProjectReference Include="..\MinishootRandomizer\MinishootRandomizer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\MinishootRandomizer\lib\Assembly-CSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

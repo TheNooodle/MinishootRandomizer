@@ -21,8 +21,8 @@ public class SpiritMarker : AbstractMarker
 
     public override void ComputeVisibility(IRandomizerEngine engine, ILocationLogicChecker logicChecker, ILogicStateProvider logicStateProvider)
     {
-        SpiritSanity spiritSanity = engine.GetSetting<SpiritSanity>();
-        if (spiritSanity.Enabled)
+        ShuffleSpirits shuffleSpirits = engine.GetSetting<ShuffleSpirits>();
+        if (shuffleSpirits.Enabled)
         {
             _isChecked = true;
             return;
