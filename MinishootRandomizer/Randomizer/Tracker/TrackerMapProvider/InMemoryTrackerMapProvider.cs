@@ -981,19 +981,29 @@ public class InMemoryTrackerMapProvider : ITrackerMapProvider
                 spriteName: "MapsStartingGrotto",
                 width: 1080,
                 height: 716,
-                scale: 1.0f,
-                center: new Vector3(0, 0, 0)
+                scale: 10.75f,
+                center: new Vector3(-944.4f, -90.8f, 0f)
             ),
             markers: new List<MarkerData>() {
                 new MarkerData(new List<string> {
-                    "Abyss - Ambush Island",
+                    "Starting Grotto - West Item",
                 }, new List<Tuple<float, float>> {
-                    new Tuple<float, float>(-1.45f, -2.25f),
+                    new Tuple<float, float>(-5.39f, -0.95f),
                 }),
                 new MarkerData(new List<string> {
-                    "Abyss - Near dungeon entrance",
+                    "Starting Grotto - North Corridor",
                 }, new List<Tuple<float, float>> {
-                    new Tuple<float, float>(-2.55f, -1.59f),
+                    new Tuple<float, float>(-1.89f, 3.71f),
+                }),
+                new MarkerData(new List<string> {
+                    "Starting Grotto - Secret Wall",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.36f, 2.50f),
+                }),
+                new MarkerData(new List<string> {
+                    "Starting Grotto - Entrance",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(2.41f, -0.95f),
                 }),
             }
         )

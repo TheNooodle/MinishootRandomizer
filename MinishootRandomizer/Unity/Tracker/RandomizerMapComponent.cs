@@ -9,36 +9,34 @@ public class RandomizerMapComponent : MonoBehaviour
     private ITrackerMapProvider _trackerMapProvider;
     private IMarkerFactory _markerFactory;
     private ISpriteProvider _spriteProvider;
+    private CurrentMapHandler _currentMapHandler;
     private ILogger _logger = new NullLogger();
 
     private List<TrackerMap> _initializedMaps = new List<TrackerMap>();
     private GameObject _contentGameObject = null;
+    private bool _isInitialized = false;
 
     private static TrackerMap currentMap = null;
     public static TrackerMap CurrentMap => currentMap;
+    public static float DebugScale = 0.0f;
 
     void Awake()
+    {
+        if (!_isInitialized)
+        {
+            Initialize();
+        }
+    }
+
+    // We separate initialization from the Unity lifecycle methods to allow event handling.
+    private void Initialize()
     {
         _trackerMapProvider = Plugin.ServiceContainer.Get<ITrackerMapProvider>();
         _markerFactory = Plugin.ServiceContainer.Get<IMarkerFactory>();
         _spriteProvider = Plugin.ServiceContainer.Get<ISpriteProvider>();
+        _currentMapHandler = Plugin.ServiceContainer.Get<CurrentMapHandler>();
         _logger = Plugin.ServiceContainer.Get<ILogger>() ?? new NullLogger();
-    }
-
-    void Start()
-    {
-        TrackerMap map = GetTrackerMapForCurrentPosition();
-        SetCurrentMap(map);
-    }
-
-    void Update()
-    {
-        // Handled in the Update method for now, maybe optimized later with events if needed.
-        TrackerMap map = GetTrackerMapForCurrentPosition();
-        if (map != null && map != currentMap)
-        {
-            SetCurrentMap(map);
-        }
+        _isInitialized = true;
     }
 
     void OnDestroy()
@@ -46,35 +44,31 @@ public class RandomizerMapComponent : MonoBehaviour
         currentMap = null;
     }
 
-    private TrackerMap GetTrackerMapForCurrentPosition()
+    public void OnMapOpened()
     {
-        string currentLocation = PlayerState.CurrLocation;
-        switch (currentLocation)
+        if (!_isInitialized)
         {
-            case "Cave":
-                return HandleCaveLocation();
-            default:
-                return _trackerMapProvider.GetTrackerMap("Overworld");
+            Initialize();
+        }
+
+        TrackerMap map = _currentMapHandler.GetCurrentMap();
+        if (map != null && map != currentMap)
+        {
+            SetCurrentMap(map);
         }
     }
 
-    private TrackerMap HandleCaveLocation()
+    public void OnAfterMapOpened()
     {
-        // @TODO:
-        return _trackerMapProvider.GetTrackerMap("StartingGrotto");
+        // @todo: set progress counter, set goal
     }
 
     private void SetCurrentMap(TrackerMap map)
     {
-        if (map == null)
-        {
-            return;
-        }
-
         currentMap = map;
 
         // If the map has not been initialized yet, we create its objects (map image + markers).
-        if (!_initializedMaps.Contains(map))
+        if (map != null && !_initializedMaps.Contains(map))
         {
             _markerFactory.CreateMarkerObjects(map);
             CreateMapObject(map);
@@ -82,7 +76,7 @@ public class RandomizerMapComponent : MonoBehaviour
         }
 
         // We handle the Overworld map special case (hiding/showing the original map elements).
-        HandleOverworldMap(map.Identifier == "Overworld");
+        HandleOverworldMap(map == null || map.Identifier == "Overworld");
     }
 
     private GameObject GetContentGameObject()
