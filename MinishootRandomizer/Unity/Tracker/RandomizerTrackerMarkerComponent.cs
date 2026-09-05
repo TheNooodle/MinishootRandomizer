@@ -53,6 +53,13 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour
             return;
         }
 
+        // If the map is not the current map, we don't show any marker.
+        if (_map != RandomizerMapComponent.CurrentMap)
+        {
+            HideMarker();
+            return;
+        }
+
         bool mustShow = false;
 
         // We compute the visibility of each underlying marker, and we show the first one that must be shown.

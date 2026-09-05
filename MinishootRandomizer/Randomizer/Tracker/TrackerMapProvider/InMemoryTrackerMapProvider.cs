@@ -984,7 +984,18 @@ public class InMemoryTrackerMapProvider : ITrackerMapProvider
                 scale: 1.0f,
                 center: new Vector3(0, 0, 0)
             ),
-            markers: new List<MarkerData>()
+            markers: new List<MarkerData>() {
+                new MarkerData(new List<string> {
+                    "Abyss - Ambush Island",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-1.45f, -2.25f),
+                }),
+                new MarkerData(new List<string> {
+                    "Abyss - Near dungeon entrance",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-2.55f, -1.59f),
+                }),
+            }
         )
     };
 }

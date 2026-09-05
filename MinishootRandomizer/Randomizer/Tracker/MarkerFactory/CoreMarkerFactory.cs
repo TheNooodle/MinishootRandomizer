@@ -72,7 +72,7 @@ public class CoreMarkerFactory : IMarkerFactory
         {
             Tuple<float, float> coordinate = markerData.Coordinates[i];
             GameObject markerObject = GameObject.Instantiate(_markerPrefab);
-            markerObject.name = $"{markerData}_{i}";
+            markerObject.name = $"{map.Identifier} {markerData}_{i}";
             markerObject.transform.SetParent(_markerParent.transform);
             markerObject.transform.position = new Vector3(coordinate.Item1, coordinate.Item2, 90f);
             markerObject.transform.localScale = new Vector3(0.18f, 0.18f, 0.18f);

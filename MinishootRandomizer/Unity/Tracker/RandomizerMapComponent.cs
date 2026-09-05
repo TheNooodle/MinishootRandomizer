@@ -27,8 +27,41 @@ public class RandomizerMapComponent : MonoBehaviour
 
     void Start()
     {
-        TrackerMap map = _trackerMapProvider.GetTrackerMap("StartingGrotto");
+        TrackerMap map = GetTrackerMapForCurrentPosition();
         SetCurrentMap(map);
+    }
+
+    void Update()
+    {
+        // Handled in the Update method for now, maybe optimized later with events if needed.
+        TrackerMap map = GetTrackerMapForCurrentPosition();
+        if (map != null && map != currentMap)
+        {
+            SetCurrentMap(map);
+        }
+    }
+
+    void OnDestroy()
+    {
+        currentMap = null;
+    }
+
+    private TrackerMap GetTrackerMapForCurrentPosition()
+    {
+        string currentLocation = PlayerState.CurrLocation;
+        switch (currentLocation)
+        {
+            case "Cave":
+                return HandleCaveLocation();
+            default:
+                return _trackerMapProvider.GetTrackerMap("Overworld");
+        }
+    }
+
+    private TrackerMap HandleCaveLocation()
+    {
+        // @TODO:
+        return _trackerMapProvider.GetTrackerMap("StartingGrotto");
     }
 
     private void SetCurrentMap(TrackerMap map)
@@ -78,6 +111,7 @@ public class RandomizerMapComponent : MonoBehaviour
         }
 
         GameObject mapImageObject = new GameObject("RandomizerMap" + map.Identifier);
+        mapImageObject.layer = LayerMask.NameToLayer("UI");
         GameObject contentGameObject = GetContentGameObject();
         if (contentGameObject == null)
         {
@@ -93,6 +127,9 @@ public class RandomizerMapComponent : MonoBehaviour
         mapImageObject.AddComponent<CanvasRenderer>();
         Image spriteImage = mapImageObject.AddComponent<Image>();
         spriteImage.sprite = spriteData.Sprite;
+        RandomizerMapSpriteComponent spriteComponent = mapImageObject.AddComponent<RandomizerMapSpriteComponent>();
+        spriteComponent.Map = map;
+        mapImageObject.transform.SetAsFirstSibling();
 
         return mapImageObject;
     }
