@@ -12,8 +12,15 @@ public class RandomizerMapComponent : MonoBehaviour
     private CurrentMapHandler _currentMapHandler;
     private ILogger _logger = new NullLogger();
 
+    private List<string> _mapIdentifiers = new List<string>()
+    {
+        "StartingGrotto",
+        "Overworld",
+    };
+
     private List<TrackerMap> _initializedMaps = new List<TrackerMap>();
     private GameObject _contentGameObject = null;
+    private GameObject _playerViewGameObject = null;
     private bool _isInitialized = false;
 
     private static TrackerMap currentMap = null;
@@ -37,11 +44,62 @@ public class RandomizerMapComponent : MonoBehaviour
         _currentMapHandler = Plugin.ServiceContainer.Get<CurrentMapHandler>();
         _logger = Plugin.ServiceContainer.Get<ILogger>() ?? new NullLogger();
         _isInitialized = true;
+
+        PlayerInputs.PowerSlow += TryPreviousMap;
+        PlayerInputs.PowerBomb += TryNextMap;
     }
 
     void OnDestroy()
     {
         currentMap = null;
+    }
+    
+    public void TryPreviousMap()
+    {
+        TrySwitchMap(-1);
+    }
+
+    public void TryNextMap()
+    {
+        TrySwitchMap(1);
+    }
+
+    private void TrySwitchMap(int direction)
+    {
+        if (!gameObject.activeSelf)
+        {
+            return;
+        }
+
+        int wantedIndex;
+        if (currentMap == null)
+        {
+            wantedIndex = 0;
+        }
+        else
+        {
+            int currentIndex = _mapIdentifiers.IndexOf(currentMap.Identifier);
+            if (currentIndex == -1)
+            {
+                wantedIndex = 0;
+            }
+            else
+            {
+                wantedIndex = (currentIndex + direction + _mapIdentifiers.Count) % _mapIdentifiers.Count;
+            }
+        }
+
+        TrackerMap wantedMap = _trackerMapProvider.GetTrackerMap(_mapIdentifiers[wantedIndex]);
+        if (wantedMap == null)
+        {
+            _logger.LogError("Could not find map with identifier " + _mapIdentifiers[wantedIndex]);
+            return;
+        }
+        if (wantedMap != currentMap)
+        {
+            SetCurrentMap(wantedMap);
+            Sounds.Play(Sfx.MenuSubmit, 1f, null, 0f, null);
+        }
     }
 
     public void OnMapOpened()
@@ -52,10 +110,7 @@ public class RandomizerMapComponent : MonoBehaviour
         }
 
         TrackerMap map = _currentMapHandler.GetCurrentMap();
-        if (map != null && map != currentMap)
-        {
-            SetCurrentMap(map);
-        }
+        SetCurrentMap(map);
     }
 
     public void OnAfterMapOpened()
@@ -77,6 +132,14 @@ public class RandomizerMapComponent : MonoBehaviour
 
         // We handle the Overworld map special case (hiding/showing the original map elements).
         HandleOverworldMap(map == null || map.Identifier == "Overworld");
+
+        // We hide the player sprite when not on the map the player is currently on.
+        GameObject playerViewGameObject = GetPlayerViewGameObject();
+        TrackerMap currentPlayerMap = _currentMapHandler.GetCurrentMap();
+        if (playerViewGameObject != null)
+        {
+            playerViewGameObject.SetActive(currentPlayerMap != null && map != null && currentPlayerMap.Identifier == map.Identifier);
+        }
     }
 
     private GameObject GetContentGameObject()
@@ -94,6 +157,24 @@ public class RandomizerMapComponent : MonoBehaviour
         }
 
         return _contentGameObject;
+    }
+
+    private GameObject GetPlayerViewGameObject()
+    {
+        GameObject contentGameObject = GetContentGameObject();
+        if (_playerViewGameObject == null && contentGameObject != null)
+        {
+            foreach (Transform child in contentGameObject.transform)
+            {
+                if (child.name == "PlayerView")
+                {
+                    _playerViewGameObject = child.gameObject;
+                    break;
+                }
+            }
+        }
+
+        return _playerViewGameObject;
     }
 
     private GameObject CreateMapObject(TrackerMap map)
