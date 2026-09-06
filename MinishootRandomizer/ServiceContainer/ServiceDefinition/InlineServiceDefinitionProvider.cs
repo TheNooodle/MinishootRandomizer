@@ -476,10 +476,9 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             }
         });
         
-        AddSingleton<IMarkerDataProvider, InMemoryMarkerDataProvider>();
+        AddSingleton<ITrackerMapProvider, InMemoryTrackerMapProvider>();
         
         AddSingleton<IMarkerFactory>(sp => new CoreMarkerFactory(
-            sp.Get<IMarkerDataProvider>(),
             sp.Get<IObjectFinder>(),
             sp.Get<ILocationRepository>(),
             sp.Get<ILogger>()
@@ -594,7 +593,6 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         ConfigurePatcher<TrackerPatcher>(sp => new TrackerPatcher(
             sp.Get<IRandomizerEngine>(),
             sp.Get<IObjectFinder>(),
-            sp.Get<IMarkerFactory>(),
             sp.Get<ILogger>()
         ), hasItemCollected: true);
         

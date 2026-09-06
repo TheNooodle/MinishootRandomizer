@@ -6,7 +6,6 @@ namespace MinishootRandomizer;
 
 public class CoreMarkerFactory : IMarkerFactory
 {
-    private readonly IMarkerDataProvider _markerDataProvider;
     private readonly IObjectFinder _objectFinder;
     private readonly ILocationRepository _locationRepository;
     private readonly ILogger _logger = new NullLogger();
@@ -14,15 +13,14 @@ public class CoreMarkerFactory : IMarkerFactory
     private GameObject _markerParent;
     private GameObject _markerPrefab = null;
 
-    public CoreMarkerFactory(IMarkerDataProvider markerDataProvider, IObjectFinder objectFinder, ILocationRepository locationRepository, ILogger logger = null)
+    public CoreMarkerFactory(IObjectFinder objectFinder, ILocationRepository locationRepository, ILogger logger = null)
     {
-        _markerDataProvider = markerDataProvider;
         _objectFinder = objectFinder;
         _locationRepository = locationRepository;
         _logger = logger ?? new NullLogger();
     }
 
-    public List<GameObject> CreateMarkerObjects()
+    public List<GameObject> CreateMarkerObjects(TrackerMap map)
     {
         _markerParent = _objectFinder.FindObject(new ByName("Collectable (Overworld)"));
         if (_markerParent == null)
@@ -31,17 +29,17 @@ public class CoreMarkerFactory : IMarkerFactory
             return new List<GameObject>();
         }
 
-        List<MarkerData> locationMarkerDatas = _markerDataProvider.GetMarkerDatas();
+        IReadOnlyList<MarkerData> locationMarkerDatas = map.MarkerDatas;
         List<GameObject> markers = new List<GameObject>();
         foreach (MarkerData markerData in locationMarkerDatas)
         {
-            markers.AddRange(CreateMarkers(markerData));
+            markers.AddRange(CreateMarkers(markerData, map));
         }
 
         return markers;
     }
 
-    private List<GameObject> CreateMarkers(MarkerData markerData)
+    private List<GameObject> CreateMarkers(MarkerData markerData, TrackerMap map)
     {
         if (_markerPrefab == null)
         {
@@ -93,6 +91,7 @@ public class CoreMarkerFactory : IMarkerFactory
             animationComponent.SetSpeed(3.0f);
             RandomizerTrackerMarkerComponent markerComponent = markerObject.AddComponent<RandomizerTrackerMarkerComponent>();
             markerComponent.SetSpriteObject(spriteObject);
+            markerComponent.SetMap(map);
 
             if (locations.Count > 0)
             {
