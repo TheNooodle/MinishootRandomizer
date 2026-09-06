@@ -20,6 +20,9 @@ public class CurrentMapHandler
             case "Cave":
                 map = HandleCaveLocation();
                 break;
+            case "Dungeon1":
+                map = _trackerMapProvider.GetTrackerMap("Dungeon1");
+                break;
             case "Overworld":
                 map = _trackerMapProvider.GetTrackerMap("Overworld");
                 break;

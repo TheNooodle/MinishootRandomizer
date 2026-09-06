@@ -1006,6 +1006,110 @@ public class InMemoryTrackerMapProvider : ITrackerMapProvider
                     new Tuple<float, float>(2.41f, -0.95f),
                 }),
             }
+        ),
+        new TrackerMap(
+            identifier: "Dungeon1",
+            name: "Dungeon 1",
+            spriteData: new MapSpriteData(
+                spriteName: "MapsDungeon1",
+                width: 1080,
+                height: 768,
+                scale: 15.75f,
+                center: new Vector3(530.2f, 219.8f, 0f)
+            ),
+            markers: new List<MarkerData>()
+            {
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Entrance after south ramp",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(1.03f, -1.24f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Entrance East Arena",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(5.40f, -0.87f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Crystal near east armored spinner",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(6.13f, 1.22f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Near east armored spinner",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(4.63f, 1.62f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - South item",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(1.02f, -1.68f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Entrance west bridge",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-2.60f, -0.94f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - West bridge hidden item",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-1.97f, -0.04f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Hidden in West Arena",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-4.38f, -0.32f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Near west armored spinner",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-6.53f, -0.80f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Far West Arena after spinner",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-6.86f, 0.34f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Central item",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-0.88f, 1.09f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Platform after crystal wall",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(2.10f, 1.04f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Inside the crystal wall",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.77f, 0.70f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Hidden below crystal wall",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.82f, -0.16f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - North West Arena",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-3.62f, 3.26f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 1 - Near boss",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-2.49f, 3.38f),
+                }),
+                new MarkerData(
+                    markerName: "Dungeon 1 Boss",
+                    locationNames: new List<string> {},
+                    coordinates: new List<Tuple<float, float>> {
+                        new Tuple<float, float>(-0.89f, 4.80f),
+                    },
+                    objectiveMarkerData: new ObjectiveMarkerData(
+                        "Dungeon 1 - Dungeon reward", Goals.Dungeon5
+                    )
+                ),
+            }
         )
     };
 }

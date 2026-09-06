@@ -7,15 +7,17 @@ public class TrackerPatcher
 {
     private readonly IRandomizerEngine _randomizerEngine;
     private readonly IObjectFinder _objectFinder;
+    private readonly ITitleArranger _titleArranger;
     private readonly ILogger _logger = new NullLogger();
 
     private IPatchAction _patchAction = null;
     private List<RandomizerTrackerMarkerComponent> _markers = new List<RandomizerTrackerMarkerComponent>();
 
-    public TrackerPatcher(IRandomizerEngine randomizerEngine, IObjectFinder objectFinder, ILogger logger = null)
+    public TrackerPatcher(IRandomizerEngine randomizerEngine, IObjectFinder objectFinder, ITitleArranger mapTitleArranger, ILogger logger = null)
     {
         _randomizerEngine = randomizerEngine;
         _objectFinder = objectFinder;
+        _titleArranger = mapTitleArranger;
         _logger = logger ?? new NullLogger();
     }
 
@@ -65,6 +67,9 @@ public class TrackerPatcher
             AddComponentAction<RandomizerMapComponent> addMapComponentAction = new AddComponentAction<RandomizerMapComponent>(mapObject);
             compositeAction.Add(addMapComponentAction);
         }
+
+        // Arrange the map title
+        compositeAction.Add(new ArrangeMapTitleAction(_titleArranger));
 
         return new LoggableAction(compositeAction, _logger);
     }

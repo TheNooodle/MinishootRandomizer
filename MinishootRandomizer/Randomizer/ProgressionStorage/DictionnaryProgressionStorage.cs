@@ -5,10 +5,15 @@ namespace MinishootRandomizer;
 public class DictionnaryProgressionStorage : IProgressionStorage
 {
     private Dictionary<Location, bool> _progression = new();
+    private int _locationCheckedCount = 0;
 
     public void SetLocationChecked(Location location, bool isChecked = true)
     {
         _progression[location] = isChecked;
+        if (isChecked)
+        {
+            _locationCheckedCount++;
+        }
     }
 
     public bool IsLocationChecked(Location location)
@@ -18,6 +23,11 @@ public class DictionnaryProgressionStorage : IProgressionStorage
 
     public bool IsGoalCompleted(Goals goal)
     {
-        throw new System.NotImplementedException();
+        return false;
+    }
+
+    public int GetLocationCheckedCount()
+    {
+        return _locationCheckedCount;
     }
 }
