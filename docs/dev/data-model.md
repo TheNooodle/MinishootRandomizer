@@ -17,6 +17,11 @@ Location <-> Item
 
 Items and locations are identified by strings. The same identifiers are used by CSV data, the randomizer engines, logic rules, Archipelago data and Unity integration. Identifier changes therefore require coordinated changes across the relevant data and code.
 
+>The usage of CSV files is to enforce parity with the APWorld. Both the mod and the Archipelago generator must be on the same page to ensure coherence.
+
+>CSV files are generated using a private Airtable project at the moment.
+
+
 ## Items
 
 ### Runtime model
@@ -24,26 +29,25 @@ Items and locations are identified by strings. The same identifiers are used by 
 `Model/Item/Item.cs` defines the abstract `Item` type. Every item has:
 
 - an `Identifier`;
-- an `ItemCategory`;
+- an `ItemCategory` (progression, helpful, filler, token or trap);
 - collection behavior;
 - a display name and sprite identifier;
 - an owned quantity;
 - an indication of whether it can be used as a trap.
-
-The available categories are `Filler`, `Helpful`, `Progression`, `Token` and `Trap`.
 
 Concrete item classes model how an item affects the game. Examples include:
 
 - `PickupItem` for values applied to player stats;
 - `SkillItem` for abilities such as Dash or Boost;
 - `ModuleItem` for player modules;
-- `NpcItem` and `MapItem`;
-- `SmallKeyItem`, `BossKeyItem` and `DungeonRewardItem`;
-- `ScarabItem`, `SpiritItem`, `XpCrystalsItem` and `SuperCrystalsItem`;
 - `ArchipelagoItem` for items owned by another player;
 - `TrapItem` for trap effects.
+- and many more...
 
-`DictionaryItemFactory` maps identifiers to concrete item types and game-specific identifiers such as `Stats`, `Skill`, `Modules`, `NpcIds`, `MapRegion` or `KeyUse`. Some identifiers are interpreted by convention, for example `XP Crystals x20` or `Small Key (Dungeon 1)`.
+`DictionaryItemFactory` maps identifiers to concrete item types and game-specific identifiers such as `Stats`, `Skill`, `Modules`, `NpcIds`, `MapRegion` or `KeyUse`. Some identifiers are interpreted by convention (i.e. extracting certain values from the identifier string itself), for example :
+
+* `XP Crystals x20` means a bundle of XP Crystals of 20 units
+* `Small Key (Dungeon 1)` means adding small key to the counter of dungeon N°1.
 
 ### Item CSV
 
@@ -76,18 +80,13 @@ Items are loaded lazily on the first `Get()` or `GetAll()` call and cached in a 
 
 - `Default`;
 - `XpCrystals`;
-- `Npc`;
-- `Scarab`;
-- `Spirit`;
-- `DungeonSmallKey`;
-- `DungeonBigKey`;
-- `DungeonReward`;
 - `Goal`.
+- and more...
 
 Concrete location types describe how a location is represented in the game:
 
 - `PickupLocation` targets an existing Unity pickup;
-- `ShardLocation` represents a group of XP or HP shards at coordinates;
+- `ShardLocation` represents a group of XP shards at coordinates;
 - `CrystalNpcLocation` targets an NPC;
 - `LinearShopLocation` and `ChoiceShopLocation` represent shop slots;
 - `DestroyableLocation` targets an object such as a pot, bush or rock;

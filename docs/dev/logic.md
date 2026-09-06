@@ -17,7 +17,6 @@ The parser interface contains an important compatibility requirement:
 
 > `ILogicParser` must maintain function parity with the implementation in the Archipelago world.
 
-Changing a rule in the plugin without making the same change in the AP World causes external trackers and the in-game tracker to disagree.
 
 ## Evaluation pipeline
 
@@ -43,7 +42,7 @@ ILogicStateProvider -> LogicState
 
 `LocalLogicStateProvider` creates a state by querying every item from `IItemRepository` and calling `Item.GetOwnedQuantity()`. It then copies settings from `IRandomizerEngine` into the state.
 
-`CachedLogicStateProvider` caches the result and clears it when relevant events occur, including item collection, NPC freeing, entering a game location, scarab currency changes, goal completion and exiting the game.
+`CachedLogicStateProvider` caches the result and clears it when relevant events occur, including item collection, NPC freeing and such. It speeds up logic processing to ensure gameplay is unaffected.
 
 ## LogicState
 
@@ -116,25 +115,31 @@ All built-in rules are declared in the rule table in `CoreLogicParser.ParseRule(
 | `can_destroy_plants` | Requires a cannon. |
 | `can_destroy_coconuts` | Requires a cannon. |
 | `can_destroy_shells` | Requires a cannon. |
-| `can_destroy_trees` | Requires Supershot. |
-| `can_destroy_rocks` | Requires Supershot, or Primordial Crystal when its logic setting is enabled. |
+| `can_destroy_trees` | Requires Supershot, or Blastshot when `SplitSupershot` is enabled. |
+| `can_destroy_rocks` | Requires Supershot (or Blastshot when `SplitSupershot` is enabled), or Primordial Crystal when its logic setting is enabled. |
 | `can_destroy_walls` | Same behavior as `can_destroy_rocks`. |
-| `can_blast_crystals` | Requires a cannon and Power of Protection. |
-| `can_light_torches` | Requires Supershot. |
+| `can_blast_crystals` | Requires a cannon and Power of Protection (or its progressive version when `ProgressivePowers` is enabled). |
+| `can_light_torches` | Requires Supershot, or Flameshot when `SplitSupershot` is enabled. |
 
 ### Movement and races
 
 | Rule | Behavior |
 | --- | --- |
-| `can_cross_gaps` | Requires Dash, unless the configured dashless-gap tolerance permits Boost or neither. |
-| `can_cross_tight_gaps` | Same as `can_cross_gaps` for tight gaps. |
-| `can_cross_very_tight_gaps` | Same as `can_cross_gaps` for very tight gaps. |
-| `can_surf` | Requires Surf. The water type argument is internal and currently does not change this check. |
-| `can_boost` | Requires Boost. |
+| `can_cross_gaps` | Requires Dash, unless the configured `DashlessGaps` tolerance permits Boost or neither (see below). |
+| `can_cross_tight_gaps` | Requires Dash, or Boost when `DashlessGaps` is not `NeedsDash`. |
+| `can_cross_very_tight_gaps` | Requires Dash, or Boost when `DashlessGaps` is not `NeedsDash`, or nothing when `DashlessGaps` is `NeedsNeither`. |
+| `can_surf_normal` | Requires Surf, or Surf (Normal) when `SplitSurf` is enabled. |
+| `can_surf_blue` | Requires Surf, or Surf (Blue) when `SplitSurf` is enabled. |
+| `can_surf_soiled` | Requires Surf, or Surf (Soiled) when `SplitSurf` is enabled. |
+| `can_surf_dungeon` | Requires Surf, or Surf (Dungeon) when `SplitSurf` is enabled. |
+| `can_surf_gold` | Requires Surf, or Surf (Gold) when `SplitSurf` is enabled. |
+| `can_boost` | Requires Boost, or Progressive Boost when `ProgressiveBoost` is enabled. |
 | `can_use_springboards` | Requires Boost, or Dash when `BoostlessSpringboards` is enabled. |
 | `can_race_spirits` | Requires Boost, or Dash when `BoostlessSpiritRaces` is enabled. |
 | `can_race_torches` | Requires Boost unless `BoostlessTorchRaces` is enabled. |
 | `can_dodge_purple_bullets` | Requires Dash and Spirit Dash. |
+
+Dash requirements (gaps, springboards, spirit races and compound rules) accept Progressive Dash when the `ProgressiveDash` setting is enabled.
 
 ### Keys, currencies and collection thresholds
 
@@ -153,16 +158,16 @@ All built-in rules are declared in the rule table in `CoreLogicParser.ParseRule(
 
 | Rule | Behavior |
 | --- | --- |
-| `can_obtain_super_crystals` | Requires a cannon, Dash, Supershot and normal Surf. |
+| `can_obtain_super_crystals` | Currently an upperbound placeholder: requires springboards, cannon level 5, Dash, wall destruction, torch lighting and every Surf type (normal, gold, soiled, dungeon). |
 | `can_open_dungeon_5` | Requires Dungeon 1-4 rewards and the Dark Key. |
 | `can_unlock_final_boss_door` | Requires Dark Heart. |
 | `can_unlock_primordial_cave_door` | Requires Scarab Key. |
-| `can_open_north_city_bridge` | Requires Dash, cannon level 4, gold Surf and wall destruction. |
-| `can_open_sunken_temple` | Requires gold Surf, cannon level 4, Dash and wall destruction. |
+| `can_open_north_city_bridge` | Requires Dash, cannon level 4, gold and soiled Surf, and wall destruction. |
+| `can_open_sunken_temple` | Requires gold and soiled Surf, cannon level 4, Dash and wall destruction. |
 | `can_clear_both_d5_arenas` | Requires cannon level 5, Dash and soiled Surf. |
-| `can_light_all_scarab_temple_torches` | Requires normal Surf, Supershot and cannon level 4. |
-| `can_light_city_torches` | Requires Supershot, gold Surf, cannon level 4 and springboards. |
-| `can_light_desert_grotto_torches` | Requires Supershot, normal Surf or normal gap crossing, and cannon level 3. |
+| `can_light_all_scarab_temple_torches` | Requires normal Surf, torch lighting, wall destruction and cannon level 4. |
+| `can_light_city_torches` | Requires torch lighting, wall destruction, gold and soiled Surf, cannon level 4 and springboards. |
+| `can_light_desert_grotto_torches` | Requires torch lighting, wall destruction, normal Surf or normal gap crossing, and cannon level 3. |
 | `can_open_swamp_tower` | Requires normal Surf or springboards. |
 
 ### Setting-dependent rules
@@ -172,35 +177,18 @@ All built-in rules are declared in the rule table in `CoreLogicParser.ParseRule(
 | `forest_is_blocked` | Succeeds when `BlockedForest` is enabled. |
 | `forest_is_open` | Succeeds when `BlockedForest` is disabled. |
 
-## Combat level requirements
 
-`CanFight()` checks the `IgnoreCannonLevelRequirements` setting. When it is disabled, `can_fight_lvlN` requires at least `N` Progressive Cannon items. When enabled, any cannon count satisfies the fight requirement.
-
-This setting is separate from the item category or item count used by the randomizer. It changes only the logic evaluation of fight requirements.
-
-## Dashless and boostless settings
-
-Movement rules intentionally model alternate execution strategies:
-
-- `BoostlessSpringboards` allows Dash to replace Boost for springboards;
-- `BoostlessSpiritRaces` allows Dash to replace Boost for spirit races;
-- `BoostlessTorchRaces` removes the Boost requirement from torch races;
-- `DashlessGaps` can allow Boost or neither item for progressively tighter gaps.
-
-These settings affect logical reachability only. They do not grant the player an ability or alter the underlying Unity physics.
 
 ## In-logic and out-of-logic evaluation
 
-`OutOfLogicStateDecorator` reuses the real inventory but overrides selected settings with permissive values:
+`OutOfLogicStateDecorator` reuses the real inventory but overrides selected settings with permissive values, such as :
 
 - ignore cannon level requirements;
 - allow boostless springboards;
-- allow boostless spirit races;
-- allow boostless torch races;
 - enable Primordial Crystal wall logic;
 - allow crossing gaps without Dash.
+- and more...
 
-This creates a second tolerance level. It answers: "Can the player technically reach this location by using a less conservative route or technique?" It does not add items to the inventory.
 
 The resulting accessibility values are:
 
@@ -239,6 +227,8 @@ Whenever the inventory or relevant world state changes, the corresponding cache 
 
 Logic tests are defined in `MinishootRandomizer.Tests/Randomizer/Logic/logic_tests.yaml` and executed by `LogicTests`.
 
+>Logic tests are very useful when adding new logic-changing settings, or debugging complicated logic, while enforcing "truths" that can easily be tested again to prevent regressions.
+
 The YAML structure supports:
 
 ```yaml
@@ -268,6 +258,7 @@ When adding or changing a rule:
 4. Add an out-of-logic case when the rule has permissive behavior.
 5. Run `dotnet test` from the solution root.
 
+
 ## Extension points and cautions
 
 New rule implementations belong in `CoreLogicParser`, but the rule name should be treated as a compatibility API because it appears in CSV data and the AP World.
@@ -275,6 +266,8 @@ New rule implementations belong in `CoreLogicParser`, but the rule name should b
 Prefer small helper methods for reusable mechanics, such as movement or combat checks. Return the items used by a rule in `LogicParsingResult` so consumers can explain or visualize the requirement.
 
 Do not use Unity APIs from the parser or core logic checkers. Their inputs should be repositories, `LogicState` and model objects, which keeps the logic testable without a running game. Unity-specific inventory queries belong in `ILogicStateProvider` or item implementations.
+
+For logic rules, prefer concrete actions, instead of assuming the player state. For example, say "can_cross_gaps", and not "can_dash".
 
 ## Related documentation
 
