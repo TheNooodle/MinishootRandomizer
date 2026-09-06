@@ -1,5 +1,5 @@
-using System;
 using HarmonyLib;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MinishootRandomizer;
@@ -48,8 +48,23 @@ public static class SplitSupershotHarmonyPatcher
     [HarmonyPatch("Lite", MethodType.Normal)]
     public static class UnlockerTorch_Lite_Patch
     {
-        public static bool Prefix()
+        private static List<string> torchUnlockerWhiteList = new List<string>
         {
+            // Sunken Temple entrance unlock
+            "OverworldUnlockerTorch8",
+            "OverworldUnlockerTorch9",
+            "OverworldUnlockerTorch10",
+            "OverworldUnlockerTorch11",
+        };
+
+        public static bool Prefix(UnlockerTorch __instance)
+        {
+            if (torchUnlockerWhiteList.Contains(__instance.gameObject.name))
+            {
+                // Some torches must not be blocked by the split supershot setting.
+                return true;
+            }
+
             return !IsSplitSupershotEnabled() || WorldState.Get("FlameshotUnlocked");
         }
     }
