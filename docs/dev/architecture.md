@@ -179,6 +179,48 @@ To add a message flow:
 5. Dispatch the message through `IMessageDispatcher`, not by accessing storage directly.
 
 
+## Unity object finding
+
+### Purpose
+
+`IObjectFinder` (`Unity/Finder/IObjectFinder.cs`) abstracts GameObject lookup in the Unity scene. Patchers and services use it instead of calling `GameObject.FindObjectsOfType` directly, so that selection criteria are declarative, testable, and cacheable.
+
+### Contract
+
+```csharp
+GameObject FindObject(ISelector selector);   // first match, throws ObjectNotFoundException if none
+GameObject[] FindObjects(ISelector selector); // all matches, empty array if none
+```
+
+`FindObject` throws `ObjectNotFoundException` when nothing matches; use `FindObjects` when an empty result is a valid outcome.
+
+### Selectors
+
+A selector (`Unity/Selector/`) describes *how* to pick objects. All selectors expose `Type` (the component type to look for) and `IncludeInactive` (whether inactive GameObjects are captured) where relevant:
+
+| Selector | Matches |
+| --- | --- |
+| `ByComponent` | All GameObjects having a component of the given `Type`. |
+| `ByName` | GameObjects by name, optionally restricted to a component `Type`. |
+| `ByProximity` | GameObjects with a component of `Type` within `Radius` of a `Position`. |
+| `ByNull` | Placeholder matching nothing; returns `null` / empty array. |
+
+Default `IncludeInactive` is `true`, which matters for pooled or currently hidden game objects (enemies, pickups...) that are part of the scene but deactivated.
+
+### Implementations
+
+- `UnityObjectFinder` is the real implementation, based on `GameObject.FindObjectsOfType(type, includeInactive)`.
+- `CacheableObjectFinder` is an optional decorator that caches results per selector. It currently has no cache invalidation (see the `@TODO` in the source).
+- The registered `IObjectFinder` service resolves directly to `UnityObjectFinder`; the cached decorator is available but not wired. Registration lives in `InlineServiceDefinitionProvider`.
+
+### Usage pattern
+
+```csharp
+GameObject[] enemies = _objectFinder.FindObjects(new ByComponent(typeof(Enemy)));
+```
+
+This is how patchers such as `TrackerPatcher` enumerate game objects without depending on Unity scene queries directly.
+
 ## Related documentation
 
 - [Player documentation](../players/index.md)
