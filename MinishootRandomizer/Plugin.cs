@@ -21,7 +21,7 @@ namespace MinishootRandomizer
         private void Awake()
         {
             var serviceDefinitionProvider = new InlineServiceDefinitionProvider(Logger);
-            ServiceContainer = new MicrosoftServiceContainer(serviceDefinitionProvider);
+            ServiceContainer = new InMemoryServiceContainer(serviceDefinitionProvider);
 
             if (ServiceContainer is IBuildable buildable)
             {
