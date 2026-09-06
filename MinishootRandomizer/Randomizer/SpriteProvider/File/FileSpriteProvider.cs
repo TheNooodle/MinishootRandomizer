@@ -23,6 +23,7 @@ public class FileSpriteProvider : ISpriteProvider
         { "LaughingCat", new SpriteFileData("laughing_cat.png", 100, 96)},
         { "LocationMarker", new SpriteFileData("location_marker.png", 116, 180)},
         { "LocationMarkerSimple", new SpriteFileData("location_marker_simple.png", 116, 180)},
+        { "MapsStartingGrotto", new SpriteFileData("maps/starting_grotto.png", 1080, 716)},
         { "NpcMarker", new SpriteFileData("npc_marker.png", 148, 172)},
         { "NpcMarkerSimple", new SpriteFileData("npc_marker_simple.png", 148, 172)},
         { "PalmTree", new SpriteFileData("palm_tree.png", 100, 100) },
@@ -55,7 +56,8 @@ public class FileSpriteProvider : ISpriteProvider
         }
 
         SpriteFileData spriteFileData = _spriteFiles[identifier];
-        string resourceName = _rootPath + "." + spriteFileData.FileName;
+        string fileName = spriteFileData.FileName.Replace("/", ".");
+        string resourceName = _rootPath + "." + fileName;
         using Stream stream = StreamFactory.CreateStream(resourceName);
         Texture2D texture = new Texture2D(spriteFileData.Width, spriteFileData.Height, TextureFormat.DXT1, false);
         byte[] buffer = new byte[stream.Length];
