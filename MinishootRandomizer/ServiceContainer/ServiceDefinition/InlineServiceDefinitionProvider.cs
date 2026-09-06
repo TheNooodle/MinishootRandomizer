@@ -477,6 +477,11 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         });
         
         AddSingleton<ITrackerMapProvider, InMemoryTrackerMapProvider>();
+
+        AddSingleton<CurrentMapHandler>(sp => new CurrentMapHandler(
+            sp.Get<ITrackerMapProvider>(),
+            sp.Get<IRandomizerEngine>()
+        ));
         
         AddSingleton<IMarkerFactory>(sp => new CoreMarkerFactory(
             sp.Get<IObjectFinder>(),
