@@ -20,7 +20,16 @@ public class RandomizerMapComponent : MonoBehaviour
     {
         "StartingGrotto",
         "Overworld",
+        "GreenGrotto",
+        "ScarabTemple",
+        "FamilyCave",
         "Dungeon1",
+        "CrystalGroveTemple",
+        "Dungeon2",
+        "DesertTemple",
+        "Dungeon3",
+        "Sewers",
+        "SunkenTemple",
     };
 
     private List<TrackerMap> _initializedMaps = new List<TrackerMap>();
@@ -35,7 +44,9 @@ public class RandomizerMapComponent : MonoBehaviour
 
     private static TrackerMap currentMap = null;
     public static TrackerMap CurrentMap => currentMap;
+    public static Vector3 DebugPosition = Vector3.zero;
     public static float DebugScale = 0.0f;
+    public static string ForceCurrentMapIdentifier = null;
 
     void Awake()
     {

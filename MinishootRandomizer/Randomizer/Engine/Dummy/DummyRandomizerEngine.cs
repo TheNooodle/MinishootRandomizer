@@ -12,10 +12,10 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
     private Dictionary<Type, ISetting> _settings = new()
     {
-        { typeof(ShuffleNpcs), new ShuffleNpcs(true) },
+        { typeof(ShuffleNpcs), new ShuffleNpcs(false) },
         { typeof(ShuffleScarabs), new ShuffleScarabs(false) },
         { typeof(ShuffleXpShards), new ShuffleXpShards(true) },
-        { typeof(ShuffleSpirits), new ShuffleSpirits(true) },
+        { typeof(ShuffleSpirits), new ShuffleSpirits(false) },
         { typeof(ShuffleSmallKeys), new ShuffleSmallKeys(true) },
         { typeof(ShuffleBossKeys), new ShuffleBossKeys(true) },
         { typeof(TrapItemsAppearance), new TrapItemsAppearance(TrapItemsAppearanceValue.MajorItems) },

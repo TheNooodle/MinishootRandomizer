@@ -1008,6 +1008,132 @@ public class InMemoryTrackerMapProvider : ITrackerMapProvider
             }
         ),
         new TrackerMap(
+            identifier: "GreenGrotto",
+            name: "Green Grotto",
+            spriteData: new MapSpriteData(
+                spriteName: "MapsGreenGrotto",
+                width: 1080,
+                height: 448,
+                scale: 14.1f,
+                center: new Vector3(-490.0f, -27.1f, 0f)
+            ),
+            markers: new List<MarkerData>()
+            {
+                new MarkerData(new List<string> {
+                    "Green Grotto - Drop",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-6.57f, -0.06f),
+                }),
+                new MarkerData(new List<string> {
+                    "Green Grotto - Corner",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-8.09f, -0.78f),
+                }),
+                new MarkerData(new List<string> {
+                    "Green Grotto - Before race",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-1.63f, 2.48f),
+                }),
+                new MarkerData(
+                    locationNames: new List<string> {
+                        "Green Grotto - Race Reward",
+                    },
+                    coordinates: new List<Tuple<float, float>> {
+                        new Tuple<float, float>(0.71f, 1.79f),
+                    },
+                    spiritMarkerData: new SpiritMarkerData(
+                        "Green Grotto - Race Reward", "NpcTiny0"
+                    )
+                ),
+            }
+        ),
+        new TrackerMap(
+            identifier: "ScarabTemple",
+            name: "Scarab Temple",
+            spriteData: new MapSpriteData(
+                spriteName: "MapsScarabTemple",
+                width: 1080,
+                height: 1072,
+                scale: 15.9f,
+                center: new Vector3(-575.5f, 25.5f, 0f)
+            ),
+            markers: new List<MarkerData>()
+            {
+                new MarkerData(new List<string> {
+                    "Scarab Temple - Middle Entrance",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(1.48f, 1.42f),
+                }),
+                new MarkerData(new List<string> {
+                    "Scarab Temple - Bottom Left Torch Item",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.46f, 2.63f),
+                }),
+                new MarkerData(new List<string> {
+                    "Scarab Temple - East side",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(3.26f, 3.11f),
+                }),
+                new MarkerData(new List<string> {
+                    "Scarab Temple - Central Item",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(1.47f, 3.12f),
+                }),
+                new MarkerData(new List<string> {
+                    "Scarab Temple - After race 1",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-5.83f, -6.37f),
+                }),
+                new MarkerData(new List<string> {
+                    "Scarab Temple - After race 2",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-6.45f, -6.25f),
+                }),
+                new MarkerData(new List<string> {
+                    "Scarab Temple - After race 3",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-7.08f, -6.37f),
+                }),
+                new MarkerData(
+                    locationNames: new List<string> {
+                        "Scarab Temple - Race Reward",
+                    },
+                    coordinates: new List<Tuple<float, float>> {
+                        new Tuple<float, float>(4.56f, 4.20f),
+                    },
+                    spiritMarkerData: new SpiritMarkerData(
+                        "Scarab Temple - Race Reward", "NpcTiny1"
+                    )
+                ),
+                new MarkerData(
+                    locationNames: new List<string> {
+                        "Scarab Temple - Backroom",
+                    },
+                    coordinates: new List<Tuple<float, float>> {
+                        new Tuple<float, float>(1.47f, 5.94f),
+                    },
+                    npcMarkerData: new NpcMarkerData(
+                        "Scarab Temple - Backroom", NpcIds.Academician.Str()
+                    )
+                ),
+            }
+        ),
+        new TrackerMap(
+            identifier: "FamilyCave",
+            name: "Family Cave",
+            spriteData: new MapSpriteData(
+                spriteName: "MapsFamilyCave",
+                width: 1076,
+                height: 752,
+                scale: 14.25f,
+                center: new Vector3(-775.2f, 40.4f, 0f)
+            ),
+            markers: new List<MarkerData>()
+            {
+                
+            }
+        ),
+        new TrackerMap(
             identifier: "Dungeon1",
             name: "Dungeon 1",
             spriteData: new MapSpriteData(
@@ -1110,6 +1236,96 @@ public class InMemoryTrackerMapProvider : ITrackerMapProvider
                     )
                 ),
             }
-        )
+        ),
+        new TrackerMap(
+            identifier: "CrystalGroveTemple",
+            name: "Crystal Grove Temple",
+            spriteData: new MapSpriteData(
+                spriteName: "MapsCrystalGroveTemple",
+                width: 1080,
+                height: 800,
+                scale: 15.0f,
+                center: new Vector3(-755.6f, -353.7f, 0f)
+            ),
+            markers: new List<MarkerData>()
+            {
+                
+            }
+        ),
+        new TrackerMap(
+            identifier: "Dungeon2",
+            name: "Dungeon 2",
+            spriteData: new MapSpriteData(
+                spriteName: "MapsDungeon2",
+                width: 1080,
+                height: 760,
+                scale: 19.0f,
+                center: new Vector3(950.4f, 286.0f, 0f)
+            ),
+            markers: new List<MarkerData>()
+            {
+                
+            }
+        ),
+        new TrackerMap(
+            identifier: "DesertTemple",
+            name: "Desert Temple",
+            spriteData: new MapSpriteData(
+                spriteName: "MapsDesertTemple",
+                width: 880,
+                height: 984,
+                scale: 15.25f,
+                center: new Vector3(-552.5f, -415.8f, 0f)
+            ),
+            markers: new List<MarkerData>()
+            {
+                
+            }
+        ),
+        new TrackerMap(
+            identifier: "Dungeon3",
+            name: "Dungeon 3",
+            spriteData: new MapSpriteData(
+                spriteName: "MapsDungeon3",
+                width: 1080,
+                height: 956,
+                scale: 19.0f,
+                center: new Vector3(861.0f, -50.0f, 0f)
+            ),
+            markers: new List<MarkerData>()
+            {
+                
+            }
+        ),
+        new TrackerMap(
+            identifier: "Sewers",
+            name: "Sewers",
+            spriteData: new MapSpriteData(
+                spriteName: "MapsSewers",
+                width: 1080,
+                height: 748,
+                scale: 16.6f,
+                center: new Vector3(-772.5f, 162.7f, 0f)
+            ),
+            markers: new List<MarkerData>()
+            {
+                
+            }
+        ),
+        new TrackerMap(
+            identifier: "SunkenTemple",
+            name: "Sunken Temple",
+            spriteData: new MapSpriteData(
+                spriteName: "MapsSunkenTemple",
+                width: 1080,
+                height: 852,
+                scale: 17.75f,
+                center: new Vector3(-819.0f, -580.4f, 0f)
+            ),
+            markers: new List<MarkerData>()
+            {
+                
+            }
+        ),
     };
 }

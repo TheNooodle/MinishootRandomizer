@@ -76,7 +76,7 @@ public class MapHarmonyPatcher
                 return true;
             }
 
-            Vector3 center = new Vector3(currentMap.SpriteData.Center.X, currentMap.SpriteData.Center.Y, currentMap.SpriteData.Center.Z);
+            Vector3 center = RandomizerMapComponent.DebugPosition != Vector3.zero ? RandomizerMapComponent.DebugPosition : new Vector3(currentMap.SpriteData.Center.X, currentMap.SpriteData.Center.Y, currentMap.SpriteData.Center.Z);
             float scale = RandomizerMapComponent.DebugScale != 0.0f ? RandomizerMapComponent.DebugScale : currentMap.SpriteData.Scale;
             __result = (realPos - center) / scale;
 
