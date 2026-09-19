@@ -39,6 +39,17 @@
     <EmbeddedResource Include="Resources/images/laughing_cat.png" />
     <EmbeddedResource Include="Resources/images/location_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/location_marker.png" />
+    <EmbeddedResource Include="Resources/images/maps/crystal_grove_temple.png" />
+    <EmbeddedResource Include="Resources/images/maps/d1.png" />
+    <EmbeddedResource Include="Resources/images/maps/d2.png" />
+    <EmbeddedResource Include="Resources/images/maps/d3.png" />
+    <EmbeddedResource Include="Resources/images/maps/desert_temple.png" />
+    <EmbeddedResource Include="Resources/images/maps/family_cave.png" />
+    <EmbeddedResource Include="Resources/images/maps/green_grotto.png" />
+    <EmbeddedResource Include="Resources/images/maps/scarab_temple.png" />
+    <EmbeddedResource Include="Resources/images/maps/sewers.png" />
+    <EmbeddedResource Include="Resources/images/maps/starting_grotto.png" />
+    <EmbeddedResource Include="Resources/images/maps/sunken_temple.png" />
     <EmbeddedResource Include="Resources/images/npc_marker_simple.png" />
     <EmbeddedResource Include="Resources/images/npc_marker.png" />
     <EmbeddedResource Include="Resources/images/palm_tree.png" />
@@ -64,6 +75,9 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>lib\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>lib\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>lib\UnityEngine.UI.dll</HintPath>

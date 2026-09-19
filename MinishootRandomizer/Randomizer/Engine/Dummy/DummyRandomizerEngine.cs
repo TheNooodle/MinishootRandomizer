@@ -12,10 +12,10 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
     private Dictionary<Type, ISetting> _settings = new()
     {
-        { typeof(ShuffleNpcs), new ShuffleNpcs(true) },
+        { typeof(ShuffleNpcs), new ShuffleNpcs(false) },
         { typeof(ShuffleScarabs), new ShuffleScarabs(false) },
         { typeof(ShuffleXpShards), new ShuffleXpShards(true) },
-        { typeof(ShuffleSpirits), new ShuffleSpirits(true) },
+        { typeof(ShuffleSpirits), new ShuffleSpirits(false) },
         { typeof(ShuffleSmallKeys), new ShuffleSmallKeys(true) },
         { typeof(ShuffleBossKeys), new ShuffleBossKeys(true) },
         { typeof(TrapItemsAppearance), new TrapItemsAppearance(TrapItemsAppearanceValue.MajorItems) },
@@ -36,7 +36,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(ProgressiveBoost), new ProgressiveBoost(true) },
         { typeof(ProgressivePowers), new ProgressivePowers(true) },
         { typeof(DashlessGaps), new DashlessGaps(DashlessGapsValue.NeedsDash) },
-        { typeof(CompletionGoals), new CompletionGoals(Goals.SpiritTower) },
+        { typeof(CompletionGoals), new CompletionGoals(Goals.Dungeon5AndSnow) },
     };
 
     public DummyRandomizerEngine(

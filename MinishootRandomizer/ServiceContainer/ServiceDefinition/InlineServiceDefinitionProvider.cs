@@ -224,17 +224,19 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
     
     private void ConfigureRandomizer()
     {
-        AddSingleton<IProgressionStorage, WorldStateProgressionStorage>();
+        AddSingleton<WorldStateProgressionStorage>(sp => new WorldStateProgressionStorage(
+            new PlayerStateItemCounter(5)
+        ));
+
+        AddSingleton<IProgressionStorage>(sp => sp.Get<WorldStateProgressionStorage>());
         
         AddSingleton<IRandomizerContextProvider>(sp => new ImguiContextProvider(
             sp.Get<IObjectFinder>(),
             sp.Get<ILogger>()
         ));
         
-        AddSingleton<IItemCounter, PlayerStateItemCounter>();
-        
         AddSingleton<MultiClient>(sp => new MultiClient(
-            sp.Get<IItemCounter>(),
+            new PlayerStateItemCounter(6),
             sp.Get<ILogger>()
         ));
         AddSingleton<IArchipelagoClient>(sp => sp.Get<MultiClient>());
@@ -476,10 +478,15 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             }
         });
         
-        AddSingleton<IMarkerDataProvider, InMemoryMarkerDataProvider>();
+        AddSingleton<ITrackerMapProvider, InMemoryTrackerMapProvider>();
+
+        AddSingleton<CurrentMapHandler>(sp => new CurrentMapHandler(
+            sp.Get<ITrackerMapProvider>(),
+            sp.Get<IRandomizerEngine>(),
+            sp.Get<ILogger>()
+        ));
         
         AddSingleton<IMarkerFactory>(sp => new CoreMarkerFactory(
-            sp.Get<IMarkerDataProvider>(),
             sp.Get<IObjectFinder>(),
             sp.Get<ILocationRepository>(),
             sp.Get<ILogger>()
@@ -516,11 +523,12 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         AddSingleton<TrapManager>(sp => new TrapManager(
             sp.Get<IMessageDispatcher>()
         ));
-        
-        AddPostBuildAction(sp => {
+
+        AddPostBuildAction(sp =>
+        {
             var gameEvents = sp.Get<GameEventDispatcher>();
             var trapManager = sp.Get<TrapManager>();
-            
+
             gameEvents.ItemCollected += trapManager.OnItemCollected;
         });
 
@@ -530,6 +538,12 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             sp.Get<ISpriteProvider>()
         ));
         AddSingleton<IItemViewFactory>(sp => sp.Get<CoreItemViewFactory>());
+        
+        AddSingleton<LayoutTitleArranger>(sp => new LayoutTitleArranger(
+            sp.Get<IObjectFinder>(),
+            sp.Get<ILogger>()
+        ));
+        AddSingleton<ITitleArranger>(sp => sp.Get<LayoutTitleArranger>());
     }
     
     private void ConfigurePatchers()
@@ -594,9 +608,9 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         ConfigurePatcher<TrackerPatcher>(sp => new TrackerPatcher(
             sp.Get<IRandomizerEngine>(),
             sp.Get<IObjectFinder>(),
-            sp.Get<IMarkerFactory>(),
+            sp.Get<ITitleArranger>(),
             sp.Get<ILogger>()
-        ), hasItemCollected: true);
+        ));
         
         ConfigurePatcher<NotificationPatcher>(sp => new NotificationPatcher(
             sp.Get<IRandomizerEngine>(),
@@ -637,7 +651,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
         ));
     }
     
-    private void ConfigurePatcher<T>(Func<IServiceContainer, T> factory, bool hasItemCollected = false) where T : class
+    private void ConfigurePatcher<T>(Func<IServiceContainer, T> factory) where T : class
     {
         AddSingleton<T>(factory);
         
@@ -654,12 +668,6 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             if (patcher.GetType().GetMethod("OnExitingGame") != null) {
                 gameEvents.ExitingGame += (GameEventDispatcher.ExitingGameHandler)Delegate.CreateDelegate(
                     typeof(GameEventDispatcher.ExitingGameHandler), patcher, "OnExitingGame");
-            }
-            
-            // Optional event for patchers that handle item collection
-            if (hasItemCollected && patcher.GetType().GetMethod("OnItemCollected") != null) {
-                gameEvents.ItemCollected += (GameEventDispatcher.ItemCollectedHandler)Delegate.CreateDelegate(
-                    typeof(GameEventDispatcher.ItemCollectedHandler), patcher, "OnItemCollected");
             }
         });
     }

@@ -23,6 +23,17 @@ public class FileSpriteProvider : ISpriteProvider
         { "LaughingCat", new SpriteFileData("laughing_cat.png", 100, 96)},
         { "LocationMarker", new SpriteFileData("location_marker.png", 116, 180)},
         { "LocationMarkerSimple", new SpriteFileData("location_marker_simple.png", 116, 180)},
+        { "MapsCrystalGroveTemple", new SpriteFileData("maps/crystal_grove_temple.png", 1080, 800)},
+        { "MapsDesertTemple", new SpriteFileData("maps/desert_temple.png", 880, 984)},
+        { "MapsDungeon1", new SpriteFileData("maps/d1.png", 1080, 768)},
+        { "MapsDungeon2", new SpriteFileData("maps/d2.png", 1080, 760)},
+        { "MapsDungeon3", new SpriteFileData("maps/d3.png", 1080, 956)},
+        { "MapsFamilyHouseCave", new SpriteFileData("maps/family_cave.png", 1076, 752)},
+        { "MapsGreenGrotto", new SpriteFileData("maps/green_grotto.png", 1080, 448)},
+        { "MapsScarabTemple", new SpriteFileData("maps/scarab_temple.png", 1080, 1072)},
+        { "MapsSewers", new SpriteFileData("maps/sewers.png", 1080, 748)},
+        { "MapsStartingGrotto", new SpriteFileData("maps/starting_grotto.png", 1080, 716)},
+        { "MapsSunkenTemple", new SpriteFileData("maps/sunken_temple.png", 1080, 852)},
         { "NpcMarker", new SpriteFileData("npc_marker.png", 148, 172)},
         { "NpcMarkerSimple", new SpriteFileData("npc_marker_simple.png", 148, 172)},
         { "PalmTree", new SpriteFileData("palm_tree.png", 100, 100) },
@@ -55,7 +66,8 @@ public class FileSpriteProvider : ISpriteProvider
         }
 
         SpriteFileData spriteFileData = _spriteFiles[identifier];
-        string resourceName = _rootPath + "." + spriteFileData.FileName;
+        string fileName = spriteFileData.FileName.Replace("/", ".");
+        string resourceName = _rootPath + "." + fileName;
         using Stream stream = StreamFactory.CreateStream(resourceName);
         Texture2D texture = new Texture2D(spriteFileData.Width, spriteFileData.Height, TextureFormat.DXT1, false);
         byte[] buffer = new byte[stream.Length];

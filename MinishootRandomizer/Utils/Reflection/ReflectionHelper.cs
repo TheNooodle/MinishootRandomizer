@@ -36,6 +36,21 @@ public static class ReflectionHelper
         return (T)field.GetValue(instance);
     }
 
+    public static T SetPrivateFieldValue<T>(object instance, string fieldName, T value)
+    {
+        Type type = instance.GetType();
+        FieldInfo field = type.GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);
+
+        if (field == null)
+        {
+            throw new ReflectionException($"Field '{fieldName}' not found on type '{type.FullName}'.");
+        }
+
+        field.SetValue(instance, value);
+
+        return value;
+    }
+
     public static void ClearActionInvocationList(Type type, string actionName)
     {
         // Get the event info
