@@ -210,8 +210,7 @@ Default `IncludeInactive` is `true`, which matters for pooled or currently hidde
 ### Implementations
 
 - `UnityObjectFinder` is the real implementation, based on `GameObject.FindObjectsOfType(type, includeInactive)`.
-- `CacheableObjectFinder` is an optional decorator that caches results per selector. It currently has no cache invalidation (see the `@TODO` in the source).
-- The registered `IObjectFinder` service resolves directly to `UnityObjectFinder`; the cached decorator is available but not wired. Registration lives in `InlineServiceDefinitionProvider`.
+- The registered `IObjectFinder` service resolves directly to `UnityObjectFinder`;
 
 ### Usage pattern
 
