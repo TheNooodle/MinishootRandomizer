@@ -31,10 +31,10 @@ public class CurrentMapHandler
         {"Overworld > Cave_19", "ScarabTemple"},
         {"Tower > Cave_0",      "ScarabTemple"},
 
-        // Family Cave
-        {"Overworld > Cave_13", "FamilyCave"},
-        {"Overworld > Cave_25", "FamilyCave"},
-        {"Overworld > Cave_26", "FamilyCave"},
+        // Family House Cave
+        {"Overworld > Cave_13", "FamilyHouseCave"},
+        {"Overworld > Cave_25", "FamilyHouseCave"},
+        {"Overworld > Cave_26", "FamilyHouseCave"},
 
         // Sewers
         {"Overworld > Cave_23", "Sewers"},

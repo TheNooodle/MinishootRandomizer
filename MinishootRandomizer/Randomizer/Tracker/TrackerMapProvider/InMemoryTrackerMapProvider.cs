@@ -1119,10 +1119,10 @@ public class InMemoryTrackerMapProvider : ITrackerMapProvider
             }
         ),
         new TrackerMap(
-            identifier: "FamilyCave",
-            name: "Family Cave",
+            identifier: "FamilyHouseCave",
+            name: "Family House Cave",
             spriteData: new MapSpriteData(
-                spriteName: "MapsFamilyCave",
+                spriteName: "MapsFamilyHouseCave",
                 width: 1076,
                 height: 752,
                 scale: 14.25f,
@@ -1130,7 +1130,36 @@ public class InMemoryTrackerMapProvider : ITrackerMapProvider
             ),
             markers: new List<MarkerData>()
             {
-                
+                new MarkerData(new List<string> {
+                    "Family House Cave - Reunited Family",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(7.52f, -2.33f),
+                }),
+                new MarkerData(new List<string> {
+                    "Family House Cave - Before shortcut",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(6.35f, 0.75f),
+                }),
+                new MarkerData(new List<string> {
+                    "Family House Cave - Sewers",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(3.96f, 4.20f),
+                }),
+                new MarkerData(new List<string> {
+                    "Family House Cave - Hidden Tunnel",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(2.61f, -0.44f),
+                }),
+                new MarkerData(new List<string> {
+                    "Family House Cave - Near tree",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.92f, -2.12f),
+                }),
+                new MarkerData(new List<string> {
+                    "Family House Cave - Near button",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.08f, -4.92f),
+                }),
             }
         ),
         new TrackerMap(
@@ -1244,12 +1273,47 @@ public class InMemoryTrackerMapProvider : ITrackerMapProvider
                 spriteName: "MapsCrystalGroveTemple",
                 width: 1080,
                 height: 800,
-                scale: 15.0f,
+                scale: 14.75f,
                 center: new Vector3(-755.6f, -353.7f, 0f)
             ),
             markers: new List<MarkerData>()
             {
-                
+                new MarkerData(new List<string> {
+                    "Crystal Grove Temple - South West Hidden pond",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-5.71f, -3.74f),
+                }),
+                new MarkerData(new List<string> {
+                    "Crystal Grove Temple - Dodge the east cannons",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(3.56f, -3.07f),
+                }),
+                new MarkerData(new List<string> {
+                    "Crystal Grove Temple - North east hidden room",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(1.32f, 0.69f),
+                }),
+                new MarkerData(new List<string> {
+                    "Crystal Grove Temple - East tunnels",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.30f, -1.84f),
+                }),
+                new MarkerData(new List<string> {
+                    "Crystal Grove Temple - Boss reward",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-1.07f, 2.09f),
+                }),
+                new MarkerData(
+                    locationNames: new List<string> {
+                        "Crystal Grove Temple - West pot"
+                    },
+                    coordinates: new List<Tuple<float, float>> {
+                        new Tuple<float, float>(-6.51f, -0.49f),
+                    },
+                    scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                        { "Temple1ScarabPickup0", "Crystal Grove Temple - West pot" },
+                    })
+                ),
             }
         ),
         new TrackerMap(
@@ -1259,12 +1323,89 @@ public class InMemoryTrackerMapProvider : ITrackerMapProvider
                 spriteName: "MapsDungeon2",
                 width: 1080,
                 height: 760,
-                scale: 19.0f,
+                scale: 18.8f,
                 center: new Vector3(950.4f, 286.0f, 0f)
             ),
             markers: new List<MarkerData>()
             {
-                
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - Walled arena item",
+                    "Dungeon 2 - Walled arena extra"
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(1.14f, 1.48f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - Treasure room entrance",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(3.56f, -0.40f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - Treasure room",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(3.56f, -1.48f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - North east beyond arena",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(4.30f, 2.68f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - Item after jumps",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.04f, 2.88f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - Central item",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(0.04f, 0.11f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - South west arena",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-1.71f, -1.32f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - Hidden by plants",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-1.45f, 1.72f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - North item",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-2.30f, 4.37f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - North west arena",
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-3.36f, 2.88f),
+                }),
+                new MarkerData(new List<string> {
+                    "Dungeon 2 - West arena",
+                    "Dungeon 2 - West arena extra"
+                }, new List<Tuple<float, float>> {
+                    new Tuple<float, float>(-7.09f, 0.12f),
+                }),
+                new MarkerData(
+                    locationNames: new List<string> {
+                        "Dungeon 2 - Secret room"
+                    },
+                    coordinates: new List<Tuple<float, float>> {
+                        new Tuple<float, float>(5.04f, 2.88f),
+                    },
+                    scarabMarkerData: new ScarabMarkerData(new Dictionary<string, string> {
+                        { "Dungeon2ScarabPickup0", "Dungeon 2 - Secret room" },
+                    })
+                ),
+                new MarkerData(
+                    markerName: "Dungeon 2 Boss",
+                    locationNames: new List<string> {},
+                    coordinates: new List<Tuple<float, float>> {
+                        new Tuple<float, float>(0.04f, -3.77f),
+                    },
+                    objectiveMarkerData: new ObjectiveMarkerData(
+                        "Dungeon 2 - Dungeon reward", Goals.Dungeon5
+                    )
+                ),
             }
         ),
         new TrackerMap(

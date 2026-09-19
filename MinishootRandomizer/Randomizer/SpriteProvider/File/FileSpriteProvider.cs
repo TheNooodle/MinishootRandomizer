@@ -28,7 +28,7 @@ public class FileSpriteProvider : ISpriteProvider
         { "MapsDungeon1", new SpriteFileData("maps/d1.png", 1080, 768)},
         { "MapsDungeon2", new SpriteFileData("maps/d2.png", 1080, 760)},
         { "MapsDungeon3", new SpriteFileData("maps/d3.png", 1080, 956)},
-        { "MapsFamilyCave", new SpriteFileData("maps/family_cave.png", 1076, 752)},
+        { "MapsFamilyHouseCave", new SpriteFileData("maps/family_cave.png", 1076, 752)},
         { "MapsGreenGrotto", new SpriteFileData("maps/green_grotto.png", 1080, 448)},
         { "MapsScarabTemple", new SpriteFileData("maps/scarab_temple.png", 1080, 1072)},
         { "MapsSewers", new SpriteFileData("maps/sewers.png", 1080, 748)},

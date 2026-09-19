@@ -22,7 +22,7 @@ public class RandomizerMapComponent : MonoBehaviour
         "Overworld",
         "GreenGrotto",
         "ScarabTemple",
-        "FamilyCave",
+        "FamilyHouseCave",
         "Dungeon1",
         "CrystalGroveTemple",
         "Dungeon2",

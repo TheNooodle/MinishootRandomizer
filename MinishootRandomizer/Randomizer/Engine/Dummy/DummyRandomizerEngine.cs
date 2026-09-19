@@ -36,7 +36,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
         { typeof(ProgressiveBoost), new ProgressiveBoost(true) },
         { typeof(ProgressivePowers), new ProgressivePowers(true) },
         { typeof(DashlessGaps), new DashlessGaps(DashlessGapsValue.NeedsDash) },
-        { typeof(CompletionGoals), new CompletionGoals(Goals.SpiritTower) },
+        { typeof(CompletionGoals), new CompletionGoals(Goals.Dungeon5AndSnow) },
     };
 
     public DummyRandomizerEngine(
