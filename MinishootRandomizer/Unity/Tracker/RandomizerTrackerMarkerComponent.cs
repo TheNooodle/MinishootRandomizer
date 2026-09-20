@@ -54,7 +54,7 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour
         }
 
         // If the map is not the current map, we don't show any marker.
-        if (_map != RandomizerMapComponent.CurrentMap)
+        if (_map != RandomizerMapComponent.CurrentMap && !(_map.Identifier == "Overworld" && RandomizerMapComponent.CurrentMap == null))
         {
             HideMarker();
             return;

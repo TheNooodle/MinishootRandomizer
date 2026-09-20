@@ -22,7 +22,7 @@ The main startup sequence is implemented in `MinishootRandomizer/Plugin.cs`:
 
 1. `Awake()` builds the service container.
 2. `Start()` applies all Harmony patches.
-3. `Start()` creates `SceneCrawlerComponent`, `RandomizerManagerComponent`, `MessageWorkerComponent` and `ImguiContextComponent`.
+3. `Start()` creates `SceneCrawlerComponent`, `RandomizerManagerComponent`, `MessageWorkerComponent`, `TrackerPreloaderComponent` and `ImguiContextComponent`.
 4. These objects are marked with `DontDestroyOnLoad`, so they remain available across scene changes.
 
 `RandomizerManagerComponent` adapts game events such as save loading, scene changes, stat changes and encounters to `GameEventDispatcher`. The rest of the application can subscribe to these events without directly depending on game classes.
@@ -219,6 +219,42 @@ GameObject[] enemies = _objectFinder.FindObjects(new ByComponent(typeof(Enemy)))
 ```
 
 This is how patchers such as `TrackerPatcher` enumerate game objects without depending on Unity scene queries directly.
+
+## Tracker map assets
+
+### Purpose
+
+The in-game map screen shows randomizer location markers and per-location map images. Building all of them in one go is expensive (hundreds of `GameObject.Instantiate`, component additions and texture uploads), which used to freeze the game every time a new map was opened for the first time. The asset creation is therefore decoupled from the map screen and spread over several frames in the background.
+
+### Actors
+
+```text
+TrackerPatcher (patch applied on first location enter)
+    +-- adds RandomizerMapComponent to the game Map object (display only)
+    +-- notifies TrackerPreloader (background preload driver)
+
+TrackerPreloader (plain service, ticked every frame by TrackerPreloaderComponent)
+    +-- drains units from ITrackerMapAssetsInitializer
+
+ITrackerMapAssetsInitializer / CoreTrackerMapAssetsInitializer
+    +-- IMarkerFactory (marker GameObjects, one batch per MarkerData)
+    +-- map image GameObjects (large PNGs through ISpriteProvider)
+```
+
+### Unit model
+
+Per map, the initializer tracks a state: which `MarkerData` batches were created, and whether the map image was created. A *unit* is either one `MarkerData` batch (all the markers it holds) or the map image of one map. Assets are pausable at unit granularity:
+
+- the preloader drains units with a time budget of ~8 ms per frame, starting 3 seconds after entering a game location;
+- maps are preloaded in order, Overworld first (most markers, most often shown);
+- opening a map calls `InitializeNow(map)`, which synchronously finishes whatever units remain for that map, so a map is never shown half-built and the preloader resumes where it left off.
+
+`FileSpriteProvider` caches decoded sprites by identifier, so large map PNGs are decoded once, not on every lookup.
+
+### Lifecycle pitfalls
+
+- The game's UI canvases (`Map`, `Collectable (Overworld)`) **survive closing a save** (`GameManager.GameReset`), so tracker GameObjects survive too. `CoreTrackerMapAssetsInitializer` keeps a reference to every GameObject it created, and `Reset()` (called on ExitingGame via `TrackerPreloader.Reset()`) destroys them before clearing its state; otherwise the next save load would duplicate markers and map images.
+- `RandomizerMapComponent` subscribes to **static** game events (`PlayerInputs.PowerSlow` / `PowerBomb`) to switch maps. The component is destroyed when the save is closed, so it must unsubscribe in `OnDestroy`; stale delegates on a destroyed component throw as soon as the key is pressed, and block the newly created component's handler.
 
 ## Related documentation
 

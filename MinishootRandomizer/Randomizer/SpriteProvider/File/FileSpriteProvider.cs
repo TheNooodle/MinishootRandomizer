@@ -8,6 +8,7 @@ public class FileSpriteProvider : ISpriteProvider
 {
     private readonly ISpriteProvider _innerProvider;
     private readonly string _rootPath;
+    private readonly Dictionary<string, SpriteData> _spriteCache = new Dictionary<string, SpriteData>();
 
     private Dictionary<string, SpriteFileData> _spriteFiles = new Dictionary<string, SpriteFileData>()
     {
@@ -65,6 +66,11 @@ public class FileSpriteProvider : ISpriteProvider
             return _innerProvider.GetSprite(identifier);
         }
 
+        if (_spriteCache.TryGetValue(identifier, out SpriteData cachedSprite))
+        {
+            return cachedSprite;
+        }
+
         SpriteFileData spriteFileData = _spriteFiles[identifier];
         string fileName = spriteFileData.FileName.Replace("/", ".");
         string resourceName = _rootPath + "." + fileName;
@@ -85,6 +91,9 @@ public class FileSpriteProvider : ISpriteProvider
             false
         );
 
-        return new SpriteData(sprite, spriteFileData.Scale, spriteFileData.AngleOffset);
+        SpriteData spriteData = new SpriteData(sprite, spriteFileData.Scale, spriteFileData.AngleOffset);
+        _spriteCache[identifier] = spriteData;
+
+        return spriteData;
     }
 }

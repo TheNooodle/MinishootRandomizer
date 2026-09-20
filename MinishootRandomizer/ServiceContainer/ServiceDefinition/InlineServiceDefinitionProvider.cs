@@ -491,6 +491,20 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             sp.Get<ILocationRepository>(),
             sp.Get<ILogger>()
         ));
+
+        AddSingleton<ITrackerMapAssetsInitializer>(sp => new CoreTrackerMapAssetsInitializer(
+            sp.Get<ITrackerMapProvider>(),
+            sp.Get<IMarkerFactory>(),
+            sp.Get<IObjectFinder>(),
+            sp.Get<ISpriteProvider>(),
+            sp.Get<ILogger>()
+        ));
+
+        AddSingleton<TrackerPreloader>(sp => new TrackerPreloader(
+            sp.Get<ITrackerMapAssetsInitializer>(),
+            sp.Get<IRandomizerEngine>(),
+            sp.Get<ILogger>()
+        ));
         
         AddSingleton<CoreNotificationObjectFactory>(sp => new CoreNotificationObjectFactory(
             sp.Get<IObjectFinder>(),
@@ -609,6 +623,7 @@ public class InlineServiceDefinitionProvider : IServiceDefinitionProvider
             sp.Get<IRandomizerEngine>(),
             sp.Get<IObjectFinder>(),
             sp.Get<ITitleArranger>(),
+            sp.Get<TrackerPreloader>(),
             sp.Get<ILogger>()
         ));
         

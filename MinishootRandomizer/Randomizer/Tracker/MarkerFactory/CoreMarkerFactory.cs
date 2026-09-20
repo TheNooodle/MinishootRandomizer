@@ -22,21 +22,28 @@ public class CoreMarkerFactory : IMarkerFactory
 
     public List<GameObject> CreateMarkerObjects(TrackerMap map)
     {
-        _markerParent = _objectFinder.FindObject(new ByName("Collectable (Overworld)"));
+        List<GameObject> markers = new List<GameObject>();
+        foreach (MarkerData markerData in map.MarkerDatas)
+        {
+            markers.AddRange(CreateMarkerObjects(map, markerData));
+        }
+
+        return markers;
+    }
+
+    public List<GameObject> CreateMarkerObjects(TrackerMap map, MarkerData markerData)
+    {
+        if (_markerParent == null)
+        {
+            _markerParent = _objectFinder.FindObject(new ByName("Collectable (Overworld)"));
+        }
         if (_markerParent == null)
         {
             _logger.LogError("Could not find MapMarkers object");
             return new List<GameObject>();
         }
 
-        IReadOnlyList<MarkerData> locationMarkerDatas = map.MarkerDatas;
-        List<GameObject> markers = new List<GameObject>();
-        foreach (MarkerData markerData in locationMarkerDatas)
-        {
-            markers.AddRange(CreateMarkers(markerData, map));
-        }
-
-        return markers;
+        return CreateMarkers(markerData, map);
     }
 
     private List<GameObject> CreateMarkers(MarkerData markerData, TrackerMap map)
@@ -73,6 +80,7 @@ public class CoreMarkerFactory : IMarkerFactory
             Tuple<float, float> coordinate = markerData.Coordinates[i];
             GameObject markerObject = GameObject.Instantiate(_markerPrefab);
             markerObject.name = $"{map.Identifier} {markerData}_{i}";
+            _logger.LogDebug($"Instantiating tracker marker {markerObject.name}");
             markerObject.transform.SetParent(_markerParent.transform);
             markerObject.transform.position = new Vector3(coordinate.Item1, coordinate.Item2, 90f);
             markerObject.transform.localScale = new Vector3(0.18f, 0.18f, 0.18f);
@@ -189,6 +197,7 @@ public class CoreMarkerFactory : IMarkerFactory
         }
 
         _markerPrefab = GameObject.Instantiate(prefabOrigin);
+        _logger.LogDebug("Instantiating tracker marker prefab from template MapMarkerCollectableOverworld(Clone)");
 
         return _markerPrefab;
     }

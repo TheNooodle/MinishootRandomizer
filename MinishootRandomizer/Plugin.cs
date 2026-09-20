@@ -39,6 +39,7 @@ namespace MinishootRandomizer
             CreateSceneCrawler();
             CreateManager();
             CreateMessageWorker();
+            CreateTrackerPreloader();
             CreateImgui();
         }
 
@@ -62,6 +63,13 @@ namespace MinishootRandomizer
             GameObject messageWorker = new GameObject("RandomizerMessageWorker");
             messageWorker.AddComponent<MessageWorkerComponent>();
             DontDestroyOnLoad(messageWorker);
+        }
+
+        private void CreateTrackerPreloader()
+        {
+            GameObject trackerPreloader = new GameObject("RandomizerTrackerPreloader");
+            trackerPreloader.AddComponent<TrackerPreloaderComponent>();
+            DontDestroyOnLoad(trackerPreloader);
         }
 
         private GameObject CreateSceneCrawler()

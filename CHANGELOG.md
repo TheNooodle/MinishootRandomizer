@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- The map screen can now show the interior of various ingame locations, as well as location markers.
+    - The game automatically switch the displayed map to the one corresponding to the player current location.
+    - You can use the "Power of time" and "Power of protection" keybindings to switch from one map to another.
+
+### Changed
+
+- Changed the way the map markers are loaded to minimize game freeze.
+
 ## [0.6.1] - 2026-09-06
 
 ### Changed
