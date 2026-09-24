@@ -69,8 +69,22 @@ public class MapHarmonyPatcher
         public static bool Prefix(ref Vector3 realPos, ref Vector2 __result)
         {
             IRandomizerEngine randomizerEngine = Plugin.ServiceContainer.Get<IRandomizerEngine>();
+            try
+            {
+                bool isRandomized = randomizerEngine.IsRandomized();
+                if (!isRandomized)
+                {
+                    // Vanilla behavior...
+                    return true;
+                }
+            }
+            catch (ArgumentException)
+            {
+                // ... or fallback while the randomizer engine is initializing.
+                return true;
+            }
             TrackerMap currentMap = RandomizerMapComponent.CurrentMap;
-            if (!randomizerEngine.IsRandomized() || currentMap == null)
+            if (currentMap == null)
             {
                 // Vanilla behavior
                 return true;

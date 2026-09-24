@@ -22,6 +22,8 @@ public class RandomizerMapComponent : MonoBehaviour
     private TextMeshProUGUI _mapTitleText = null;
     private TextMeshProUGUI _progressShadowText = null;
     private TextMeshProUGUI _progressText = null;
+    private GameObject _goalGameObject = null;
+    private TextMeshProUGUI _goalText = null;
     private bool _isInitialized = false;
 
     private static TrackerMap currentMap = null;
@@ -144,6 +146,9 @@ public class RandomizerMapComponent : MonoBehaviour
 
         // Update the progress
         HandleProgress();
+
+        // Update the goal
+        HandleGoal();
     }
 
     private void SetCurrentMap(TrackerMap map)
@@ -352,6 +357,59 @@ public class RandomizerMapComponent : MonoBehaviour
         return _progressText;
     }
 
+    private const float GoalYOffset = 50.0f;
+
+    // We duplicate the Progress text object to get the same visual (font, color)
+    // for the goal text, placed at the top center of the viewport.
+    private GameObject GetGoalGameObject()
+    {
+        if (_goalGameObject == null)
+        {
+            GameObject progressObject = _objectFinder.FindObject(new ByName("Progress"));
+            if (progressObject != null)
+            {
+                _goalGameObject = Instantiate(progressObject, transform);
+                _goalGameObject.name = "Goal";
+
+                RectTransform rectTransform = _goalGameObject.GetComponent<RectTransform>();
+                if (rectTransform != null)
+                {
+                    rectTransform.anchorMin = new Vector2(0.5f, 1.0f);
+                    rectTransform.anchorMax = new Vector2(0.5f, 1.0f);
+                    rectTransform.pivot = new Vector2(0.5f, 1.0f);
+                    rectTransform.anchoredPosition = new Vector2(0.0f, -GoalYOffset);
+                    // Make sure the rectangle is wide enough for the goal text.
+                    rectTransform.sizeDelta = new Vector2(Mathf.Max(rectTransform.sizeDelta.x, 600.0f), rectTransform.sizeDelta.y);
+                }
+            }
+            else
+            {
+                _logger.LogError("Could not find Progress object to create the goal text");
+            }
+        }
+
+        return _goalGameObject;
+    }
+
+    private TextMeshProUGUI GetGoalText()
+    {
+        if (_goalText == null)
+        {
+            GameObject goalGameObject = GetGoalGameObject();
+            if (goalGameObject != null)
+            {
+                _goalText = goalGameObject.GetComponent<TextMeshProUGUI>();
+            }
+        }
+
+        if (_goalText == null)
+        {
+            _logger.LogError("Could not find Goal text component");
+        }
+
+        return _goalText;
+    }
+
     private void HandleMapTitleLayout()
     {
         GameObject mapTitleLayoutObject = GetMapTitleLayoutObject();
@@ -390,5 +448,38 @@ public class RandomizerMapComponent : MonoBehaviour
         string progressString = $"{foundLocations}/{randomizedLocationsCount}";
         progressShadowText.text = progressString;
         progressText.text = progressString;
+    }
+
+    private void HandleGoal()
+    {
+        if (!_randomizerEngine.IsRandomized())
+        {
+            if (_goalGameObject != null)
+            {
+                _goalGameObject.SetActive(false);
+            }
+            return;
+        }
+
+        TextMeshProUGUI goalText = GetGoalText();
+
+        if (goalText == null)
+        {
+            return;
+        }
+        Goals goal = _randomizerEngine.GetSetting<CompletionGoals>().Goal;
+        goalText.text = "Objective : " + GetGoalDisplayName(goal);
+    }
+
+    private static string GetGoalDisplayName(Goals goal)
+    {
+        return goal switch
+        {
+            Goals.Dungeon5 => "Dungeon 5",
+            Goals.Snow => "Snow",
+            Goals.Dungeon5AndSnow => "Dungeon 5 & Snow",
+            Goals.SpiritTower => "Spirit Tower",
+            _ => goal.ToString()
+        };
     }
 }
