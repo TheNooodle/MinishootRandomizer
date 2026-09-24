@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- The map screen now shows the goal of the current seed at the top center of the screen (e.g. "Objective : Dungeon 5 & Snow").
 - The map screen can now show the interior of various ingame locations, as well as location markers.
     - The game automatically switch the displayed map to the one corresponding to the player current location.
     - You can use the "Power of time" and "Power of protection" keybindings to switch from one map to another.
