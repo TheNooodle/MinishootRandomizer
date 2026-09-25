@@ -100,6 +100,7 @@ public class CoreMarkerFactory : IMarkerFactory
             RandomizerTrackerMarkerComponent markerComponent = markerObject.AddComponent<RandomizerTrackerMarkerComponent>();
             markerComponent.SetSpriteObject(spriteObject);
             markerComponent.SetMap(map);
+            markerComponent.SetLocations(locations);
 
             if (locations.Count > 0)
             {

@@ -7,6 +7,11 @@ namespace MinishootRandomizer;
 [RequireComponent(typeof(FloatyAnimationComponent))]
 public class RandomizerTrackerMarkerComponent : MonoBehaviour
 {
+    // Static registry of all live tracker markers, so other components
+    // (like the location list) can iterate them without a per-frame FindObjectsOfType.
+    private static readonly HashSet<RandomizerTrackerMarkerComponent> _instances = new HashSet<RandomizerTrackerMarkerComponent>();
+    public static IReadOnlyCollection<RandomizerTrackerMarkerComponent> GetInstances() => _instances;
+
     private IRandomizerEngine _randomizerEngine;
     private ILocationLogicChecker _logicChecker;
     private ILogicStateProvider _logicStateProvider;
@@ -17,6 +22,10 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour
     private GameObject _spriteObject = null;
     private TrackerMap _map = null;
     private FloatyAnimationComponent _floatyAnimationComponent = null;
+    private List<Location> _locations = new List<Location>();
+    private Canvas _canvas = null;
+
+    public IReadOnlyList<Location> Locations => _locations;
 
     void Awake()
     {
@@ -26,6 +35,13 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour
         _spriteProvider = Plugin.ServiceContainer.Get<ISpriteProvider>();
 
         _floatyAnimationComponent = gameObject.GetComponent<FloatyAnimationComponent>();
+
+        _instances.Add(this);
+    }
+
+    void OnDestroy()
+    {
+        _instances.Remove(this);
     }
 
     public void AddMarker(AbstractMarker marker)
@@ -42,6 +58,44 @@ public class RandomizerTrackerMarkerComponent : MonoBehaviour
     public void SetMap(TrackerMap map)
     {
         _map = map;
+    }
+
+    public void SetLocations(List<Location> locations)
+    {
+        _locations = locations;
+    }
+
+    // Returns the on-screen rectangle of the marker sprite when it is currently shown
+    // (a hidden sprite cannot be hovered), along with the camera rendering its canvas
+    // (null for a screen space overlay canvas). Used for pointer hit-testing.
+    public bool TryGetHoverableRect(out RectTransform rect, out Camera canvasCamera)
+    {
+        rect = null;
+        canvasCamera = null;
+
+        if (_spriteObject == null || !_spriteObject.activeInHierarchy)
+        {
+            return false;
+        }
+
+        Image image = _spriteObject.GetComponent<Image>();
+        if (image == null)
+        {
+            return false;
+        }
+
+        if (_canvas == null)
+        {
+            _canvas = GetComponentInParent<Canvas>();
+            if (_canvas == null)
+            {
+                return false;
+            }
+        }
+
+        rect = image.rectTransform;
+        canvasCamera = _canvas.worldCamera;
+        return true;
     }
 
     void Update()

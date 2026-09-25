@@ -24,6 +24,9 @@ public class RandomizerMapComponent : MonoBehaviour
     private TextMeshProUGUI _progressText = null;
     private GameObject _goalGameObject = null;
     private TextMeshProUGUI _goalText = null;
+    private GameObject _locationListGameObject = null;
+    private GameObject _legendsGameObject = null;
+    private bool _legendsSearched = false;
     private bool _isInitialized = false;
 
     private static TrackerMap currentMap = null;
@@ -61,6 +64,12 @@ public class RandomizerMapComponent : MonoBehaviour
         PlayerInputs.PowerSlow -= TryPreviousMap;
         PlayerInputs.PowerBomb -= TryNextMap;
         currentMap = null;
+
+        // Restore the original legends visibility when the component is destroyed.
+        if (_legendsGameObject != null)
+        {
+            _legendsGameObject.SetActive(true);
+        }
     }
     
     public void TryPreviousMap()
@@ -149,6 +158,12 @@ public class RandomizerMapComponent : MonoBehaviour
 
         // Update the goal
         HandleGoal();
+
+        // Create the location list (self-updating component) if it does not exist yet.
+        GetLocationListGameObject();
+
+        // Update the legends visibility
+        HandleLegends();
     }
 
     private void SetCurrentMap(TrackerMap map)
@@ -227,6 +242,24 @@ public class RandomizerMapComponent : MonoBehaviour
         return _playerViewGameObject;
     }
 
+    private GameObject GetLegendsGameObject()
+    {
+        if (_legendsGameObject == null && !_legendsSearched)
+        {
+            _legendsSearched = true;
+            foreach (Transform child in gameObject.transform)
+            {
+                if (child.name == "Legends")
+                {
+                    _legendsGameObject = child.gameObject;
+                    break;
+                }
+            }
+        }
+
+        return _legendsGameObject;
+    }
+
     private void HandleOverworldMap(bool isOverworld)
     {
         // To handle the already existing Overworld map, we hide it when we show our own map.
@@ -253,6 +286,18 @@ public class RandomizerMapComponent : MonoBehaviour
                 child.gameObject.SetActive(isOverworld);
             }
         }
+    }
+
+    private void HandleLegends()
+    {
+        GameObject legendsGameObject = GetLegendsGameObject();
+        if (legendsGameObject == null)
+        {
+            return;
+        }
+
+        // Hide the original legends when the randomizer is active.
+        legendsGameObject.SetActive(!_randomizerEngine.IsRandomized());
     }
 
     private GameObject GetMapTitleLayoutObject()
@@ -357,8 +402,6 @@ public class RandomizerMapComponent : MonoBehaviour
         return _progressText;
     }
 
-    private const float GoalYOffset = 50.0f;
-
     // We duplicate the Progress text object to get the same visual (font, color)
     // for the goal text, placed at the top center of the viewport.
     private GameObject GetGoalGameObject()
@@ -377,7 +420,7 @@ public class RandomizerMapComponent : MonoBehaviour
                     rectTransform.anchorMin = new Vector2(0.5f, 1.0f);
                     rectTransform.anchorMax = new Vector2(0.5f, 1.0f);
                     rectTransform.pivot = new Vector2(0.5f, 1.0f);
-                    rectTransform.anchoredPosition = new Vector2(0.0f, -GoalYOffset);
+                    rectTransform.anchoredPosition = new Vector2(0.0f, -50.0f);
                     // Make sure the rectangle is wide enough for the goal text.
                     rectTransform.sizeDelta = new Vector2(Mathf.Max(rectTransform.sizeDelta.x, 600.0f), rectTransform.sizeDelta.y);
                 }
@@ -408,6 +451,40 @@ public class RandomizerMapComponent : MonoBehaviour
         }
 
         return _goalText;
+    }
+
+    // We duplicate the Progress text object to get the same visual (font, color)
+    // for the hovered locations list, placed at the top right of the viewport.
+    private GameObject GetLocationListGameObject()
+    {
+        if (_locationListGameObject == null)
+        {
+            GameObject progressObject = _objectFinder.FindObject(new ByName("Progress"));
+            if (progressObject != null)
+            {
+                _locationListGameObject = Instantiate(progressObject, transform);
+                _locationListGameObject.name = "LocationList";
+
+                RectTransform rectTransform = _locationListGameObject.GetComponent<RectTransform>();
+                if (rectTransform != null)
+                {
+                    rectTransform.anchorMin = new Vector2(1.0f, 1.0f);
+                    rectTransform.anchorMax = new Vector2(1.0f, 1.0f);
+                    rectTransform.pivot = new Vector2(1.0f, 1.0f);
+                    rectTransform.anchoredPosition = new Vector2(-50.0f, -50.0f);
+                    rectTransform.sizeDelta = new Vector2(700.0f, rectTransform.sizeDelta.y);
+                }
+
+                _locationListGameObject.AddComponent<RandomizerLocationListComponent>();
+                _locationListGameObject.AddComponent<RandomizerMapCursorComponent>();
+            }
+            else
+            {
+                _logger.LogError("Could not find Progress object to create the location list");
+            }
+        }
+
+        return _locationListGameObject;
     }
 
     private void HandleMapTitleLayout()
