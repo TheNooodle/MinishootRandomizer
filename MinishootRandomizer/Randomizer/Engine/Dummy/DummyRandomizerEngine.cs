@@ -54,12 +54,8 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
     public List<Location> GetRandomizedLocations()
     {
+        EnsureInitialized();
         List<Location> locations = new();
-        if (_dummySpoilerLog == null)
-        {
-            GenerateSpoilerLog();
-        }
-
         List<LocationPool> locationPools = GetLocationPools();
         foreach (string locationIdentifier in _dummySpoilerLog.Keys)
         {
@@ -75,11 +71,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
     public Item PeekLocation(Location location)
     {
-        if (_dummySpoilerLog == null)
-        {
-            GenerateSpoilerLog();
-        }
-
+        EnsureInitialized();
         if (!_dummySpoilerLog.ContainsKey(location.Identifier))
         {
             throw new System.Exception($"Location {location.Identifier} not found in dummy spoiler log!");
@@ -159,6 +151,14 @@ public class DummyRandomizerEngine : IRandomizerEngine
         }
     }
 
+    private void EnsureInitialized()
+    {
+        if (!_initialized)
+        {
+            throw new InvalidOperationException("DummyRandomizerEngine has not been initialized.");
+        }
+    }
+
     public void CompleteGoal(Goals goal)
     {
         _logger.LogInfo($"Completing goal {goal}");
@@ -171,7 +171,7 @@ public class DummyRandomizerEngine : IRandomizerEngine
 
     public bool IsRandomized()
     {
-        return true;
+        return _initialized;
     }
 
     public void SetContext(RandomizerContext context)
@@ -182,12 +182,18 @@ public class DummyRandomizerEngine : IRandomizerEngine
     public void Initialize()
     {
         _logger.LogInfo("Initializing DummyRandomizerEngine");
+        _initialized = true;
+        GenerateSpoilerLog();
     }
 
     public void Dispose()
     {
         _logger.LogInfo("Disposing DummyRandomizerEngine");
+        _initialized = false;
+        _dummySpoilerLog = null;
     }
+
+    private bool _initialized = false;
 
     private Dictionary<string, string> _dummySpoilerLog = null;
 
