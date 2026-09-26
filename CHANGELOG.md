@@ -5,14 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [0.6.2] - 2026-09-26
 
 ### Added
 
 - The map screen can now show the interior of various ingame locations, as well as location markers.
     - The game automatically switch the displayed map to the one corresponding to the player current location.
     - You can use the "Power of time" and "Power of protection" keybindings to switch from one map to another.
-- The map screen now shows the goal of the current seed at the top center of the screen (e.g. "Objective : Dungeon 5 & Snow").
+- The map screen now shows the goal of the current seed at the top right corner of the screen (e.g. "Objective : Dungeon 5 & Snow").
 - The map screen now shows the Locations of the marker pointed at in the top right corner of the screen.
     - You can hover on markers with your mouse, or with the cursor at the center of the screen when on gamepad.
     - Already found Locations are hidden, and the remaining ones are color coded: white when in logic, yellow when out of logic, and dark gray when inaccessible.

@@ -403,7 +403,7 @@ public class RandomizerMapComponent : MonoBehaviour
     }
 
     // We duplicate the Progress text object to get the same visual (font, color)
-    // for the goal text, placed at the top center of the viewport.
+    // for the goal text, placed at the top right of the viewport.
     private GameObject GetGoalGameObject()
     {
         if (_goalGameObject == null)
@@ -417,10 +417,10 @@ public class RandomizerMapComponent : MonoBehaviour
                 RectTransform rectTransform = _goalGameObject.GetComponent<RectTransform>();
                 if (rectTransform != null)
                 {
-                    rectTransform.anchorMin = new Vector2(0.5f, 1.0f);
-                    rectTransform.anchorMax = new Vector2(0.5f, 1.0f);
-                    rectTransform.pivot = new Vector2(0.5f, 1.0f);
-                    rectTransform.anchoredPosition = new Vector2(0.0f, -50.0f);
+                    rectTransform.anchorMin = new Vector2(1.0f, 1.0f);
+                    rectTransform.anchorMax = new Vector2(1.0f, 1.0f);
+                    rectTransform.pivot = new Vector2(1.0f, 1.0f);
+                    rectTransform.anchoredPosition = new Vector2(-50.0f, -50.0f);
                     // Make sure the rectangle is wide enough for the goal text.
                     rectTransform.sizeDelta = new Vector2(Mathf.Max(rectTransform.sizeDelta.x, 600.0f), rectTransform.sizeDelta.y);
                 }
@@ -442,6 +442,10 @@ public class RandomizerMapComponent : MonoBehaviour
             if (goalGameObject != null)
             {
                 _goalText = goalGameObject.GetComponent<TextMeshProUGUI>();
+                if (_goalText != null)
+                {
+                    _goalText.alignment = TextAlignmentOptions.MidlineRight;
+                }
             }
         }
 
@@ -454,7 +458,8 @@ public class RandomizerMapComponent : MonoBehaviour
     }
 
     // We duplicate the Progress text object to get the same visual (font, color)
-    // for the hovered locations list, placed at the top right of the viewport.
+    // for the hovered locations list, placed at the top right of the viewport,
+    // 100px below the goal text.
     private GameObject GetLocationListGameObject()
     {
         if (_locationListGameObject == null)
@@ -471,7 +476,7 @@ public class RandomizerMapComponent : MonoBehaviour
                     rectTransform.anchorMin = new Vector2(1.0f, 1.0f);
                     rectTransform.anchorMax = new Vector2(1.0f, 1.0f);
                     rectTransform.pivot = new Vector2(1.0f, 1.0f);
-                    rectTransform.anchoredPosition = new Vector2(-50.0f, -50.0f);
+                    rectTransform.anchoredPosition = new Vector2(-50.0f, -100.0f);
                     rectTransform.sizeDelta = new Vector2(700.0f, rectTransform.sizeDelta.y);
                 }
 
